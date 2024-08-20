@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35208.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inzynierka-movie-app.Server", "inzynierka-movie-app.Server\inzynierka-movie-app.Server.csproj", "{AF26A4A8-E881-4D8B-9B27-FE7609878487}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "inzynierka-movie-app.client", "inzynierka-movie-app.client\inzynierka-movie-app.client.esproj", "{B62C3D30-401F-4861-B2CC-1955B0FA4460}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF26A4A8-E881-4D8B-9B27-FE7609878487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF26A4A8-E881-4D8B-9B27-FE7609878487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF26A4A8-E881-4D8B-9B27-FE7609878487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF26A4A8-E881-4D8B-9B27-FE7609878487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B62C3D30-401F-4861-B2CC-1955B0FA4460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B62C3D30-401F-4861-B2CC-1955B0FA4460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B62C3D30-401F-4861-B2CC-1955B0FA4460}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B62C3D30-401F-4861-B2CC-1955B0FA4460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B62C3D30-401F-4861-B2CC-1955B0FA4460}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B62C3D30-401F-4861-B2CC-1955B0FA4460}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {321780D4-A218-42F0-8A26-BC6ABD1B6DFD}
+	EndGlobalSection
+EndGlobal
