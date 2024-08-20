@@ -16,7 +16,7 @@ function DarkMode() {
 
   return (
     <div className={styles.modeContainer} onClick={handleChangeMode}>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         <motion.div
           initial={{ y: "-150%" }}
           animate={{ y: "0%" }}
