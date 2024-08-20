@@ -1,0 +1,30 @@
+.modeContainer {
+  position: relative;
+
+  height: 3rem;
+  width: 3rem;
+  overflow: hidden;
+}
+
+.modeContainer div {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+}
+
+.sunIcon,
+.moonIcon {
+  cursor: pointer;
+
+  transition: var(--transition-all);
+
+  position: absolute;
+}
+
+.sunIcon {
+  color: var(--accent-100);
+}
+
+.moonIcon {
+  color: var(--background-300);
+}

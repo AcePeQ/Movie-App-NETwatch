@@ -1,0 +1,29 @@
+.logoLink {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  flex-shrink: 0;
+
+  p {
+    font-size: 2.8rem;
+    align-self: flex-end;
+    color: var(--accent-100);
+    display: inline-block;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+
+    span {
+      font-size: 2.2rem;
+      color: var(--text-100);
+      display: inline-block;
+    }
+  }
+}
+
+.logo {
+  width: 4rem;
+  align-self: flex-start;
+}

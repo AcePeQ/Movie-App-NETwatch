@@ -1,0 +1,43 @@
+.btn {
+  display: inline-block;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.primary {
+  background-color: var(--accent-100);
+  color: var(--background-100);
+}
+
+.secondary {
+  background-color: var(--background-200);
+  color: var(--text-200);
+}
+
+.primary,
+.secondary {
+  border-radius: var(--border-radius-sm);
+  font-weight: 500;
+
+  transition: var(--transition-all);
+  box-shadow: var(--shadow-sm);
+}
+
+.primary:hover,
+.primary:active {
+  background-color: var(--accent-200);
+  color: var(--background-300);
+}
+
+.secondary:hover,
+.secondary:active {
+  background-color: var(--background-300);
+  color: var(--text-100);
+}
+
+.small {
+  padding: 0.75rem 1.5rem;
+  width: 12rem;
+  font-size: 1.8rem;
+}
