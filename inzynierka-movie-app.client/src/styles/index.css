@@ -1,0 +1,165 @@
+:root {
+  --primary-100: #0078d4;
+  --primary-200: #0894ff;
+  --primary-300: #3baaff;
+  --accent-100: #ffc107;
+  --accent-200: #ffca2c;
+  --accent-300: #ffd451;
+  --accent-400: #ffdd77;
+  --background-100: #000d17;
+  --background-200: #001b31;
+  --background-300: #002a4a;
+  --text-100: #fafcfe;
+  --text-200: #e5effa;
+  --text-300: #d0e3f6;
+
+  --color-red-1: #fee2e2;
+  --color-red-2: #b91c1c;
+  --color-red-3: #991b1b;
+
+  --color-white: #fff;
+  --color-black: #000;
+
+  --color-indigo-1: #3730a3;
+
+  --color-cyan-1: #164e63;
+
+  --color-grey-50: #f9fafb;
+  --color-grey-100: #f3f4f6;
+  --color-grey-200: #e5e7eb;
+  --color-grey-300: #d1d5db;
+  --color-grey-400: #9ca3af;
+  --color-grey-500: #6b7280;
+  --color-grey-600: #4b5563;
+  --color-grey-700: #374151;
+  --color-grey-800: #1f2937;
+  --color-grey-900: #111827;
+
+  --shadow-tiny: 0 0 0 rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.15);
+
+  --border-radius-tiny: 3px;
+  --border-radius-sm: 6px;
+  --border-radius-md: 9px;
+  --border-radius-lg: 12px;
+  --border-radius-round: 50%;
+  --border-radius-huge: 100rem;
+
+  --font-poppins: "Poppins", "Roboto", "Lato", sans-serif;
+  --font-roboto: "Roboto", "Poppins", "Lato", sans-serif;
+  --font-lato: "Lato", "Poppins", "Robot", sans-serif;
+
+  --transition-all: all 0.4s;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img,
+picture,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+
+  display: inline-block;
+  vertical-align: middle;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+*:disabled {
+  cursor: not-allowed;
+}
+
+select:disabled,
+input:disabled {
+  background-color: #fff;
+  color: #fff;
+}
+
+input:focus,
+button:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #fff;
+  outline-offset: -1px;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--font-poppins);
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.5;
+
+  color: var(--text-100);
+  background-color: var(--background-100);
+
+  min-height: 100dvh;
+}
+
+a.active:link,
+a.active:visited {
+  color: var(--accent-100) !important;
+  border-bottom: 2px solid var(--accent-100) !important;
+
+  transition: var(--transition-all);
+}
+
+a.active:hover,
+a.active:active {
+  color: var(--accent-300) !important;
+  border-bottom: 2px solid var(--accent-300) !important;
+}
+
+a.active::after {
+  content: none;
+}
+
+a.active:hover::after {
+  content: none;
+}
