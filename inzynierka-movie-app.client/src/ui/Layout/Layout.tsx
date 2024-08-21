@@ -9,7 +9,7 @@ function Layout() {
     <section className={styles.layout}>
       <Header />
 
-      <main>
+      <main className={styles.main}>
         <div className={styles.container}>
           <Outlet />
         </div>

@@ -1,7 +1,13 @@
 .layout {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
+
   height: 100dvh;
+  width: 100%;
+}
+
+.main {
+  margin-top: 62px;
 }
 
 .container {

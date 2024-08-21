@@ -1,0 +1,20 @@
+.socialMedias {
+  display: flex;
+  justify-content: center;
+
+  gap: 2rem;
+}
+
+.link:link,
+.link:visited {
+  color: var(--text-100);
+  display: inline-block;
+
+  transition: var(--transition-all);
+}
+
+.link:hover,
+.link:active {
+  color: var(--accent-100);
+  display: inline-block;
+}

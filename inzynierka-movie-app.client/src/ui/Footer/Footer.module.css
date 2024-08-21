@@ -1,0 +1,33 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  background-color: var(--background-200);
+
+  padding: 2rem 2.5rem 1rem;
+}
+
+.footerUpper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footerUpper > * {
+  flex: 1;
+}
+
+.footerUpper > a {
+  justify-content: flex-start;
+}
+
+.footerUpper > ul {
+  justify-content: flex-end;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--background-300);
+}
