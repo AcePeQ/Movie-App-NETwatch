@@ -1,0 +1,19 @@
+.searchResults {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(100.5%);
+
+  padding: 1rem 1rem;
+  width: 100%;
+
+  border-bottom-left-radius: var(--border-radius-md);
+  border-bottom-right-radius: var(--border-radius-md);
+
+  box-shadow: var(--shadow-md);
+
+  color: var(--text-300);
+  background-color: var(--background-300);
+
+  border-radius: var(--border-radius-md);
+}

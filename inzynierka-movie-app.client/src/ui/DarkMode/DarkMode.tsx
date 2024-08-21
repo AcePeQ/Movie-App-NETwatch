@@ -33,26 +33,6 @@ function DarkMode() {
       </AnimatePresence>
     </div>
   );
-
-  // if (isDarkMode) {
-  //   return (
-  //     <AnimatePresence>
-  //       {isDarkMode && (
-  //         <motion.div
-  //           key="darkMode"
-  //           initial={{ y: "-100%" }}
-  //           animate={{ y: "0%" }}
-  //           exit={{ y: "100%" }}
-  //           transition={{ duration: 0.4 }}
-  //           className={styles.modeContainer}
-  //           onClick={handleChangeMode}
-  //         >
-  //           <HiMiniMoon className={`${styles.moonIcon}`} size={ICON_SIZE} />
-  //         </motion.div>
-  //       )}
-  //     </AnimatePresence>
-  //   );
-  // }
 }
 
 export default DarkMode;
