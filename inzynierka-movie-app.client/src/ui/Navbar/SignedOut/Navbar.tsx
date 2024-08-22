@@ -3,7 +3,7 @@ import Logo from "../../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
 import Search from "../../Search/Search";
 import Button from "../../Button/Button";
-import DarkMode from "../../DarkMode/DarkMode";
+import DarkMode from "../../../features/DarkMode/DarkMode";
 
 export function Navbar() {
   return (

@@ -1,17 +1,19 @@
-import { useState } from "react";
 import styles from "./DarkMode.module.css";
 
 import { HiOutlineSun } from "react-icons/hi";
 import { HiMiniMoon } from "react-icons/hi2";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
+import { changeMode, getMode } from "./darkmodeSlice";
 
 const ICON_SIZE: number = 30;
 
 function DarkMode() {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
+  const darkmode = useAppSelector(getMode);
+  const dispatch = useAppDispatch();
 
   function handleChangeMode() {
-    setIsDarkMode((mode) => !mode);
+    dispatch(changeMode());
   }
 
   return (
@@ -22,9 +24,9 @@ function DarkMode() {
           animate={{ y: "0%" }}
           exit={{ y: "150%", opacity: "0" }}
           transition={{ ease: "linear", duration: 0.4 }}
-          key={isDarkMode ? 0 : 1}
+          key={darkmode ? 0 : 1}
         >
-          {isDarkMode ? (
+          {darkmode ? (
             <HiMiniMoon className={`${styles.moonIcon}`} size={ICON_SIZE} />
           ) : (
             <HiOutlineSun className={`${styles.sunIcon}`} size={ICON_SIZE} />
