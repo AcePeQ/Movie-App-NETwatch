@@ -13,6 +13,8 @@
   --text-200: #e5effa;
   --text-300: #d0e3f6;
 
+  --background-opacity-50-100: #000d1780;
+
   --color-red-1: #fee2e2;
   --color-red-2: #b91c1c;
   --color-red-3: #991b1b;
@@ -52,6 +54,8 @@
   --font-lato: "Lato", "Poppins", "Robot", sans-serif;
 
   --transition-all: all 0.4s;
+
+  --navbar-height: 62px;
 }
 
 *,

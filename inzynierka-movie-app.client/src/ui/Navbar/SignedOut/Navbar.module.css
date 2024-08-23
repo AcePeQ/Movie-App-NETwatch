@@ -4,6 +4,8 @@
   align-items: center;
 
   padding: 1rem 2rem;
+
+  background-color: var(--background-100);
 }
 
 .leftSide {

@@ -1,5 +1,11 @@
+import Hero from "../../features/Homepage/Hero/Hero";
+
 function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 }
 
 export default Home;
