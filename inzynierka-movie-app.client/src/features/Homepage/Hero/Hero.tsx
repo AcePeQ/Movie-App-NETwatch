@@ -38,8 +38,11 @@ function MovieItem() {
         <Link className={styles.movieLink} to="/">
           <h3 className={styles.title}>Shogun</h3>
           <div className={styles.ratingMovie}>
-            <HiMiniStar />
-            <span className={styles.rating}>9,5</span>
+            <div className={styles.ratingBox}>
+              <HiMiniStar />
+              <span className={styles.rating}>9,5</span>
+            </div>
+            <span className={styles.date}>2024</span>
           </div>
           <div className={styles.genres}>
             <span className={styles.genre}>Action</span>
