@@ -11,6 +11,8 @@
 }
 
 .container {
-  max-width: 192rem;
+  max-width: 150rem;
   margin: 0 auto;
+
+  gap: 5rem;
 }
