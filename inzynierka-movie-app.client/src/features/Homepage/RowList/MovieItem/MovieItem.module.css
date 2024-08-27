@@ -1,0 +1,80 @@
+.movieBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 22.4rem;
+
+  border-radius: var(--border-radius-sm);
+
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.movieBox:hover .movieOptions {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.upperBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ratingBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.24rem;
+
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    color: var(--accent-100);
+  }
+
+  .rating {
+    font-size: 1.8rem;
+  }
+}
+
+.movieInformations {
+  background-color: var(--background-opacity-50-100);
+  padding: 0.5rem 1rem;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.genres {
+  display: flex;
+  gap: 0.5rem;
+
+  font-size: 1.4rem;
+}
+
+.movieOptions {
+  opacity: 0;
+  pointer-events: none;
+
+  background-color: var(--background-opacity-50-100);
+  padding: 0.25rem 1rem;
+  text-align: end;
+
+  transition: var(--transition-all);
+
+  svg {
+    width: 2.6rem;
+    height: 2.6rem;
+    color: var(--accent-100);
+
+    transition: var(--transition-all);
+
+    &:hover {
+      color: var(--accent-200);
+    }
+  }
+}

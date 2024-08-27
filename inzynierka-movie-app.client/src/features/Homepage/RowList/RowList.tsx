@@ -1,71 +1,39 @@
-import { Link } from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
 import styles from "./RowList.module.css";
+// import MovieItem from "./MovieItem/MovieItem";
+import MovieItemTop from "./MovieItemTop/MovieItemTop";
 
-import { HiMiniStar } from "react-icons/hi2";
-
-// import { HiCog6Tooth } from "react-icons/hi2";
-import { HiPlusCircle } from "react-icons/hi";
-
-function RowList() {
-  return (
-    <div className={styles.row}>
-      <h2 className={styles.rowHeader}>New</h2>
-
-      <div className={styles.movies}>
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-        <Movie />
-      </div>
-    </div>
-  );
+interface RowProps {
+  title: string;
 }
 
-function Movie() {
-  const backgroundImage = { background: `url(/public/shogun.jpg)` };
-
+function RowList({ title }: RowProps) {
   return (
-    <Link to="/">
-      <div className={styles.movieBox} style={backgroundImage}>
-        <div className={styles.movieOptions}>
-          {/* <HiCog6Tooth /> */}
-          <HiPlusCircle />
-        </div>
+    <div className={styles.row}>
+      <h2 className={styles.rowHeader}>{title}</h2>
 
-        <div className={styles.movieInformations}>
-          <div className={styles.movieDetails}>
-            <div className={styles.upperBox}>
-              <p className={styles.title}>Shogun</p>
-              <div className={styles.ratingBox}>
-                <HiMiniStar />
-                <span className={styles.rating}>9,5</span>
-              </div>
-            </div>
-            <div className={styles.genres}>
-              <span className={styles.genre}>Action</span>
-              <span className={styles.genre}>Horror</span>
-              <span className={styles.genre}>Adventures</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Link>
+      <Slider
+        speed={1500}
+        dots={false}
+        slidesToShow={5}
+        slidesToScroll={5}
+        infinite={false}
+      >
+        <MovieItemTop number="1" />
+        <MovieItemTop number="2" />
+        <MovieItemTop number="3" />
+        <MovieItemTop number="4" />
+        <MovieItemTop number="5" />
+        <MovieItemTop number="6" />
+        <MovieItemTop number="7" />
+        <MovieItemTop number="8" />
+        <MovieItemTop number="9" />
+        <MovieItemTop number="10" />
+      </Slider>
+    </div>
   );
 }
 

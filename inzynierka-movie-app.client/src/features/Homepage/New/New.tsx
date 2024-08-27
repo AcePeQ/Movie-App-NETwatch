@@ -1,7 +1,7 @@
 import RowList from "../RowList/RowList";
 
 function New() {
-  return <RowList />;
+  return <RowList title="New" />;
 }
 
 export default New;
