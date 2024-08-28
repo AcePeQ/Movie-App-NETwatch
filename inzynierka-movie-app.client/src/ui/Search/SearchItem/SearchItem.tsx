@@ -13,6 +13,7 @@ function SearchItem() {
           <p className={styles.title}>Flower of Evil</p>
           <div className={styles.movieTypes}>
             <span className={styles.yearAndtype}>2024, Movie</span>
+            <span className={styles.genres}>Action, Brutal</span>
             <div className={styles.rating}></div>
           </div>
         </div>

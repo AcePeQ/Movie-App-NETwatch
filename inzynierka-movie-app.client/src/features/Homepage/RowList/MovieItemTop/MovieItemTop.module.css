@@ -6,7 +6,7 @@
 }
 
 .numberBox {
-  font-weight: 400;
+  font-weight: 700;
   font-family: var(--font-lato);
 
   color: var(--background-300);
@@ -14,9 +14,10 @@
   font-size: 19.2rem;
   line-height: 100%;
   letter-spacing: -4px;
-  bottom: 20px;
-  left: -10px;
+  bottom: 0;
+  left: 0;
   pointer-events: none;
+  z-index: 1;
 
   position: absolute;
 }
@@ -26,13 +27,22 @@
   flex-direction: column;
   justify-content: space-between;
 
+  position: relative;
+  max-width: 25rem;
+
   border-radius: var(--border-radius-sm);
-  width: 100%;
-  min-height: 35rem;
+  overflow: hidden;
 
   background-size: 100% !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+
+  position: relative;
 }
 
 .movieBox:hover .movieOptions {
@@ -44,6 +54,11 @@
   opacity: 0;
   pointer-events: none;
 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
   background-color: var(--background-opacity-50-100);
   padding: 0.25rem 1rem;
   text-align: end;
@@ -51,8 +66,8 @@
   transition: var(--transition-all);
 
   svg {
-    width: 2.6rem;
-    height: 2.6rem;
+    width: 3rem;
+    height: 3rem;
     color: var(--accent-100);
 
     transition: var(--transition-all);

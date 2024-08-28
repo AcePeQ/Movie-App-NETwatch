@@ -18,7 +18,7 @@
 .primary,
 .secondary {
   border-radius: var(--border-radius-sm);
-  font-weight: 500;
+  font-weight: 600;
 
   transition: var(--transition-all);
   box-shadow: var(--shadow-sm);

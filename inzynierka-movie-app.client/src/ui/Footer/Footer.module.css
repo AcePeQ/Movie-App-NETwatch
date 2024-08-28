@@ -1,17 +1,17 @@
 .footer {
   display: flex;
-  width: 100%;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 
   background-color: var(--background-200);
 
-  padding: 2rem 2.5rem 1rem;
+  padding: 1rem 2.5rem 1rem;
 }
 
 .footerUpper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .footerUpper > * {

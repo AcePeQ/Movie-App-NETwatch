@@ -1,11 +1,9 @@
 .heroContainer {
-  height: calc(100vh - var(--navbar-height));
-  width: 100%;
+  height: calc(100dvh - var(--navbar-height));
 }
 
 .hero {
-  width: 100%;
-  height: 100%;
+  min-height: 100%;
 
   position: relative;
 }
@@ -49,8 +47,9 @@
 }
 
 .heroItem {
+  max-width: 100%;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 
   position: absolute;
   z-index: 2;
@@ -60,7 +59,7 @@
 
 .background {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   position: absolute;
   z-index: -2;
 
@@ -75,15 +74,14 @@
 .heroInformations {
   font-size: 2rem;
 
-  margin: auto 0 15rem 5rem;
-
-  max-width: 40%;
+  max-width: 60ch;
+  display: flex;
   overflow: hidden;
 }
 
 .movieLink {
-  display: flex;
-  flex-direction: column;
+  align-self: center;
+  margin-left: 5rem;
 }
 
 .title {
@@ -103,7 +101,7 @@
   display: flex;
 
   align-items: center;
-  gap: 1rem;
+  gap: 2.5rem;
   font-size: 2.2rem;
 
   svg {
@@ -120,15 +118,17 @@
 
   gap: 1rem;
 
-  font-size: 1.7rem;
+  font-size: 1.8rem;
 
   margin-bottom: 2rem;
 }
 
 .genre {
   display: inline-block;
+  font-weight: 300;
 }
 
 .description {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
+  font-weight: 300;
 }

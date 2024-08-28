@@ -1,15 +1,13 @@
 import Hero from "../../features/Homepage/Hero/Hero";
-import New from "../../features/Homepage/New/New";
-import Popular from "../../features/Homepage/Popular/Popular";
-import Upcoming from "../../features/Homepage/Upcoming/Upcoming";
+import RowList from "../../features/Homepage/RowList/RowList";
 
 function Home() {
   return (
     <>
       <Hero />
-      <New />
-      <Popular />
-      <Upcoming />
+      <RowList title="New" />
+      <RowList title="Popular" />
+      <RowList title="Upcoming" />
     </>
   );
 }

@@ -8,15 +8,20 @@ function Hero() {
     <div className={styles.heroContainer}>
       <div className={styles.hero}>
         <MovieItem />
-
-        <div className={styles.dots}>
-          <span className={`${styles.dot} ${styles.dotActive}`}></span>
-          <span className={styles.dot}></span>
-          <span className={styles.dot}></span>
-          <span className={styles.dot}></span>
-          <span className={styles.dot}></span>
-        </div>
+        <Dots />
       </div>
+    </div>
+  );
+}
+
+function Dots() {
+  return (
+    <div className={styles.dots}>
+      <span className={`${styles.dot} ${styles.dotActive}`}></span>
+      <span className={styles.dot}></span>
+      <span className={styles.dot}></span>
+      <span className={styles.dot}></span>
+      <span className={styles.dot}></span>
     </div>
   );
 }

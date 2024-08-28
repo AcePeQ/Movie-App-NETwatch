@@ -11,12 +11,13 @@ interface MovieItemProps {
 }
 
 function MovieItemTop({ number }: MovieItemProps) {
-  const backgroundImage = { background: `url(/public/shogunPoster.webp)` };
+  // const backgroundImage = { background: `url(/public/shogunPoster.webp)` };
 
   return (
     <Link className={styles.link} to="/">
       <div className={styles.numberBox}>{number}</div>
-      <div className={styles.movieBox} style={backgroundImage}>
+      <div className={styles.movieBox}>
+        <img src="/public/shogunPoster.webp" className={styles.image} />
         <div className={styles.movieOptions}>
           {/* <HiCog6Tooth /> */}
           <HiPlusCircle />
