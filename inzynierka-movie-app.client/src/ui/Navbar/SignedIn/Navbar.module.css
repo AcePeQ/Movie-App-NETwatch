@@ -1,0 +1,33 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+
+  padding: 1rem 2rem;
+
+  background-color: var(--background-100);
+}
+
+.leftSide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.2rem;
+}
+
+.rightSide {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+
+  flex: 1;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+}

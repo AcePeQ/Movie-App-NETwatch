@@ -1,0 +1,28 @@
+.dropdownItem:link,
+.dropdownItem:visited {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+
+  border-radius: var(--border-radius-tiny);
+
+  transition: var(--transition-all);
+}
+
+.dropdownItem:hover,
+.dropdownItem:active {
+  background-color: var(--background-200);
+}
+
+.item {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 1rem;
+
+  font-size: 1.8rem;
+
+  svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
