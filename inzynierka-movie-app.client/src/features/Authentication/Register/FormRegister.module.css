@@ -9,3 +9,10 @@
   width: 3.2rem;
   height: 3.2rem;
 }
+
+.btn {
+  padding: 2.5rem 5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

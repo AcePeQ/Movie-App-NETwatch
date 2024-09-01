@@ -7,6 +7,7 @@ import { HiAcademicCap } from "react-icons/hi2";
 import { HiUser } from "react-icons/hi2";
 import { HiLockClosed } from "react-icons/hi2";
 import { HiMiniLockOpen } from "react-icons/hi2";
+import Button from "../../../ui/Button/Button";
 
 type Inputs = {
   email: string;
@@ -91,6 +92,12 @@ function FormRegister() {
           })}
         />
       </FormRow>
+
+      <div className={styles.btn}>
+        <Button type="primary" size="medium">
+          Create account
+        </Button>
+      </div>
     </form>
   );
 }
