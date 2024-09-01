@@ -5,7 +5,8 @@ import FormRow from "../FormRow/FormRow";
 
 import { HiAcademicCap } from "react-icons/hi2";
 import { HiUser } from "react-icons/hi2";
-import { HiKey } from "react-icons/hi2";
+import { HiLockClosed } from "react-icons/hi2";
+import { HiMiniLockOpen } from "react-icons/hi2";
 
 type Inputs = {
   email: string;
@@ -62,7 +63,7 @@ function FormRegister() {
       <FormRow
         label="Password"
         error={errors.email?.message}
-        icon={<HiKey className={styles.icon} />}
+        icon={<HiLockClosed className={styles.icon} />}
       >
         <input
           type="password"
@@ -78,7 +79,7 @@ function FormRegister() {
       <FormRow
         label="Confirm password"
         error={errors.email?.message}
-        icon={<HiKey className={styles.icon} />}
+        icon={<HiMiniLockOpen className={styles.icon} />}
       >
         <input
           type="password"
