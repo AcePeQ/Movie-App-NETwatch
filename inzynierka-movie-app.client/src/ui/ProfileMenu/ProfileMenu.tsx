@@ -37,15 +37,17 @@ function ProfileMenu() {
   }
 
   return (
-    <div onClick={handleClickTemp} className={styles.profileMenu}>
-      <Avatar type="profile" />
-      <p className={styles.profileName}>ABSCSWBZSDZX</p>
+    <div className={styles.profileMenu}>
+      <div className={styles.profile} onClick={handleClickTemp}>
+        <Avatar type="profile" />
+        <p className={styles.profileName}>ABSCSWBZSDZX</p>
+      </div>
 
       {isOpen && (
         <div className={styles.dropdown}>
           <ul className={styles.itemList}>
             {menu.map((item) => (
-              <ProfileItem item={item} />
+              <ProfileItem key={item.title} item={item} />
             ))}
           </ul>
         </div>

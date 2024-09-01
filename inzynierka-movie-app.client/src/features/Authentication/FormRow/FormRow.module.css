@@ -1,0 +1,83 @@
+.formRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 2.4rem 5rem 0;
+
+  margin-bottom: 1.5rem;
+
+  gap: 1rem;
+
+  font-size: 2rem;
+
+  .row {
+    position: relative;
+    display: flex;
+    min-width: 100%;
+
+    label {
+      position: absolute;
+      z-index: 1;
+
+      top: 50%;
+      transform: translate(5rem, -50%);
+
+      pointer-events: none;
+      opacity: 0;
+
+      transition: var(--transition-all);
+    }
+
+    input {
+      display: inline-block;
+
+      flex: 1;
+      outline: none;
+      border: none;
+
+      margin-left: 4rem;
+
+      border-radius: var(--border-radius-md);
+      background-color: var(--background-200);
+
+      padding: 0.5rem 1rem;
+
+      border: 2px solid transparent;
+
+      transition: var(--transition-all);
+    }
+
+    input:focus,
+    input:not(:placeholder-shown) {
+      border: 2px solid var(--primary-100);
+    }
+
+    input:not(:placeholder-shown) + label {
+      opacity: 1;
+      transform: translate(5rem, -170%);
+    }
+  }
+
+  .error {
+    font-size: 1.6rem;
+    color: var(--color-red-2);
+    font-weight: 600;
+  }
+
+  .iconPassword {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: inline-block;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+}

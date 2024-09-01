@@ -1,20 +1,19 @@
 .profileMenu {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.profile {
   display: flex;
   justify-content: center;
   align-items: center;
 
   gap: 1rem;
-
-  flex-shrink: 0;
-
   cursor: pointer;
-
-  position: relative;
 }
 
 .dropdown {
   position: absolute;
-  /* transform: translateY(100%); */
   top: 100%;
   min-width: max-content;
 
@@ -24,7 +23,6 @@
   border-bottom-right-radius: var(--border-radius-sm);
 
   background-color: var(--background-100);
-  cursor: initial;
 }
 
 .itemList {

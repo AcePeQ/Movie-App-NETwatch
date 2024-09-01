@@ -5,23 +5,18 @@ function FootbarNavbar() {
   return (
     <ul className={styles.navigationList}>
       <li>
-        <NavLink className={styles.navlink} to="/Abs">
+        <NavLink className={styles.navlink} to="/about-us">
           About us
         </NavLink>
       </li>
       <li>
-        <NavLink className={styles.navlink} to="/new">
+        <NavLink className={styles.navlink} to="/contact">
           Contact
         </NavLink>
       </li>
       <li>
-        <NavLink className={styles.navlink} to="/popular">
-          Privacy
-        </NavLink>
-      </li>
-      <li>
-        <NavLink className={styles.navlink} to="/watchlist">
-          Terms
+        <NavLink className={styles.navlink} to="/faq">
+          FAQ
         </NavLink>
       </li>
     </ul>
