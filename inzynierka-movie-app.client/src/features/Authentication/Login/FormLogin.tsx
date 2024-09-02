@@ -1,11 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+
 import { useAppSelector } from "../../../hooks/useRedux";
-import {
-  changeShowConfirmPassword,
-  changeShowPassword,
-  getShowConfirmPassword,
-  getShowPassword,
-} from "../modalRegisterSlice";
 import { useDispatch } from "react-redux";
 
 import FormRow from "../FormRow/FormRow";
@@ -14,20 +9,16 @@ import Button from "../../../ui/Button/Button";
 import stylesGen from "../GeneralStyles.module.css";
 
 import { HiAcademicCap } from "react-icons/hi2";
-import { HiUser } from "react-icons/hi2";
 import { HiLockClosed } from "react-icons/hi2";
-import { HiMiniLockOpen } from "react-icons/hi2";
+import { changeShowPassword, getShowPassword } from "../modalLoginSlice";
 
 type Inputs = {
   email: string;
-  username: string;
   password: string;
-  confirmPassword: string;
 };
 
-function FormRegister() {
+function FormLogin() {
   const showPassword = useAppSelector(getShowPassword);
-  const showConfirmPassword = useAppSelector(getShowConfirmPassword);
   const dispatch = useDispatch();
 
   const {
@@ -38,10 +29,6 @@ function FormRegister() {
 
   function handleShowPassword(): void {
     dispatch(changeShowPassword());
-  }
-
-  function handleShowConfirmPassword(): void {
-    dispatch(changeShowConfirmPassword());
   }
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -66,21 +53,6 @@ function FormRegister() {
       </FormRow>
 
       <FormRow
-        label="Username"
-        error={errors.email?.message}
-        icon={<HiUser className={stylesGen.icon} />}
-      >
-        <input
-          type="text"
-          id="username"
-          placeholder="Username"
-          {...register("username", {
-            required: "This field is required",
-          })}
-        />
-      </FormRow>
-
-      <FormRow
         label="Password"
         error={errors.email?.message}
         icon={<HiLockClosed className={stylesGen.icon} />}
@@ -97,30 +69,13 @@ function FormRegister() {
         />
       </FormRow>
 
-      <FormRow
-        label="Confirm password"
-        error={errors.email?.message}
-        icon={<HiMiniLockOpen className={stylesGen.icon} />}
-        showPassword={showConfirmPassword}
-        passwordHandler={handleShowConfirmPassword}
-      >
-        <input
-          type={showConfirmPassword ? "type" : "password"}
-          id="confirmPassword"
-          placeholder="Confirm password"
-          {...register("confirmPassword", {
-            required: "This field is required",
-          })}
-        />
-      </FormRow>
-
       <div className={stylesGen.btn}>
         <Button type="primary" size="medium">
-          Create account
+          Sign in
         </Button>
       </div>
     </form>
   );
 }
 
-export default FormRegister;
+export default FormLogin;

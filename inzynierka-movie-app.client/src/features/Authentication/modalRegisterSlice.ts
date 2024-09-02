@@ -22,6 +22,8 @@ const modalRegisterSlice = createSlice({
     },
     closeModalRegister: (state) => {
       state.showModalRegister = false;
+      state.showPassword = false;
+      state.showModalRegister = false;
     },
     changeShowPassword: (state) => {
       state.showPassword = !state.showPassword;
