@@ -1,13 +1,22 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import styles from "./FormRegister.module.css";
-import stylesGen from "./GeneralStyles.module.css";
+import { useAppSelector } from "../../../hooks/useRedux";
+import {
+  changeShowConfirmPassword,
+  changeShowPassword,
+  getShowConfirmPassword,
+  getShowPassword,
+} from "../modalRegisterSlice";
+import { useDispatch } from "react-redux";
+
 import FormRow from "../FormRow/FormRow";
+import Button from "../../../ui/Button/Button";
+
+import stylesGen from "./GeneralStyles.module.css";
 
 import { HiAcademicCap } from "react-icons/hi2";
 import { HiUser } from "react-icons/hi2";
 import { HiLockClosed } from "react-icons/hi2";
 import { HiMiniLockOpen } from "react-icons/hi2";
-import Button from "../../../ui/Button/Button";
 
 type Inputs = {
   email: string;
@@ -17,26 +26,37 @@ type Inputs = {
 };
 
 function FormRegister() {
+  const showPassword = useAppSelector(getShowPassword);
+  const showConfirmPassword = useAppSelector(getShowConfirmPassword);
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
+  function handleShowPassword(): void {
+    dispatch(changeShowPassword());
+  }
+
+  function handleShowConfirmPassword(): void {
+    dispatch(changeShowConfirmPassword());
+  }
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <FormRow
         label="E-mail"
         error={errors.email?.message}
-        icon={<HiAcademicCap className={styles.icon} />}
+        icon={<HiAcademicCap className={stylesGen.icon} />}
       >
         <input
           type="text"
-          className={stylesGen.input}
           id="e-mail"
           placeholder="E-mail"
           {...register("email", {
@@ -48,11 +68,10 @@ function FormRegister() {
       <FormRow
         label="Username"
         error={errors.email?.message}
-        icon={<HiUser className={styles.icon} />}
+        icon={<HiUser className={stylesGen.icon} />}
       >
         <input
           type="text"
-          className={stylesGen.input}
           id="username"
           placeholder="Username"
           {...register("username", {
@@ -64,11 +83,12 @@ function FormRegister() {
       <FormRow
         label="Password"
         error={errors.email?.message}
-        icon={<HiLockClosed className={styles.icon} />}
+        icon={<HiLockClosed className={stylesGen.icon} />}
+        showPassword={showPassword}
+        passwordHandler={handleShowPassword}
       >
         <input
-          type="password"
-          className={stylesGen.input}
+          type={showPassword ? "type" : "password"}
           id="password"
           placeholder="Password"
           {...register("password", {
@@ -80,11 +100,12 @@ function FormRegister() {
       <FormRow
         label="Confirm password"
         error={errors.email?.message}
-        icon={<HiMiniLockOpen className={styles.icon} />}
+        icon={<HiMiniLockOpen className={stylesGen.icon} />}
+        showPassword={showConfirmPassword}
+        passwordHandler={handleShowConfirmPassword}
       >
         <input
-          type="password"
-          className={stylesGen.input}
+          type={showConfirmPassword ? "type" : "password"}
           id="confirmPassword"
           placeholder="Confirm password"
           {...register("confirmPassword", {
@@ -93,7 +114,7 @@ function FormRegister() {
         />
       </FormRow>
 
-      <div className={styles.btn}>
+      <div className={stylesGen.btn}>
         <Button type="primary" size="medium">
           Create account
         </Button>

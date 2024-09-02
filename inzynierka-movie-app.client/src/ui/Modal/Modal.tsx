@@ -2,6 +2,7 @@ import { MouseEventHandler, ReactNode } from "react";
 import styles from "./Modal.module.css";
 
 import { HiX } from "react-icons/hi";
+import { createPortal } from "react-dom";
 
 interface ModalProps {
   children: ReactNode;
@@ -10,7 +11,7 @@ interface ModalProps {
 }
 
 function Modal({ children, title, onClose }: ModalProps) {
-  return (
+  return createPortal(
     <div onClick={onClose} className={styles.overlay}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
@@ -21,7 +22,8 @@ function Modal({ children, title, onClose }: ModalProps) {
         </div>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
