@@ -5,8 +5,12 @@ interface darkmodeState {
   isDarkMode: boolean;
 }
 
+const localStorageDarkMode = JSON.parse(
+  localStorage.getItem("darkmode") || `${true}`
+);
+
 const initialState: darkmodeState = {
-  isDarkMode: true,
+  isDarkMode: localStorageDarkMode && true,
 };
 
 export const darkmodeSlice = createSlice({
@@ -15,6 +19,7 @@ export const darkmodeSlice = createSlice({
   reducers: {
     changeMode: (state) => {
       state.isDarkMode = !state.isDarkMode;
+      localStorage.setItem("darkmode", JSON.stringify(state.isDarkMode));
     },
   },
 });

@@ -5,6 +5,7 @@ import { HiMiniMoon } from "react-icons/hi2";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { changeMode, getMode } from "./darkmodeSlice";
+import { useEffect } from "react";
 
 const ICON_SIZE: number = 30;
 
@@ -15,6 +16,14 @@ function DarkMode() {
   function handleChangeMode() {
     dispatch(changeMode());
   }
+
+  useEffect(() => {
+    if (darkmode) {
+      document.querySelector("body")?.setAttribute("data-theme", "dark");
+    } else {
+      document.querySelector("body")?.setAttribute("data-theme", "light");
+    }
+  }, [darkmode]);
 
   return (
     <div className={styles.modeContainer} onClick={handleChangeMode}>

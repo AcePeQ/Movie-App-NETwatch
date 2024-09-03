@@ -62,6 +62,11 @@
   --navbar-height: 62px;
 }
 
+body[data-theme="light"] {
+  --background-100: #fff2e8;
+  --text-100: black;
+}
+
 *,
 *::before,
 *::after {
@@ -69,6 +74,8 @@
 
   margin: 0;
   padding: 0;
+
+  transition: background-color 0.4s;
 }
 
 ul,
