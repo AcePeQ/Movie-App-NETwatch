@@ -9,6 +9,9 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { ReactNode, useState } from "react";
 import ProfileItem from "./ProfileItem/ProfileItem";
 
+import { HiChevronDown } from "react-icons/hi2";
+import { HiChevronUp } from "react-icons/hi2";
+
 /*TEMP*/
 function closeMenu() {}
 
@@ -18,9 +21,9 @@ const menu: {
   toPath: string;
   callback?: void;
 }[] = [
-  { title: "Profile", icon: <HiUserCircle />, toPath: "/" },
-  { title: "My watchlist", icon: <HiOutlineViewList />, toPath: "/" },
-  { title: "Settings", icon: <RiSettings5Fill />, toPath: "/" },
+  { title: "Profile", icon: <HiUserCircle />, toPath: "account" },
+  { title: "My watchlist", icon: <HiOutlineViewList />, toPath: "" },
+  { title: "Settings", icon: <RiSettings5Fill />, toPath: "settings" },
   {
     title: "Logout",
     icon: <HiOutlineLogout />,
@@ -40,7 +43,12 @@ function ProfileMenu() {
     <div className={styles.profileMenu}>
       <div className={styles.profile} onClick={handleClickTemp}>
         <Avatar type="profile" />
-        <p className={styles.profileName}>ABSCSWBZSDZX</p>
+        <p className={styles.profileName}>Ace</p>
+        {isOpen ? (
+          <HiChevronUp className={styles.profileIcon} />
+        ) : (
+          <HiChevronDown className={styles.profileIcon} />
+        )}
       </div>
 
       {isOpen && (
