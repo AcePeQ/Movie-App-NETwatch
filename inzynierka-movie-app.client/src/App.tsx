@@ -8,8 +8,8 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import FAQ from "./pages/FAQ/FAQ";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Contact from "./pages/Contact/Contact";
-import Account from "./pages/AccountPage/Account";
-import Settings from "./pages/SettingsPage/Settings";
+import Settings from "./pages/SettingsPage/SettingsPage";
+import AccountPage from "./pages/AccountPage/AccountPage";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +25,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="faq" element={<FAQ />} />
 
-            <Route path="account" element={<Account />} />
+            <Route path="account" element={<AccountPage />} />
             <Route path="account/settings" element={<Settings />} />
           </Route>
 

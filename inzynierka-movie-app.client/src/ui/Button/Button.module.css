@@ -47,3 +47,24 @@
   width: 20rem;
   font-size: 1.8rem;
 }
+
+.full {
+  min-width: 100%;
+  padding: 0.75rem 1.5rem;
+}
+
+.account {
+  background-color: var(--accent-100);
+  color: var(--background-100);
+
+  font-weight: 600;
+
+  transition: var(--transition-all);
+  box-shadow: var(--shadow-sm);
+}
+
+.account:hover,
+.account:active {
+  background-color: var(--accent-200);
+  color: var(--background-300);
+}

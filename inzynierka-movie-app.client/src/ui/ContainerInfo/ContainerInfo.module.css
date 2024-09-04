@@ -37,15 +37,5 @@
     &:not(:last-child) {
       margin-bottom: 1rem;
     }
-
-    a {
-      &:link,
-      &:visited {
-      }
-
-      &:hover,
-      &:active {
-      }
-    }
   }
 }

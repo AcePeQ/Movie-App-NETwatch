@@ -1,0 +1,21 @@
+.accountContainer {
+  display: flex;
+  gap: 5rem;
+
+  margin: 2.5rem auto;
+  padding: 0 2rem;
+  max-width: 160rem;
+  width: 100%;
+}
+
+.informations {
+  flex: 1;
+
+  & > div {
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius-tiny);
+    background-color: var(--background-200);
+
+    margin-bottom: 4rem;
+  }
+}
