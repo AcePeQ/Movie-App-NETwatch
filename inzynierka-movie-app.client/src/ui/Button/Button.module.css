@@ -68,3 +68,21 @@
   background-color: var(--accent-200);
   color: var(--background-300);
 }
+
+.delete {
+  background-color: var(--color-red-2);
+  color: var(--text-100);
+
+  border-radius: var(--border-radius-sm);
+
+  font-weight: 600;
+
+  transition: var(--transition-all);
+  box-shadow: var(--shadow-sm);
+}
+
+.delete:hover,
+.delete:active {
+  background-color: var(--color-red-3);
+  color: var(--text-100);
+}

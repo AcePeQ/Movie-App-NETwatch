@@ -22,7 +22,11 @@ const menu: {
   callback?: void;
 }[] = [
   { title: "Profile", icon: <HiUserCircle />, toPath: "account" },
-  { title: "My watchlist", icon: <HiOutlineViewList />, toPath: "" },
+  {
+    title: "My watchlist",
+    icon: <HiOutlineViewList />,
+    toPath: "account/watchlist",
+  },
   { title: "Settings", icon: <RiSettings5Fill />, toPath: "settings" },
   {
     title: "Logout",

@@ -10,6 +10,7 @@ import AboutUs from "./pages/AboutUs/AboutUs";
 import Contact from "./pages/Contact/Contact";
 import Settings from "./pages/SettingsPage/SettingsPage";
 import AccountPage from "./pages/AccountPage/AccountPage";
+import LayoutWatchlist from "./ui/LayoutWatchlist/LayoutWatchlist";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+
+            <Route path="/account/watchlist" element={<LayoutWatchlist />}>
+              <Route index />
+            </Route>
 
             <Route path="about-us" element={<AboutUs />} />
             <Route path="contact" element={<Contact />} />

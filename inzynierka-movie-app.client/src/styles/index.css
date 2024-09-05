@@ -163,16 +163,16 @@ button {
 
 select:disabled,
 input:disabled {
-  background-color: #fff;
-  color: #fff;
+  background-color: var(--background-200);
+  color: var(--text-100);
 }
 
 input:focus,
 button:focus,
 textarea:focus,
 select:focus {
-  outline: 2px solid #fff;
-  outline-offset: -1px;
+  outline: none;
+  outline-offset: 0;
 }
 
 p,

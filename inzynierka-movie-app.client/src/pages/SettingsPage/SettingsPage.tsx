@@ -1,5 +1,7 @@
-function Settings() {
-  return <div>settings</div>;
+import Settings from "../../features/AccountSettings/Settings";
+
+function SettingsPage() {
+  return <Settings />;
 }
 
-export default Settings;
+export default SettingsPage;

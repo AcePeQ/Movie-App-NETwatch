@@ -1,0 +1,73 @@
+.accountContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+
+  margin: 2.5rem auto;
+  padding: 2rem 5rem;
+  max-width: 120rem;
+  width: 100%;
+
+  border-radius: var(--border-radius-tiny);
+
+  background-color: var(--background-200);
+}
+
+.form {
+  & > div:not(:last-child) {
+    margin-bottom: 5rem;
+  }
+}
+
+.title {
+  font-size: 3.6rem;
+  font-weight: 500;
+}
+
+.row {
+  display: flex;
+  gap: 2.5rem;
+
+  img {
+    margin-right: 2.5rem;
+  }
+
+  input {
+    display: inline-block;
+
+    outline: none;
+    border: none;
+
+    min-width: 50%;
+
+    border-radius: var(--border-radius-md);
+    background-color: var(--background-100);
+
+    padding: 0.5rem 1rem;
+
+    border: 2px solid transparent;
+
+    transition: var(--transition-all);
+  }
+
+  input:focus,
+  input:not(:placeholder-shown) {
+    border: 2px solid var(--primary-100);
+  }
+}
+
+.settingName {
+  flex: 0 0 20rem;
+
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.settingBox {
+  flex: 1;
+}
+
+.btns {
+  display: flex;
+  gap: 5rem;
+}

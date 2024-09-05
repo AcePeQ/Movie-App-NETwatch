@@ -1,0 +1,33 @@
+.types {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 2.5rem;
+}
+
+.typeBox {
+  select {
+    display: inline-block;
+    background-color: var(--background-200);
+    border: none;
+    outline: none;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+
+    option {
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+}
+
+.sortBox {
+  label {
+  }
+
+  select {
+    option {
+    }
+  }
+}

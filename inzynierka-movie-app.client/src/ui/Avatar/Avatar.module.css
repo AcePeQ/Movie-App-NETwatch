@@ -9,3 +9,10 @@
   width: 100%;
   height: auto;
 }
+
+.settings {
+  min-width: 10rem;
+  height: auto;
+  border-radius: var(--border-radius-tiny);
+  box-shadow: var(--shadow-md);
+}
