@@ -1,33 +1,33 @@
 .types {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+
+  gap: 5rem;
 
   margin-bottom: 2.5rem;
 }
 
-.typeBox {
-  select {
-    display: inline-block;
-    background-color: var(--background-200);
-    border: none;
-    outline: none;
-    padding: 0.75rem 1rem;
-    border-radius: var(--border-radius-sm);
-    cursor: pointer;
+.sortBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    option {
-      display: inline-block;
-      cursor: pointer;
-    }
-  }
+  gap: 1rem;
 }
 
-.sortBox {
-  label {
-  }
+.sortedBy {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
 
-  select {
-    option {
-    }
-  }
+.selectContainer {
+  width: 17.5rem;
+  font-size: 1.8rem;
+}
+
+.selectContainer:focus-within,
+.selectContainer:focus-visible {
+  border: none;
+  outline: none;
 }
