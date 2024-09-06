@@ -20,7 +20,7 @@ function Navigation() {
         </NavLink>
       </li>
       <li>
-        <NavLink className={styles.navlink} to="/watchlist">
+        <NavLink className={styles.navlink} to="account/watchlist">
           Watchlist
         </NavLink>
       </li>

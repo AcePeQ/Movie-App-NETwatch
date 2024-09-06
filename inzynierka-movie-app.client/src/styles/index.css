@@ -207,6 +207,9 @@ a.active:visited {
   color: var(--accent-100) !important;
   border-bottom: 2px solid var(--accent-100) !important;
 
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+
   transition: var(--transition-all);
 }
 

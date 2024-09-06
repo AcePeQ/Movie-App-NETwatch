@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import Layout from "./ui/Layout/Layout";
@@ -11,6 +11,7 @@ import Contact from "./pages/Contact/Contact";
 import Settings from "./pages/SettingsPage/SettingsPage";
 import AccountPage from "./pages/AccountPage/AccountPage";
 import LayoutWatchlist from "./ui/LayoutWatchlist/LayoutWatchlist";
+import All from "./features/Watchlist/All/All";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +24,9 @@ function App() {
             <Route index element={<Home />} />
 
             <Route path="/account/watchlist" element={<LayoutWatchlist />}>
-              <Route index />
+              <Route index element={<Navigate replace to="all" />} />
+              <Route path="all" element={<All />} />
+              <Route path="currentWatching" element={<All />} />
             </Route>
 
             <Route path="about-us" element={<AboutUs />} />

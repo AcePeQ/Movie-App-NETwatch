@@ -10,9 +10,7 @@ function LayoutWatchlist() {
 
       <CategoryList />
 
-      <div className={styles.listBox}>
-        <Outlet />
-      </div>
+      <Outlet />
     </div>
   );
 }

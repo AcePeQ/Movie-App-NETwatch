@@ -25,7 +25,7 @@ const menu: {
   {
     title: "My watchlist",
     icon: <HiOutlineViewList />,
-    toPath: "account/watchlist",
+    toPath: "/account/watchlist",
   },
   { title: "Settings", icon: <RiSettings5Fill />, toPath: "settings" },
   {
