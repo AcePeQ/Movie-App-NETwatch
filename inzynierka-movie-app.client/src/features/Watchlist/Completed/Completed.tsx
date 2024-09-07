@@ -1,7 +1,7 @@
 import ListContainer from "../ListContainer/ListContainer";
 import WatchlistItem from "../WatchlistItem/WatchlistItem";
 
-function All() {
+function Completed() {
   return (
     <ListContainer>
       <>
@@ -20,4 +20,4 @@ function All() {
   );
 }
 
-export default All;
+export default Completed;

@@ -4,7 +4,8 @@
   justify-content: space-between;
 
   min-height: 22.4rem;
-  width: min(34rem);
+  max-width: 34.4rem;
+  width: 100%;
 
   border-radius: var(--border-radius-sm);
 

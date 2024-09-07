@@ -12,6 +12,11 @@ import Settings from "./pages/SettingsPage/SettingsPage";
 import AccountPage from "./pages/AccountPage/AccountPage";
 import LayoutWatchlist from "./ui/LayoutWatchlist/LayoutWatchlist";
 import All from "./features/Watchlist/All/All";
+import CurrentWatching from "./features/Watchlist/CurrentWatching/CurrentWatching";
+import Completed from "./features/Watchlist/Completed/Completed";
+import PlanToWatch from "./features/Watchlist/PlanToWatch/PlanToWatch";
+import OnHold from "./features/Watchlist/OnHold/OnHold";
+import Dropped from "./features/Watchlist/Dropped/Dropped";
 
 const queryClient = new QueryClient();
 
@@ -26,7 +31,11 @@ function App() {
             <Route path="/account/watchlist" element={<LayoutWatchlist />}>
               <Route index element={<Navigate replace to="all" />} />
               <Route path="all" element={<All />} />
-              <Route path="currentWatching" element={<All />} />
+              <Route path="currentwatching" element={<CurrentWatching />} />
+              <Route path="completed" element={<Completed />} />
+              <Route path="plantowatch" element={<PlanToWatch />} />
+              <Route path="onhold" element={<OnHold />} />
+              <Route path="dropped" element={<Dropped />} />
             </Route>
 
             <Route path="about-us" element={<AboutUs />} />

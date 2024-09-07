@@ -1,13 +1,9 @@
 import { Link } from "react-router-dom";
 
-import { HiMiniStar } from "react-icons/hi2";
-import { HiCog6Tooth } from "react-icons/hi2";
+import styles from "./WatchlistItem.module.css";
+import { HiMiniStar, HiCog6Tooth } from "react-icons/hi2";
 
-// import { HiCog6Tooth } from "react-icons/hi2";
-
-import styles from "./MovieItem.module.css";
-
-function MovieItem() {
+function WatchlistItem() {
   const backgroundImage = { background: `url(/public/shogun.jpg)` };
 
   return (
@@ -36,4 +32,4 @@ function MovieItem() {
   );
 }
 
-export default MovieItem;
+export default WatchlistItem;

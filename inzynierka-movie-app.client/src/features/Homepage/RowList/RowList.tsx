@@ -22,16 +22,16 @@ function RowList({ title }: RowProps) {
         slidesToScroll={5}
         infinite={false}
       >
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
+        <MovieItem type="normal" />
+        <MovieItem type="normal" />
+        <MovieItem type="normal" />
+        <MovieItem type="normal" />
+        <MovieItem type="normal" />
+        <MovieItem type="normal" />
+        <MovieItem type="normal" />
+        <MovieItem type="normal" />
+        <MovieItem type="normal" />
+        <MovieItem type="normal" />
       </Slider>
     </div>
   );
