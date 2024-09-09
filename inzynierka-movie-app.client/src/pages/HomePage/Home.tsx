@@ -1,4 +1,4 @@
-import Hero from "../../features/Homepage/Hero/Hero";
+import Hero from "../../features/Homepage/Home/Hero/Hero";
 import RowList from "../../features/Homepage/RowList/RowList";
 import ModalsAuthentication from "../../features/Authentication/ModalsAuthentication/ModalsAuthentication";
 

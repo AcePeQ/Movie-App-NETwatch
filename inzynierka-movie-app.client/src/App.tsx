@@ -17,6 +17,7 @@ import Completed from "./features/Watchlist/Completed/Completed";
 import PlanToWatch from "./features/Watchlist/PlanToWatch/PlanToWatch";
 import OnHold from "./features/Watchlist/OnHold/OnHold";
 import Dropped from "./features/Watchlist/Dropped/Dropped";
+import New from "./pages/NewPage/New";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="new" element={<New />} />
 
             <Route path="/account/watchlist" element={<LayoutWatchlist />}>
               <Route index element={<Navigate replace to="all" />} />
