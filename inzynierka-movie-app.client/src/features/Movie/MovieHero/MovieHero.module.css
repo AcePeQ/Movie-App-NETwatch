@@ -13,7 +13,9 @@
   display: flex;
   padding: 1.5rem;
   gap: 5rem;
-  width: clamp(50rem, 100%, 120rem);
+  width: clamp(50rem, 100%, 100rem);
+
+  font-size: 1.8rem;
 }
 
 .image {
@@ -24,7 +26,6 @@
 
 .ratingBox {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 0.5rem;
 
@@ -33,4 +34,61 @@
     width: 2rem;
     height: 2rem;
   }
+}
+
+.informationsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.informationsHeader {
+  display: flex;
+  align-items: center;
+
+  .title {
+    font-size: 5.4rem;
+    margin-right: 2rem;
+  }
+}
+
+.additionalInformationsContainer {
+  margin-bottom: 1.5rem;
+  .additionalInformations {
+    font-weight: 500;
+  }
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .detailRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .detailTitle {
+    font-weight: 500;
+  }
+
+  .totalRates {
+    font-size: 1.4rem;
+    font-weight: 600;
+    align-self: flex-end;
+  }
+}
+
+.description {
+  margin-top: 2.5rem;
+  font-size: 1.6rem;
+}
+
+.buttons {
+  margin-top: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
