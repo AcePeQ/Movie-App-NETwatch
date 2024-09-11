@@ -1,0 +1,14 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  background-color: var(--background-200);
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius-tiny);
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 600;
+}

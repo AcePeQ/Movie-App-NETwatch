@@ -1,2 +1,13 @@
 .movieContainer {
 }
+
+.rows {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5rem;
+
+  max-width: 164rem;
+  padding: 0 2rem;
+  margin: 2.5rem auto 5rem;
+}
