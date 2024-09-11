@@ -11,7 +11,7 @@ function MovieItem() {
   const backgroundImage = { background: `url(/public/shogun.jpg)` };
 
   return (
-    <Link className={styles.movieBox} style={backgroundImage} to="/">
+    <Link className={styles.movieBox} style={backgroundImage} to="movie/id">
       <div className={styles.movieOptions}>
         <HiCog6Tooth />
       </div>

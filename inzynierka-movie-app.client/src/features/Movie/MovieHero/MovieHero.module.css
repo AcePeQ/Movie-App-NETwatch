@@ -1,0 +1,36 @@
+.movieHero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-size: cover !important;
+  background-position: top !important;
+
+  min-height: 75vh;
+}
+
+.hero {
+  display: flex;
+  padding: 1.5rem;
+  gap: 5rem;
+  width: clamp(50rem, 100%, 120rem);
+}
+
+.image {
+  height: 50rem;
+
+  border-radius: var(--border-radius-sm);
+}
+
+.ratingBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  svg {
+    color: var(--accent-100);
+    width: 2rem;
+    height: 2rem;
+  }
+}

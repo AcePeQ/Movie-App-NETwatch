@@ -1,0 +1,20 @@
+.filters {
+  display: flex;
+  gap: 2.5rem;
+
+  padding: 0 2.5rem;
+}
+
+.filterContainer {
+  position: absolute;
+  top: 110%;
+  left: 0;
+
+  padding: 2rem;
+  border-radius: var(--border-radius-tiny);
+
+  background-color: var(--background-200);
+
+  min-height: 30rem;
+  min-width: 44rem;
+}
