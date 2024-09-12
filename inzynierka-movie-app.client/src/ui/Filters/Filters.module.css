@@ -10,11 +10,13 @@
   top: 110%;
   left: 0;
 
-  padding: 2rem;
+  z-index: 1000;
+
+  padding: 1rem 2rem;
   border-radius: var(--border-radius-tiny);
 
   background-color: var(--background-200);
 
-  min-height: 30rem;
+  max-height: 30rem;
   min-width: 44rem;
 }

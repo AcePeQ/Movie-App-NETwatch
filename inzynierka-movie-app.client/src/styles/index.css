@@ -226,3 +226,125 @@ a.active::after {
 a.active:hover::after {
   content: none;
 }
+
+.horizontal-slider-years {
+  width: 100%;
+  max-width: 500px;
+  height: 50px;
+
+  .slider-track {
+    background: var(--accent-100);
+    top: 50%;
+    transform: translateY(-50%);
+    height: 12px;
+  }
+
+  .slider-track-0 {
+    background: var(--text-100);
+  }
+
+  .slider-track-2 {
+    background: var(--text-100);
+  }
+
+  .slider-thumb {
+    top: 50%;
+    width: 55px;
+    height: 32.5px;
+
+    border-radius: var(--border-radius-md);
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.4rem;
+    text-align: center;
+    background-color: var(--background-300);
+
+    color: white;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+
+  .slider-thumb-0 {
+    z-index: 4;
+  }
+
+  .slider-thumb-1 {
+    z-index: 5;
+  }
+}
+
+.horizontal-slider-rating {
+  width: 100%;
+  max-width: 500px;
+  height: 50px;
+
+  .slider-track {
+    background: var(--accent-100);
+    top: 50%;
+    transform: translateY(-50%);
+    height: 12px;
+    margin: 0 1px;
+
+    border-radius: var(--border-radius-lg);
+  }
+
+  .slider-track-0 {
+    background: var(--text-100);
+  }
+
+  .slider-track-2 {
+    background: var(--text-100);
+  }
+
+  .slider-thumb {
+    top: 50%;
+    width: 35px;
+    height: 35px;
+
+    border-radius: var(--border-radius-round);
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-align: center;
+    background-color: var(--background-300);
+
+    color: white;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+
+  .slider-thumb-0 {
+    z-index: 4;
+  }
+
+  .slider-thumb-1 {
+    z-index: 5;
+  }
+
+  .slider-mark {
+    margin-left: 10px;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 10px;
+    height: 10px;
+    border-radius: var(--border-radius-round);
+
+    background-color: var(--background-300);
+    cursor: pointer;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+}
