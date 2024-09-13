@@ -5,14 +5,14 @@ function NewList() {
   return (
     <ListContainer>
       <>
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
+        <MovieItem type="listMovie" />
+        <MovieItem type="listMovie" />
+        <MovieItem type="listMovie" />
+        <MovieItem type="listMovie" />
+        <MovieItem type="listMovie" />
+        <MovieItem type="listMovie" />
+        <MovieItem type="listMovie" />
+        <MovieItem type="listMovie" />
       </>
     </ListContainer>
   );

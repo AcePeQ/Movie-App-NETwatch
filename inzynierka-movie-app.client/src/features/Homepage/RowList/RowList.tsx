@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 import styles from "./RowList.module.css";
+
 import MovieItem from "./MovieItem/MovieItem";
 // import MovieItemTop from "./MovieItemTop/MovieItemTop";
 
@@ -13,7 +14,7 @@ interface RowProps {
 function RowList({ title }: RowProps) {
   return (
     <div className={styles.row}>
-      <h3 className={styles.rowHeader}>{title}</h3>
+      <h3 className={styles.rowTitle}>{title}</h3>
 
       <Slider
         speed={1500}
@@ -22,16 +23,16 @@ function RowList({ title }: RowProps) {
         slidesToScroll={5}
         infinite={false}
       >
-        <MovieItem type="normal" />
-        <MovieItem type="normal" />
-        <MovieItem type="normal" />
-        <MovieItem type="normal" />
-        <MovieItem type="normal" />
-        <MovieItem type="normal" />
-        <MovieItem type="normal" />
-        <MovieItem type="normal" />
-        <MovieItem type="normal" />
-        <MovieItem type="normal" />
+        <MovieItem type="slider" />
+        <MovieItem type="slider" />
+        <MovieItem type="slider" />
+        <MovieItem type="slider" />
+        <MovieItem type="slider" />
+        <MovieItem type="slider" />
+        <MovieItem type="slider" />
+        <MovieItem type="slider" />
+        <MovieItem type="slider" />
+        <MovieItem type="slider" />
       </Slider>
     </div>
   );

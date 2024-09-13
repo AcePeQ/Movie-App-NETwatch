@@ -1,12 +1,12 @@
 import { useAppDispatch, useAppSelector } from "../../../hooks/useRedux";
-import Modal from "../../../ui/Modal/Modal";
-import FormLogin from "../Login/FormLogin";
 import { closeModalLogin, getModalLoginStatus } from "../modalLoginSlice";
-
 import {
   closeModalRegister,
   getModalRegisterStatus,
 } from "../modalRegisterSlice";
+
+import Modal from "../../../ui/Modal/Modal";
+import FormLogin from "../Login/FormLogin";
 import FormRegister from "../Register/FormRegister";
 
 function ModalsAuthentication() {

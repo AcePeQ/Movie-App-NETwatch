@@ -9,7 +9,7 @@
   padding: 0 2.5rem;
 }
 
-.sortBox {
+.sort {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,8 +23,8 @@
 }
 
 .selectContainer {
-  width: 17.5rem;
   font-size: 1.8rem;
+  min-width: 13.5rem;
 }
 
 .selectContainer:focus-within,

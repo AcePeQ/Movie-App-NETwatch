@@ -1,12 +1,14 @@
 import ReactSlider from "react-slider";
-import Filter from "./Filter/Filter";
+
 import styles from "./Filters.module.css";
+
+import Filter from "./Filter/Filter";
 
 function Filters() {
   return (
     <div className={styles.filters}>
       <Filter title="Year">
-        <div className={`${styles.filterContainer} ${styles.filterYear}`}>
+        <div className={`${styles.filter} ${styles.filterYear}`}>
           <ReactSlider
             className="horizontal-slider-years"
             thumbClassName="slider-thumb"
@@ -23,7 +25,7 @@ function Filters() {
         </div>
       </Filter>
       <Filter title="Rating">
-        <div className={`${styles.filterContainer} ${styles.filterRating}`}>
+        <div className={`${styles.filter} ${styles.filterRating}`}>
           <ReactSlider
             className="horizontal-slider-rating"
             thumbClassName="slider-thumb"

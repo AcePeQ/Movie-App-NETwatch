@@ -2,31 +2,34 @@
   position: relative;
 }
 
-.filterButton {
+.button {
   outline: none;
   border: none;
 
   background-color: var(--background-200);
 
-  width: 12.5rem;
-  padding: 0.75rem 1.25rem;
+  min-width: 10rem;
+  padding: 0.75rem 1.15rem;
 
   border-radius: var(--border-radius-tiny);
 
   font-size: 1.8rem;
+  font-weight: 400;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
 
-.filterButton:hover {
-  background-color: var(--background-300);
+  gap: 1rem;
+
+  &:hover {
+    background-color: var(--background-300);
+  }
 }
 
 .icon {
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.6rem;
+  height: 2.6rem;
 
   color: var(--accent-100);
 }

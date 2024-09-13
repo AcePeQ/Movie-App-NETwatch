@@ -1,13 +1,13 @@
 .row {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2.5rem;
 
-  margin: 0 5rem;
+  margin: 4rem 5rem 8rem;
 }
 
-.rowHeader {
-  font-size: 3.2rem;
+.rowTitle {
+  font-size: 3.4rem;
   font-weight: 500;
 }
 

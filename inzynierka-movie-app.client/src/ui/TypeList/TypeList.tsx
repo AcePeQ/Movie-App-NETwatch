@@ -60,18 +60,13 @@ function TypeList() {
     }),
     indicatorSeparator: (styles) => ({
       ...styles,
-      backgroundColor: `var(--accent-100)`,
-      width: "2px",
-
-      ":hover": {
-        backgroundColor: `var(--accent-100)`,
-      },
+      display: "none",
     }),
   };
 
   return (
     <div className={styles.types}>
-      <div className={styles.typeBox}>
+      <div className={styles.type}>
         <Select
           theme={customTheme}
           styles={customStyles}
@@ -81,7 +76,7 @@ function TypeList() {
           className={styles.selectContainer}
         />
       </div>
-      <div className={styles.sortBox}>
+      <div className={styles.sort}>
         <p className={styles.sortedBy}>Sorted by</p>
         <Select
           theme={customTheme}
