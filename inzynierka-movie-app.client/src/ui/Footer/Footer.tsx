@@ -6,7 +6,7 @@ import Socialmedia from "./Socialmedia/Socialmedia";
 function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.footerUpper}>
+      <div className={styles.row}>
         <Logo />
 
         <Socialmedia />

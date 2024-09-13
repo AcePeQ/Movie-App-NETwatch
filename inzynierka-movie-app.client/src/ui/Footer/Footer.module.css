@@ -8,27 +8,27 @@
   padding: 1rem 2.5rem 1rem;
 }
 
-.footerUpper {
+.row {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.footerUpper > * {
+.row > * {
   flex: 1;
 }
 
-.footerUpper > a {
+.row > a {
   justify-content: flex-start;
 }
 
-.footerUpper > ul {
+.row > ul {
   justify-content: flex-end;
 }
 
 .copyright {
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--background-300);
 }

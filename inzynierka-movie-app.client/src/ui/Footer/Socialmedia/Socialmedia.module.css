@@ -5,16 +5,21 @@
   gap: 2rem;
 }
 
-.link:link,
-.link:visited {
+.socialMedia:link,
+.socialMedia:visited {
   color: var(--text-100);
   display: inline-block;
 
   transition: var(--transition-all);
 }
 
-.link:hover,
-.link:active {
+.socialMedia:hover,
+.socialMedia:active {
   color: var(--accent-100);
   display: inline-block;
+}
+
+.icon {
+  width: 3.4rem;
+  height: 3.4rem;
 }

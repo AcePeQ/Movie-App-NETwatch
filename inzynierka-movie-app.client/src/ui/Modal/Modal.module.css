@@ -62,10 +62,10 @@
   border-radius: 50%;
 
   transition: var(--transition-all);
-}
 
-.btnClose:hover {
-  color: var(--text-300);
+  &:hover {
+    color: var(--accent-100);
+  }
 }
 
 .iconClose {
