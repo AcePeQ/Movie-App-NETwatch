@@ -23,7 +23,7 @@ export function Navbar() {
 
         <DarkMode />
 
-        <div className={styles.buttonsContainer}>
+        <div className={styles.buttons}>
           <Button
             size="small"
             type="secondary"

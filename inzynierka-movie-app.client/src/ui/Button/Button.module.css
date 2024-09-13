@@ -5,16 +5,6 @@
   border: none;
 }
 
-.primary {
-  background-color: var(--accent-100);
-  color: var(--background-100);
-}
-
-.secondary {
-  background-color: var(--background-200);
-  color: var(--text-200);
-}
-
 .primary,
 .secondary {
   border-radius: var(--border-radius-sm);
@@ -24,27 +14,37 @@
   box-shadow: var(--shadow-sm);
 }
 
-.primary:hover,
-.primary:active {
-  background-color: var(--accent-200);
-  color: var(--background-300);
+.primary {
+  background-color: var(--accent-100);
+  color: var(--background-100);
+
+  &:hover,
+  &:active {
+    background-color: var(--accent-200);
+    color: var(--background-300);
+  }
 }
 
-.secondary:hover,
-.secondary:active {
-  background-color: var(--background-300);
-  color: var(--text-100);
+.secondary {
+  background-color: var(--background-200);
+  color: var(--text-200);
+
+  &:hover,
+  &:active {
+    background-color: var(--background-300);
+    color: var(--text-100);
+  }
 }
 
 .small {
   padding: 0.75rem 1.5rem;
-  width: 12rem;
+  min-width: 12rem;
   font-size: 1.8rem;
 }
 
 .medium {
   padding: 0.75rem 1.5rem;
-  width: 20rem;
+  min-width: 20rem;
   font-size: 1.8rem;
 }
 
@@ -61,12 +61,12 @@
 
   transition: var(--transition-all);
   box-shadow: var(--shadow-sm);
-}
 
-.account:hover,
-.account:active {
-  background-color: var(--accent-200);
-  color: var(--background-300);
+  &:hover,
+  &:active {
+    background-color: var(--accent-200);
+    color: var(--background-300);
+  }
 }
 
 .delete {
@@ -79,10 +79,10 @@
 
   transition: var(--transition-all);
   box-shadow: var(--shadow-sm);
-}
 
-.delete:hover,
-.delete:active {
-  background-color: var(--color-red-3);
-  color: var(--text-100);
+  &:hover,
+  &:active {
+    background-color: var(--color-red-3);
+    color: var(--text-100);
+  }
 }

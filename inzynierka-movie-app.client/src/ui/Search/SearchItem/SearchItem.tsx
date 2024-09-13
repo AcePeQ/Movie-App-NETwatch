@@ -4,11 +4,11 @@ import styles from "./SearchItem.module.css";
 
 function SearchItem() {
   return (
-    <Link to="/" className={styles.movieItem}>
+    <Link to="/" className={styles.searchItem}>
       <figure className={styles.posterContainer}>
         <img className={styles.poster} src="/public/poster.jpg" />
       </figure>
-      <div className={styles.movieInformations}>
+      <div className={styles.informations}>
         <div>
           <p className={styles.title}>Flower of Evil</p>
           <div className={styles.movieTypes}>

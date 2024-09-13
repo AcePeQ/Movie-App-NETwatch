@@ -51,6 +51,13 @@
     height: 2.8rem;
 
     transform: translateY(-50%);
+
+    transition: var(--transition-all);
+
+    &:hover,
+    &:active {
+      color: var(--accent-100);
+    }
   }
 
   .clearIcon {
@@ -65,5 +72,12 @@
     height: 2.4rem;
 
     transform: translateY(-50%);
+
+    transition: var(--transition-all);
+
+    &:hover,
+    &:active {
+      color: var(--accent-100);
+    }
   }
 }

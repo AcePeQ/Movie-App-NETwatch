@@ -22,5 +22,12 @@
   svg {
     width: 2.4rem;
     height: 2.4rem;
+
+    transition: var(--transition-all);
   }
+}
+
+.dropdownItem:hover svg,
+.dropdownItem:active svg {
+  color: var(--accent-100);
 }

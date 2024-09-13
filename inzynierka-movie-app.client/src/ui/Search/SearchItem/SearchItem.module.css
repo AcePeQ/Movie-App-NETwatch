@@ -1,4 +1,4 @@
-.movieItem {
+.searchItem {
   background-color: var(--background-200);
   border-radius: var(--border-radius-sm);
   color: var(--text-100);
@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
 
-  min-height: 19.5;
+  min-height: 19.5rem;
   overflow: hidden;
 
   gap: 2rem;
@@ -27,7 +27,7 @@
   flex: 1 0 12rem;
 }
 
-.movieInformations {
+.informations {
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,16 +1,17 @@
 import Avatar from "../Avatar/Avatar";
+
 import styles from "./ProfileMenu.module.css";
+
+import { ReactNode, useState } from "react";
+import ProfileItem from "./ProfileItem/ProfileItem";
 
 import { HiUserCircle } from "react-icons/hi2";
 import { HiOutlineViewList } from "react-icons/hi";
 import { RiSettings5Fill } from "react-icons/ri";
 import { HiOutlineLogout } from "react-icons/hi";
 
-import { ReactNode, useState } from "react";
-import ProfileItem from "./ProfileItem/ProfileItem";
-
-import { HiChevronDown } from "react-icons/hi2";
-import { HiChevronUp } from "react-icons/hi2";
+import { HiMiniChevronUp } from "react-icons/hi2";
+import { HiMiniChevronDown } from "react-icons/hi2";
 
 /*TEMP*/
 function closeMenu() {}
@@ -49,9 +50,9 @@ function ProfileMenu() {
         <Avatar type="profile" />
         <p className={styles.profileName}>Ace</p>
         {isOpen ? (
-          <HiChevronUp className={styles.profileIcon} />
+          <HiMiniChevronUp className={styles.profileIcon} />
         ) : (
-          <HiChevronDown className={styles.profileIcon} />
+          <HiMiniChevronDown className={styles.profileIcon} />
         )}
       </div>
 
