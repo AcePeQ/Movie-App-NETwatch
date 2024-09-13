@@ -1,0 +1,37 @@
+.dots {
+  display: flex;
+  gap: 1.5rem;
+
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+
+  z-index: 1000;
+
+  .dot {
+    --_background-color: var(--background-color, var(--background-200));
+
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+
+    background-color: var(--_background-color);
+    border-radius: 50%;
+
+    transition: var(--transition-all);
+
+    &:hover {
+      --background-color: var(--background-300);
+    }
+  }
+
+  .dotActive {
+    --_background-color: var(--background-color, var(--accent-100));
+    background-color: var(--_background-color);
+
+    &:hover {
+      --background-color: var(--accent-100);
+    }
+  }
+}

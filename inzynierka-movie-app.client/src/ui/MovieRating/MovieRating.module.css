@@ -1,0 +1,13 @@
+.ratingContainer {
+  display: flex;
+
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 2.2rem;
+
+  svg {
+    color: #ffc107;
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
