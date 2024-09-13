@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import styles from "./Layout.module.css";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import ModalsAuthentication from "../../features/Authentication/ModalsAuthentication/ModalsAuthentication";
 
 function Layout() {
   return (
@@ -16,6 +17,8 @@ function Layout() {
       </main>
 
       <Footer />
+
+      <ModalsAuthentication />
     </section>
   );
 }
