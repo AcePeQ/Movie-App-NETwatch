@@ -9,7 +9,7 @@ function Account() {
     <div className={styles.accountContainer}>
       <AccountProfile />
 
-      <div className={styles.informations}>
+      <div className={styles.profileInformations}>
         <AccountHeader />
         <Stats />
         <AccountCharts />

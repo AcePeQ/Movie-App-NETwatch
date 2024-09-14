@@ -1,4 +1,4 @@
-.accountContainer {
+.settingsContainer {
   display: flex;
   flex-direction: column;
   gap: 5rem;
@@ -63,11 +63,11 @@
   font-weight: 500;
 }
 
-.settingBox {
+.setting {
   flex: 1;
 }
 
-.btns {
+.buttons {
   display: flex;
   gap: 5rem;
 }

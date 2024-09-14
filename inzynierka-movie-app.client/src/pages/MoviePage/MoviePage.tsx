@@ -4,7 +4,7 @@ import MovieRow from "../../features/Movie/MovieRow/MovieRow";
 
 function MoviePage() {
   return (
-    <div className={styles.movieContainer}>
+    <>
       <MovieHero />
 
       <div className={styles.rows}>
@@ -24,7 +24,7 @@ function MoviePage() {
           <span>Elo</span>
         </MovieRow>
       </div>
-    </div>
+    </>
   );
 }
 

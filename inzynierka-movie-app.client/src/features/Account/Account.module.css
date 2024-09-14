@@ -8,7 +8,7 @@
   width: 100%;
 }
 
-.informations {
+.profileInformations {
   flex: 1;
 
   & > div {

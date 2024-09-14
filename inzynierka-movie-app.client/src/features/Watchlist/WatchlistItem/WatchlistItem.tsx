@@ -4,6 +4,7 @@ import styles from "./WatchlistItem.module.css";
 import { HiMiniStar, HiCog6Tooth } from "react-icons/hi2";
 import { useState } from "react";
 import ModalMovie from "../../../ui/ModalMovie/ModalMovie";
+import MovieRating from "../../../ui/MovieRating/MovieRating";
 
 function WatchlistItem() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,19 +22,16 @@ function WatchlistItem() {
   }
 
   return (
-    <Link className={styles.movieBox} style={backgroundImage} to="/">
-      <div className={styles.movieOptions} onClick={handleOpenModal}>
+    <Link className={styles.movieLink} style={backgroundImage} to="/">
+      <div className={styles.options} onClick={handleOpenModal}>
         <HiCog6Tooth />
       </div>
 
-      <div className={styles.movieInformations}>
+      <div className={styles.details}>
         <div className={styles.movieDetails}>
-          <div className={styles.upperBox}>
+          <div className={styles.header}>
             <p className={styles.title}>Shogun</p>
-            <div className={styles.ratingBox}>
-              <HiMiniStar />
-              <span className={styles.rating}>9,5</span>
-            </div>
+            <MovieRating />
           </div>
           <div className={styles.genres}>
             <span className={styles.genre}>Action</span>

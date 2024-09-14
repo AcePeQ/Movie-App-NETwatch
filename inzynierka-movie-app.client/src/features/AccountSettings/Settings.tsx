@@ -20,7 +20,7 @@ function Settings() {
   };
 
   return (
-    <div className={styles.accountContainer}>
+    <div className={styles.settingsContainer}>
       <h2 className={styles.title}>Settings</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -47,7 +47,7 @@ function Settings() {
           </>
         </Row>
 
-        <div className={styles.btns}>
+        <div className={styles.buttons}>
           <Button type="primary" size="medium">
             Save changes
           </Button>
@@ -70,7 +70,7 @@ function Row({ name, children }: RowPropsType) {
   return (
     <div className={styles.row}>
       <p className={styles.settingName}>{name}</p>
-      <div className={styles.settingBox}>{children}</div>
+      <div className={styles.setting}>{children}</div>
     </div>
   );
 }

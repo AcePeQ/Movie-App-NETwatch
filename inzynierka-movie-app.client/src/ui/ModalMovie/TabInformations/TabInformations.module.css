@@ -1,0 +1,79 @@
+.main {
+  display: flex;
+
+  gap: 2.5rem;
+}
+
+.imageBox {
+  flex: 0 0 25rem;
+}
+
+.image {
+  width: auto;
+}
+
+.movieInformations {
+  flex: 1;
+  min-height: 25rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  font-size: 1.8rem;
+
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 3.6rem;
+  font-weight: 500;
+}
+
+.scoreAndYearBox {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  font-size: 2rem;
+}
+
+.form {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.formRow {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.formRow:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.formOptionName {
+  flex: 1;
+
+  font-size: 1.8rem;
+}
+
+.formOptionOption {
+  flex: 1;
+}
+
+.formBtns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: auto;
+}

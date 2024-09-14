@@ -1,4 +1,4 @@
-.movieBox {
+.movieLink {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -14,52 +14,7 @@
   background-repeat: no-repeat !important;
 }
 
-.movieBox:hover .movieOptions {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.upperBox {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.ratingBox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-
-  svg {
-    width: 2.2rem;
-    height: 2.2rem;
-    color: var(--accent-100);
-  }
-
-  .rating {
-    font-size: 2.2rem;
-  }
-}
-
-.movieInformations {
-  background-color: var(--background-opacity-50-100);
-  padding: 0.5rem 1rem;
-}
-
-.title {
-  font-size: 2.2rem;
-  font-weight: 600;
-}
-
-.genres {
-  display: flex;
-  gap: 0.5rem;
-
-  font-size: 1.5rem;
-}
-
-.movieOptions {
+.options {
   opacity: 0;
   pointer-events: none;
 
@@ -80,4 +35,32 @@
       color: var(--accent-200);
     }
   }
+}
+
+.movieLink:hover .options {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.details {
+  background-color: var(--background-opacity-50-100);
+  padding: 0.5rem 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.genres {
+  display: flex;
+  gap: 0.5rem;
+
+  font-size: 1.5rem;
 }
