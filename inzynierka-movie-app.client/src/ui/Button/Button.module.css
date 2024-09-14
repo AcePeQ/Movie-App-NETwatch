@@ -86,3 +86,32 @@
     color: var(--text-100);
   }
 }
+
+.btnClose {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: none;
+  outline: none;
+  border: none;
+
+  border-radius: 50%;
+
+  transition: var(--transition-all);
+
+  &:hover {
+    color: var(--accent-100);
+  }
+
+  .iconClose {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+}
+
+.absoluteModal {
+  position: absolute;
+  right: -12px;
+  top: -12px;
+}

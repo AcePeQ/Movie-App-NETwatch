@@ -1,8 +1,8 @@
 import { MouseEventHandler, ReactNode } from "react";
-import styles from "./Modal.module.css";
-
-import { HiX } from "react-icons/hi";
 import { createPortal } from "react-dom";
+
+import styles from "./Modal.module.css";
+import Button from "../Button/Button";
 
 interface ModalProps {
   children: ReactNode;
@@ -16,9 +16,7 @@ function Modal({ children, title, onClose }: ModalProps) {
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
           <p className={styles.title}>{title}</p>
-          <button onClick={onClose} className={styles.btnClose}>
-            <HiX className={styles.iconClose} />
-          </button>
+          <Button type="closeButton" size="absoluteModal" />
         </div>
         {children}
       </div>
