@@ -49,9 +49,9 @@ function App() {
 
             <Route path="account" element={<AccountPage />} />
             <Route path="account/settings" element={<Settings />} />
-          </Route>
 
-          <Route path="*" element={<PageNotFound />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

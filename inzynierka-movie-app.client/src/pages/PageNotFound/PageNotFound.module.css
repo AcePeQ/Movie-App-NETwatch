@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.header {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.error {
+  font-size: 16.8rem;
+  font-weight: 700;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highlight {
+  color: var(--accent-100);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5rem;
+
+  button {
+    font-size: 2.2rem;
+  }
+}
+
+.notFound {
+  font-size: 6.4rem;
+  font-weight: 600;
+}
+
+.gif {
+  width: 50rem;
+}
