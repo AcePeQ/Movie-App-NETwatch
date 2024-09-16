@@ -1,6 +1,8 @@
-import { HiMiniStar } from "react-icons/hi2";
 import styles from "./MovieHero.module.css";
+
 import Button from "../../../ui/Button/Button";
+import MovieRating from "../../../ui/MovieRating/MovieRating";
+import DetailRow from "./DetailRow/DetailRow";
 
 function MovieHero() {
   const backgroundStyles = {
@@ -26,37 +28,27 @@ function MovieHero() {
             </p>
           </div>
           <div className={styles.detailsContainer}>
-            <div className={styles.detailRow}>
-              <p className={styles.detailTitle}>Rating</p>
+            <DetailRow title="Your rating">
+              <MovieRating />
+            </DetailRow>
+            <DetailRow title="Rating">
               <div className={styles.ratingBox}>
-                <HiMiniStar />
-                <span className={styles.rating}>9,5</span>
+                <MovieRating />
+                <span className={styles.totalRates}>(154k votes)</span>
               </div>
-            </div>
-            <div className={styles.detailRow}>
-              <p className={styles.detailTitle}>Your rating</p>
-              <div className={styles.ratingBox}>
-                <HiMiniStar />
-                <span className={styles.rating}>9,5</span>
-                <span className={styles.totalRates}>(154k)</span>
-              </div>
-            </div>
-            <div className={styles.detailRow}>
-              <p className={styles.detailTitle}>Runtime</p>
+            </DetailRow>
+            <DetailRow title="Runtime">
               <p className={styles.detailValue}>59 min</p>
-            </div>
-            <div className={styles.detailRow}>
-              <p className={styles.detailTitle}>Age rating</p>
+            </DetailRow>
+            <DetailRow title="Age rating">
               <p className={styles.detailValue}>+18</p>
-            </div>
-            <div className={styles.detailRow}>
-              <p className={styles.detailTitle}>Country</p>
+            </DetailRow>
+            <DetailRow title="Country">
               <p className={styles.detailValue}>US</p>
-            </div>
-            <div className={styles.detailRow}>
-              <p className={styles.detailTitle}>Genres</p>
+            </DetailRow>
+            <DetailRow title="Genres">
               <p className={styles.detailValue}>Action, Historical, War</p>
-            </div>
+            </DetailRow>
           </div>
 
           <p className={styles.description}>

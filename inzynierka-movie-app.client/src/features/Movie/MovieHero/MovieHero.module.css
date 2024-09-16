@@ -28,12 +28,6 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-
-  svg {
-    color: var(--accent-100);
-    width: 2rem;
-    height: 2rem;
-  }
 }
 
 .informationsContainer {
@@ -62,22 +56,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
 
-  .detailRow {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .detailTitle {
-    font-weight: 500;
-  }
-
-  .totalRates {
-    font-size: 1.4rem;
-    font-weight: 600;
-    align-self: flex-end;
-  }
+.totalRates {
+  font-size: 1.8rem;
 }
 
 .description {

@@ -41,7 +41,7 @@ function ModalMovie({ onClose }: ModalProps) {
             </button>
           </div>
 
-          <Button type="closeButton" size="normal" />
+          <Button type="closeButton" size="normal" onClick={onClose} />
         </div>
 
         {activeTab === 0 && <TabInformations />}

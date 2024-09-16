@@ -1,0 +1,94 @@
+.row {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 2rem;
+}
+
+.row:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+
+  background-color: var(--background-200);
+
+  border-bottom: 2px solid var(--background-100);
+  cursor: pointer;
+
+  &:hover .iconArrow {
+    color: var(--accent-100);
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+
+  .icon {
+    width: 3rem;
+    height: 3rem;
+
+    transition: var(--transition-all);
+  }
+}
+
+.episodes {
+  background-color: var(--background-200);
+
+  display: none;
+  padding: 1rem 2rem;
+}
+
+.active {
+  display: block;
+}
+
+.episodeRow {
+  display: flex;
+  gap: 2.5rem;
+
+  background-color: var(--background-100);
+  padding: 1rem;
+
+  border-radius: var(--border-radius-sm);
+}
+
+.image {
+  width: 5rem;
+  height: 5rem;
+}
+
+.episodeContainer {
+  display: flex;
+  justify-content: space-between;
+
+  flex: 1;
+  font-size: 1.5rem;
+
+  .icon {
+    width: 3.2rem;
+    height: 3.2rem;
+    align-self: center;
+    cursor: pointer;
+
+    transition: var(--transition-all);
+  }
+}
+
+.episode {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.iconCheck:hover {
+  color: var(--accent-100);
+}
