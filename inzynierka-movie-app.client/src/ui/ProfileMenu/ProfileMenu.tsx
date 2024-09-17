@@ -48,7 +48,7 @@ function ProfileMenu() {
     <div className={styles.profileMenu}>
       <div className={styles.profile} onClick={handleClickTemp}>
         <Avatar type="profile" />
-        <p className={styles.profileName}>Ace</p>
+        <p className={styles.profileName}>ACEPEQACEPEQ</p>
         {isOpen ? (
           <HiMiniChevronUp className={styles.profileIcon} />
         ) : (

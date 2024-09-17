@@ -77,3 +77,43 @@
     }
   }
 }
+
+@media only screen and (max-width: 93.75em) {
+  .number {
+    font-size: 16.8rem;
+  }
+}
+
+@media only screen and (max-width: 78.125em) {
+  .link {
+    padding-left: 8.5rem;
+  }
+
+  .number {
+    font-size: 19.8rem;
+  }
+}
+
+@media only screen and (max-width: 42.5em) {
+  .link {
+    padding-left: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .number {
+    left: 35px;
+  }
+}
+
+@media only screen and (max-width: 36.25em) {
+  .number {
+    left: 5px;
+  }
+}
+
+@media only screen and (max-width: 31.25em) {
+  .number {
+    left: -12px;
+  }
+}

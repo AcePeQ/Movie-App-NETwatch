@@ -31,3 +31,18 @@
   align-items: center;
   gap: 1.25rem;
 }
+
+@media only screen and (max-width: 81.25em) {
+  .nav {
+    padding: 1rem 1rem;
+    gap: 3rem;
+  }
+
+  .leftNav {
+    gap: 1.5rem;
+  }
+
+  .rightNav {
+    gap: 1.5rem;
+  }
+}

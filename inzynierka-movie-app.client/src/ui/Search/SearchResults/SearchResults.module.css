@@ -5,7 +5,7 @@
   transform: translateY(100.5%);
 
   padding: 1rem 1rem;
-  width: 100%;
+  width: clamp(58rem, 100%, 100%);
 
   border-bottom-left-radius: var(--border-radius-md);
   border-bottom-right-radius: var(--border-radius-md);
@@ -16,4 +16,12 @@
   background-color: var(--background-300);
 
   border-radius: var(--border-radius-md);
+}
+
+@media only screen and (max-width: 78.125em) {
+  .searchResults {
+    left: 50%;
+
+    transform: translate(-50%, 100.5%);
+  }
 }
