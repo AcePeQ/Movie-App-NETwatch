@@ -17,3 +17,9 @@
   display: flex;
   flex-direction: column;
 }
+
+@media only screen and (max-width: 75em) {
+  .main {
+    margin-top: 0;
+  }
+}

@@ -29,15 +29,10 @@ function SliderItem() {
             <span className={styles.genre}>Horror</span>
           </div>
           <p className={styles.description}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum
+            In Japan in the year 1600, at the dawn of a century-defining civil
+            war, Lord Yoshii Toranaga is fighting for his life as his enemies on
+            the Council of Regents unite against him, when a mysterious European
+            ship is found marooned in a nearby fishing village.
           </p>
         </Link>
       </div>

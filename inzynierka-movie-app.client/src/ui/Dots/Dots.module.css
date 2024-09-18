@@ -35,3 +35,10 @@
     }
   }
 }
+
+@media only screen and (max-width: 51.25em) {
+  .dots {
+    bottom: 2%;
+    gap: 1.25rem;
+  }
+}

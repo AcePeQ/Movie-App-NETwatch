@@ -12,10 +12,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .row > * {
-  flex: 1;
+  flex: 1 0;
 }
 
 .row > a {
@@ -31,4 +32,11 @@
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--background-300);
+}
+
+@media only screen and (max-width: 46.875em) {
+  .row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }

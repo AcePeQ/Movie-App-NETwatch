@@ -69,3 +69,36 @@
   font-size: 1.7rem;
   font-weight: 500;
 }
+
+@media only screen and (max-width: 53.75em) {
+  .genres {
+    margin-bottom: 1rem;
+  }
+}
+
+@media only screen and (max-width: 51.25em) {
+  .item {
+    max-width: 100%;
+  }
+
+  .link {
+    margin-left: 0;
+    padding: 2rem;
+  }
+}
+
+@media only screen and (max-width: 36.25em) {
+  .title {
+    font-size: 8.4rem;
+  }
+}
+
+@media only screen and (max-width: 21.5625em) {
+  .title {
+    font-size: 7.2rem;
+  }
+
+  .link {
+    padding: 1.5rem;
+  }
+}

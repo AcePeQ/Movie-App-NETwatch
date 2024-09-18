@@ -87,10 +87,18 @@
 @media only screen and (max-width: 78.125em) {
   .link {
     padding-left: 8.5rem;
+    align-items: center;
+    justify-content: center;
   }
 
   .number {
     font-size: 19.8rem;
+  }
+}
+
+@media only screen and (max-width: 60.9375em) {
+  .number {
+    left: 12px;
   }
 }
 
@@ -102,7 +110,7 @@
   }
 
   .number {
-    left: 35px;
+    left: 75px;
   }
 }
 

@@ -20,7 +20,7 @@ function RowList({ title }: RowProps) {
       <h3 className={styles.rowTitle}>{title}</h3>
 
       <Slider {...settings}>
-        <MovieItemTop number="1" />
+        {/* <MovieItemTop number="1" />
         <MovieItemTop number="2" />
         <MovieItemTop number="3" />
         <MovieItemTop number="4" />
@@ -29,8 +29,7 @@ function RowList({ title }: RowProps) {
         <MovieItemTop number="7" />
         <MovieItemTop number="8" />
         <MovieItemTop number="9" />
-        <MovieItemTop number="10" />
-        {/* <MovieItem type="slider" />
+        <MovieItemTop number="10" /> */}
         <MovieItem type="slider" />
         <MovieItem type="slider" />
         <MovieItem type="slider" />
@@ -38,7 +37,8 @@ function RowList({ title }: RowProps) {
         <MovieItem type="slider" />
         <MovieItem type="slider" />
         <MovieItem type="slider" />
-        <MovieItem type="slider" /> */}
+        <MovieItem type="slider" />
+        <MovieItem type="slider" />
       </Slider>
     </div>
   );
