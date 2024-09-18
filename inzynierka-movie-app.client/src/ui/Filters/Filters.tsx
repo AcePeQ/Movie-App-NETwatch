@@ -44,8 +44,22 @@ function Filters() {
         </div>
       </Filter>
       <Filter title="Genres">
-        <div className={`${styles.filterContainer} ${styles.filterGenres}`}>
-          Elo
+        <div className={`${styles.filter} ${styles.filterGenres}`}>
+          <ReactSlider
+            className="horizontal-slider-rating"
+            thumbClassName="slider-thumb"
+            trackClassName="slider-track"
+            markClassName="slider-mark"
+            defaultValue={[0, 10]}
+            marks={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+            min={1}
+            max={10}
+            renderThumb={(props, state) => (
+              <div {...props}>{state.valueNow}</div>
+            )}
+            pearling
+            minDistance={0}
+          />
         </div>
       </Filter>
     </div>

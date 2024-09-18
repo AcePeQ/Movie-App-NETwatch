@@ -20,3 +20,16 @@
   max-height: 32rem;
   min-width: 44rem;
 }
+
+@media only screen and (max-width: 67.8125em) {
+  .filters {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filter {
+    left: 50%;
+
+    transform: translateX(-50%);
+  }
+}

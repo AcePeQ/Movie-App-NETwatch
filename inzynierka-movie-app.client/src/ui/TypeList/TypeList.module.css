@@ -32,3 +32,14 @@
   border: none;
   outline: none;
 }
+
+@media only screen and (max-width: 29.375em) {
+  .types {
+    gap: 2.5rem;
+    flex-direction: column-reverse;
+  }
+
+  .selectContainer {
+    min-width: 18rem;
+  }
+}

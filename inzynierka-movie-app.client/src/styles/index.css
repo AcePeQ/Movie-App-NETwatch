@@ -65,6 +65,7 @@
   --bp-1300: 81.25em;
   --bp-1250: 78.125em;
   --bp-1200: 75em;
+  --bp-1085: 67.8125em;
 
   --bp-975: 60.9375em;
   --bp-860: 53.75em;
@@ -73,13 +74,15 @@
   --bp-750: 46.875em;
   --bp-680: 42.5em;
   --bp-580: 36.25em;
+  --bp-575: 35.9375em;
   --bp-500: 31.25em;
+  --bp-470: 29.375em;
   --bp-420: 26.25em;
   --bp-345: 21.5625em;
 }
 
 /*
-@media only screen and (max-width: 21.5625em) {}
+@media only screen and (max-width: 29.375em) {}
 */
 
 body[data-theme="light"] {
