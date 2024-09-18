@@ -35,8 +35,12 @@
 }
 
 @media only screen and (max-width: 46.875em) {
+  .footer {
+    gap: 1.5rem;
+  }
+
   .row {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2.5rem;
   }
 }
