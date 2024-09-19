@@ -6,11 +6,14 @@
   background-size: cover !important;
   background-position: top !important;
 
-  min-height: 75vh;
+  min-height: 75dvh;
 }
 
 .hero {
   display: flex;
+  justify-content: center;
+  align-items: center;
+
   padding: 1.5rem;
   gap: 5rem;
   width: clamp(50rem, 100%, 100rem);
@@ -19,9 +22,8 @@
 }
 
 .image {
-  height: 50rem;
-
   border-radius: var(--border-radius-sm);
+  height: 50rem;
 }
 
 .ratingBox {
@@ -41,7 +43,6 @@
 
   .title {
     font-size: 5.4rem;
-    margin-right: 2rem;
   }
 }
 
@@ -63,7 +64,8 @@
 }
 
 .description {
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   font-size: 1.6rem;
 }
 
@@ -73,4 +75,39 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+@media only screen and (max-width: 46.875em) {
+  .hero {
+    flex-direction: column;
+    gap: 1.5rem;
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+
+  .image {
+    width: 35rem;
+    height: auto;
+  }
+}
+
+@media only screen and (max-width: 29.375em) {
+  .hero {
+    flex-direction: column;
+    gap: 1.5rem;
+    font-size: 1.8rem;
+  }
+
+  .description {
+    font-size: 1.7rem;
+  }
+
+  .image {
+    width: 35rem;
+    height: auto;
+  }
 }
