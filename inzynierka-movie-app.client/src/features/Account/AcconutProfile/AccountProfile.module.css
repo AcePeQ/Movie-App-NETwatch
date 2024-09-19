@@ -11,3 +11,16 @@
     margin-bottom: 1.5rem;
   }
 }
+
+@media only screen and (max-width: 67.8125em) {
+  .accountProfile {
+    min-width: 30rem;
+  }
+}
+
+@media only screen and (max-width: 55em) {
+  .accountProfile {
+    max-width: 30rem;
+    align-self: center;
+  }
+}

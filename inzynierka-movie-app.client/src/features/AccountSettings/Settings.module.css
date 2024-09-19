@@ -26,6 +26,8 @@
 
 .row {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 2.5rem;
 
   img {
@@ -70,4 +72,112 @@
 .buttons {
   display: flex;
   gap: 5rem;
+}
+
+@media only screen and (max-width: 78.125em) {
+  .row {
+    input {
+      min-width: 50%;
+    }
+  }
+}
+
+@media only screen and (max-width: 75em) {
+  .settingsContainer {
+    background-color: initial;
+  }
+
+  .row {
+    input {
+      min-width: 60%;
+      background-color: var(--background-200);
+    }
+  }
+}
+
+@media only screen and (max-width: 55em) {
+  .row {
+    input {
+      min-width: 60%;
+    }
+  }
+}
+
+@media only screen and (max-width: 46.875em) {
+  .settingsContainer {
+    align-items: center;
+  }
+
+  .setting {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 2rem;
+  }
+
+  .row {
+    input {
+      min-width: 100%;
+    }
+
+    img {
+      margin-right: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 35.9375em) {
+  .settingsContainer {
+    margin: auto 0;
+    padding: 4rem 2rem;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .row {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1.5rem;
+
+    input {
+      min-width: 40rem;
+      font-size: 2rem;
+    }
+  }
+
+  .settingName {
+    flex: initial;
+
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 29.375em) {
+  .buttons {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 29.375em) {
+  .buttons {
+    gap: 2.5rem;
+  }
+
+  .row {
+    input {
+      min-width: 30rem;
+    }
+  }
 }

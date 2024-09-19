@@ -68,6 +68,7 @@
   --bp-1085: 67.8125em;
 
   --bp-975: 60.9375em;
+  --bp-880: 55em;
   --bp-860: 53.75em;
   --bp-820: 51.25em;
 
@@ -82,7 +83,7 @@
 }
 
 /*
-@media only screen and (max-width: 29.375em) {}
+@media only screen and (max-width: 55em) {}
 */
 
 body[data-theme="light"] {

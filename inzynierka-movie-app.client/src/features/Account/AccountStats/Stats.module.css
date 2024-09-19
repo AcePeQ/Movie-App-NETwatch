@@ -10,3 +10,16 @@
     align-items: center;
   }
 }
+
+@media only screen and (max-width: 67.8125em) {
+  .statistics {
+    gap: 2.5rem;
+  }
+}
+
+@media only screen and (max-width: 55em) {
+  .statistics {
+    flex-direction: column;
+    gap: 4rem;
+  }
+}

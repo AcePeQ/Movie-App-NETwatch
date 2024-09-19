@@ -46,6 +46,8 @@
   display: flex;
   align-items: center;
   gap: 2.5rem;
+
+  font-weight: 500;
 }
 
 .genres {
@@ -62,7 +64,7 @@
 
 .genre {
   display: inline-block;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .description {
@@ -87,6 +89,14 @@
   }
 }
 
+@media only screen and (max-width: 42.5em) {
+  .background {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
 @media only screen and (max-width: 36.25em) {
   .title {
     font-size: 8.4rem;
@@ -99,6 +109,15 @@
   }
 
   .link {
-    padding: 1.5rem;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .description {
+    text-align: center;
   }
 }
