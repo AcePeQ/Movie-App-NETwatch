@@ -1,3 +1,4 @@
+import { useMediaQuery } from "react-responsive";
 import styles from "./TypeList.module.css";
 import Select from "react-select";
 
@@ -11,6 +12,15 @@ const sortOptions = [
   { value: "alphabetic", label: "Alphabetic" },
   { value: "rating", label: "Rating" },
   { value: "year", label: "Year" },
+];
+
+const listOptions = [
+  { value: "all", label: "All Movies & Series" },
+  { value: "current", label: "Current Watching" },
+  { value: "completed", label: "Completed" },
+  { value: "planToWatch", label: "Plan To Watch" },
+  { value: "onHold", label: "On Hold" },
+  { value: "dropped", label: "Dropped" },
 ];
 
 function TypeList() {
@@ -64,18 +74,48 @@ function TypeList() {
     }),
   };
 
+  const isMediumDisplay = useMediaQuery({
+    query: "(max-width: 1125px)",
+  });
+
   return (
     <div className={styles.types}>
-      <div className={styles.type}>
-        <Select
-          theme={customTheme}
-          styles={customStyles}
-          isSearchable={false}
-          options={typesOptions}
-          defaultValue={typesOptions[0]}
-          className={styles.selectContainer}
-        />
-      </div>
+      {isMediumDisplay ? (
+        <div className={styles.filters}>
+          <div className={styles.type}>
+            <Select
+              theme={customTheme}
+              styles={customStyles}
+              isSearchable={false}
+              options={typesOptions}
+              defaultValue={typesOptions[0]}
+              className={styles.selectContainer}
+            />
+          </div>
+
+          <div className={styles.watchlist}>
+            <Select
+              theme={customTheme}
+              styles={customStyles}
+              isSearchable={false}
+              options={listOptions}
+              defaultValue={listOptions[0]}
+              className={styles.selectContainer}
+            />
+          </div>
+        </div>
+      ) : (
+        <div className={styles.type}>
+          <Select
+            theme={customTheme}
+            styles={customStyles}
+            isSearchable={false}
+            options={typesOptions}
+            defaultValue={typesOptions[0]}
+            className={styles.selectContainer}
+          />
+        </div>
+      )}
       <div className={styles.sort}>
         <p className={styles.sortedBy}>Sorted by</p>
         <Select

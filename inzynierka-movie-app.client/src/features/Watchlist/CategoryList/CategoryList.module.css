@@ -5,7 +5,7 @@
   gap: 2rem;
 
   background-color: var(--background-200);
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
 }
 
 .listLink:link,
@@ -34,4 +34,11 @@
 .listLink:hover,
 .listLink:active {
   background-color: var(--background-300);
+}
+
+@media only screen and (max-width: 75em) {
+  .listLink:link,
+  .listLink:visited {
+    font-size: 1.8rem;
+  }
 }

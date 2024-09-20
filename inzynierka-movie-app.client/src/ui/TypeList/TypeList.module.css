@@ -43,3 +43,23 @@
     min-width: 18rem;
   }
 }
+
+.filters {
+  display: flex;
+
+  gap: 2.5rem;
+}
+
+@media only screen and (max-width: 43.125em) {
+  .types {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+@media only screen and (max-width: 23.125em) {
+  .filters {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
