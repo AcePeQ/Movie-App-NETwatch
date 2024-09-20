@@ -1,6 +1,7 @@
 .container {
   max-width: 120rem;
   margin: 2.5rem auto;
+  padding: 0 5rem;
 
   h1 {
     font-size: 4.8rem;
@@ -36,6 +37,50 @@
   li {
     &:not(:last-child) {
       margin-bottom: 1rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 42.5em) {
+  .container {
+    h1 {
+      font-size: 3.6rem;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 29.375em) {
+  .container {
+    padding: 0 2.5rem;
+
+    h1 {
+      font-size: 3.2rem;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 29.375em) {
+  .container {
+    padding: 0 2.5rem;
+
+    h1 {
+      font-size: 3.2rem;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+    }
+
+    h3 {
+      font-size: 2rem;
     }
   }
 }
