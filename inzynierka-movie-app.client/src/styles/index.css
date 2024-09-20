@@ -81,11 +81,12 @@
   --bp-500: 31.25em;
   --bp-470: 29.375em;
   --bp-420: 26.25em;
+  --bp-375: 23.125em;
   --bp-345: 21.5625em;
 }
 
 /*
-@media only screen and (max-width: 63.75em) {}
+@media only screen and (max-width: 23.125em) {}
 */
 
 body[data-theme="light"] {
