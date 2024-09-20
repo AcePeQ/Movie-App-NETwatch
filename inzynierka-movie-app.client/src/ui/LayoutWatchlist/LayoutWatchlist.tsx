@@ -11,7 +11,7 @@ function LayoutWatchlist() {
 
   return (
     <div className={styles.layoutWatchlist}>
-      <TypeList />
+      <TypeList type="watchlist" />
 
       {!isMediumDisplay && <CategoryList />}
 

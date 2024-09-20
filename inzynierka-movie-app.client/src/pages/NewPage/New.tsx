@@ -10,13 +10,9 @@ function New() {
     query: "(max-width: 750px)",
   });
 
-  const isSmallestDisplay = useMediaQuery({
-    query: "(max-width: 470px)",
-  });
-
   return (
     <div className={styles.listContainer}>
-      {!isSmallestDisplay && <TypeList />}
+      <TypeList />
       {!isSmallDisplay && <Filters />}
       <NewList />
     </div>

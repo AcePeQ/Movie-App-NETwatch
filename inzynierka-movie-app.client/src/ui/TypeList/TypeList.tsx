@@ -23,7 +23,7 @@ const listOptions = [
   { value: "dropped", label: "Dropped" },
 ];
 
-function TypeList() {
+function TypeList({ type }: { type?: string }) {
   function customTheme(theme) {
     return {
       ...theme,
@@ -80,7 +80,7 @@ function TypeList() {
 
   return (
     <div className={styles.types}>
-      {isMediumDisplay ? (
+      {isMediumDisplay && type === "watchlist" ? (
         <div className={styles.filters}>
           <div className={styles.type}>
             <Select
