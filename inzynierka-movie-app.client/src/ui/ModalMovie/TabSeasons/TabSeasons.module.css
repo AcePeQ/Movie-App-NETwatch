@@ -53,3 +53,13 @@
 .image {
   width: auto;
 }
+
+@media only screen and (max-width: 35.9375em) {
+  .imageBox {
+    display: none;
+  }
+
+  .rows {
+    max-height: 18rem;
+  }
+}
