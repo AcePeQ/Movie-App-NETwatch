@@ -7,8 +7,6 @@ import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { changeMode, getMode } from "./darkmodeSlice";
 import { useEffect } from "react";
 
-const ICON_SIZE: number = 30;
-
 function DarkMode() {
   const darkmode = useAppSelector(getMode);
   const dispatch = useAppDispatch();
@@ -36,9 +34,9 @@ function DarkMode() {
           key={darkmode ? 0 : 1}
         >
           {darkmode ? (
-            <HiMiniMoon className={`${styles.moonIcon}`} size={ICON_SIZE} />
+            <HiMiniMoon className={`${styles.moonIcon}`} />
           ) : (
-            <HiOutlineSun className={`${styles.sunIcon}`} size={ICON_SIZE} />
+            <HiOutlineSun className={`${styles.sunIcon}`} />
           )}
         </motion.div>
       </AnimatePresence>

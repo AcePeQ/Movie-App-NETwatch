@@ -1,0 +1,21 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+
+  padding: 1rem 2rem;
+
+  height: 62px;
+
+  margin: auto 0;
+
+  background-color: var(--background-100);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+}

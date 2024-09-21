@@ -82,3 +82,36 @@
     }
   }
 }
+
+@media only screen and (max-width: 75em) {
+  .search {
+    .searchInput {
+      font-size: 2rem;
+      min-width: 45rem;
+    }
+
+    .clearIcon {
+      width: 2.8rem;
+      height: 2.8rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 29.375em) {
+  .search {
+    .searchInput {
+      font-size: 1.6rem;
+      min-width: 100%;
+    }
+
+    .searchIcon {
+      width: 2.6rem;
+      height: 2.6rem;
+    }
+
+    .clearIcon {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+  }
+}

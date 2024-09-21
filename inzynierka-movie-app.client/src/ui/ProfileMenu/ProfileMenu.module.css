@@ -18,6 +18,7 @@
   position: absolute;
   top: 100%;
   min-width: max-content;
+  z-index: 10000;
 
   padding: 0.5rem;
 
