@@ -122,4 +122,8 @@
   .movieInformations {
     padding: 0 1rem;
   }
+
+  .main {
+    gap: 0.5rem;
+  }
 }
