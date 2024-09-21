@@ -72,6 +72,10 @@ function TypeList({ type }: { type?: string }) {
       ...styles,
       display: "none",
     }),
+    menu: (styles) => ({
+      ...styles,
+      zIndex: "100000",
+    }),
   };
 
   const isMediumDisplay = useMediaQuery({

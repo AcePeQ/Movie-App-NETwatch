@@ -39,3 +39,17 @@
     min-width: 15rem;
   }
 }
+
+@media only screen and (max-width: 46.875em) {
+  .filter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    width: 100%;
+  }
+
+  .button {
+    min-width: 100%;
+  }
+}

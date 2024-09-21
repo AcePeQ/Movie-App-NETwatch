@@ -33,3 +33,19 @@
     transform: translateX(-50%);
   }
 }
+
+@media only screen and (max-width: 46.875em) {
+  .filters {
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 44rem;
+  }
+
+  .filter {
+    position: static;
+
+    transform: none;
+    min-width: auto;
+    padding: 1rem;
+  }
+}

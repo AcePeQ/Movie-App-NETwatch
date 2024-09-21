@@ -46,7 +46,7 @@ function Filters() {
       <Filter title="Genres">
         <div className={`${styles.filter} ${styles.filterGenres}`}>
           <ReactSlider
-            className="horizontal-slider-rating"
+            className="horizontal-slider-genres"
             thumbClassName="slider-thumb"
             trackClassName="slider-track"
             markClassName="slider-mark"

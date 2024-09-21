@@ -13,7 +13,7 @@ function New() {
   return (
     <div className={styles.listContainer}>
       <TypeList />
-      {!isSmallDisplay && <Filters />}
+      <Filters />
       <NewList />
     </div>
   );
