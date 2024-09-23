@@ -1,5 +1,6 @@
 ﻿using inzynierka_movie_app.Server.Services.Interfaces;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text.Json;
 
 namespace inzynierka_movie_app.Server.Services
@@ -11,9 +12,17 @@ namespace inzynierka_movie_app.Server.Services
         public async Task<HttpResponseMessage> CreateRequest(string url)
         {
             var client = CreateClient();
+            var request = new HttpRequestMessage {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+                Headers = {
+                    { "accept", "application/json" },
+                    { "Authorization", "Bearer c6b3de91ffbb722ba73ed103354388c2" },
+                },
+            };
 
-            var response = await client.GetAsync(url);
-
+            var response = await client.SendAsync(request);
+            
             return response;
         }
 
@@ -27,6 +36,7 @@ namespace inzynierka_movie_app.Server.Services
 
             // Odczytaj zawartość jako string
             string content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("Response content: " + content);
 
             // Jeśli typ T to string, zwróć zawartość bezpośrednio
             if (typeof(T) == typeof(string))

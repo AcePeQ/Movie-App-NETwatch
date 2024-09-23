@@ -15,14 +15,13 @@ namespace inzynierka_movie_app.Server.Controllers
         }
 
         [HttpGet]
-        [ResponseCache(Duration = 10)]
-        public async Task<string> Index()
+        public async Task<IActionResult> GetPopularMovies()
         {
-            var est = await httpService.CreateRequest("https://api.themoviedb.org/3/account//lists");
+            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1");
 
-            var processedResponse = await httpService.ProcessResponse<string>(est);
+            var processedResponse = await httpService.ProcessResponse<PopularMovieResponse>(res);
 
-            return processedResponse;
+            return Json(processedResponse);
         }
     }
 }
