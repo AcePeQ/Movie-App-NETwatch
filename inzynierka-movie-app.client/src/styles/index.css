@@ -86,10 +86,6 @@
   --bp-345: 21.5625em;
 }
 
-/*
-@media only screen and (max-width: 42.5em) {}
-*/
-
 body[data-theme="light"] {
   --primary-100: #005a9e;
   --primary-200: #0078d4;
