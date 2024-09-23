@@ -17,7 +17,7 @@ namespace inzynierka_movie_app.Server.Services
                 RequestUri = new Uri(url),
                 Headers = {
                     { "accept", "application/json" },
-                    { "Authorization", "Bearer c6b3de91ffbb722ba73ed103354388c2" },
+                    { "Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNmIzZGU5MWZmYmI3MjJiYTczZWQxMDMzNTQzODhjMiIsIm5iZiI6MTcyNzA5NzQyMy44MDc1NTEsInN1YiI6IjY2Yzc3Mjk1MDVjMDVhMzJiN2VhYmFkNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.r8ZjG4t-Lr8NT-cw16-weX8iWJ0W186ivvme7NthVK4" },
                 },
             };
 

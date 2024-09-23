@@ -5,7 +5,12 @@ import RowList from "../../features/Homepage/RowList/RowList";
 function Home() {
   useEffect(() => {
     async function fetchPopularMovies() {
-      const res = await fetch("/Home/GetPopularMovies");
+      const res = await fetch("/Home/GetPopularMovies", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       console.log(res);
       const data = await res.json();
 
