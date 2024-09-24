@@ -8,7 +8,7 @@
   border-radius: var(--border-radius-sm);
 
   background-size: cover !important;
-  background-position: center !important;
+  background-position: top center !important;
   background-repeat: no-repeat !important;
 
   .options {

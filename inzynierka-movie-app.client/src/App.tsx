@@ -20,7 +20,13 @@ import Dropped from "./features/Watchlist/Dropped/Dropped";
 import New from "./pages/NewPage/New";
 import MoviePage from "./pages/MoviePage/MoviePage";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 0,
+    },
+  },
+});
 
 function App() {
   return (

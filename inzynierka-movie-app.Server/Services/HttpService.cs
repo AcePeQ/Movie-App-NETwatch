@@ -36,7 +36,6 @@ namespace inzynierka_movie_app.Server.Services
 
             // Odczytaj zawartość jako string
             string content = await response.Content.ReadAsStringAsync();
-            Console.WriteLine("Response content: " + content);
 
             // Jeśli typ T to string, zwróć zawartość bezpośrednio
             if (typeof(T) == typeof(string))
