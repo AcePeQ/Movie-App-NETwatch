@@ -8,6 +8,8 @@ function Hero() {
     <div className={styles.heroContainer}>
       <div className={styles.hero}>
         <SliderItem />
+        <SliderItem />
+        <SliderItem />
         <Dots />
       </div>
     </div>

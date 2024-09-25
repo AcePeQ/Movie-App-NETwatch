@@ -16,13 +16,14 @@ interface MovieItem {
   isMovie: boolean;
 }
 
-const BASE_BACKDROP_URL = `https://image.tmdb.org/t/p/original`;
+const BASE_BACKDROP_URL = `https://image.tmdb.org/t/p/w500`;
 
 function MovieItem({ type, movie, isMovie }: MovieItem) {
   const {
     id,
     backdrop_path: backgroundPath,
     title,
+    name,
     genre_ids: genres,
     vote_average: rating,
   } = movie;
@@ -41,7 +42,7 @@ function MovieItem({ type, movie, isMovie }: MovieItem) {
 
       <div className={styles.details}>
         <div className={styles.detailsHeader}>
-          <p className={styles.title}>{title}</p>
+          <p className={styles.title}>{isMovie ? title : name}</p>
           <MovieRating rating={rating} />
         </div>
         <div className={styles.genres}>
