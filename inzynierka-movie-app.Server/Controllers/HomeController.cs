@@ -41,5 +41,45 @@ namespace inzynierka_movie_app.Server.Controllers
 
             return Json(processedResponse);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetTrendingMovies()
+        {
+            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/trending/movie/day?language=en-US");
+
+            var processedResponse = await httpService.ProcessResponse<MovieHome>(res);
+
+            return Json(processedResponse);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetTrendingTVSeries()
+        {
+            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/trending/tv/day?language=en-US");
+
+            var processedResponse = await httpService.ProcessResponse<TVSeries>(res);
+
+            return Json(processedResponse);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPopularTVSeries()
+        {
+            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/tv/popular?language=en-US&page=1");
+
+            var processedResponse = await httpService.ProcessResponse<TVSeries>(res);
+
+            return Json(processedResponse);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetTopRatedTVSeries()
+        {
+            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1");
+
+            var processedResponse = await httpService.ProcessResponse<TVSeries>(res);
+
+            return Json(processedResponse);
+        }
     }
 }

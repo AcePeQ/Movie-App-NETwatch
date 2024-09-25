@@ -24,11 +24,20 @@ export async function getMovies() {
     });
     const dataTopRated = await resTopRated.json();
 
+    const resTrending = await fetch("/Home/GetTrendingMovies", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const dataTrending = await resTrending.json();
+
     const popularMovies = dataPopular.results.slice(0, 10);
     const nowPlayingMovies = dataNowPlaying.results.slice(0, 10);
     const topRatedMovies = dataTopRated.results.slice(0, 10);
+    const trendingMovies = dataTrending.results.slice(0, 10);
 
-    return { popularMovies, nowPlayingMovies, topRatedMovies };
+    return { popularMovies, nowPlayingMovies, topRatedMovies, trendingMovies };
   } catch (error) {
     console.error(error);
     throw new Error("Couldn't fetch movies");

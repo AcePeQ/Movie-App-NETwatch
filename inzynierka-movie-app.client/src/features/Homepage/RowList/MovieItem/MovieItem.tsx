@@ -5,16 +5,20 @@ import { HiCog6Tooth } from "react-icons/hi2";
 
 import styles from "./MovieItem.module.css";
 import MovieRating from "../../../../ui/MovieRating/MovieRating";
-import { findGenreMovie } from "../../../../helpers/findGenre";
+import {
+  findGenreMovie,
+  findGenreTVSeries,
+} from "../../../../helpers/findGenre";
 
 interface MovieItem {
   type: string;
   movie: object;
+  isMovie: boolean;
 }
 
 const BASE_BACKDROP_URL = `https://image.tmdb.org/t/p/original`;
 
-function MovieItem({ type, movie }: MovieItem) {
+function MovieItem({ type, movie, isMovie }: MovieItem) {
   const {
     id,
     backdrop_path: backgroundPath,
@@ -41,9 +45,15 @@ function MovieItem({ type, movie }: MovieItem) {
           <MovieRating rating={rating} />
         </div>
         <div className={styles.genres}>
-          <span className={styles.genre}>{findGenreMovie(genres[0])}</span>
-          <span className={styles.genre}>{findGenreMovie(genres[1])}</span>
-          <span className={styles.genre}>{findGenreMovie(genres[2])}</span>
+          <span className={styles.genre}>
+            {isMovie ? findGenreMovie(genres[0]) : findGenreTVSeries(genres[0])}
+          </span>
+          <span className={styles.genre}>
+            {isMovie ? findGenreMovie(genres[1]) : findGenreTVSeries(genres[1])}
+          </span>
+          <span className={styles.genre}>
+            {isMovie ? findGenreMovie(genres[2]) : findGenreTVSeries(genres[2])}
+          </span>
         </div>
       </div>
     </Link>
