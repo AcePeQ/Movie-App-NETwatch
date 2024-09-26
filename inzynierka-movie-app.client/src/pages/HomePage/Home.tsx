@@ -2,6 +2,7 @@ import Hero from "../../features/Homepage/Home/Hero/Hero";
 import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
 import MovieItemTop from "../../features/Homepage/RowList/MovieItemTop/MovieItemTop";
 import RowList from "../../features/Homepage/RowList/RowList";
+import { useAllTypes } from "../../features/Homepage/useAllTypes";
 import { useMovies } from "../../features/Homepage/useMovies";
 import { useTVSeries } from "../../features/Homepage/useTVSeries";
 
@@ -20,13 +21,20 @@ function Home() {
     error: errorTVSeries,
   } = useTVSeries();
 
-  if (isPendingMovie || isPendingTVSeries) {
+  const {
+    isError: isAllTypesError,
+    error: allTypesError,
+    isPending: isAllTypesPending,
+    data: allTypes,
+  } = useAllTypes();
+
+  if (isPendingMovie || isPendingTVSeries || isAllTypesPending) {
     return "Loading...";
   }
 
   return (
     <>
-      <Hero />
+      <Hero items={allTypes.allTypesTrending} />
       <RowList
         title="Top Movies Now"
         items={movies.popularMovies}

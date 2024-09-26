@@ -15,6 +15,16 @@ namespace inzynierka_movie_app.Server.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetAllTypesTrending()
+        {
+            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/trending/all/week?language=en-US");
+
+            var processedResponse = await httpService.ProcessResponse<AllTypes>(res);
+
+            return Json(processedResponse);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetPopularMovies()
         {
             var res = await httpService.CreateRequest("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1");

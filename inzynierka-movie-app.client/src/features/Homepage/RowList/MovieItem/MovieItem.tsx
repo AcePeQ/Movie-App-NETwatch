@@ -10,13 +10,13 @@ import {
   findGenreTVSeries,
 } from "../../../../helpers/findGenre";
 
+import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
+
 interface MovieItem {
   type: string;
   movie: object;
   isMovie: boolean;
 }
-
-const BASE_BACKDROP_URL = `https://image.tmdb.org/t/p/w500`;
 
 function MovieItem({ type, movie, isMovie }: MovieItem) {
   const {
@@ -27,7 +27,7 @@ function MovieItem({ type, movie, isMovie }: MovieItem) {
     genre_ids: genres,
     vote_average: rating,
   } = movie;
-  const background = `${BASE_BACKDROP_URL}${backgroundPath}`;
+  const background = `${BASE_URL_W500}${backgroundPath}`;
 
   const backgroundImage = { background: `url(${background})` };
   return (
