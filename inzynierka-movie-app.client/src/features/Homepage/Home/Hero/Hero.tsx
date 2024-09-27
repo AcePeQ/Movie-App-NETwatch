@@ -2,7 +2,7 @@ import styles from "./Hero.module.css";
 
 import SliderItem from "../SliderItem/SliderItem";
 import Dots from "../../../../ui/Dots/Dots";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface HeroPropsTypes {
   items: Array<[]>;
@@ -11,13 +11,17 @@ interface HeroPropsTypes {
 function Hero({ items }: HeroPropsTypes) {
   const [index, setIndex] = useState(0);
   const itemsLength = items.length;
+  const intervalID = useRef(null);
 
-  function handleNextSlide() {
-    setIndex((curIndex) => {
-      if (index === itemsLength - 1) return 0;
-      return curIndex + 1;
-    });
-  }
+  useEffect(() => {
+    intervalID.current = setInterval(() => {
+      setIndex((curIndex) => {
+        if (index === itemsLength - 1) return 0;
+        return curIndex + 1;
+      });
+    }, 5000);
+    return () => clearInterval(intervalID.current);
+  }, [index, itemsLength]);
 
   function handleDotClick(dotIndex) {
     setIndex(dotIndex);
