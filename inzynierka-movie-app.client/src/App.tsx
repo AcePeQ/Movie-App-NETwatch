@@ -19,6 +19,9 @@ import OnHold from "./features/Watchlist/OnHold/OnHold";
 import Dropped from "./features/Watchlist/Dropped/Dropped";
 import New from "./pages/NewPage/New";
 import MoviePage from "./pages/MoviePage/MoviePage";
+import TvSeriesPage from "./pages/TvSeriesPage/TvSeriesPage";
+
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,12 +35,14 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <ReactQueryDevtools initialIsOpen={true} client={queryClient} />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="new" element={<New />} />
 
-            <Route path="movie/id" element={<MoviePage />} />
+            <Route path="movie/:id" element={<MoviePage />} />
+            <Route path="tv/:id" element={<TvSeriesPage />} />
 
             <Route path="/account/watchlist" element={<LayoutWatchlist />}>
               <Route index element={<Navigate replace to="all" />} />

@@ -18,78 +18,40 @@ namespace inzynierka_movie_app.Server.Controllers
         public async Task<IActionResult> GetAllTypesTrending()
         {
             var res = await httpService.CreateRequest("https://api.themoviedb.org/3/trending/all/week?language=en-US");
-
             var processedResponse = await httpService.ProcessResponse<AllTypes>(res);
 
             return Json(processedResponse);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetPopularMovies()
+        public async Task<IActionResult> GetMovies()
         {
-            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1");
+            var resPopular = await httpService.CreateRequest("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1");
+            var resNowPlaying = await httpService.CreateRequest("https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1");
+            var resTopRated  = await httpService.CreateRequest("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1");
+            var resTrending = await httpService.CreateRequest("https://api.themoviedb.org/3/trending/movie/day?language=en-US");
 
-            var processedResponse = await httpService.ProcessResponse<MovieHome>(res);
+            var processedResponsePopular = await httpService.ProcessResponse<MovieHome>(resPopular);
+            var processedResponseNowPlaying = await httpService.ProcessResponse<MovieHome>(resNowPlaying);
+            var processedResponseTopRated = await httpService.ProcessResponse<MovieHome>(resTopRated);
+            var processedResponseTrending = await httpService.ProcessResponse<MovieHome>(resTrending);
 
-            return Json(processedResponse);
-        }
-        [HttpGet]
-        public async Task<IActionResult> GetNowPlayingMovies()
-        {
-            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1");
-
-            var processedResponse = await httpService.ProcessResponse<MovieHome>(res);
-
-            return Json(processedResponse);
-        }
-        [HttpGet]
-        public async Task<IActionResult> GetTopRatedMovies()
-        {
-            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1");
-
-            var processedResponse = await httpService.ProcessResponse<MovieHome>(res);
-
-            return Json(processedResponse);
+            return Json(new {popular = processedResponsePopular, nowPlaying = processedResponseNowPlaying, topRated = processedResponseTopRated, trending = processedResponseTrending});
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetTrendingMovies()
-        {
-            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/trending/movie/day?language=en-US");
-
-            var processedResponse = await httpService.ProcessResponse<MovieHome>(res);
-
-            return Json(processedResponse);
-        }
 
         [HttpGet]
-        public async Task<IActionResult> GetTrendingTVSeries()
+        public async Task<IActionResult> GetTVSeries()
         {
-            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/trending/tv/day?language=en-US");
+            var resTrending = await httpService.CreateRequest("https://api.themoviedb.org/3/trending/tv/day?language=en-US");
+            var resPopular = await httpService.CreateRequest("https://api.themoviedb.org/3/tv/popular?language=en-US&page=1");
+            var resTopRated = await httpService.CreateRequest("https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1");
 
-            var processedResponse = await httpService.ProcessResponse<TVSeries>(res);
+            var processedResponseTrending = await httpService.ProcessResponse<TVSeries>(resTrending);
+            var processedResponsePopular = await httpService.ProcessResponse<TVSeries>(resPopular);
+            var processedResponseTopRated = await httpService.ProcessResponse<TVSeries>(resTopRated);
 
-            return Json(processedResponse);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetPopularTVSeries()
-        {
-            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/tv/popular?language=en-US&page=1");
-
-            var processedResponse = await httpService.ProcessResponse<TVSeries>(res);
-
-            return Json(processedResponse);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetTopRatedTVSeries()
-        {
-            var res = await httpService.CreateRequest("https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1");
-
-            var processedResponse = await httpService.ProcessResponse<TVSeries>(res);
-
-            return Json(processedResponse);
+            return Json(new {trending = processedResponseTrending, popular = processedResponsePopular, topRated = processedResponseTopRated});
         }
     }
 }

@@ -57,6 +57,10 @@ export default defineConfig({
         target,
         secure: false,
       },
+      "^/Movie": {
+        target,
+        secure: false,
+      },
     },
     port: 5173,
     https: {

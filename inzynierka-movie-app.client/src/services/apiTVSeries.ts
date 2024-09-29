@@ -1,34 +1,35 @@
 export async function getTVSeries() {
   try {
-    const resPopular = await fetch("/Home/GetPopularTVSeries", {
+    const res = await fetch("/Home/GetTVSeries", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
-    const dataPopular = await resPopular.json();
+    const data = await res.json();
 
-    const resTopRated = await fetch("/Home/GetTopRatedTVSeries", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const dataTopRated = await resTopRated.json();
-
-    const resTrending = await fetch("/Home/GetTrendingTVSeries", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const dataTrending = await resTrending.json();
-
-    const popularTVSeries = dataPopular.results.slice(0, 10);
-    const topRatedTVSeries = dataTopRated.results.slice(0, 10);
-    const trendingTVSeries = dataTrending.results.slice(0, 10);
+    const popularTVSeries = data.popular.results.slice(0, 10);
+    const topRatedTVSeries = data.topRated.results.slice(0, 10);
+    const trendingTVSeries = data.trending.results.slice(0, 10);
 
     return { popularTVSeries, topRatedTVSeries, trendingTVSeries };
+  } catch (error) {
+    console.error(error);
+    throw new Error("Couldn't fetch movies");
+  }
+}
+
+export async function getTVSeriesID(id) {
+  try {
+    const res = await fetch(`/Movie/GetTVSeries/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+
+    return data;
   } catch (error) {
     console.error(error);
     throw new Error("Couldn't fetch movies");

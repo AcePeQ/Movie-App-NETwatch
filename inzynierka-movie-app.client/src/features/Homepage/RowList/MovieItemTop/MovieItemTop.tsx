@@ -14,11 +14,15 @@ interface MovieItemProps {
 const BASE_BACKDROP_URL = `https://image.tmdb.org/t/p/original`;
 
 function MovieItemTop({ number, movie }: MovieItemProps) {
-  const { id, poster_path: backgroundPath } = movie;
+  const { id, title, poster_path: backgroundPath } = movie;
   const background = `${BASE_BACKDROP_URL}${backgroundPath}`;
+  const isMovie = title ? true : false;
 
   return (
-    <Link className={styles.link} to="/">
+    <Link
+      className={styles.link}
+      to={`${isMovie ? `movie/${id}` : `tv/${id}`}`}
+    >
       <div className={styles.number}>{number}</div>
       <div className={styles.movie}>
         <img src={background} className={styles.image} />

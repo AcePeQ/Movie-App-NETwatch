@@ -55,12 +55,7 @@ function Home() {
         title="New Movies"
         items={movies.nowPlayingMovies}
         render={(movie) => (
-          <MovieItem
-            key={movie.id}
-            type="slider"
-            movie={movie}
-            isMovie={true}
-          />
+          <MovieItem key={movie.id} type="slider" movie={movie} />
         )}
       />
 
@@ -68,12 +63,7 @@ function Home() {
         title="Trending Movies"
         items={movies.trendingMovies}
         render={(movie) => (
-          <MovieItem
-            key={movie.id}
-            type="slider"
-            movie={movie}
-            isMovie={true}
-          />
+          <MovieItem key={movie.id} type="slider" movie={movie} />
         )}
       />
 
@@ -81,12 +71,7 @@ function Home() {
         title="Trending TV Series"
         items={tvSeries.trendingTVSeries}
         render={(movie) => (
-          <MovieItem
-            key={movie.id}
-            type="slider"
-            movie={movie}
-            isMovie={false}
-          />
+          <MovieItem key={movie.id} type="slider" movie={movie} />
         )}
       />
 
@@ -94,12 +79,7 @@ function Home() {
         title="Top Rated Movies Ever"
         items={movies.topRatedMovies}
         render={(movie) => (
-          <MovieItem
-            key={movie.id}
-            type="slider"
-            movie={movie}
-            isMovie={true}
-          />
+          <MovieItem key={movie.id} type="slider" movie={movie} />
         )}
       />
 
@@ -107,12 +87,7 @@ function Home() {
         title="Top Rated TV Series Ever"
         items={tvSeries.topRatedTVSeries}
         render={(movie) => (
-          <MovieItem
-            key={movie.id}
-            type="slider"
-            movie={movie}
-            isMovie={false}
-          />
+          <MovieItem key={movie.id} type="slider" movie={movie} />
         )}
       />
     </>

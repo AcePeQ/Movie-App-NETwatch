@@ -15,10 +15,9 @@ import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
 interface MovieItem {
   type: string;
   movie: object;
-  isMovie: boolean;
 }
 
-function MovieItem({ type, movie, isMovie }: MovieItem) {
+function MovieItem({ type, movie }: MovieItem) {
   const {
     id,
     backdrop_path: backgroundPath,
@@ -28,13 +27,14 @@ function MovieItem({ type, movie, isMovie }: MovieItem) {
     vote_average: rating,
   } = movie;
   const background = `${BASE_URL_W500}${backgroundPath}`;
+  const isMovie = title ? true : false;
 
   const backgroundImage = { background: `url(${background})` };
   return (
     <Link
       className={`${styles.movieContainer} ${styles[type]}`}
       style={backgroundImage}
-      to="movie/id"
+      to={`${isMovie ? `movie/${id}` : `tv/${id}`}`}
     >
       <div className={styles.options}>
         <HiCog6Tooth />

@@ -4,7 +4,24 @@ import Button from "../../../ui/Button/Button";
 import MovieRating from "../../../ui/MovieRating/MovieRating";
 import DetailRow from "./DetailRow/DetailRow";
 
-function MovieHero() {
+function MovieHero({ item }: { item: object }) {
+  const {
+    backdrop_path: backgroundPath,
+    episode_run_time: runtime,
+    first_air_date: firstAir,
+    genres,
+    last_air_date: lastAir,
+    name: title,
+    networks,
+    number_of_episodes: numberOfEpisodes,
+    number_of_seasons: numberSeasons,
+    overview,
+    poster_path: posterPath,
+    status,
+    vote_average: rating,
+    vote_count: ratingVotes,
+  } = item.tvseries;
+
   const backgroundStyles = {
     background: `linear-gradient(
     to top,

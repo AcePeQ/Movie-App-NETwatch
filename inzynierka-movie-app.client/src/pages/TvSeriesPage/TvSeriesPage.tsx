@@ -1,17 +1,22 @@
-import styles from "./MoviePage.module.css";
+import styles from "./TvSeriesPage.module.css";
 import MovieHero from "../../features/Movie/MovieHero/MovieHero";
 import MovieRow from "../../features/Movie/MovieRow/MovieRow";
 import { useParams } from "react-router-dom";
-import { useMovieID } from "../../features/Movie/useMovieID";
+import { useTVSeriesID } from "../../features/Movie/useTVSeriesID";
 
-function MoviePage() {
+function TvSeriesPage() {
   const { id } = useParams();
-  const { data, error, isError, isPending } = useMovieID(id);
-  console.log(data);
+  const { data, error, isPending, isError } = useTVSeriesID(id);
+
+  if (isPending) {
+    return "Loading";
+  }
+
+  const { cast } = data.credits;
 
   return (
     <>
-      <MovieHero />
+      <MovieHero item={data} />
 
       <div className={styles.rows}>
         <MovieRow title="Watch now on">
@@ -34,4 +39,4 @@ function MoviePage() {
   );
 }
 
-export default MoviePage;
+export default TvSeriesPage;

@@ -2,7 +2,7 @@ import styles from "./Hero.module.css";
 
 import SliderItem from "../SliderItem/SliderItem";
 import Dots from "../../../../ui/Dots/Dots";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface HeroPropsTypes {
   items: Array<[]>;
