@@ -7,11 +7,15 @@ import { useMovieID } from "../../features/Movie/useMovieID";
 function MoviePage() {
   const { id } = useParams();
   const { data, error, isError, isPending } = useMovieID(id);
+
+  if (isPending) {
+    return <p>Loading....</p>;
+  }
   console.log(data);
 
   return (
     <>
-      <MovieHero />
+      <MovieHero type="movie" item={data} />
 
       <div className={styles.rows}>
         <MovieRow title="Watch now on">

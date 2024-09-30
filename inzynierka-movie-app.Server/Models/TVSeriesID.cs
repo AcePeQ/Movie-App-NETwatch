@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class TVSeriesID
 {
         public string backdrop_path {get; set;}
-        public List<int> episode_run_time { get; set; }
+        public int runtime {get; set;}
         public List<Genres> genres { get; set; }
         public string first_air_date {get; set;}
         public string last_air_date {get; set;}
@@ -18,6 +18,7 @@ public class TVSeriesID
         public string status {get; set;}
         public double vote_average {get; set;}
         public int vote_count {get; set;}
+        public List<string> origin_country {get; set;}
         
 }
 

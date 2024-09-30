@@ -45,7 +45,7 @@ function SliderItem({ item, index }: SliderItemPropTypes) {
     >
       <div className={styles.background} style={backgroundStyles}></div>
       <div className={styles.item}>
-        <Link className={styles.link} to={`${id}`}>
+        <Link className={styles.link} to={`${isMovie ? "movie/" : "tv/"}${id}`}>
           <h3 className={styles.title}>{title || name}</h3>
           <div className={styles.ratingMovie}>
             <MovieRating rating={vote_average} />

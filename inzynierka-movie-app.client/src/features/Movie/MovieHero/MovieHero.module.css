@@ -6,13 +6,12 @@
   background-size: cover !important;
   background-position: top !important;
 
-  min-height: 75dvh;
+  min-height: calc(100dvh - var(--navbar-height));
 }
 
 .hero {
   display: flex;
   justify-content: center;
-  align-items: center;
 
   padding: 1.5rem;
   gap: 5rem;
@@ -24,6 +23,8 @@
 .image {
   border-radius: var(--border-radius-sm);
   height: 50rem;
+
+  align-self: center;
 }
 
 .ratingBox {
@@ -67,6 +68,11 @@
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   font-size: 1.6rem;
+}
+
+.genresValue {
+  display: flex;
+  gap: 1rem;
 }
 
 .buttons {

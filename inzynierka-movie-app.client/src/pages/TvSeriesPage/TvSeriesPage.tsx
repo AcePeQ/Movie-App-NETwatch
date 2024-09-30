@@ -13,10 +13,11 @@ function TvSeriesPage() {
   }
 
   const { cast } = data.credits;
+  console.log(cast);
 
   return (
     <>
-      <MovieHero item={data} />
+      <MovieHero type="tvseries" item={data} />
 
       <div className={styles.rows}>
         <MovieRow title="Watch now on">
