@@ -6,7 +6,7 @@ import DetailRow from "./DetailRow/DetailRow";
 import { BASE_URL_ORIGINAL, BASE_URL_W500 } from "../../../helpers/getBaseUrl";
 import { useState } from "react";
 
-function MovieHero({ item, type }: { item: object; type: string }) {
+function MovieHero({ data }: { item: object }) {
   const {
     backdrop_path: backgroundPath,
     poster_path: posterPath,
@@ -26,7 +26,7 @@ function MovieHero({ item, type }: { item: object; type: string }) {
     last_air_date: lastAir,
     number_of_episodes: numberOfEpisodes,
     number_of_seasons: numberOfSeasons,
-  } = item[type];
+  } = data;
 
   const [isRated, setIsRated] = useState(false);
   const isMovie = movieTitle ? true : false;

@@ -11,11 +11,18 @@ function MoviePage() {
   if (isPending) {
     return <p>Loading....</p>;
   }
+
   console.log(data);
+
+  const teasers = data.videos.results.filter(
+    (video) => video.type === "Teaser" && video.official === true
+  );
+  const cast = data.credits.cast;
+  const movie = data.movie;
 
   return (
     <>
-      <MovieHero type="movie" item={data} />
+      <MovieHero data={movie} />
 
       <div className={styles.rows}>
         <MovieRow title="Watch now on">

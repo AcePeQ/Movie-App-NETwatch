@@ -1,0 +1,9 @@
+.watchOnList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.network {
+  width: 12.5rem;
+}
