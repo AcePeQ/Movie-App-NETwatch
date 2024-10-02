@@ -46,10 +46,11 @@ export function sliderSettings() {
 
 export function sliderCastSettings() {
   const settings = {
-    speed: 1500,
-    dots: false,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    speed: 500,
+    draggable: false,
+    arrows: true,
+    slidesToShow: 8,
+    slidesToScroll: 8,
     infinite: false,
     initalSlide: 0,
     responsive: [

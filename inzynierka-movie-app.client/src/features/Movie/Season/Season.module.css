@@ -1,0 +1,14 @@
+.season {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.season_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.season_episodes {
+}

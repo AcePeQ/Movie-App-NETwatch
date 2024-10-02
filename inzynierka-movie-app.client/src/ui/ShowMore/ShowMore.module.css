@@ -1,0 +1,20 @@
+.more {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  background-color: red;
+
+  span {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  .arrow {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+}

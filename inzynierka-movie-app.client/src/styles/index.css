@@ -351,3 +351,29 @@ a.active:hover::after {
     vertical-align: middle;
   }
 }
+
+.carousel-item-cast {
+  padding: 0 1rem;
+}
+
+.react-multiple-carousel__arrow {
+  background: var(--accent-100);
+}
+
+.react-multiple-carousel__arrow:hover {
+  background: var(--accent-200);
+}
+
+.react-multiple-carousel__arrow--left {
+  left: calc(1% + 1px);
+}
+
+.react-multiple-carousel__arrow--right {
+  right: calc(1% + 1px);
+}
+
+.react-multiple-carousel__arrow::before {
+  color: var(--background-100);
+  font-size: 22px;
+  font-weight: 700;
+}

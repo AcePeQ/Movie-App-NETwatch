@@ -19,7 +19,24 @@ public class TVSeriesID
         public double vote_average {get; set;}
         public int vote_count {get; set;}
         public List<string> origin_country {get; set;}
-        
+        public List<Season> seasons {get; set;}
+        public List<Creator> created_by {get; set;}
+        public string original_name {get; set;}
+}
+
+public class Creator {
+  public string name {get; set;}
+
+}
+
+public class Season {
+  public string air_date {get;set;}
+  public int episode_count {get; set;}
+  public int id {get; set;}
+  public string name {get; set;}
+  public string poster_path {get; set;}
+  public int season_number {get; set;}
+
 }
 
 public class Genres {
