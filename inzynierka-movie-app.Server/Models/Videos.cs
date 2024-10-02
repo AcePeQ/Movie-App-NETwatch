@@ -9,5 +9,7 @@ public class Video
 {
     public string key {get; set;}
     public string type {get; set;}
+    public string site {get;set;}
     public Boolean official {get; set;}
+    public string name {get; set;}
 }

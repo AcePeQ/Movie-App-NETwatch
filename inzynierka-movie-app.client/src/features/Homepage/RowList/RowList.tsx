@@ -4,7 +4,7 @@ import Slider from "react-slick";
 
 import styles from "./RowList.module.css";
 
-import sliderSettings from "../../../helpers/SliderSettings";
+import { sliderSettings } from "../../../helpers/SliderSettings";
 
 interface RowProps {
   title: string;

@@ -4,6 +4,7 @@ import MovieRow from "../../features/Movie/MovieRow/MovieRow";
 import { useParams } from "react-router-dom";
 import { useTVSeriesID } from "../../features/Movie/useTVSeriesID";
 import WatchOnNow from "../../features/Movie/MovieHero/WatchOnNow/WatchOnNow";
+import Videos from "../../features/Movie/Video/Videos";
 
 function TvSeriesPage() {
   const { id } = useParams();
@@ -12,12 +13,21 @@ function TvSeriesPage() {
   if (isPending) {
     return "Loading";
   }
-  console.log(data);
 
-  const teasers = data.videos.results.filter(
-    (video) => video.type === "Teaser" && video.official === true
-  );
-  const cast = data.credits.cast;
+  const vidoes = data.videos.results
+    .filter(
+      (video) =>
+        (video.type === "Teaser" || video.type === "Trailer") &&
+        video.official === true &&
+        video.site === "YouTube"
+    )
+    .slice(0, 6);
+
+  const cast = data.credits.cast
+    .filter((person) => person.known_for_department === "Acting")
+    .slice(0, 9);
+  console.log(cast);
+
   const networks = data.tvseries.networks;
   const tv = data.tvseries;
 
@@ -38,9 +48,11 @@ function TvSeriesPage() {
           <span>Elo</span>
         </MovieRow>
 
-        <MovieRow title="Movies">
-          <span>Elo</span>
-        </MovieRow>
+        {vidoes.length > 0 && (
+          <MovieRow title="Videos">
+            <Videos videos={vidoes} />
+          </MovieRow>
+        )}
       </div>
     </>
   );
