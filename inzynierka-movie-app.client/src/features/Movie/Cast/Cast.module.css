@@ -5,4 +5,10 @@
 
 .cast_image {
   width: 100%;
+  border-radius: 1.5rem;
+}
+
+.cast {
+  padding: 0.5rem;
+  font-size: 1.6rem;
 }

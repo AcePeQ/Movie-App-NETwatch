@@ -1,14 +1,18 @@
+.image {
+  border-radius: 1.5rem;
+}
+
 .season {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  padding: 0.5rem;
+
+  font-size: 1.8rem;
 }
 
 .season_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.season_episodes {
 }

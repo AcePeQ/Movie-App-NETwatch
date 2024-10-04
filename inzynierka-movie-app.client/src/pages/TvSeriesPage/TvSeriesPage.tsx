@@ -10,7 +10,11 @@ import Cast from "../../features/Movie/Cast/Cast";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import { sliderCastSettings } from "../../helpers/SliderSettings";
+import {
+  sliderCastSettings,
+  sliderSeasonsSettings,
+  sliderSimilarSettings,
+} from "../../helpers/SliderSettings";
 import ShowMore from "../../ui/ShowMore/ShowMore";
 import Season from "../../features/Movie/Season/Season";
 import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
@@ -47,23 +51,9 @@ function TvSeriesPage() {
   const networks = data.tvseries.networks;
   const tv = data.tvseries;
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 7,
-      slidesToSlide: 7, // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      slidesToSlide: 2, // optional, default to 1.
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1, // optional, default to 1.
-    },
-  };
+  const similarResponsive = sliderSimilarSettings();
+  const castResponsive = sliderCastSettings();
+  const seasonsResponsive = sliderSeasonsSettings();
 
   return (
     <>
@@ -79,7 +69,7 @@ function TvSeriesPage() {
             showDots={false}
             containerClass="carousel-cast"
             itemClass="carousel-item-cast"
-            responsive={responsive}
+            responsive={seasonsResponsive}
             arrows={true}
           >
             {seasons.map((season) => (
@@ -93,7 +83,7 @@ function TvSeriesPage() {
             showDots={false}
             containerClass="carousel-cast"
             itemClass="carousel-item-cast"
-            responsive={responsive}
+            responsive={castResponsive}
             arrows={true}
           >
             {cast.map((cast) => (
@@ -114,7 +104,7 @@ function TvSeriesPage() {
             showDots={false}
             containerClass="carousel-cast"
             itemClass="carousel-item-cast"
-            responsive={responsive}
+            responsive={similarResponsive}
             arrows={true}
           >
             {similarShows.map((show) => (

@@ -10,7 +10,11 @@ function Season({ season }) {
       />
       <div className={styles.season}>
         <div className={styles.season_header}>
-          <p className={styles.season_title}>{season.season_number} Season</p>
+          <p className={styles.season_title}>
+            {season.season_number === 0
+              ? "Specials"
+              : `${season.season_number} Season`}
+          </p>
           <p className={styles.season_year}>{season.air_date.split("-")[0]}</p>
         </div>
         <p className={styles.season_episodes}>

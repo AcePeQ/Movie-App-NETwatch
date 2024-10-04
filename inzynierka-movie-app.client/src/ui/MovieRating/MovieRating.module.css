@@ -34,6 +34,15 @@
   span.movieItem {
     font-size: 2rem;
   }
+
+  svg.moviePage {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  span.moviePage {
+    font-size: 2rem;
+  }
 }
 
 @media only screen and (max-width: 51.25em) {

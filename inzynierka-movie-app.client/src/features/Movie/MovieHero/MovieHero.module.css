@@ -15,14 +15,14 @@
 
   padding: 1.5rem;
   gap: 5rem;
-  width: clamp(50rem, 100%, 100rem);
+  width: clamp(50rem, 100%, 130rem);
 
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 
 .image {
   border-radius: var(--border-radius-sm);
-  height: 50rem;
+  max-height: 55rem;
 
   align-self: center;
 }
@@ -43,7 +43,9 @@
   align-items: center;
 
   .title {
-    font-size: 5.4rem;
+    font-size: 4.8rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
   }
 }
 
@@ -61,7 +63,7 @@
 }
 
 .totalRates {
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 
 .description {
@@ -83,6 +85,18 @@
   justify-content: space-between;
 }
 
+@media only screen and (max-width: 60.9375em) {
+  .hero {
+    font-size: 1.8rem;
+  }
+
+  .informationsHeader {
+    .title {
+      font-size: 4.2rem;
+    }
+  }
+}
+
 @media only screen and (max-width: 46.875em) {
   .hero {
     flex-direction: column;
@@ -91,7 +105,7 @@
   }
 
   .description {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     font-weight: 500;
   }
 
@@ -103,11 +117,26 @@
 
 @media only screen and (max-width: 35.9375em) {
   .informationsHeader {
+    .title {
+      text-align: center;
+    }
+  }
+
+  .informationsHeader {
     justify-content: center;
   }
 
   .additionalInformations {
     text-align: center;
+  }
+
+  .genresValue {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .buttons {
+    justify-content: center;
   }
 }
 

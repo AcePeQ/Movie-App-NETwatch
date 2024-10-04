@@ -48,11 +48,6 @@ function MovieHero({ data }: { item: object }) {
           <div className={styles.informationsHeader}>
             <p className={styles.title}>{movieTitle || tvTitle}</p>
           </div>
-          <p className={`${styles.detailValue} ${styles.genresValue}`}>
-            {genres.map((genre) => (
-              <span>{genre.name}</span>
-            ))}
-          </p>
 
           <div className={styles.additionalInformationsContainer}>
             <p className={styles.additionalInformations}>
@@ -61,6 +56,11 @@ function MovieHero({ data }: { item: object }) {
                 `TV - ${firstAir?.split("-")[0]} - ${
                   lastAir ? lastAir?.split("-")[0] : "..."
                 } - ${status}`}
+            </p>
+            <p className={`${styles.detailValue} ${styles.genresValue}`}>
+              {genres.map((genre) => (
+                <span>{genre.name}</span>
+              ))}
             </p>
           </div>
 
@@ -72,7 +72,7 @@ function MovieHero({ data }: { item: object }) {
             )}
             <DetailRow title="Rating">
               <div className={styles.ratingBox}>
-                <MovieRating rating={rating} />
+                <MovieRating rating={rating} type="moviePage" />
                 <span className={styles.totalRates}>({ratingVotes} votes)</span>
               </div>
             </DetailRow>
