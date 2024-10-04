@@ -43,7 +43,7 @@ function MovieItem({ type, movie }: MovieItem) {
       <div className={styles.details}>
         <div className={styles.detailsHeader}>
           <p className={styles.title}>{isMovie ? title : name}</p>
-          <MovieRating rating={rating} />
+          <MovieRating type="movieItem" rating={rating} />
         </div>
         <div className={styles.genres}>
           <span className={styles.genre}>

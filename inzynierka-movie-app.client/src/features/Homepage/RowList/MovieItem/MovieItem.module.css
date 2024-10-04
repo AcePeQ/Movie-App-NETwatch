@@ -16,14 +16,14 @@
     pointer-events: none;
 
     background-color: var(--background-opacity-50-100);
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 0.5rem;
     text-align: end;
 
     transition: var(--transition-all);
 
     svg {
-      width: 3rem;
-      height: 3rem;
+      width: 3.2rem;
+      height: 3.2rem;
       color: var(--accent-100);
 
       transition: var(--transition-all);
@@ -46,25 +46,45 @@
 
 .detailsHeader {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .title {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
+  line-height: 1.1;
   font-weight: 600;
 }
 
 .genres {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
 
   font-size: 1.4rem;
   font-weight: 500;
+  line-height: 1.1;
+
+  span {
+    text-align: center;
+  }
 }
 
 .listMovie {
   min-width: 34rem;
+}
+
+@media only screen and (max-width: 60.9375em) {
+  .movieContainer {
+    .options {
+      opacity: 1;
+      pointer-events: initial;
+    }
+  }
 }
 
 @media only screen and (max-width: 42.5em) {
