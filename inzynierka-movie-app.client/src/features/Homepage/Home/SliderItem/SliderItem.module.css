@@ -29,7 +29,7 @@
 .item {
   font-size: 2rem;
 
-  max-width: 60ch;
+  max-width: 75ch;
   display: flex;
   overflow: hidden;
 }
@@ -40,7 +40,9 @@
 }
 
 .title {
-  font-size: 9.2rem;
+  font-size: 7.2rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
   font-weight: 500;
   color: var(--accent-100);
 }
@@ -102,13 +104,30 @@
 
 @media only screen and (max-width: 36.25em) {
   .title {
-    font-size: 8.4rem;
+    font-size: 6.4rem;
+  }
+}
+
+@media only screen and (max-width: 29.375em) {
+  .title {
+    text-align: center;
+  }
+
+  .genres {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .ratingMovie {
+    justify-content: center;
+    margin-bottom: 0.25rem;
   }
 }
 
 @media only screen and (max-width: 21.5625em) {
   .title {
-    font-size: 7.2rem;
+    font-size: 5.4rem;
+    margin-bottom: 0.5rem;
   }
 
   .link {

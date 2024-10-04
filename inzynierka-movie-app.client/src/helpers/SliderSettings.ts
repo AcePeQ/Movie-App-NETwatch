@@ -1,9 +1,13 @@
 export function sliderSettings() {
   const settings = {
-    speed: 1500,
+    speed: 1000,
     dots: false,
+
     slidesToShow: 5,
     slidesToScroll: 5,
+    draggable: false,
+    swipe: false,
+
     infinite: false,
     initalSlide: 0,
     responsive: [
@@ -19,7 +23,7 @@ export function sliderSettings() {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          speed: 1000,
+          speed: 800,
         },
       },
       {
@@ -27,7 +31,8 @@ export function sliderSettings() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          speed: 750,
+          speed: 700,
+          swipe: true,
         },
       },
       {
@@ -36,6 +41,8 @@ export function sliderSettings() {
           slidesToShow: 1,
           slidesToScroll: 1,
           speed: 500,
+          swipe: true,
+          arrows: false,
         },
       },
     ],

@@ -7,7 +7,7 @@
 }
 
 .rowTitle {
-  font-size: 3.4rem;
+  font-size: 4.2rem;
   font-weight: 500;
 }
 
@@ -16,26 +16,20 @@
   gap: 1.5rem;
 }
 
+:global(.slick-arrow::before) {
+  font-size: 4.2rem;
+  color: var(--accent-100);
+
+  transition: var(--transition-all);
+  z-index: 1000;
+}
+
 :global(.slick-prev) {
-  left: -36px;
+  left: -45px;
 }
 
 :global(.slick-next) {
-  right: -28px;
-}
-
-:global(.slick-prev::before) {
-  color: var(--accent-100);
-
-  transition: var(--transition-all);
-  font-size: 3.2rem;
-}
-
-:global(.slick-next::before) {
-  color: var(--accent-100);
-
-  transition: var(--transition-all);
-  font-size: 3.2rem;
+  right: -25px;
 }
 
 @media only screen and (max-width: 93.75em) {
@@ -58,5 +52,21 @@
 
   .row {
     margin: 4rem 5rem 10rem;
+  }
+}
+
+@media only screen and (max-width: 35.9375em) {
+  .rowTitle {
+    line-height: 1.1;
+    font-size: 3.6rem;
+  }
+  .row {
+    margin: 4rem 1.5rem 4rem 1rem;
+  }
+}
+
+@media only screen and (max-width: 23.125em) {
+  .row {
+    margin: 4rem 1rem 4rem 1rem;
   }
 }

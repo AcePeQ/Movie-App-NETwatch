@@ -2,9 +2,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-import styles from "./RowList.module.css";
-
 import { sliderSettings } from "../../../helpers/SliderSettings";
+
+import styles from "./RowList.module.css";
 
 interface RowProps {
   title: string;
