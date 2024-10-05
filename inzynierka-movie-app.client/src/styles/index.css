@@ -365,11 +365,11 @@ a.active:hover::after {
 }
 
 .react-multiple-carousel__arrow--left {
-  left: calc(1% + 1px);
+  left: 0;
 }
 
 .react-multiple-carousel__arrow--right {
-  right: calc(1% + 1px);
+  right: 0;
 }
 
 .react-multiple-carousel__arrow::before {

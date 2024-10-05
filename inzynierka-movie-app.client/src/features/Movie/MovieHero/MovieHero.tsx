@@ -40,6 +40,9 @@ function MovieHero({ data }: { item: object }) {
   ), url(${BASE_URL_ORIGINAL}${backgroundPath})`,
   };
 
+  const hours = Math.floor(runtime / 60);
+  const minutes = runtime % 60;
+
   return (
     <div className={styles.movieHero} style={backgroundStyles}>
       <div className={styles.hero}>
@@ -59,7 +62,7 @@ function MovieHero({ data }: { item: object }) {
             </p>
             <p className={`${styles.detailValue} ${styles.genresValue}`}>
               {genres.map((genre) => (
-                <span>{genre.name}</span>
+                <span key={genre.name}>{genre.name}</span>
               ))}
             </p>
           </div>
@@ -78,7 +81,9 @@ function MovieHero({ data }: { item: object }) {
             </DetailRow>
             {runtime > 0 && (
               <DetailRow title="Runtime">
-                <p className={styles.detailValue}>{runtime}</p>
+                <p className={styles.detailValue}>{`${
+                  hours && hours.toString().padStart(2, "0")
+                }h ${minutes.toString().padStart(2, "0")}min`}</p>
               </DetailRow>
             )}
             <DetailRow title="Country">

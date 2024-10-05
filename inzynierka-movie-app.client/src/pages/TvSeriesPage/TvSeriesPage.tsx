@@ -11,6 +11,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import {
+  movieMobileSettings,
+  movieSettings,
   sliderCastSettings,
   sliderSeasonsSettings,
   sliderSimilarSettings,
@@ -18,15 +20,22 @@ import {
 import ShowMore from "../../ui/ShowMore/ShowMore";
 import Season from "../../features/Movie/Season/Season";
 import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
+import { useMediaQuery } from "react-responsive";
+import DetailRow from "../../features/Movie/MovieHero/DetailRow/DetailRow";
 
 function TvSeriesPage() {
   const { id } = useParams();
   const { data, error, isPending, isError } = useTVSeriesID(id);
 
+  const isMediumDevice = useMediaQuery({
+    query: "(max-width: 1085px)",
+  });
+
+  const settings = !isMediumDevice ? movieSettings() : movieMobileSettings();
+
   if (isPending) {
     return "Loading";
   }
-  const settings = sliderCastSettings();
 
   console.log(data);
 
@@ -44,7 +53,6 @@ function TvSeriesPage() {
     .slice(0, 9);
 
   const seasons = data.tvseries.seasons;
-  console.log(seasons);
 
   const similarShows = data.similar.results;
 
@@ -60,18 +68,22 @@ function TvSeriesPage() {
       <MovieHero data={tv} />
 
       <div className={styles.rows}>
-        <MovieRow title="Watch now on">
-          <WatchOnNow networks={networks} />
-        </MovieRow>
+        <div className={styles.rowCol_2}>
+          <MovieRow title="Details">
+            <DetailRow title="Company">Elo</DetailRow>
+            <DetailRow title="Original Name">Elo</DetailRow>
+            <DetailRow title="Budget">Elo</DetailRow>
+            <DetailRow title="Created by">Elo</DetailRow>
+            <DetailRow title="Company">Elo</DetailRow>
+            <DetailRow title="Company">Elo</DetailRow>
+          </MovieRow>
+          <MovieRow title="Watch now on">
+            <WatchOnNow networks={networks} />
+          </MovieRow>
+        </div>
 
         <MovieRow title="Seasons">
-          <Carousel
-            showDots={false}
-            containerClass="carousel-cast"
-            itemClass="carousel-item-cast"
-            responsive={seasonsResponsive}
-            arrows={true}
-          >
+          <Carousel responsive={seasonsResponsive} {...settings}>
             {seasons.map((season) => (
               <Season key={season.id} season={season} />
             ))}
@@ -79,13 +91,7 @@ function TvSeriesPage() {
         </MovieRow>
 
         <MovieRow title="Cast">
-          <Carousel
-            showDots={false}
-            containerClass="carousel-cast"
-            itemClass="carousel-item-cast"
-            responsive={castResponsive}
-            arrows={true}
-          >
+          <Carousel {...settings} responsive={castResponsive}>
             {cast.map((cast) => (
               <Cast key={cast.id} cast={cast} />
             ))}
@@ -100,13 +106,7 @@ function TvSeriesPage() {
         )}
 
         <MovieRow title="Similar">
-          <Carousel
-            showDots={false}
-            containerClass="carousel-cast"
-            itemClass="carousel-item-cast"
-            responsive={similarResponsive}
-            arrows={true}
-          >
+          <Carousel {...settings} responsive={similarResponsive}>
             {similarShows.map((show) => (
               <MovieItem key={show.id} movie={show} type="slider" />
             ))}

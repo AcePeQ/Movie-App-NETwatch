@@ -26,7 +26,7 @@ namespace inzynierka_movie_app.Server.Controllers
             var processedResponseMovie = await httpService.ProcessResponse<MovieID>(resMovie);
             var processedResponseCredits = await httpService.ProcessResponse<Credits>(resMovieCredits);
             var processedResponseVideos = await httpService.ProcessResponse<Videos>(resMovieVideos);
-            var processedResponseSimilar = await httpService.ProcessResponse<Movie>(resSimilar);
+            var processedResponseSimilar = await httpService.ProcessResponse<MovieHome>(resSimilar);
 
             return Json(new {movie = processedResponseMovie, credits = processedResponseCredits, videos = processedResponseVideos, similar = processedResponseSimilar});
         }

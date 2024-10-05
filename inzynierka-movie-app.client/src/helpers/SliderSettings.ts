@@ -159,3 +159,41 @@ export function sliderSimilarSettings() {
   };
   return responsive;
 }
+
+export function movieSettings() {
+  const settings = {
+    transitionDuration: 750,
+    showDots: false,
+    draggable: false,
+    swipeable: false,
+    containerClass: "carousel-cast",
+    itemClass: "carousel-item-cast",
+    arrows: true,
+    removeArrowOnDeviceType: [
+      "tablet_small",
+      "mobile",
+      "mobile_small",
+      "tablet",
+    ],
+  };
+  return settings;
+}
+
+export function movieMobileSettings() {
+  const settings = {
+    transitionDuration: 500,
+    showDots: false,
+    draggable: true,
+    swipeable: true,
+    containerClass: "carousel-cast",
+    itemClass: "carousel-item-cast",
+    arrows: false,
+    removeArrowOnDeviceType: [
+      "tablet_small",
+      "mobile",
+      "mobile_small",
+      "tablet",
+    ],
+  };
+  return settings;
+}
