@@ -19,3 +19,18 @@
     flex: 1;
   }
 }
+
+.language {
+  text-transform: uppercase;
+}
+
+.networkImage {
+  width: 12rem;
+}
+
+@media only screen and (max-width: 67.8125em) {
+  .rowCol_2 {
+    flex-direction: column;
+    font-size: 1.8rem;
+  }
+}

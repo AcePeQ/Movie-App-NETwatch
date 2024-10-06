@@ -8,7 +8,6 @@ public class TVSeriesID
         public List<Genres> genres { get; set; }
         public string first_air_date {get; set;}
         public string last_air_date {get; set;}
-        public string release_date {get; set;}
         public string name {get; set;}
         public int number_of_episodes {get; set;}
         public int number_of_seasons {get; set;}
@@ -21,7 +20,14 @@ public class TVSeriesID
         public List<string> origin_country {get; set;}
         public List<Season> seasons {get; set;}
         public List<Creator> created_by {get; set;}
-        public string original_name {get; set;}
+        public string homepage {get; set;}
+        public string original_language {get; set;}
+        public List<Company> production_companies {get; set;}
+}
+
+public class Company {
+  public string name {get; set;}
+  public string logo_path {get; set;}
 }
 
 public class Creator {

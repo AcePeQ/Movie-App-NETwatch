@@ -14,6 +14,9 @@ public class MovieID
         public int vote_count {get; set;}
         public List<string> origin_country {get; set;}
         public string status {get; set;}
+        public string original_language {get; set;}
+        public List<Company> production_companies {get; set;}
+        public string homepage {get;set;}
 }
 
 public class GenresMovie {

@@ -1,7 +1,7 @@
 import styles from "./TvSeriesPage.module.css";
 import MovieHero from "../../features/Movie/MovieHero/MovieHero";
 import MovieRow from "../../features/Movie/MovieRow/MovieRow";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useTVSeriesID } from "../../features/Movie/useTVSeriesID";
 import WatchOnNow from "../../features/Movie/MovieHero/WatchOnNow/WatchOnNow";
 import Videos from "../../features/Movie/Video/Videos";
@@ -22,6 +22,7 @@ import Season from "../../features/Movie/Season/Season";
 import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
 import { useMediaQuery } from "react-responsive";
 import DetailRow from "../../features/Movie/MovieHero/DetailRow/DetailRow";
+import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
 
 function TvSeriesPage() {
   const { id } = useParams();
@@ -53,11 +54,17 @@ function TvSeriesPage() {
     .slice(0, 9);
 
   const seasons = data.tvseries.seasons;
-
   const similarShows = data.similar.results;
 
-  const networks = data.tvseries.networks;
   const tv = data.tvseries;
+
+  const {
+    production_companies,
+    homepage,
+    created_by,
+    networks,
+    original_language,
+  } = data.tvseries;
 
   const similarResponsive = sliderSimilarSettings();
   const castResponsive = sliderCastSettings();
@@ -70,12 +77,25 @@ function TvSeriesPage() {
       <div className={styles.rows}>
         <div className={styles.rowCol_2}>
           <MovieRow title="Details">
-            <DetailRow title="Company">Elo</DetailRow>
-            <DetailRow title="Original Name">Elo</DetailRow>
-            <DetailRow title="Budget">Elo</DetailRow>
-            <DetailRow title="Created by">Elo</DetailRow>
-            <DetailRow title="Company">Elo</DetailRow>
-            <DetailRow title="Company">Elo</DetailRow>
+            <>
+              <DetailRow title="Company">
+                {production_companies[0].name}
+              </DetailRow>
+              <DetailRow title="Language">
+                <span className={styles.language}>{original_language}</span>
+              </DetailRow>
+              {created_by.length !== 0 && (
+                <DetailRow title="Created by">{created_by[0].name}</DetailRow>
+              )}
+              <DetailRow title="Network">
+                <a href={homepage}>
+                  <img
+                    className={styles.networkImage}
+                    src={`${BASE_URL_W500}${networks[0].logo_path}`}
+                  />
+                </a>
+              </DetailRow>
+            </>
           </MovieRow>
           <MovieRow title="Watch now on">
             <WatchOnNow networks={networks} />

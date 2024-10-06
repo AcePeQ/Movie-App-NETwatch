@@ -17,6 +17,7 @@ import { useMediaQuery } from "react-responsive";
 import Videos from "../../features/Movie/Video/Videos";
 import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
 import DetailRow from "../../features/Movie/MovieHero/DetailRow/DetailRow";
+import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
 
 function MoviePage() {
   const { id } = useParams();
@@ -51,6 +52,8 @@ function MoviePage() {
 
   const movie = data.movie;
 
+  const { production_companies, homepage, original_language } = data.movie;
+
   const similarResponsive = sliderSimilarSettings();
   const castResponsive = sliderCastSettings();
 
@@ -61,12 +64,22 @@ function MoviePage() {
       <div className={styles.rows}>
         <div className={styles.rowCol_2}>
           <MovieRow title="Details">
-            <DetailRow title="Company">Elo</DetailRow>
-            <DetailRow title="Original Name">Elo</DetailRow>
-            <DetailRow title="Budget">Elo</DetailRow>
-            <DetailRow title="Created by">Elo</DetailRow>
-            <DetailRow title="Company">Elo</DetailRow>
-            <DetailRow title="Company">Elo</DetailRow>
+            <>
+              <DetailRow title="Company">
+                {production_companies[0].name}
+              </DetailRow>
+              <DetailRow title="Language">
+                <span className={styles.language}>{original_language}</span>
+              </DetailRow>
+              <DetailRow title="Network">
+                <a href={homepage}>
+                  <img
+                    className={styles.networkImage}
+                    src={`${BASE_URL_W500}${production_companies[0].logo_path}`}
+                  />
+                </a>
+              </DetailRow>
+            </>
           </MovieRow>
           <MovieRow title="Watch now on"></MovieRow>
         </div>
