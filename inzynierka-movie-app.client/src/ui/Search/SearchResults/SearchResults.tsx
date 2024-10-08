@@ -1,11 +1,20 @@
 import styles from "./SearchResults.module.css";
 import SearchItem from "../SearchItem/SearchItem";
+import { useSearch } from "../useSearch";
 
-function SearchResults() {
+function SearchResults({ query }: { query: string }) {
+  const { data, isPending, error, isError } = useSearch(query);
+
   return (
     <div className={styles.searchResults}>
-      <SearchItem />
-      <SearchItem />
+      {isPending && <p>Loading...</p>}
+
+      {!isPending && (
+        <>
+          <SearchItem />
+          <SearchItem />
+        </>
+      )}
     </div>
   );
 }

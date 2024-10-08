@@ -6,7 +6,7 @@ import { useState } from "react";
 import SearchResults from "./SearchResults/SearchResults";
 
 function Search() {
-  const [search, setSearch] = useState<string>("");
+  const [query, setQuery] = useState<string>("");
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   return (
@@ -16,14 +16,14 @@ function Search() {
         type="text"
         className={styles.searchInput}
         placeholder="Search for movies or TV shows"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
-      {search && <HiX className={styles.clearIcon} />}
+      {query && <HiX className={styles.clearIcon} />}
 
-      {search.length > 0 && isFocused && <SearchResults />}
+      {query.length > 0 && isFocused && <SearchResults query={query} />}
     </form>
   );
 }

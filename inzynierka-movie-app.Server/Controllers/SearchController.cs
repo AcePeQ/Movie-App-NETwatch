@@ -14,6 +14,13 @@ namespace inzynierka_movie_app.Server.Controllers
             this.httpService = httpService;
         }
 
+        [HttpGet("{query}")]
+        public async Task<IActionResult> GetSearch(string query)
+        {
+            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/search/multi?query=${query}&include_adult=false&language=en-US&page=1");                  
+            var processedResponse = await httpService.ProcessResponse<Search>(res);
 
+            return Json(processedResponse);
+        }
     }
 }
