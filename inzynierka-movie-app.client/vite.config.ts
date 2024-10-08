@@ -61,6 +61,10 @@ export default defineConfig({
         target,
         secure: false,
       },
+      "^/Search": {
+        target,
+        secure: false,
+      },
     },
     port: 5173,
     https: {

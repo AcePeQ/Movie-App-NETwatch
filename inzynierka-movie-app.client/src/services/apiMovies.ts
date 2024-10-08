@@ -29,6 +29,7 @@ export async function getMovieID(id) {
       },
     });
     const data = await res.json();
+    console.log(data, res);
 
     return data;
   } catch (error) {

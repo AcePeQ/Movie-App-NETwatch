@@ -5,6 +5,7 @@ import MovieRating from "../../../ui/MovieRating/MovieRating";
 import DetailRow from "./DetailRow/DetailRow";
 import { BASE_URL_ORIGINAL, BASE_URL_W500 } from "../../../helpers/getBaseUrl";
 import { useState } from "react";
+import { convertRegionISO } from "../../../helpers/formatISO";
 
 function MovieHero({ data }: { item: object }) {
   const {
@@ -86,8 +87,10 @@ function MovieHero({ data }: { item: object }) {
                 }h ${minutes.toString().padStart(2, "0")}min`}</p>
               </DetailRow>
             )}
-            <DetailRow title="Country">
-              <p className={styles.detailValue}>{origin_country}</p>
+            <DetailRow title="Country Production">
+              <p className={styles.detailValue}>
+                {convertRegionISO(origin_country)}
+              </p>
             </DetailRow>
             {numberOfSeasons && (
               <DetailRow title="Seasons">

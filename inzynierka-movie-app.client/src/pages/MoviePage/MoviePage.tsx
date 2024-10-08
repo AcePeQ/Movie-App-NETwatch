@@ -9,8 +9,7 @@ import {
   movieSettings,
   sliderCastSettings,
   sliderSimilarSettings,
-} from "../../helpers/SliderSettings";
-import WatchOnNow from "../../features/Movie/MovieHero/WatchOnNow/WatchOnNow";
+} from "../../helpers/sliderSettings";
 import Cast from "../../features/Movie/Cast/Cast";
 import ShowMore from "../../ui/ShowMore/ShowMore";
 import { useMediaQuery } from "react-responsive";
@@ -18,6 +17,7 @@ import Videos from "../../features/Movie/Video/Videos";
 import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
 import DetailRow from "../../features/Movie/MovieHero/DetailRow/DetailRow";
 import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
+import { convertLanguageISO } from "../../helpers/formatISO";
 
 function MoviePage() {
   const { id } = useParams();
@@ -68,8 +68,10 @@ function MoviePage() {
               <DetailRow title="Company">
                 {production_companies[0].name}
               </DetailRow>
-              <DetailRow title="Language">
-                <span className={styles.language}>{original_language}</span>
+              <DetailRow title="Original Language">
+                <span className={styles.language}>
+                  {convertLanguageISO(original_language)}
+                </span>
               </DetailRow>
               <DetailRow title="Network">
                 <a href={homepage}>
@@ -81,7 +83,9 @@ function MoviePage() {
               </DetailRow>
             </>
           </MovieRow>
-          <MovieRow title="Watch now on"></MovieRow>
+          <MovieRow title="Watch now on">
+            <span>Elo</span>
+          </MovieRow>
         </div>
 
         <MovieRow title="Cast">

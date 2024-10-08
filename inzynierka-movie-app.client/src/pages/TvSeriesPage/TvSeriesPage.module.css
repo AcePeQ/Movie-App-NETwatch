@@ -19,11 +19,6 @@
     flex: 1;
   }
 }
-
-.language {
-  text-transform: uppercase;
-}
-
 .networkImage {
   width: 12rem;
 }

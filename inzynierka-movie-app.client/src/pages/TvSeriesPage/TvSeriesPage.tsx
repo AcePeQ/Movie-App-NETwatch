@@ -1,7 +1,7 @@
 import styles from "./TvSeriesPage.module.css";
 import MovieHero from "../../features/Movie/MovieHero/MovieHero";
 import MovieRow from "../../features/Movie/MovieRow/MovieRow";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTVSeriesID } from "../../features/Movie/useTVSeriesID";
 import WatchOnNow from "../../features/Movie/MovieHero/WatchOnNow/WatchOnNow";
 import Videos from "../../features/Movie/Video/Videos";
@@ -16,13 +16,14 @@ import {
   sliderCastSettings,
   sliderSeasonsSettings,
   sliderSimilarSettings,
-} from "../../helpers/SliderSettings";
+} from "../../helpers/sliderSettings";
 import ShowMore from "../../ui/ShowMore/ShowMore";
 import Season from "../../features/Movie/Season/Season";
 import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
 import { useMediaQuery } from "react-responsive";
 import DetailRow from "../../features/Movie/MovieHero/DetailRow/DetailRow";
 import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
+import { convertLanguageISO } from "../../helpers/formatISO";
 
 function TvSeriesPage() {
   const { id } = useParams();
@@ -82,7 +83,9 @@ function TvSeriesPage() {
                 {production_companies[0].name}
               </DetailRow>
               <DetailRow title="Language">
-                <span className={styles.language}>{original_language}</span>
+                <span className={styles.language}>
+                  {convertLanguageISO(original_language)}
+                </span>
               </DetailRow>
               {created_by.length !== 0 && (
                 <DetailRow title="Created by">{created_by[0].name}</DetailRow>
@@ -130,7 +133,6 @@ function TvSeriesPage() {
             {similarShows.map((show) => (
               <MovieItem key={show.id} movie={show} type="slider" />
             ))}
-            <ShowMore linkTo="/" />
           </Carousel>
         </MovieRow>
       </div>
