@@ -64,7 +64,6 @@ function Mobile({ type }: NavbarPropsTypes) {
                 </div>
               </>
             )}
-            <Search />
             <Navigation />
             <DarkMode />
           </div>

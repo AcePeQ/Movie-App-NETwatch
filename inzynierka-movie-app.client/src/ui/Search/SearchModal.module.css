@@ -1,0 +1,10 @@
+.searchButton {
+  border: none;
+  outline: none;
+  background-color: var(--background-100);
+}
+
+.searchIcon {
+  width: 3.4rem;
+  height: 3.4rem;
+}

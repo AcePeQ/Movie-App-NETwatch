@@ -6,6 +6,7 @@ import styles from "./TabletNav.module.css";
 import Logo from "../Logo/Logo";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import NavigationMobile from "./NavigationTablet/NavigationMobile";
+import SearchModal from "../Search/SearchModal";
 
 interface NavbarPropsTypes {
   type?: string;
@@ -21,6 +22,7 @@ function TabletNav({ type }: NavbarPropsTypes) {
 
         <div className={styles.buttons}>
           <ProfileMenu />
+          <SearchModal />
           <NavigationMobile />
         </div>
       </nav>
@@ -45,6 +47,7 @@ function TabletNav({ type }: NavbarPropsTypes) {
         >
           Sign up
         </Button>
+        <SearchModal />
         <NavigationMobile />
       </div>
     </nav>

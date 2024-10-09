@@ -23,7 +23,7 @@ function Search() {
       />
       {query && <HiX className={styles.clearIcon} />}
 
-      {query.length > 0 && isFocused && <SearchResults query={query} />}
+      {query.length > 0 && !isFocused && <SearchResults query={query} />}
     </form>
   );
 }

@@ -4,7 +4,7 @@ import styles from "./NavigationMobile.module.css";
 
 import { HiOutlineViewList } from "react-icons/hi";
 import { HiX } from "react-icons/hi";
-import Search from "../../Search/Search";
+
 import DarkMode from "../../../features/DarkMode/DarkMode";
 
 function NavigationMobile() {
@@ -31,7 +31,6 @@ function NavigationMobile() {
             className={styles.navigationContainer}
             onClick={(e) => e.stopPropagation()}
           >
-            <Search />
             <Navigation />
             <DarkMode />
           </div>

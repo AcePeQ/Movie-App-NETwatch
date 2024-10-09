@@ -1,28 +1,54 @@
 import { Link } from "react-router-dom";
 
 import styles from "./SearchItem.module.css";
+import { BASE_URL_W500 } from "../../../helpers/getBaseUrl";
+import MovieRating from "../../MovieRating/MovieRating";
+import { findGenreMovie, findGenreTVSeries } from "../../../helpers/findGenre";
 
-function SearchItem() {
+function SearchItem({ item }) {
+  const {
+    first_air_date,
+    genre_ids,
+    id,
+    media_type,
+    name,
+    title,
+    poster_path,
+    overview,
+    vote_average,
+    release_date,
+  } = item;
+  const year = first_air_date
+    ? first_air_date.split("-")[0]
+    : release_date.split("-")[0];
+  const isMovie = media_type === "movie";
+  const genres = genre_ids.slice(0, 1);
+
   return (
-    <Link to="/" className={styles.searchItem}>
+    <Link to={`movie/${id}`} className={styles.searchItem}>
       <figure className={styles.posterContainer}>
-        <img className={styles.poster} src="/public/poster.jpg" />
+        <img className={styles.poster} src={`${BASE_URL_W500}${poster_path}`} />
       </figure>
       <div className={styles.informations}>
         <div>
-          <p className={styles.title}>Flower of Evil</p>
+          <p className={styles.title}>{isMovie ? title : name}</p>
           <div className={styles.movieTypes}>
-            <span className={styles.yearAndtype}>2024, Movie</span>
-            <span className={styles.genres}>Action, Brutal</span>
-            <div className={styles.rating}></div>
+            <div className={styles.types}>
+              <p className={styles.yearAndtype}>
+                {year} - {isMovie ? "Movie" : "TV"}
+              </p>
+              <div className={styles.genres}>
+                {genres.map((genre) => (
+                  <p className={styles.genre}>
+                    {isMovie ? findGenreMovie(genre) : findGenreTVSeries(genre)}
+                  </p>
+                ))}
+              </div>
+            </div>
+            <MovieRating type="search" rating={vote_average} />
           </div>
         </div>
-        <p className={styles.description}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type...
-        </p>
+        <p className={styles.description}>{overview}</p>
       </div>
     </Link>
   );
