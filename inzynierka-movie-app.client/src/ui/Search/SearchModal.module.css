@@ -8,3 +8,18 @@
   width: 3.4rem;
   height: 3.4rem;
 }
+
+@media only screen and (max-width: 35.9375em) {
+  .searchButton {
+    position: fixed;
+    top: 10px;
+    right: 55px;
+
+    z-index: 10001;
+
+    background-color: var(--background-100);
+    padding: 0.25rem;
+
+    border-radius: var(--border-radius-tiny);
+  }
+}

@@ -16,7 +16,7 @@ function Modal({ children, title, onClose }: ModalProps) {
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
           <p className={styles.title}>{title}</p>
-          <Button type="closeButton" size="absoluteModal" />
+          <Button type="closeButton" size="absoluteModal" onClick={onClose} />
         </div>
         {children}
       </div>

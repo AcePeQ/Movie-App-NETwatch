@@ -20,7 +20,7 @@ function SearchModal() {
         <HiSearch className={styles.searchIcon} />
       </button>
       {isSearchModalOpen && (
-        <Modal title="Search now" onClose={handleCloseModal}>
+        <Modal title="Find your movie" onClose={handleCloseModal}>
           <Search />
         </Modal>
       )}

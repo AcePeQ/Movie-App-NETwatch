@@ -11,17 +11,19 @@ function Search() {
 
   return (
     <form className={styles.search}>
-      <HiSearch className={styles.searchIcon} />
-      <input
-        type="text"
-        className={styles.searchInput}
-        placeholder="Search for movies or TV shows"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-      />
-      {query && <HiX className={styles.clearIcon} />}
+      <div className={styles.searchBox}>
+        <HiSearch className={styles.searchIcon} />
+        <input
+          type="text"
+          className={styles.searchInput}
+          placeholder="Search for movies or TV shows"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+        />
+        {query && <HiX className={styles.clearIcon} />}
+      </div>
 
       {query.length > 0 && !isFocused && <SearchResults query={query} />}
     </form>

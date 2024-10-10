@@ -6,6 +6,7 @@ import Header from "../Header/Header";
 import ModalsAuthentication from "../../features/Authentication/ModalsAuthentication/ModalsAuthentication";
 import { useMediaQuery } from "react-responsive";
 import Mobile from "../MobileNav/Mobile/Mobile";
+import SearchModal from "../Search/SearchModal";
 
 function Layout() {
   const isMobile = useMediaQuery({
@@ -15,7 +16,12 @@ function Layout() {
   return (
     <section className={styles.layout}>
       {!isMobile && <Header />}
-      {isMobile && <Mobile type="loggedIn" />}
+      {isMobile && (
+        <>
+          <Mobile type="loggedIn" />
+          <SearchModal />
+        </>
+      )}
 
       <main className={styles.main}>
         <div className={styles.container}>

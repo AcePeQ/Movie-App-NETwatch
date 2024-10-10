@@ -9,7 +9,13 @@
   width: 100%;
   min-width: 35rem;
 
+  .searchBox {
+    position: relative;
+    width: 100%;
+  }
+
   .searchInput {
+    position: relative;
     display: inline-block;
     outline: none;
     border: none;
@@ -48,6 +54,8 @@
     top: 50%;
     left: 10px;
 
+    z-index: 1;
+
     width: 2.8rem;
     height: 2.8rem;
 
@@ -68,6 +76,7 @@
     top: 50%;
     right: 10px;
     cursor: pointer;
+    z-index: 1;
 
     width: 2.4rem;
     height: 2.4rem;
@@ -85,6 +94,8 @@
 
 @media only screen and (max-width: 75em) {
   .search {
+    margin-top: 1.5rem;
+
     .searchInput {
       font-size: 2rem;
       min-width: 45rem;
