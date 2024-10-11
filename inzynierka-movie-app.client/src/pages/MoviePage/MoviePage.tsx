@@ -18,6 +18,7 @@ import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
 import DetailRow from "../../features/Movie/MovieHero/DetailRow/DetailRow";
 import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
 import { convertLanguageISO } from "../../helpers/formatISO";
+import Loading from "../../ui/Loading/Loading";
 
 function MoviePage() {
   const { id } = useParams();
@@ -30,13 +31,11 @@ function MoviePage() {
   const settings = !isMediumDevice ? movieSettings() : movieMobileSettings();
 
   if (isPending) {
-    return "Loading";
+    return <Loading />;
   }
 
-  console.log(data);
-
-  const vidoes = data.videos.results
-    .filter(
+  const vidoes = data?.videos?.results
+    ?.filter(
       (video) =>
         (video.type === "Teaser" || video.type === "Trailer") &&
         video.official === true &&
@@ -44,13 +43,13 @@ function MoviePage() {
     )
     .slice(0, 6);
 
-  const cast = data.credits.cast
-    .filter((person) => person.known_for_department === "Acting")
+  const cast = data?.credits?.cast
+    ?.filter((person) => person.known_for_department === "Acting")
     .slice(0, 9);
 
-  const similarShows = data.similar.results;
+  const similarShows = data?.similar?.results;
 
-  const movie = data.movie;
+  const movie = data?.movie;
 
   const { production_companies, homepage, original_language } = data.movie;
 

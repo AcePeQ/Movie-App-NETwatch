@@ -7,6 +7,7 @@ function Season({ season }) {
       <img
         className={styles.image}
         src={`${BASE_URL_W500}${season.poster_path}`}
+        alt={`${season.name} picture`}
       />
       <div className={styles.season}>
         <div className={styles.season_header}>
@@ -15,7 +16,7 @@ function Season({ season }) {
               ? "Specials"
               : `${season.season_number} Season`}
           </p>
-          <p className={styles.season_year}>{season.air_date.split("-")[0]}</p>
+          <p className={styles.season_year}>{season.air_date?.split("-")[0]}</p>
         </div>
         <p className={styles.season_episodes}>
           {season.episode_count} Episodes

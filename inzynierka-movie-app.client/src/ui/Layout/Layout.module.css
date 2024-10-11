@@ -9,6 +9,7 @@
 .main {
   margin-top: 62px;
   flex: 1;
+  position: relative;
 }
 
 .container {

@@ -7,6 +7,7 @@ import ModalsAuthentication from "../../features/Authentication/ModalsAuthentica
 import { useMediaQuery } from "react-responsive";
 import Mobile from "../MobileNav/Mobile/Mobile";
 import SearchModal from "../Search/SearchModal";
+import { useIsFetching } from "@tanstack/react-query";
 
 function Layout() {
   const isMobile = useMediaQuery({

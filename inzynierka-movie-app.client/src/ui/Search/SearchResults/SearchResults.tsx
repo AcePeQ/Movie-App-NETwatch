@@ -1,6 +1,7 @@
 import styles from "./SearchResults.module.css";
 import SearchItem from "../SearchItem/SearchItem";
 import { useSearch } from "../useSearch";
+import Loading from "../../Loading/Loading";
 
 function SearchResults({ query }: { query: string }) {
   const { data, isPending, error, isError } = useSearch(query);
@@ -9,9 +10,11 @@ function SearchResults({ query }: { query: string }) {
 
   return (
     <div className={styles.searchResults}>
-      {isPending && <p>Loading...</p>}
+      {isPending && <Loading type="search" />}
 
-      {searchResultsLength === 0 && <p>No matching founds</p>}
+      {searchResultsLength === 0 && (
+        <p>Results for search "{query}" not found</p>
+      )}
 
       {!isPending && (
         <>

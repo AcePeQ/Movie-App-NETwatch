@@ -5,6 +5,7 @@ import RowList from "../../features/Homepage/RowList/RowList";
 import { useAllTypes } from "../../features/Homepage/useAllTypes";
 import { useMovies } from "../../features/Homepage/useMovies";
 import { useTVSeries } from "../../features/Homepage/useTVSeries";
+import Loading from "../../ui/Loading/Loading";
 
 function Home() {
   const {
@@ -29,7 +30,7 @@ function Home() {
   } = useAllTypes();
 
   if (isPendingMovie || isPendingTVSeries || isAllTypesPending) {
-    return "Loading...";
+    return <Loading />;
   }
 
   return (
