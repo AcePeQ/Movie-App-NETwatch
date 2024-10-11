@@ -1,6 +1,11 @@
-export async function getSearch(query) {
+export async function getSearch(query, signal) {
   try {
-    const res = await fetch(`/Search/GetSearch/${query}`);
+    const res = await fetch(`/Search/GetSearch/${query}`, { signal });
+
+    if (!res.ok) {
+      throw new Error("Something went wrong with fetching searched results");
+    }
+
     const data = await res.json();
 
     const searchData = data.results.filter(
@@ -9,6 +14,9 @@ export async function getSearch(query) {
 
     return searchData;
   } catch (err) {
-    console.log(err);
+    if (err.name === "AbortError") {
+      return null;
+    }
+    throw new Error("Something went wrong");
   }
 }

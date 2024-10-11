@@ -6,6 +6,11 @@ export async function getAllTypes() {
         "Content-Type": "application/json",
       },
     });
+
+    if (!res.ok) {
+      throw new Error("Something goes wrong with fethcing TV series");
+    }
+
     const data = await res.json();
 
     const allTypesTrending = data.results.slice(0, 5);
@@ -13,6 +18,6 @@ export async function getAllTypes() {
     return { allTypesTrending };
   } catch (error) {
     console.error(error);
-    throw new Error("Couldn't fetch movies");
+    throw new Error("Something went wrong");
   }
 }

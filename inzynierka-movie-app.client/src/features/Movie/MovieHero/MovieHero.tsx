@@ -89,7 +89,7 @@ function MovieHero({ data }: { item: object }) {
             )}
             <DetailRow title="Country Production">
               <p className={styles.detailValue}>
-                {convertRegionISO(origin_country)}
+                {convertRegionISO(origin_country[0])}
               </p>
             </DetailRow>
             {numberOfSeasons && (

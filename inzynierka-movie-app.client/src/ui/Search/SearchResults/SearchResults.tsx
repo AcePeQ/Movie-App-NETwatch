@@ -5,11 +5,13 @@ import { useSearch } from "../useSearch";
 function SearchResults({ query }: { query: string }) {
   const { data, isPending, error, isError } = useSearch(query);
 
-  console.log(data);
+  const searchResultsLength = data?.length;
 
   return (
     <div className={styles.searchResults}>
       {isPending && <p>Loading...</p>}
+
+      {searchResultsLength === 0 && <p>No matching founds</p>}
 
       {!isPending && (
         <>

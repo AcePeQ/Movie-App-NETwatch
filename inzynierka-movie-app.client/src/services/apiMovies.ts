@@ -6,6 +6,9 @@ export async function getMovies() {
         "Content-Type": "application/json",
       },
     });
+    if (!res.ok) {
+      throw new Error("Something goes wrong with fethcing TV series");
+    }
     const data = await res.json();
 
     const popularMovies = data.popular.results.slice(0, 10);
@@ -16,7 +19,7 @@ export async function getMovies() {
     return { popularMovies, nowPlayingMovies, topRatedMovies, trendingMovies };
   } catch (error) {
     console.error(error);
-    throw new Error("Couldn't fetch movies");
+    throw new Error("Something went wrong");
   }
 }
 
@@ -28,12 +31,15 @@ export async function getMovieID(id) {
         "Content-Type": "application/json",
       },
     });
+    if (!res.ok) {
+      throw new Error("Something goes wrong with fethcing TV series");
+    }
+
     const data = await res.json();
-    console.log(data, res);
 
     return data;
   } catch (error) {
     console.error(error);
-    throw new Error("Couldn't fetch movies");
+    throw new Error("Something went wrong");
   }
 }

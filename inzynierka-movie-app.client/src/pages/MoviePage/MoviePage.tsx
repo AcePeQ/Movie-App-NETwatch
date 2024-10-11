@@ -65,9 +65,11 @@ function MoviePage() {
         <div className={styles.rowCol_2}>
           <MovieRow title="Details">
             <>
-              <DetailRow title="Company">
-                {production_companies[0].name}
-              </DetailRow>
+              {production_companies.length >= 1 && (
+                <DetailRow title="Company">
+                  {production_companies[0].name}
+                </DetailRow>
+              )}
               <DetailRow title="Original Language">
                 <span className={styles.language}>
                   {convertLanguageISO(original_language)}

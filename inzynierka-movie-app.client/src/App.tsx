@@ -23,10 +23,12 @@ import TvSeriesPage from "./pages/TvSeriesPage/TvSeriesPage";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
+const MINUTES_60_IN_MILISECONDS = 3_600_000;
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 0,
+      staleTime: MINUTES_60_IN_MILISECONDS,
     },
   },
 });

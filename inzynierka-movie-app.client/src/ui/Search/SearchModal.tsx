@@ -21,7 +21,7 @@ function SearchModal() {
       </button>
       {isSearchModalOpen && (
         <Modal title="Find your movie" onClose={handleCloseModal}>
-          <Search />
+          <Search onCloseModal={handleCloseModal} />
         </Modal>
       )}
     </>

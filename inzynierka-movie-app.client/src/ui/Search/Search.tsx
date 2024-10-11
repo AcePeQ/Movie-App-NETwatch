@@ -5,28 +5,42 @@ import styles from "./Search.module.css";
 import { useState } from "react";
 import SearchResults from "./SearchResults/SearchResults";
 
-function Search() {
+function Search({ onCloseModal }) {
   const [query, setQuery] = useState<string>("");
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
+  function handleBlur() {
+    setTimeout(() => {
+      if (onCloseModal) {
+        onCloseModal();
+      }
+      setQuery("");
+      setIsFocused(false);
+    }, 75);
+  }
+
   return (
-    <form className={styles.search}>
+    <div
+      className={styles.search}
+      onBlur={handleBlur}
+      onFocus={() => setIsFocused(true)}
+    >
       <div className={styles.searchBox}>
         <HiSearch className={styles.searchIcon} />
         <input
           type="text"
           className={styles.searchInput}
-          placeholder="Search for movies or TV shows"
+          placeholder="Type to search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
         />
-        {query && <HiX className={styles.clearIcon} />}
+        {query && (
+          <HiX className={styles.clearIcon} onClick={() => setQuery("")} />
+        )}
       </div>
 
-      {query.length > 0 && !isFocused && <SearchResults query={query} />}
-    </form>
+      {query.length > 0 && isFocused && <SearchResults query={query} />}
+    </div>
   );
 }
 

@@ -19,13 +19,13 @@ function SearchItem({ item }) {
     release_date,
   } = item;
   const year = first_air_date
-    ? first_air_date.split("-")[0]
-    : release_date.split("-")[0];
+    ? first_air_date?.split("-")[0]
+    : release_date?.split("-")[0];
   const isMovie = media_type === "movie";
   const genres = genre_ids.slice(0, 1);
 
   return (
-    <Link to={`movie/${id}`} className={styles.searchItem}>
+    <Link to={`${media_type}/${id}`} className={styles.searchItem}>
       <figure className={styles.posterContainer}>
         <img className={styles.poster} src={`${BASE_URL_W500}${poster_path}`} />
       </figure>
@@ -39,7 +39,7 @@ function SearchItem({ item }) {
               </p>
               <div className={styles.genres}>
                 {genres.map((genre) => (
-                  <p className={styles.genre}>
+                  <p key={genre} className={styles.genre}>
                     {isMovie ? findGenreMovie(genre) : findGenreTVSeries(genre)}
                   </p>
                 ))}
