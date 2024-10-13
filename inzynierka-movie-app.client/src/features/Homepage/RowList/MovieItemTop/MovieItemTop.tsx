@@ -21,11 +21,15 @@ function MovieItemTop({ number, movie }: MovieItemProps) {
   return (
     <Link
       className={styles.link}
-      to={`${isMovie ? `movie/${id}` : `tv/${id}`}`}
+      to={`${isMovie ? `/movie/${id}` : `/tv/${id}`}`}
     >
       <div className={styles.number}>{number}</div>
       <div className={styles.movie}>
-        <img src={background} className={styles.image} />
+        <img
+          src={background}
+          className={styles.image}
+          alt={`Poster of ${title}`}
+        />
         <div className={styles.options}>
           {/* <HiCog6Tooth /> */}
           <HiPlusCircle />

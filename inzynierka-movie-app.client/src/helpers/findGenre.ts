@@ -1,4 +1,10 @@
-const genresMovie = [
+export function findGenre(id) {
+  const found = genres.find((genre) => genre.id === id);
+  return found ? found.name : "";
+}
+
+const genres = [
+  /*Movies*/
   {
     id: 28,
     name: "Action",
@@ -75,14 +81,8 @@ const genresMovie = [
     id: 37,
     name: "Western",
   },
-];
 
-export function findGenreMovie(id) {
-  const found = genresMovie.find((genre) => genre.id === id);
-  return found ? found.name : "";
-}
-
-const genresTVSeries = [
+  /*TV Series*/
   {
     id: 10759,
     name: "Action & Adventure",
@@ -148,8 +148,3 @@ const genresTVSeries = [
     name: "Western",
   },
 ];
-
-export function findGenreTVSeries(id) {
-  const found = genresTVSeries.find((genre) => genre.id === id);
-  return found ? found.name : "";
-}

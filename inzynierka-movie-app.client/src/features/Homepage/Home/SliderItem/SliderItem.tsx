@@ -3,10 +3,7 @@ import styles from "./SliderItem.module.css";
 
 import MovieRating from "../../../../ui/MovieRating/MovieRating";
 import { BASE_URL_ORIGINAL } from "../../../../helpers/getBaseUrl";
-import {
-  findGenreMovie,
-  findGenreTVSeries,
-} from "../../../../helpers/findGenre";
+import { findGenre } from "../../../../helpers/findGenre";
 
 interface SliderItemPropTypes {
   item: object;
@@ -24,10 +21,11 @@ function SliderItem({ item, index }: SliderItemPropTypes) {
     release_date,
     first_air_date,
     media_type,
-    genre_ids: genres,
+    genre_ids,
   } = item;
   const isMovie = media_type === "movie";
   const releaseYear = (release_date || first_air_date).split("-")[0];
+  const genres = genre_ids.slice(0, 3);
 
   const backgroundStyles = {
     background: `linear-gradient(
@@ -54,21 +52,9 @@ function SliderItem({ item, index }: SliderItemPropTypes) {
           <div className={styles.genres}>
             <span className={styles.genre}>{isMovie ? "Movie" : "TV"}</span>
             <span className={styles.genre}>-</span>
-            <span className={styles.genre}>
-              {isMovie
-                ? findGenreMovie(genres[0])
-                : findGenreTVSeries(genres[0])}
-            </span>
-            <span className={styles.genre}>
-              {isMovie
-                ? findGenreMovie(genres[1])
-                : findGenreTVSeries(genres[1])}
-            </span>
-            <span className={styles.genre}>
-              {isMovie
-                ? findGenreMovie(genres[2])
-                : findGenreTVSeries(genres[2])}
-            </span>
+            {genres.map((genre) => (
+              <span className={styles.genre}>{findGenre(genre)}</span>
+            ))}
           </div>
           <p className={styles.description}>{overview}</p>
         </Link>

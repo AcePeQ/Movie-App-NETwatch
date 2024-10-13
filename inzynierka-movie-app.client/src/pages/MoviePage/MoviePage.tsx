@@ -19,6 +19,7 @@ import DetailRow from "../../features/Movie/MovieHero/DetailRow/DetailRow";
 import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
 import { convertLanguageISO } from "../../helpers/formatISO";
 import Loading from "../../ui/Loading/Loading";
+import ErrorFull from "../../ui/Error/ErrorFullPage/ErrorFullPage";
 
 function MoviePage() {
   const { id } = useParams();
@@ -32,6 +33,10 @@ function MoviePage() {
 
   if (isPending) {
     return <Loading />;
+  }
+
+  if (!isPending && isError) {
+    return <ErrorFull error={error} />;
   }
 
   const vidoes = data?.videos?.results

@@ -16,7 +16,7 @@ function Search({ onCloseModal }: { onCloseModal?: any }) {
       }
       setQuery("");
       setIsFocused(false);
-    }, 75);
+    }, 100);
   }
 
   return (

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./SearchItem.module.css";
 import { BASE_URL_W500 } from "../../../helpers/getBaseUrl";
 import MovieRating from "../../MovieRating/MovieRating";
-import { findGenreMovie, findGenreTVSeries } from "../../../helpers/findGenre";
+import { findGenre } from "../../../helpers/findGenre";
 
 function SearchItem({ item }) {
   const {
@@ -25,9 +25,13 @@ function SearchItem({ item }) {
   const genres = genre_ids.slice(0, 1);
 
   return (
-    <Link to={`${media_type}/${id}`} className={styles.searchItem}>
+    <Link to={`/${media_type}/${id}`} className={styles.searchItem}>
       <figure className={styles.posterContainer}>
-        <img className={styles.poster} src={`${BASE_URL_W500}${poster_path}`} />
+        <img
+          className={styles.poster}
+          src={`${BASE_URL_W500}${poster_path}`}
+          alt={`Poster of ${name ? name : title}`}
+        />
       </figure>
       <div className={styles.informations}>
         <div>
@@ -40,7 +44,7 @@ function SearchItem({ item }) {
               <div className={styles.genres}>
                 {genres.map((genre) => (
                   <p key={genre} className={styles.genre}>
-                    {isMovie ? findGenreMovie(genre) : findGenreTVSeries(genre)}
+                    {findGenre(genre)}
                   </p>
                 ))}
               </div>

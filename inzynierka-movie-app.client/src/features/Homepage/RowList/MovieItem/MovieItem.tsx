@@ -5,10 +5,7 @@ import { HiCog6Tooth } from "react-icons/hi2";
 
 import styles from "./MovieItem.module.css";
 import MovieRating from "../../../../ui/MovieRating/MovieRating";
-import {
-  findGenreMovie,
-  findGenreTVSeries,
-} from "../../../../helpers/findGenre";
+import { findGenre } from "../../../../helpers/findGenre";
 
 import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
 
@@ -23,18 +20,19 @@ function MovieItem({ type, movie }: MovieItem) {
     backdrop_path: backgroundPath,
     title,
     name,
-    genre_ids: genres,
+    genre_ids,
     vote_average: rating,
   } = movie;
   const background = `${BASE_URL_W500}${backgroundPath}`;
   const isMovie = title ? true : false;
+  const genres = genre_ids.slice(0, 3);
 
   const backgroundImage = { background: `url(${background})` };
   return (
     <Link
       className={`${styles.movieContainer} ${styles[type]}`}
       style={backgroundImage}
-      to={`${isMovie ? `movie/${id}` : `tv/${id}`}`}
+      to={`${isMovie ? `/movie/${id}` : `/tv/${id}`}`}
     >
       <div className={styles.options}>
         <HiCog6Tooth />
@@ -46,15 +44,9 @@ function MovieItem({ type, movie }: MovieItem) {
           <MovieRating type="movieItem" rating={rating} />
         </div>
         <div className={styles.genres}>
-          <span className={styles.genre}>
-            {isMovie ? findGenreMovie(genres[0]) : findGenreTVSeries(genres[0])}
-          </span>
-          <span className={styles.genre}>
-            {isMovie ? findGenreMovie(genres[1]) : findGenreTVSeries(genres[1])}
-          </span>
-          <span className={styles.genre}>
-            {isMovie ? findGenreMovie(genres[2]) : findGenreTVSeries(genres[2])}
-          </span>
+          {genres.map((genre) => (
+            <span className={styles.genre}>{findGenre(genre)}</span>
+          ))}
         </div>
       </div>
     </Link>

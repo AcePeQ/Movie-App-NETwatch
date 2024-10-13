@@ -2,6 +2,7 @@ import styles from "./SearchResults.module.css";
 import SearchItem from "../SearchItem/SearchItem";
 import { useSearch } from "../useSearch";
 import Loading from "../../Loading/Loading";
+import Error from "../../Error/Error";
 
 function SearchResults({ query }: { query: string }) {
   const { data, isPending, error, isError } = useSearch(query);
@@ -12,11 +13,13 @@ function SearchResults({ query }: { query: string }) {
     <div className={styles.searchResults}>
       {isPending && <Loading type="search" />}
 
-      {searchResultsLength === 0 && (
+      {isError && <Error error={error} />}
+
+      {searchResultsLength === 0 && !isError && !isPending && (
         <p>Results for search "{query}" not found</p>
       )}
 
-      {!isPending && (
+      {!isPending && !isError && (
         <>
           {data.map((item) => (
             <SearchItem key={item.id} item={item} />
