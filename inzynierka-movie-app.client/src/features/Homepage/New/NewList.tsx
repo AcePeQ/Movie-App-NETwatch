@@ -4,16 +4,7 @@ import MovieItem from "../RowList/MovieItem/MovieItem";
 function NewList() {
   return (
     <ListContainer>
-      <>
-        <MovieItem type="listMovie" />
-        <MovieItem type="listMovie" />
-        <MovieItem type="listMovie" />
-        <MovieItem type="listMovie" />
-        <MovieItem type="listMovie" />
-        <MovieItem type="listMovie" />
-        <MovieItem type="listMovie" />
-        <MovieItem type="listMovie" />
-      </>
+      <></>
     </ListContainer>
   );
 }

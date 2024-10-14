@@ -6,9 +6,22 @@ import { HiPlusCircle } from "react-icons/hi";
 
 import styles from "./MovieItemTop.module.css";
 
+interface Item {
+  backdrop_path: string;
+  first_air_date: string | null;
+  genre_ids: [];
+  id: number;
+  name: string | null;
+  overview: string;
+  poster_path: string;
+  release_date: string | null;
+  title: string | null;
+  vote_average: number;
+}
+
 interface MovieItemProps {
-  number: string;
-  movie: object;
+  number: number;
+  movie: Item;
 }
 
 const BASE_BACKDROP_URL = `https://image.tmdb.org/t/p/original`;

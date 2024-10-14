@@ -1,4 +1,4 @@
-export function findGenre(id) {
+export function findGenre(id: number) {
   const found = genres.find((genre) => genre.id === id);
   return found ? found.name : "";
 }

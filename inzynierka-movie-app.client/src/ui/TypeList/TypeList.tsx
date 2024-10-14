@@ -3,7 +3,6 @@ import styles from "./TypeList.module.css";
 import Select from "react-select";
 
 const typesOptions = [
-  { value: "all", label: "All" },
   { value: "movies", label: "Movies" },
   { value: "series", label: "Series" },
 ];

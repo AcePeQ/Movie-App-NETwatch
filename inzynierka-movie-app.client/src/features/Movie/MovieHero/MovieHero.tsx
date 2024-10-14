@@ -7,7 +7,26 @@ import { BASE_URL_ORIGINAL, BASE_URL_W500 } from "../../../helpers/getBaseUrl";
 import { useState } from "react";
 import { convertRegionISO } from "../../../helpers/formatISO";
 
-function MovieHero({ data }: { item: object }) {
+type Item = {
+  backdrop_path: string;
+  poster_path: string;
+  vote_average: number;
+  genres: [];
+  vote_count: number;
+  overview: string;
+  status: string;
+  origin_country: string[];
+  release_date: string;
+  title: string;
+  runtime: number;
+  name: string;
+  first_air_date: string;
+  last_air_date: string;
+  number_of_episodes: number;
+  number_of_seasons: number;
+};
+
+function MovieHero({ data }: { data: Item }) {
   const {
     backdrop_path: backgroundPath,
     poster_path: posterPath,
@@ -62,7 +81,7 @@ function MovieHero({ data }: { item: object }) {
                 } - ${status}`}
             </p>
             <p className={`${styles.detailValue} ${styles.genresValue}`}>
-              {genres.map((genre) => (
+              {genres.map((genre: { name: string }) => (
                 <span key={genre.name}>{genre.name}</span>
               ))}
             </p>

@@ -6,13 +6,26 @@ import { sliderSettings } from "../../../helpers/sliderSettings";
 
 import styles from "./RowList.module.css";
 
-interface RowProps {
-  title: string;
-  items: Array<[]>;
-  render: () => JSX.Element;
-}
+type Item = {
+  backdrop_path: string;
+  first_air_date: string | null;
+  genre_ids: [];
+  id: number;
+  name: string | null;
+  overview: string;
+  poster_path: string;
+  release_date: string | null;
+  title: string | null;
+  vote_average: number;
+};
 
-function RowList({ title, items, render }: RowProps) {
+type RowListProps = {
+  title: string;
+  items: Item[];
+  render: (movie: Item, index: number) => JSX.Element;
+};
+
+function RowList({ title, items, render }: RowListProps) {
   const settings = sliderSettings();
 
   return (

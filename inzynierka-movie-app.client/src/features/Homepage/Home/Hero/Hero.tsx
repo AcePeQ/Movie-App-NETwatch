@@ -4,9 +4,24 @@ import SliderItem from "../SliderItem/SliderItem";
 import Dots from "../../../../ui/Dots/Dots";
 import { useEffect, useState } from "react";
 
-interface HeroPropsTypes {
-  items: Array<[]>;
-}
+type HeroItem = {
+  backdrop_path: string;
+  first_air_date: string | null;
+  genres_ids: [] | null;
+  genre_ids: [] | null;
+  id: number;
+  name: string | null;
+  overview: string;
+  poster_path: string;
+  release_date: string | null;
+  title: string | null;
+  vote_average: number;
+  media_type: string;
+};
+
+type HeroPropsTypes = {
+  items: HeroItem[];
+};
 
 function Hero({ items }: HeroPropsTypes) {
   const [index, setIndex] = useState(0);
@@ -22,7 +37,7 @@ function Hero({ items }: HeroPropsTypes) {
     return () => clearInterval(intervalID);
   }, [index, itemsLength]);
 
-  function handleDotClick(dotIndex) {
+  function handleDotClick(dotIndex: number) {
     setIndex(dotIndex);
   }
 

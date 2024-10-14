@@ -5,7 +5,7 @@ import styles from "./Search.module.css";
 import { useState } from "react";
 import SearchResults from "./SearchResults/SearchResults";
 
-function Search({ onCloseModal }: { onCloseModal?: any }) {
+function Search({ onCloseModal }: { onCloseModal?: () => void }) {
   const [query, setQuery] = useState<string>("");
   const [isFocused, setIsFocused] = useState<boolean>(false);
 

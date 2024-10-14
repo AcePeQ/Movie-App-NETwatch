@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 
 import styles from "./Layout.module.css";
+
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import ModalsAuthentication from "../../features/Authentication/ModalsAuthentication/ModalsAuthentication";
-import { useMediaQuery } from "react-responsive";
 import Mobile from "../MobileNav/Mobile/Mobile";
 import SearchModal from "../Search/SearchModal";
-import { useIsFetching } from "@tanstack/react-query";
+import { useMediaQuery } from "react-responsive";
 
 function Layout() {
   const isMobile = useMediaQuery({

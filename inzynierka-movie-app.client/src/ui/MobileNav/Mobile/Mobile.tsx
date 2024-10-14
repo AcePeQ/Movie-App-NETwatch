@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./Mobile.module.css";
 import { HiOutlineViewList, HiX } from "react-icons/hi";
-import Search from "../../Search/Search";
 import Navigation from "../../Navbar/Navigation/Navigation";
 import DarkMode from "../../../features/DarkMode/DarkMode";
 import Logo from "../../Logo/Logo";

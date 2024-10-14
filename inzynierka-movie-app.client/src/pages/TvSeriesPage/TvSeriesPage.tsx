@@ -1,11 +1,16 @@
 import styles from "./TvSeriesPage.module.css";
+
 import MovieHero from "../../features/Movie/MovieHero/MovieHero";
 import MovieRow from "../../features/Movie/MovieRow/MovieRow";
-import { useParams } from "react-router-dom";
-import { useTVSeriesID } from "../../features/Movie/useTVSeriesID";
 import WatchOnNow from "../../features/Movie/MovieHero/WatchOnNow/WatchOnNow";
 import Videos from "../../features/Movie/Video/Videos";
 import Cast from "../../features/Movie/Cast/Cast";
+import ShowMore from "../../ui/ShowMore/ShowMore";
+import Season from "../../features/Movie/Season/Season";
+import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
+import DetailRow from "../../features/Movie/MovieHero/DetailRow/DetailRow";
+import Loading from "../../ui/Loading/Loading";
+import ErrorFull from "../../ui/Error/ErrorFullPage/ErrorFullPage";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -17,15 +22,48 @@ import {
   sliderSeasonsSettings,
   sliderSimilarSettings,
 } from "../../helpers/sliderSettings";
-import ShowMore from "../../ui/ShowMore/ShowMore";
-import Season from "../../features/Movie/Season/Season";
-import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
 import { useMediaQuery } from "react-responsive";
-import DetailRow from "../../features/Movie/MovieHero/DetailRow/DetailRow";
 import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
 import { convertLanguageISO } from "../../helpers/formatISO";
-import Loading from "../../ui/Loading/Loading";
-import ErrorFull from "../../ui/Error/ErrorFullPage/ErrorFullPage";
+import { useParams } from "react-router-dom";
+import { useTVSeriesID } from "../../features/Movie/useTVSeriesID";
+
+type Video = {
+  key: string;
+  name: string;
+  official: boolean;
+  site: string;
+  type: string;
+};
+
+type Cast = {
+  profile_path: string;
+  name: string;
+  character: string;
+  known_for_department: string;
+  id: number;
+};
+
+type Show = {
+  backdrop_path: string;
+  first_air_date: string | null;
+  genre_ids: [];
+  id: number;
+  name: string | null;
+  overview: string;
+  poster_path: string;
+  release_date: string | null;
+  title: string | null;
+  vote_average: number;
+};
+
+type Season = {
+  air_date: string;
+  episode_count: number;
+  id: number;
+  name: string;
+  poster_path: string;
+};
 
 function TvSeriesPage() {
   const { id } = useParams();
@@ -47,7 +85,7 @@ function TvSeriesPage() {
 
   const vidoes = data.videos.results
     .filter(
-      (video) =>
+      (video: Video) =>
         (video.type === "Teaser" || video.type === "Trailer") &&
         video.official === true &&
         video.site === "YouTube"
@@ -55,7 +93,7 @@ function TvSeriesPage() {
     .slice(0, 6);
 
   const cast = data.credits.cast
-    .filter((person) => person.known_for_department === "Acting")
+    .filter((person: Cast) => person.known_for_department === "Acting")
     .slice(0, 9);
 
   const seasons = data.tvseries.seasons;
@@ -113,7 +151,7 @@ function TvSeriesPage() {
 
         <MovieRow title="Seasons">
           <Carousel responsive={seasonsResponsive} {...settings}>
-            {seasons.map((season) => (
+            {seasons.map((season: Season) => (
               <Season key={season.id} season={season} />
             ))}
           </Carousel>
@@ -121,7 +159,7 @@ function TvSeriesPage() {
 
         <MovieRow title="Cast">
           <Carousel {...settings} responsive={castResponsive}>
-            {cast.map((cast) => (
+            {cast.map((cast: Cast) => (
               <Cast key={cast.id} cast={cast} />
             ))}
             <ShowMore linkTo="/" />
@@ -136,7 +174,7 @@ function TvSeriesPage() {
 
         <MovieRow title="Similar">
           <Carousel {...settings} responsive={similarResponsive}>
-            {similarShows.map((show) => (
+            {similarShows.map((show: Show) => (
               <MovieItem key={show.id} movie={show} type="slider" />
             ))}
           </Carousel>

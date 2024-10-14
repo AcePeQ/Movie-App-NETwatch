@@ -2,10 +2,11 @@ import Hero from "../../features/Homepage/Home/Hero/Hero";
 import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
 import MovieItemTop from "../../features/Homepage/RowList/MovieItemTop/MovieItemTop";
 import RowList from "../../features/Homepage/RowList/RowList";
+import Loading from "../../ui/Loading/Loading";
 import { useAllTypes } from "../../features/Homepage/useAllTypes";
 import { useMovies } from "../../features/Homepage/useMovies";
 import { useTVSeries } from "../../features/Homepage/useTVSeries";
-import Loading from "../../ui/Loading/Loading";
+import Error from "../../ui/Error/Error";
 
 function Home() {
   const {
@@ -33,12 +34,17 @@ function Home() {
     return <Loading />;
   }
 
+  if (isErrorMovie || isErrorTVSeries || isAllTypesError) {
+    const error: Error | null = errorMovie && errorTVSeries && allTypesError;
+    return <Error error={error} />;
+  }
+
   return (
     <>
-      <Hero items={allTypes.allTypesTrending} />
+      <Hero items={allTypes?.allTypesTrending} />
       <RowList
         title="Top Movies Now"
-        items={movies.popularMovies}
+        items={movies?.popularMovies}
         render={(movie, index) => (
           <MovieItemTop key={movie.id} movie={movie} number={index + 1} />
         )}
@@ -46,7 +52,7 @@ function Home() {
 
       <RowList
         title="Top TV Series Now"
-        items={tvSeries.popularTVSeries}
+        items={tvSeries?.popularTVSeries}
         render={(movie, index) => (
           <MovieItemTop key={movie.id} movie={movie} number={index + 1} />
         )}
@@ -54,7 +60,7 @@ function Home() {
 
       <RowList
         title="New Movies"
-        items={movies.nowPlayingMovies}
+        items={movies?.nowPlayingMovies}
         render={(movie) => (
           <MovieItem key={movie.id} type="slider" movie={movie} />
         )}
@@ -62,7 +68,7 @@ function Home() {
 
       <RowList
         title="Trending Movies"
-        items={movies.trendingMovies}
+        items={movies?.trendingMovies}
         render={(movie) => (
           <MovieItem key={movie.id} type="slider" movie={movie} />
         )}
@@ -70,7 +76,7 @@ function Home() {
 
       <RowList
         title="Trending TV Series"
-        items={tvSeries.trendingTVSeries}
+        items={tvSeries?.trendingTVSeries}
         render={(movie) => (
           <MovieItem key={movie.id} type="slider" movie={movie} />
         )}
@@ -78,7 +84,7 @@ function Home() {
 
       <RowList
         title="Top Rated Movies Ever"
-        items={movies.topRatedMovies}
+        items={movies?.topRatedMovies}
         render={(movie) => (
           <MovieItem key={movie.id} type="slider" movie={movie} />
         )}
@@ -86,7 +92,7 @@ function Home() {
 
       <RowList
         title="Top Rated TV Series Ever"
-        items={tvSeries.topRatedTVSeries}
+        items={tvSeries?.topRatedTVSeries}
         render={(movie) => (
           <MovieItem key={movie.id} type="slider" movie={movie} />
         )}

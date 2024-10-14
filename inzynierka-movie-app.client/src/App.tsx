@@ -41,7 +41,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="new" element={<New />} />
+
+            <Route path="/list">
+              <Route index element={<Navigate replace to="new" />} />
+              <Route path="new" element={<New />} />
+            </Route>
 
             <Route path="movie/:id" element={<MoviePage />} />
             <Route path="tv/:id" element={<TvSeriesPage />} />
