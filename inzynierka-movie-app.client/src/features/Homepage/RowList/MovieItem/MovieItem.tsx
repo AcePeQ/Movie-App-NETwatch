@@ -57,8 +57,10 @@ function MovieItem({ type, movie }: MovieItem) {
           <MovieRating type="movieItem" rating={rating} />
         </div>
         <div className={styles.genres}>
-          {genres.map((genre) => (
-            <span className={styles.genre}>{findGenre(genre)}</span>
+          {genres.map((genre: number, index) => (
+            <span key={index} className={styles.genre}>
+              {findGenre(genre)}
+            </span>
           ))}
         </div>
       </div>

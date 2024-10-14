@@ -67,8 +67,10 @@ function SliderItem({ item, index }: SliderItemPropTypes) {
           <div className={styles.genres}>
             <span className={styles.genre}>{isMovie ? "Movie" : "TV"}</span>
             <span className={styles.genre}>-</span>
-            {genres?.map((genre) => (
-              <span className={styles.genre}>{findGenre(genre)}</span>
+            {genres?.map((genre: number, index) => (
+              <span key={index} className={styles.genre}>
+                {findGenre(genre)}
+              </span>
             ))}
           </div>
           <p className={styles.description}>{overview}</p>
