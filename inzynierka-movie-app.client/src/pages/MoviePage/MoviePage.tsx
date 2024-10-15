@@ -130,7 +130,7 @@ function MoviePage() {
             {cast.map((cast: Cast) => (
               <Cast key={cast.id} cast={cast} />
             ))}
-            <ShowMore linkTo="/" />
+            <ShowMore linkTo={`/movie/${id}/cast`} />
           </Carousel>
         </MovieRow>
 
@@ -145,7 +145,6 @@ function MoviePage() {
             {similarShows.map((show: Show) => (
               <MovieItem key={show.id} movie={show} type="slider" />
             ))}
-            <ShowMore linkTo="/" />
           </Carousel>
         </MovieRow>
       </div>

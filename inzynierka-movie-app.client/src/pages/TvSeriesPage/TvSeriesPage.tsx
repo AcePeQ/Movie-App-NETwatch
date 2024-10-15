@@ -42,6 +42,7 @@ type Cast = {
   character: string;
   known_for_department: string;
   id: number;
+  roles: [];
 };
 
 type Show = {
@@ -162,7 +163,7 @@ function TvSeriesPage() {
             {cast.map((cast: Cast) => (
               <Cast key={cast.id} cast={cast} />
             ))}
-            <ShowMore linkTo="/" />
+            <ShowMore linkTo={`/tv/${id}/cast`} />
           </Carousel>
         </MovieRow>
 

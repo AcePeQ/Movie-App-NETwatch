@@ -31,6 +31,7 @@ export async function getTVSeriesID(id) {
         "Content-Type": "application/json",
       },
     });
+
     if (!res.ok) {
       throw new Error("Something goes wrong with fethcing TV series");
     }
