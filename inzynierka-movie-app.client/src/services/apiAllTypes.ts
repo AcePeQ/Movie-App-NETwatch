@@ -17,7 +17,7 @@ export async function getAllTypes() {
 
     return { allTypesTrending };
   } catch (error) {
-    console.error(error);
-    throw new Error("Something went wrong");
+    console.error((error as Error).message);
+    throw new Error((error as Error).message);
   }
 }

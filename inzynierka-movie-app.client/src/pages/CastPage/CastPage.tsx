@@ -9,8 +9,6 @@ function CastPage() {
   const { type, id } = useParams();
   const { data, isPending, isError, error } = useCredits(type, id);
 
-  console.log(type, id);
-
   if (isPending) {
     return <Loading />;
   }
@@ -19,11 +17,9 @@ function CastPage() {
     return <ErrorFull error={error} />;
   }
 
-  console.log(data);
-
   return (
     <div className={styles.credits_container}>
-      <Credits credits={data} />
+      <Credits data={data} />
     </div>
   );
 }

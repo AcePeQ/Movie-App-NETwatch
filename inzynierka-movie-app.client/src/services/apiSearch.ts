@@ -13,10 +13,11 @@ export async function getSearch(query, signal) {
     );
 
     return searchData;
-  } catch (err) {
-    if (err.name === "AbortError") {
+  } catch (error) {
+    if ((error as Error).name === "AbortError") {
       return null;
     }
-    throw new Error("Something went wrong");
+    console.error((error as Error).message);
+    throw new Error((error as Error).message);
   }
 }

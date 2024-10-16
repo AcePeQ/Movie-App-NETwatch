@@ -15,3 +15,11 @@ public class All {
     public string release_date {get; set;}
     public string first_air_date {get; set;}
 }
+public class AllTypesShort {
+    public string poster_path { get; set; }
+    public int id { get; set; }
+    public string release_date {get; set;}
+    public string first_air_date {get; set;}
+    public string name { get; set; }
+    public string title {get; set;}
+}

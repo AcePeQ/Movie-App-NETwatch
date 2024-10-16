@@ -18,8 +18,8 @@ export async function getTVSeries() {
 
     return { popularTVSeries, topRatedTVSeries, trendingTVSeries };
   } catch (error) {
-    console.error(error);
-    throw new Error("Something went wrong");
+    console.error((error as Error).message);
+    throw new Error((error as Error).message);
   }
 }
 
@@ -40,7 +40,7 @@ export async function getTVSeriesID(id) {
 
     return data;
   } catch (error) {
-    console.error(error);
-    throw new Error("Something went wrong");
+    console.error((error as Error).message);
+    throw new Error((error as Error).message);
   }
 }

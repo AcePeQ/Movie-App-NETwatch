@@ -22,7 +22,7 @@ export async function getCredits(
 
     return data;
   } catch (error) {
-    console.error(error.message);
-    throw new Error(error.message);
+    console.error((error as Error).message);
+    throw new Error((error as Error).message);
   }
 }

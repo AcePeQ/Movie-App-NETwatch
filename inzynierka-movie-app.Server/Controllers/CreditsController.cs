@@ -24,10 +24,15 @@ namespace inzynierka_movie_app.Server.Controllers
           string credit = type == "movie" ? "credits" : "aggregate_credits";
           string url = $"https://api.themoviedb.org/3/{type}/{id}/{credit}?language=en-US";
 
+          string urlDetails = $"https://api.themoviedb.org/3/{type}/{id}?language=en-US";
+
           var res = await httpService.CreateRequest(url);                        
           var processedResponse = await httpService.ProcessResponse<FullCredits>(res);
 
-          return Json(processedResponse);
+          var resDetails = await httpService.CreateRequest(urlDetails);                        
+          var processedResponseDetails = await httpService.ProcessResponse<AllTypesShort>(resDetails);
+
+          return Json(new {credits = processedResponse, details = processedResponseDetails});
         }
     }
 }

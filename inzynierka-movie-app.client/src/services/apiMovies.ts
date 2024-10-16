@@ -18,8 +18,8 @@ export async function getMovies() {
 
     return { popularMovies, nowPlayingMovies, topRatedMovies, trendingMovies };
   } catch (error) {
-    console.error(error);
-    throw new Error("Something went wrong");
+    console.error((error as Error).message);
+    throw new Error((error as Error).message);
   }
 }
 
@@ -39,7 +39,7 @@ export async function getMovieID(id) {
 
     return data;
   } catch (error) {
-    console.error(error);
-    throw new Error("Something went wrong");
+    console.error((error as Error).message);
+    throw new Error((error as Error).message);
   }
 }
