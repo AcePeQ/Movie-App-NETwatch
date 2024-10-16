@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Credits.module.css";
 
 import { HiMiniArrowLeftCircle } from "react-icons/hi2";
@@ -54,7 +54,7 @@ interface Job {
   episode_count: number;
 }
 
-function Credits({ data }: { data: Data }) {
+function Credits({ data, type }: { data: Data; type: string | undefined }) {
   const { id, name, poster_path, title } = data.details;
   const { cast, crew } = data.credits;
 
@@ -82,18 +82,23 @@ function Credits({ data }: { data: Data }) {
     (person) => person.department === "Visual Effects"
   );
 
+  const navigate = useNavigate();
+
   return (
     <>
       <div className={styles.header_wrapper}>
         <div className={styles.header}>
-          <Link className={styles.image_link} to={""}>
+          <Link className={styles.image_link} to={`/${type}/${id}`}>
             <img src={`${BASE_URL_W200}${poster_path}`} />
           </Link>
           <div className={styles.single_column}>
-            <Link className={styles.link} to={""}>
+            <Link className={styles.link} to={`/${type}/${id}`}>
               <h2>{name ? name : title}</h2>
             </Link>
-            <button className={`${styles.button} ${styles.btn}`}>
+            <button
+              onClick={() => navigate(-1)}
+              className={`${styles.button} ${styles.btn}`}
+            >
               <HiMiniArrowLeftCircle className={styles.icon} />
               <p>Go back</p>
             </button>
@@ -141,8 +146,8 @@ function Credits({ data }: { data: Data }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Production</h4>
-              {production.map((crew) => (
-                <CrewPerson key={crew.id} crew={crew} />
+              {production.map((crew, index) => (
+                <CrewPerson key={index} crew={crew} />
               ))}
               {production.length === 0 && (
                 <p className={styles.errorLength}>There are no records</p>
@@ -151,8 +156,8 @@ function Credits({ data }: { data: Data }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Sound</h4>
-              {sound.map((crew) => (
-                <CrewPerson key={crew.id} crew={crew} />
+              {sound.map((crew, index) => (
+                <CrewPerson key={index} crew={crew} />
               ))}
               {sound.length === 0 && (
                 <p className={styles.errorLength}>There are no records</p>
@@ -161,8 +166,8 @@ function Credits({ data }: { data: Data }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Costume & Make-up</h4>
-              {makeup.map((crew) => (
-                <CrewPerson key={crew.id} crew={crew} />
+              {makeup.map((crew, index) => (
+                <CrewPerson key={index} crew={crew} />
               ))}
               {makeup.length === 0 && (
                 <p className={styles.errorLength}>There are no records</p>
@@ -171,8 +176,8 @@ function Credits({ data }: { data: Data }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Art</h4>
-              {artists.map((crew) => (
-                <CrewPerson key={crew.id} crew={crew} />
+              {artists.map((crew, index) => (
+                <CrewPerson key={index} crew={crew} />
               ))}
               {artists.length === 0 && (
                 <p className={styles.errorLength}>There are no records</p>
@@ -181,8 +186,8 @@ function Credits({ data }: { data: Data }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Editors</h4>
-              {editors.map((crew) => (
-                <CrewPerson key={crew.id} crew={crew} />
+              {editors.map((crew, index) => (
+                <CrewPerson key={index} crew={crew} />
               ))}
               {editors.length === 0 && (
                 <p className={styles.errorLength}>There are no records</p>
@@ -191,8 +196,8 @@ function Credits({ data }: { data: Data }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Camera</h4>
-              {camerasman.map((crew) => (
-                <CrewPerson key={crew.id} crew={crew} />
+              {camerasman.map((crew, index) => (
+                <CrewPerson key={index} crew={crew} />
               ))}
               {camerasman.length === 0 && (
                 <p className={styles.errorLength}>There are no records</p>
@@ -201,8 +206,8 @@ function Credits({ data }: { data: Data }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Visual Effects</h4>
-              {effects.map((crew) => (
-                <CrewPerson key={crew.id} crew={crew} />
+              {effects.map((crew, index) => (
+                <CrewPerson key={index} crew={crew} />
               ))}
               {effects.length === 0 && (
                 <p className={styles.errorLength}>There are no records</p>

@@ -19,7 +19,7 @@ function CastPage() {
 
   return (
     <div className={styles.credits_container}>
-      <Credits data={data} />
+      <Credits data={data} type={type} />
     </div>
   );
 }
