@@ -114,7 +114,7 @@ function MoviePage() {
                 <a href={homepage}>
                   <img
                     className={styles.networkImage}
-                    src={`${BASE_URL_W500}${production_companies[0].logo_path}`}
+                    src={`${BASE_URL_W500}${production_companies[0]?.logo_path}`}
                   />
                 </a>
               </DetailRow>

@@ -15,4 +15,5 @@ public class Movie
     public string poster_path { get; set; }
     public string title { get; set; }
     public double vote_average {get; set;}
+    public int vote_count {get; set;}
 }

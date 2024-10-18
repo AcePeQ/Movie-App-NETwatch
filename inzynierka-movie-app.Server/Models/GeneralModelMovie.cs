@@ -14,6 +14,7 @@ public class All {
     public string media_type {get; set;}
     public string release_date {get; set;}
     public string first_air_date {get; set;}
+    public int vote_count {get; set;}
 }
 public class AllTypesShort {
     public string poster_path { get; set; }

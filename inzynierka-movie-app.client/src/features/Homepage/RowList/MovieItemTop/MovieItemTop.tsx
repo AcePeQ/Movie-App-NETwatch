@@ -38,11 +38,19 @@ function MovieItemTop({ number, movie }: MovieItemProps) {
     >
       <div className={styles.number}>{number}</div>
       <div className={styles.movie}>
-        <img
-          src={background}
-          className={styles.image}
-          alt={`Poster of ${title}`}
-        />
+        {backgroundPath ? (
+          <img
+            src={background}
+            className={styles.image}
+            alt={`Poster of ${title}`}
+          />
+        ) : (
+          <img
+            src={`/public/no-pic-ave.png`}
+            className={styles.image}
+            alt={`No photo available`}
+          />
+        )}
         <div className={styles.options}>
           {/* <HiCog6Tooth /> */}
           <HiPlusCircle />

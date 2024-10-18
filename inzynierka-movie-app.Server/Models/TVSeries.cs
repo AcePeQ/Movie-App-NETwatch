@@ -10,4 +10,5 @@ public class TV {
     public string poster_path { get; set; }
     public string name { get; set; }
     public double vote_average {get; set;}
+    public int vote_count {get; set;}
 }
