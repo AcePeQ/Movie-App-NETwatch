@@ -40,14 +40,14 @@ export function CrewPerson({ crew }: { crew: Crew }) {
   return (
     <li className={styles.item_list}>
       <Link className={styles.person} to={""}>
-        {crew.profile_path ? (
-          <img
-            src={`${BASE_URL_W200}${crew.profile_path}`}
-            alt={`Photo of ${crew.name}`}
-          />
-        ) : (
-          <img src="/public/no-pic-ave.png" alt="No photo available" />
-        )}
+        <img
+          src={
+            crew.profile_path
+              ? `${BASE_URL_W200}${crew.profile_path}`
+              : "/public/no-pic-ave.png"
+          }
+          alt={`Photo of ${crew.name}`}
+        />
         <div className={styles.person_details}>
           <p className={styles.person_name}>{crew.name}</p>
           <div className={styles.person_character}>
@@ -72,14 +72,14 @@ export function CastPerson({ cast }: { cast: Cast }) {
   return (
     <li className={styles.item_list}>
       <Link className={styles.person} to={""}>
-        {cast.profile_path ? (
-          <img
-            src={`${BASE_URL_W200}${cast.profile_path}`}
-            alt={`Photo of ${cast.name}`}
-          />
-        ) : (
-          <img src="/public/no-pic-ave.png" alt="No photo available" />
-        )}
+        <img
+          src={
+            cast.profile_path
+              ? `${BASE_URL_W200}${cast.profile_path}`
+              : "/public/no-pic-ave.png"
+          }
+          alt={`Photo of ${cast.name}`}
+        />
         <div className={styles.person_details}>
           <p className={styles.person_name}>{cast.name}</p>
           <div className={styles.person_character}>

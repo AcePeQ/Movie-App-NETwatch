@@ -29,7 +29,11 @@ function SearchItem({ item }) {
       <figure className={styles.posterContainer}>
         <img
           className={styles.poster}
-          src={`${BASE_URL_W500}${poster_path}`}
+          src={
+            poster_path
+              ? `${BASE_URL_W500}${poster_path}`
+              : "/public/no-pic-ave.png"
+          }
           alt={`Poster of ${name ? name : title}`}
         />
       </figure>

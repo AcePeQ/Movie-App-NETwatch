@@ -1,13 +1,13 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, ReactElement } from "react";
 import { HiX } from "react-icons/hi";
 
 import styles from "./Button.module.css";
 
 interface ButtonProps {
-  type: string;
+  type?: string;
   onClick?: MouseEventHandler;
-  children?: string;
-  size: string;
+  children?: string | ReactElement;
+  size?: string;
 }
 
 function Button({ children, type, onClick, size }: ButtonProps) {
@@ -15,7 +15,7 @@ function Button({ children, type, onClick, size }: ButtonProps) {
     return (
       <button
         onClick={onClick}
-        className={`${styles.btnClose} ${styles[size]}`}
+        className={`${styles.btnClose} ${styles[`${size}`]}`}
       >
         <HiX className={styles.iconClose} />
       </button>
@@ -25,7 +25,7 @@ function Button({ children, type, onClick, size }: ButtonProps) {
   return (
     <button
       onClick={onClick}
-      className={`${styles.btn} ${styles[type]} ${styles[size]}`}
+      className={`${styles.btn} ${styles[`${type}`]} ${styles[`${size}`]}`}
     >
       {children}
     </button>

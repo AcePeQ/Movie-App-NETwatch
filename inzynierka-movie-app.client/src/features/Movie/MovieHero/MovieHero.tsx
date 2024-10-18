@@ -66,7 +66,14 @@ function MovieHero({ data }: { data: Item }) {
   return (
     <div className={styles.movieHero} style={backgroundStyles}>
       <div className={styles.hero}>
-        <img className={styles.image} src={`${BASE_URL_W500}${posterPath}`} />
+        <img
+          className={styles.image}
+          src={
+            posterPath
+              ? `${BASE_URL_W500}${posterPath}`
+              : `/public/no-pic-ave.png`
+          }
+        />
         <div className={styles.informationsContainer}>
           <div className={styles.informationsHeader}>
             <p className={styles.title}>{movieTitle || tvTitle}</p>

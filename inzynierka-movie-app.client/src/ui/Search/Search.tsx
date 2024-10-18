@@ -4,10 +4,16 @@ import { HiX } from "react-icons/hi";
 import styles from "./Search.module.css";
 import { useState } from "react";
 import SearchResults from "./SearchResults/SearchResults";
+import { useNavigate } from "react-router-dom";
 
 function Search({ onCloseModal }: { onCloseModal?: () => void }) {
   const [query, setQuery] = useState<string>("");
   const [isFocused, setIsFocused] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  function handleSubmit() {
+    navigate(`/search/${query}`);
+  }
 
   function handleBlur() {
     setTimeout(() => {
@@ -20,13 +26,16 @@ function Search({ onCloseModal }: { onCloseModal?: () => void }) {
   }
 
   return (
-    <div
+    <form
       className={styles.search}
       onBlur={handleBlur}
       onFocus={() => setIsFocused(true)}
+      onSubmit={handleSubmit}
     >
       <div className={styles.searchBox}>
-        <HiSearch className={styles.searchIcon} />
+        <button type="submit" className={styles.btn}>
+          <HiSearch className={styles.searchIcon} />
+        </button>
         <input
           type="text"
           className={styles.searchInput}
@@ -40,7 +49,7 @@ function Search({ onCloseModal }: { onCloseModal?: () => void }) {
       </div>
 
       {query.length > 0 && isFocused && <SearchResults query={query} />}
-    </div>
+    </form>
   );
 }
 

@@ -100,16 +100,19 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
       <div className={styles.header_wrapper}>
         <div className={styles.header}>
           <Link className={styles.image_link} to={`/${type}/${id}`}>
-            <img src={`${BASE_URL_W200}${poster_path}`} />
+            <img
+              src={
+                poster_path
+                  ? `${BASE_URL_W200}${poster_path}`
+                  : "/public/no-pic-ave.png"
+              }
+            />
           </Link>
           <div className={styles.single_column}>
             <Link className={styles.link} to={`/${type}/${id}`}>
               <h2>{name ? name : title}</h2>
             </Link>
-            <button
-              onClick={() => navigate(-1)}
-              className={`${styles.button} ${styles.btn}`}
-            >
+            <button onClick={() => navigate(-1)} className={`${styles.button}`}>
               <HiMiniArrowLeftCircle className={styles.icon} />
               <p>Go back</p>
             </button>
