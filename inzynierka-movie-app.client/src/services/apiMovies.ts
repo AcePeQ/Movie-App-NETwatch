@@ -27,7 +27,7 @@ export async function getMovies() {
     const data = await res.json();
 
     const popularMovies = data.popular.results
-      .filter((item: Item) => item.vote_count > 75)
+      .filter((item: Item) => item.vote_count > 10)
       .slice(0, 10);
     const nowPlayingMovies = data.nowPlaying.results
       .filter((item: Item) => item.vote_count > 75)

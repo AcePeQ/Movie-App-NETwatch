@@ -44,7 +44,7 @@ function Home() {
       <Hero items={allTypes?.allTypesTrending} />
       <RowList
         title="Top Movies Now"
-        items={movies?.popularMovies}
+        items={movies?.trendingMovies}
         render={(movie, index) => (
           <MovieItemTop key={movie.id} movie={movie} number={index + 1} />
         )}
@@ -52,7 +52,7 @@ function Home() {
 
       <RowList
         title="Top TV Series Now"
-        items={tvSeries?.popularTVSeries}
+        items={tvSeries?.trendingTVSeries}
         render={(movie, index) => (
           <MovieItemTop key={movie.id} movie={movie} number={index + 1} />
         )}
@@ -68,7 +68,7 @@ function Home() {
 
       <RowList
         title="Trending Movies"
-        items={movies?.trendingMovies}
+        items={movies?.popularMovies}
         render={(movie) => (
           <MovieItem key={movie.id} type="slider" movie={movie} />
         )}
@@ -76,7 +76,7 @@ function Home() {
 
       <RowList
         title="Trending TV Series"
-        items={tvSeries?.trendingTVSeries}
+        items={tvSeries?.popularTVSeries}
         render={(movie) => (
           <MovieItem key={movie.id} type="slider" movie={movie} />
         )}

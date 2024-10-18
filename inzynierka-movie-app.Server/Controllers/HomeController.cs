@@ -29,7 +29,7 @@ namespace inzynierka_movie_app.Server.Controllers
             var resPopular = await httpService.CreateRequest("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1");
             var resNowPlaying = await httpService.CreateRequest("https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1");
             var resTopRated  = await httpService.CreateRequest("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1");
-            var resTrending = await httpService.CreateRequest("https://api.themoviedb.org/3/trending/movie/day?language=en-US");
+            var resTrending = await httpService.CreateRequest("https://api.themoviedb.org/3/trending/movie/week?language=en-US");
 
             var processedResponsePopular = await httpService.ProcessResponse<MovieHome>(resPopular);
             var processedResponseNowPlaying = await httpService.ProcessResponse<MovieHome>(resNowPlaying);
@@ -43,7 +43,7 @@ namespace inzynierka_movie_app.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> GetTVSeries()
         {
-            var resTrending = await httpService.CreateRequest("https://api.themoviedb.org/3/trending/tv/day?language=en-US");
+            var resTrending = await httpService.CreateRequest("https://api.themoviedb.org/3/trending/tv/week?language=en-US");
             var resPopular = await httpService.CreateRequest("https://api.themoviedb.org/3/tv/popular?language=en-US&page=1");
             var resTopRated = await httpService.CreateRequest("https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1");
 

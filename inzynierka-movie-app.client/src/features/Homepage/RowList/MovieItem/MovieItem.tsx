@@ -37,10 +37,13 @@ function MovieItem({ type, movie }: MovieItem) {
     vote_average: rating,
   } = movie;
   const background = `${BASE_URL_W500}${backgroundPath}`;
+  const noImage = `/public/Image-not-available.png`;
   const isMovie = title ? true : false;
-  const genres = genre_ids.slice(0, 3);
+  const genres = genre_ids.slice(0, 2);
 
-  const backgroundImage = { background: `url(${background})` };
+  const backgroundImage = {
+    background: `url(${backgroundPath ? background : noImage})`,
+  };
   return (
     <Link
       className={`${styles.movieContainer} ${styles[type]}`}

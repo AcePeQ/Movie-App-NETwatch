@@ -28,7 +28,7 @@ export async function getTVSeries() {
     const data = await res.json();
 
     const popularTVSeries = data.popular.results
-      .filter((item: Item) => item.vote_count > 75)
+      .filter((item: Item) => item.vote_count > 10)
       .slice(0, 10);
     const topRatedTVSeries = data.topRated.results
       .filter((item: Item) => item.vote_count > 75)

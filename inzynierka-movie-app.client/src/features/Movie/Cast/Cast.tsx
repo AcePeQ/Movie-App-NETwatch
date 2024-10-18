@@ -7,12 +7,7 @@ type CastType = {
   character: string;
   known_for_department: string;
   id: number;
-  roles: Role[];
 };
-
-interface Role {
-  character: string;
-}
 
 function Cast({ cast }: { cast: CastType }) {
   const { profile_path, character, name } = cast;
