@@ -4,6 +4,7 @@ import styles from "./Credits.module.css";
 import { HiMiniArrowLeftCircle } from "react-icons/hi2";
 import { BASE_URL_W200 } from "../../helpers/getBaseUrl";
 import { CastPerson, CrewPerson } from "./Person/Person";
+import { Key, ReactNode } from "react";
 
 interface Data {
   credits: Credits;
@@ -25,6 +26,8 @@ interface Credits {
 }
 
 interface Cast {
+  map(arg0: (cast: Cast) => import("react/jsx-runtime").JSX.Element): ReactNode;
+  length: ReactNode;
   id: number;
   known_for_department: string;
   name: string;
@@ -34,6 +37,14 @@ interface Cast {
 }
 
 interface Crew {
+  map(
+    arg0: (
+      crew: Crew,
+      index: Key | null | undefined
+    ) => import("react/jsx-runtime").JSX.Element
+  ): ReactNode;
+  filter(arg0: (person: Crew) => boolean): Crew;
+  length: ReactNode;
   id: number;
   known_for_department: string;
   name: string;
@@ -112,7 +123,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
             <h3 className={styles.column_title}>
               Cast <span className={styles.count}>{cast.length}</span>
             </h3>
-            {cast.map((cast) => (
+            {cast.map((cast: Cast) => (
               <CastPerson key={cast.id} cast={cast} />
             ))}
             {cast.length === 0 && (
@@ -126,7 +137,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
             </h3>
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Directing</h4>
-              {directors.map((crew, index) => (
+              {directors.map((crew: Crew, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {directors.length === 0 && (
@@ -136,7 +147,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Writer</h4>
-              {writers.map((crew, index) => (
+              {writers.map((crew: Crew, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {writers.length === 0 && (
@@ -146,7 +157,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Production</h4>
-              {production.map((crew, index) => (
+              {production.map((crew: Crew, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {production.length === 0 && (
@@ -156,7 +167,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Sound</h4>
-              {sound.map((crew, index) => (
+              {sound.map((crew: Crew, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {sound.length === 0 && (
@@ -166,7 +177,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Costume & Make-up</h4>
-              {makeup.map((crew, index) => (
+              {makeup.map((crew: Crew, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {makeup.length === 0 && (
@@ -176,7 +187,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Art</h4>
-              {artists.map((crew, index) => (
+              {artists.map((crew: Crew, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {artists.length === 0 && (
@@ -186,7 +197,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Editors</h4>
-              {editors.map((crew, index) => (
+              {editors.map((crew: Crew, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {editors.length === 0 && (
@@ -196,7 +207,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Camera</h4>
-              {camerasman.map((crew, index) => (
+              {camerasman.map((crew: Crew, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {camerasman.length === 0 && (
@@ -206,7 +217,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Visual Effects</h4>
-              {effects.map((crew, index) => (
+              {effects.map((crew: Crew, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {effects.length === 0 && (

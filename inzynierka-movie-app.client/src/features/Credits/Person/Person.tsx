@@ -1,9 +1,42 @@
+import { ReactNode } from "react";
 import { BASE_URL_W200 } from "../../../helpers/getBaseUrl";
 import styles from "./Person.module.css";
 
 import { Link } from "react-router-dom";
 
-export function CrewPerson({ crew }) {
+interface Cast {
+  length: ReactNode;
+  id: number;
+  known_for_department: string;
+  name: string;
+  profile_path: string;
+  character: string;
+  roles: Role[];
+}
+
+interface Crew {
+  length: ReactNode;
+  id: number;
+  known_for_department: string;
+  name: string;
+  profile_path: string;
+  jobs: Job[];
+  job: string;
+  department: string;
+}
+
+interface Role {
+  character: string;
+  episode_count: number;
+  total_episode_count: number;
+}
+
+interface Job {
+  job: string;
+  episode_count: number;
+}
+
+export function CrewPerson({ crew }: { crew: Crew }) {
   return (
     <li className={styles.item_list}>
       <Link className={styles.person} to={""}>
@@ -30,7 +63,7 @@ export function CrewPerson({ crew }) {
   );
 }
 
-export function CastPerson({ cast }) {
+export function CastPerson({ cast }: { cast: Cast }) {
   return (
     <li className={styles.item_list}>
       <Link className={styles.person} to={""}>
