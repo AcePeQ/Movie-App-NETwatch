@@ -1,13 +1,6 @@
 import { BASE_URL_W500 } from "../../../helpers/getBaseUrl";
+import { CastType } from "../../../utils/types";
 import styles from "./Cast.module.css";
-
-type CastType = {
-  profile_path: string;
-  name: string;
-  character: string;
-  known_for_department: string;
-  id: number;
-};
 
 function Cast({ cast }: { cast: CastType }) {
   const { profile_path, character, name } = cast;

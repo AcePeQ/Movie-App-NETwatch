@@ -8,23 +8,11 @@ import MovieRating from "../../../../ui/MovieRating/MovieRating";
 import { findGenre } from "../../../../helpers/findGenre";
 
 import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
-
-interface Item {
-  backdrop_path: string;
-  first_air_date: string | null;
-  genre_ids: [];
-  id: number;
-  name: string | null;
-  overview: string;
-  poster_path: string;
-  release_date: string | null;
-  title: string | null;
-  vote_average: number;
-}
+import { ItemType } from "../../../../utils/types";
 
 interface MovieItem {
   type: string;
-  movie: Item;
+  movie: ItemType;
 }
 
 function MovieItem({ type, movie }: MovieItem) {

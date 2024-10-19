@@ -1,7 +1,8 @@
 import { BASE_URL_W500 } from "../../../helpers/getBaseUrl";
+import { SeasonType } from "../../../utils/types";
 import styles from "./Season.module.css";
 
-function Season({ season }) {
+function Season({ season }: { season: SeasonType }) {
   return (
     <div className={styles.season_container}>
       <img

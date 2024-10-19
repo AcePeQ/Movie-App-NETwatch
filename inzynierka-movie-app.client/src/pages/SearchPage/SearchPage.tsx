@@ -5,19 +5,7 @@ import { useSearch } from "../../ui/Search/useSearch";
 import Loading from "../../ui/Loading/Loading";
 import ErrorFull from "../../ui/Error/ErrorFullPage/ErrorFullPage";
 import SearchResult from "./SearchResult/SearchResult";
-
-type Item = {
-  poster_path: string;
-  genre_ids: [];
-  id: number;
-  overview: string;
-  media_type: string;
-  name: string;
-  first_air_date: string;
-  release_date: string;
-  title: string;
-  vote_average: number;
-};
+import { ItemType } from "../../utils/types";
 
 function SearchPage() {
   const { query } = useParams();
@@ -50,7 +38,7 @@ function SearchPage() {
       <div className={styles.main}>
         <div className={styles.main_wrapper}>
           <ul className={styles.search_list}>
-            {data.map((item: Item) => (
+            {data.map((item: ItemType) => (
               <SearchResult key={item.id} item={item} />
             ))}
           </ul>

@@ -3,24 +3,10 @@ import styles from "./Hero.module.css";
 import SliderItem from "../SliderItem/SliderItem";
 import Dots from "../../../../ui/Dots/Dots";
 import { useEffect, useState } from "react";
-
-type HeroItem = {
-  backdrop_path: string;
-  first_air_date: string | null;
-  genres_ids: [] | null;
-  genre_ids: [] | null;
-  id: number;
-  name: string | null;
-  overview: string;
-  poster_path: string;
-  release_date: string | null;
-  title: string | null;
-  vote_average: number;
-  media_type: string;
-};
+import { HeroItemType } from "../../../../utils/types";
 
 type HeroPropsTypes = {
-  items: HeroItem[];
+  items: HeroItemType[];
 };
 
 function Hero({ items }: HeroPropsTypes) {

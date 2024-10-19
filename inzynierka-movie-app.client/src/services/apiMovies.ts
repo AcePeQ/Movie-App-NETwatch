@@ -1,17 +1,4 @@
-interface Item {
-  backdrop_path: string;
-  first_air_date: string;
-  genre_ids: [];
-  id: number;
-  media_type: string;
-  name: string;
-  overview: string;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  vote_average: number;
-  vote_count: number;
-}
+import { ItemType } from "../utils/types";
 
 export async function getMovies() {
   try {
@@ -27,16 +14,16 @@ export async function getMovies() {
     const data = await res.json();
 
     const popularMovies = data.popular.results
-      .filter((item: Item) => item.vote_count > 10)
+      .filter((item: ItemType) => item.vote_count > 10)
       .slice(0, 10);
     const nowPlayingMovies = data.nowPlaying.results
-      .filter((item: Item) => item.vote_count > 75)
+      .filter((item: ItemType) => item.vote_count > 75)
       .slice(0, 10);
     const topRatedMovies = data.topRated.results
-      .filter((item: Item) => item.vote_count > 75)
+      .filter((item: ItemType) => item.vote_count > 75)
       .slice(0, 10);
     const trendingMovies = data.trending.results
-      .filter((item: Item) => item.vote_count > 75)
+      .filter((item: ItemType) => item.vote_count > 75)
       .slice(0, 10);
 
     return { popularMovies, nowPlayingMovies, topRatedMovies, trendingMovies };
@@ -46,7 +33,7 @@ export async function getMovies() {
   }
 }
 
-export async function getMovieID(id: string) {
+export async function getMovieID(id: string | null | undefined) {
   try {
     const res = await fetch(`/Movie/GetMovie/${id}`, {
       method: "GET",

@@ -1,22 +1,9 @@
+import { HeroItemType } from "../../utils/types";
 import styles from "./Dots.module.css";
-type HeroItem = {
-  backdrop_path: string;
-  first_air_date: string | null;
-  genres_ids: [] | null;
-  genre_ids: [] | null;
-  id: number;
-  name: string | null;
-  overview: string;
-  poster_path: string;
-  release_date: string | null;
-  title: string | null;
-  vote_average: number;
-  media_type: string;
-};
 
 type Dots = {
   onDotClick: (dotIndex: number) => void;
-  items: HeroItem[];
+  items: HeroItemType[];
   indexImage: number;
 };
 

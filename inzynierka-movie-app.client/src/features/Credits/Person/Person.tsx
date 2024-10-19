@@ -1,40 +1,8 @@
-import { ReactNode } from "react";
 import { BASE_URL_W200 } from "../../../helpers/getBaseUrl";
 import styles from "./Person.module.css";
 
 import { Link } from "react-router-dom";
-
-interface Cast {
-  length: ReactNode;
-  id: number;
-  known_for_department: string;
-  name: string;
-  profile_path: string;
-  character: string;
-  roles: Role[];
-}
-
-interface Crew {
-  length: ReactNode;
-  id: number;
-  known_for_department: string;
-  name: string;
-  profile_path: string;
-  jobs: Job[];
-  job: string;
-  department: string;
-}
-
-interface Role {
-  character: string;
-  episode_count: number;
-  total_episode_count: number;
-}
-
-interface Job {
-  job: string;
-  episode_count: number;
-}
+import { Cast, Crew } from "../../../utils/types";
 
 export function CrewPerson({ crew }: { crew: Crew }) {
   return (

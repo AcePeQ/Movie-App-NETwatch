@@ -1,4 +1,6 @@
-export async function getSearch(query, signal) {
+import { ItemType } from "../utils/types";
+
+export async function getSearch(query: string, signal: AbortSignal) {
   try {
     const res = await fetch(`/Search/GetSearch/${query}`, { signal });
 
@@ -9,7 +11,7 @@ export async function getSearch(query, signal) {
     const data = await res.json();
 
     const searchData = data.results.filter(
-      (item) => item.media_type !== "person"
+      (item: ItemType) => item.media_type !== "person"
     );
 
     return searchData;

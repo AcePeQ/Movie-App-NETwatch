@@ -1,17 +1,4 @@
-interface Item {
-  backdrop_path: string;
-  first_air_date: string;
-  genre_ids: [];
-  id: number;
-  media_type: string;
-  name: string;
-  overview: string;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  vote_average: number;
-  vote_count: number;
-}
+import { ItemType } from "../utils/types";
 
 export async function getTVSeries() {
   try {
@@ -28,13 +15,13 @@ export async function getTVSeries() {
     const data = await res.json();
 
     const popularTVSeries = data.popular.results
-      .filter((item: Item) => item.vote_count > 10)
+      .filter((item: ItemType) => item.vote_count > 10)
       .slice(0, 10);
     const topRatedTVSeries = data.topRated.results
-      .filter((item: Item) => item.vote_count > 75)
+      .filter((item: ItemType) => item.vote_count > 75)
       .slice(0, 10);
     const trendingTVSeries = data.trending.results
-      .filter((item: Item) => item.vote_count > 75)
+      .filter((item: ItemType) => item.vote_count > 75)
       .slice(0, 10);
 
     return { popularTVSeries, topRatedTVSeries, trendingTVSeries };
@@ -44,7 +31,7 @@ export async function getTVSeries() {
   }
 }
 
-export async function getTVSeriesID(id: string) {
+export async function getTVSeriesID(id: string | null | undefined) {
   try {
     const res = await fetch(`/Movie/GetTVSeries/${id}`, {
       method: "GET",

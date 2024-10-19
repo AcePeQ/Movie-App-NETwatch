@@ -4,8 +4,9 @@ import styles from "./SearchItem.module.css";
 import { BASE_URL_W500 } from "../../../helpers/getBaseUrl";
 import MovieRating from "../../MovieRating/MovieRating";
 import { findGenre } from "../../../helpers/findGenre";
+import { ItemType } from "../../../utils/types";
 
-function SearchItem({ item }) {
+function SearchItem({ item }: { item: ItemType }) {
   const {
     first_air_date,
     genre_ids,

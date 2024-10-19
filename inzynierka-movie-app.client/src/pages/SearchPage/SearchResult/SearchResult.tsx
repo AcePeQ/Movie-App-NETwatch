@@ -5,21 +5,9 @@ import { BASE_URL_W200 } from "../../../helpers/getBaseUrl";
 import { findGenre } from "../../../helpers/findGenre";
 import MovieRating from "../../../ui/MovieRating/MovieRating";
 import { useMediaQuery } from "react-responsive";
+import { ItemType } from "../../../utils/types";
 
-type Item = {
-  poster_path: string;
-  genre_ids: [];
-  id: number;
-  overview: string;
-  media_type: string;
-  name: string;
-  first_air_date: string;
-  release_date: string;
-  title: string;
-  vote_average: number;
-};
-
-function SearchResult({ item }: { item: Item }) {
+function SearchResult({ item }: { item: ItemType }) {
   const isMobile = useMediaQuery({
     query: "(max-width: 580px)",
   });

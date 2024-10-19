@@ -4,24 +4,10 @@ import styles from "./SliderItem.module.css";
 import MovieRating from "../../../../ui/MovieRating/MovieRating";
 import { BASE_URL_ORIGINAL } from "../../../../helpers/getBaseUrl";
 import { findGenre } from "../../../../helpers/findGenre";
-
-type Item = {
-  backdrop_path: string;
-  first_air_date: string | null;
-  genres_ids: [] | null;
-  genre_ids: [] | null;
-  id: number;
-  name: string | null;
-  overview: string;
-  poster_path: string;
-  release_date: string | null;
-  title: string | null;
-  vote_average: number;
-  media_type: string;
-};
+import { HeroItemType } from "../../../../utils/types";
 
 interface SliderItemPropTypes {
-  item: Item;
+  item: HeroItemType;
   index: number;
 }
 

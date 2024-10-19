@@ -22,35 +22,7 @@ import {
 import { useMediaQuery } from "react-responsive";
 import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
 import { convertLanguageISO } from "../../helpers/formatISO";
-
-type Video = {
-  key: string;
-  name: string;
-  official: boolean;
-  site: string;
-  type: string;
-};
-
-type Cast = {
-  profile_path: string;
-  name: string;
-  character: string;
-  known_for_department: string;
-  id: number;
-};
-
-type Show = {
-  backdrop_path: string;
-  first_air_date: string | null;
-  genre_ids: [];
-  id: number;
-  name: string | null;
-  overview: string;
-  poster_path: string;
-  release_date: string | null;
-  title: string | null;
-  vote_average: number;
-};
+import { CastType, ShowType, VideoType } from "../../utils/types";
 
 function MoviePage() {
   const { id } = useParams();
@@ -72,7 +44,7 @@ function MoviePage() {
 
   const vidoes = data?.videos?.results
     ?.filter(
-      (video: Video) =>
+      (video: VideoType) =>
         (video.type === "Teaser" || video.type === "Trailer") &&
         video.official === true &&
         video.site === "YouTube"
@@ -80,7 +52,7 @@ function MoviePage() {
     .slice(0, 6);
 
   const cast = data?.credits?.cast
-    ?.filter((person: Cast) => person.known_for_department === "Acting")
+    ?.filter((person: CastType) => person.known_for_department === "Acting")
     .slice(0, 9);
 
   const similarShows = data?.similar?.results;
@@ -127,7 +99,7 @@ function MoviePage() {
 
         <MovieRow title="Cast">
           <Carousel {...settings} responsive={castResponsive}>
-            {cast.map((cast: Cast) => (
+            {cast.map((cast: CastType) => (
               <Cast key={cast.id} cast={cast} />
             ))}
             <ShowMore linkTo={`/movie/${id}/cast`} />
@@ -142,7 +114,7 @@ function MoviePage() {
 
         <MovieRow title="Similar">
           <Carousel {...settings} responsive={similarResponsive}>
-            {similarShows.map((show: Show) => (
+            {similarShows.map((show: ShowType) => (
               <MovieItem key={show.id} movie={show} type="slider" />
             ))}
           </Carousel>

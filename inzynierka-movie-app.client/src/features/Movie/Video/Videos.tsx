@@ -1,14 +1,7 @@
+import { VideoType } from "../../../utils/types";
 import styles from "./Videos.module.css";
 
-type Video = {
-  key: string;
-  name: string;
-  official: boolean;
-  site: string;
-  type: string;
-};
-
-function Videos({ videos }: { videos: Video[] }) {
+function Videos({ videos }: { videos: VideoType[] }) {
   return (
     <div className={styles.videos_container}>
       {videos.map((video) => (
@@ -18,7 +11,7 @@ function Videos({ videos }: { videos: Video[] }) {
   );
 }
 
-function Video({ video }: { video: Video }) {
+function Video({ video }: { video: VideoType }) {
   return (
     <div className={styles.video_container}>
       <iframe

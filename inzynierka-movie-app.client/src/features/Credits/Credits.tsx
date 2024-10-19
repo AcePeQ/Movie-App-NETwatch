@@ -4,66 +4,8 @@ import styles from "./Credits.module.css";
 import { HiMiniArrowLeftCircle } from "react-icons/hi2";
 import { BASE_URL_W200 } from "../../helpers/getBaseUrl";
 import { CastPerson, CrewPerson } from "./Person/Person";
-import { Key, ReactNode } from "react";
-
-interface Data {
-  credits: Credits;
-  details: Details;
-}
-
-interface Details {
-  poster_path: string;
-  id: number;
-  release_date: string;
-  first_air_date: string;
-  name: string;
-  title: string;
-}
-
-interface Credits {
-  cast: Cast;
-  crew: Crew;
-}
-
-interface Cast {
-  map(arg0: (cast: Cast) => import("react/jsx-runtime").JSX.Element): ReactNode;
-  length: ReactNode;
-  id: number;
-  known_for_department: string;
-  name: string;
-  profile_path: string;
-  character: string;
-  roles: Role[];
-}
-
-interface Crew {
-  map(
-    arg0: (
-      crew: Crew,
-      index: Key | null | undefined
-    ) => import("react/jsx-runtime").JSX.Element
-  ): ReactNode;
-  filter(arg0: (person: Crew) => boolean): Crew;
-  length: ReactNode;
-  id: number;
-  known_for_department: string;
-  name: string;
-  profile_path: string;
-  jobs: Job[];
-  job: string;
-  department: string;
-}
-
-interface Role {
-  character: string;
-  episode_count: number;
-  total_episode_count: number;
-}
-
-interface Job {
-  job: string;
-  episode_count: number;
-}
+import { Key } from "react";
+import { Cast, Crew, Data } from "../../utils/types";
 
 function Credits({ data, type }: { data: Data; type: string | undefined }) {
   const { id, name, poster_path, title } = data.details;
