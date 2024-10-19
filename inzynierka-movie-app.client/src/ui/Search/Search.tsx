@@ -2,7 +2,7 @@ import { HiSearch } from "react-icons/hi";
 import { HiX } from "react-icons/hi";
 
 import styles from "./Search.module.css";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import SearchResults from "./SearchResults/SearchResults";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,9 @@ function Search({ onCloseModal }: { onCloseModal?: () => void }) {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  function handleSubmit() {
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+
     navigate(`/search/${query}`);
   }
 

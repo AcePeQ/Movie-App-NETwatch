@@ -6,7 +6,20 @@ import { findGenre } from "../../../helpers/findGenre";
 import MovieRating from "../../../ui/MovieRating/MovieRating";
 import { useMediaQuery } from "react-responsive";
 
-function SearchResult({ item }) {
+type Item = {
+  poster_path: string;
+  genre_ids: [];
+  id: number;
+  overview: string;
+  media_type: string;
+  name: string;
+  first_air_date: string;
+  release_date: string;
+  title: string;
+  vote_average: number;
+};
+
+function SearchResult({ item }: { item: Item }) {
   const isMobile = useMediaQuery({
     query: "(max-width: 580px)",
   });
@@ -15,6 +28,7 @@ function SearchResult({ item }) {
     first_air_date,
     genre_ids,
     id,
+    media_type,
     name,
     overview,
     poster_path,
@@ -38,14 +52,14 @@ function SearchResult({ item }) {
         alt={`Poster of ${name || title}`}
       />
       <div className={styles.item}>
-        <p className={styles.item_title}>
+        <Link to={`/${media_type}/${id}`} className={styles.item_title}>
           {name || title} ({year})
-        </p>
+        </Link>
         {!isMobile && (
           <>
             <MovieRating rating={vote_average} />
             <div className={styles.genres}>
-              {genre_ids.map((genre) => (
+              {genre_ids.map((genre: number) => (
                 <span key={genre} className={styles.genre}>
                   {findGenre(genre)}
                 </span>

@@ -48,7 +48,8 @@ function SliderItem({ item, index }: SliderItemPropTypes) {
     var(--background-100) 5%,
     var(--background-opacity-50-100),
     var(--background-opacity-50-100)
-  ), url(${BASE_URL_ORIGINAL}${backdrop_path})`,
+  ),
+  url(${BASE_URL_ORIGINAL}${backdrop_path})`,
   };
 
   return (
