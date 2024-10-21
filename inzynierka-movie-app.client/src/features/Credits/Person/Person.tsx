@@ -7,7 +7,7 @@ import { Cast, Crew } from "../../../utils/types";
 export function CrewPerson({ crew }: { crew: Crew }) {
   return (
     <li className={styles.item_list}>
-      <Link className={styles.person} to={""}>
+      <Link className={styles.person} to={`/person/${crew.id}`}>
         <img
           src={
             crew.profile_path
@@ -39,7 +39,7 @@ export function CrewPerson({ crew }: { crew: Crew }) {
 export function CastPerson({ cast }: { cast: Cast }) {
   return (
     <li className={styles.item_list}>
-      <Link className={styles.person} to={""}>
+      <Link className={styles.person} to={`/person/${cast.id}`}>
         <img
           src={
             cast.profile_path

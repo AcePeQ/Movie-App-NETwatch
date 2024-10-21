@@ -24,6 +24,7 @@ import TvSeriesPage from "./pages/TvSeriesPage/TvSeriesPage";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import CastPage from "./pages/CastPage/CastPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
+import PersonPage from "./pages/PersonPage/PersonPage";
 
 const MINUTES_60_IN_MILISECONDS = 3_600_000;
 
@@ -53,6 +54,7 @@ function App() {
             <Route path="tv/:id" element={<TvSeriesPage />} />
 
             <Route path=":type/:id/cast" element={<CastPage />} />
+            <Route path="person/:id" element={<PersonPage />} />
 
             <Route path="search/:query" element={<SearchPage />} />
 

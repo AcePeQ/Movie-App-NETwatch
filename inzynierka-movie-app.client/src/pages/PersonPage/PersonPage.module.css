@@ -1,0 +1,11 @@
+.rows {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5rem;
+
+  max-width: 182rem;
+  width: 100%;
+  padding: 0 1.5rem;
+  margin: 10rem auto 5rem;
+}

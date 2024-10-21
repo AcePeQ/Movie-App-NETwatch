@@ -15,6 +15,8 @@
   --text-200: #e5effa;
   --text-300: #d0e3f6;
 
+  --background-opacity-30-100: rgba(0, 13, 23, 0.3);
+
   --background-opacity-50-100: rgba(0, 13, 23, 0.5);
 
   --background-opacity-60-100: #000d1799;
@@ -47,10 +49,10 @@
   --color-grey-800: #1f2937;
   --color-grey-900: #111827;
 
-  --shadow-tiny: 0 0 0 rgba(0, 0, 0, 0.06);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.15);
+  --shadow-tiny: 0 0 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  --shadow-md: 0px 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 
   --border-radius-tiny: 3px;
   --border-radius-sm: 6px;
@@ -210,6 +212,8 @@ body {
 
   min-height: 100dvh;
   position: relative;
+
+  backdrop-filter: blur(2px);
 
   background-image: var(--background-url);
 }

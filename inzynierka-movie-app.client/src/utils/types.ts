@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 
+/*General Types and Interfaces*/
 export type HeroItemType = {
   backdrop_path: string;
   first_air_date: string | null;
@@ -17,17 +18,17 @@ export type HeroItemType = {
 
 export type ItemType = {
   backdrop_path: string;
-  first_air_date: string;
+  first_air_date: string | null;
   genre_ids: [];
   id: number;
   media_type: string;
-  name: string;
+  name: string | null;
   overview: string;
   poster_path: string;
-  release_date: string;
-  title: string;
-  vote_average: number;
+  release_date: string | null;
   vote_count: number;
+  title: string | null;
+  vote_average: number;
 };
 
 export type ItemFullType = {
@@ -39,12 +40,13 @@ export type ItemFullType = {
   overview: string;
   status: string;
   origin_country: string[];
-  release_date: string;
-  title: string;
+  release_date: string | null;
+  media_type: string;
+  title: string | null;
   runtime: number;
-  name: string;
-  first_air_date: string;
-  last_air_date: string;
+  name: string | null;
+  first_air_date: string | null;
+  last_air_date: string | null;
   number_of_episodes: number;
   number_of_seasons: number;
 };
@@ -77,6 +79,8 @@ export type ShowType = {
   release_date: string | null;
   title: string | null;
   vote_average: number;
+  media_type: string;
+  vote_count: number;
 };
 
 export type SeasonType = {
@@ -88,6 +92,7 @@ export type SeasonType = {
   season_number: number;
 };
 
+/*Interfaces and Types for Credits*/
 export interface Data {
   credits: Credits;
   details: Details;
@@ -145,4 +150,31 @@ export interface Role {
 export interface Job {
   job: string;
   episode_count: number;
+}
+
+export type Person = {
+  birthday: string;
+  known_for_department: string;
+  deathday: string | null;
+  gender: number;
+  name: string;
+  place_of_birth: string;
+  profile_path: string;
+  biography: string;
+  combined_credits: PersonCredits;
+};
+
+interface PersonCredits {
+  cast: PersonDetails[];
+  crew: PersonDetails[];
+}
+
+export interface PersonDetails {
+  backdrop_path: string | null;
+  genre_ids: number[];
+  id: number;
+  media_type: string;
+  name: string | null;
+  title: string | null;
+  popularity: number;
 }
