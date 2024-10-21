@@ -5,6 +5,7 @@ import { BASE_URL_W500 } from "../../../helpers/getBaseUrl";
 import DetailRow from "../../Movie/MovieHero/DetailRow/DetailRow";
 import getGender from "../../../helpers/getGender";
 import { Person } from "../../../utils/types";
+import { useNavigate } from "react-router-dom";
 
 function PersonHero({ data }: { data: Person }) {
   const {
@@ -18,7 +19,13 @@ function PersonHero({ data }: { data: Person }) {
     biography,
   } = data;
 
+  const navigate = useNavigate();
+
   const genderName = getGender(gender);
+
+  function handleOnClick() {
+    navigate(-1);
+  }
 
   const birthdaySplit = birthday?.split("-").reverse().join("-");
   const deathdaySplit = deathday?.split("-").reverse().join("-");
@@ -53,23 +60,27 @@ function PersonHero({ data }: { data: Person }) {
           </div>
 
           <div className={styles.detailsContainer}>
-            <DetailRow title="Birthday">
-              <p className={styles.detailValue}>{birthdaySplit}</p>
-            </DetailRow>
+            {birthday && (
+              <DetailRow title="Birthday">
+                <p className={styles.detailValue}>{birthdaySplit}</p>
+              </DetailRow>
+            )}
             {deathday && (
               <DetailRow title="Deathday">
                 <p className={styles.detailValue}>{deathdaySplit}</p>
               </DetailRow>
             )}
-            <DetailRow title="Place of Birth">
-              <p className={styles.detailValue}>{place_of_birth}</p>
-            </DetailRow>
+            {place_of_birth && (
+              <DetailRow title="Place of Birth">
+                <p className={styles.detailValue}>{place_of_birth}</p>
+              </DetailRow>
+            )}
           </div>
 
           <p className={styles.biography}>{biography}</p>
 
           <div className={styles.buttons}>
-            <Button size="medium" type="primary">
+            <Button size="medium" type="primary" onClick={handleOnClick}>
               Go back
             </Button>
           </div>

@@ -165,11 +165,11 @@ export type Person = {
 };
 
 interface PersonCredits {
-  cast: PersonDetails[];
-  crew: PersonDetails[];
+  cast: PersonMovie[];
+  crew: PersonMovie[];
 }
 
-export interface PersonDetails {
+export interface PersonMovie {
   backdrop_path: string | null;
   genre_ids: number[];
   id: number;

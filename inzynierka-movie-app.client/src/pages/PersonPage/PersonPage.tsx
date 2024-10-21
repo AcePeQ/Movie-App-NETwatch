@@ -7,7 +7,7 @@ import PersonHero from "../../features/Person/PersonHero/PersonHero";
 import MovieRow from "../../features/Movie/MovieRow/MovieRow";
 import Carousel from "react-multi-carousel";
 import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
-import { PersonDetails, ShowType } from "../../utils/types";
+import { PersonMovie, ShowType } from "../../utils/types";
 import {
   movieMobileSettings,
   movieSettings,
@@ -37,40 +37,42 @@ function PersonPage() {
   const combinedTypes = data.combined_credits.cast
     .concat(data.combined_credits.crew)
     .filter(
-      (item: PersonDetails, index: number, array: PersonDetails[]) =>
+      (item: PersonMovie, index: number, array: PersonMovie[]) =>
         index === array.findIndex((m) => m.id === item.id)
     )
-    .sort((a: PersonDetails, b: PersonDetails) => b.popularity - a.popularity);
+    .sort((a: PersonMovie, b: PersonMovie) => b.popularity - a.popularity);
 
   const movies = combinedTypes.filter(
-    (movie: PersonDetails) => movie.media_type === "movie"
+    (movie: PersonMovie) => movie.media_type === "movie"
   );
   const tvSeries = combinedTypes.filter(
-    (tvSerie: PersonDetails) => tvSerie.media_type === "tv"
+    (tvSerie: PersonMovie) => tvSerie.media_type === "tv"
   );
-
-  console.log(data);
 
   return (
     <>
       <PersonHero data={data} />
 
       <div className={styles.rows}>
-        <MovieRow title="Known for movies">
-          <Carousel {...settings} responsive={responsive}>
-            {movies.map((show: ShowType) => (
-              <MovieItem key={show.id} movie={show} type="slider" />
-            ))}
-          </Carousel>
-        </MovieRow>
+        {movies.length > 0 && (
+          <MovieRow title="Known for movies">
+            <Carousel {...settings} responsive={responsive}>
+              {movies.map((show: ShowType) => (
+                <MovieItem key={show.id} movie={show} type="slider" />
+              ))}
+            </Carousel>
+          </MovieRow>
+        )}
 
-        <MovieRow title="Known for TV Series">
-          <Carousel {...settings} responsive={responsive}>
-            {tvSeries.map((show: ShowType) => (
-              <MovieItem key={show.id} movie={show} type="slider" />
-            ))}
-          </Carousel>
-        </MovieRow>
+        {tvSeries.length > 0 && (
+          <MovieRow title="Known for TV Series">
+            <Carousel {...settings} responsive={responsive}>
+              {tvSeries.map((show: ShowType) => (
+                <MovieItem key={show.id} movie={show} type="slider" />
+              ))}
+            </Carousel>
+          </MovieRow>
+        )}
       </div>
     </>
   );

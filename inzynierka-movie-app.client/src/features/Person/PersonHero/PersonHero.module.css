@@ -117,6 +117,8 @@
   .image {
     width: 35rem;
     height: auto;
+
+    align-self: center;
   }
 }
 
@@ -129,6 +131,10 @@
 
   .informationsHeader {
     justify-content: center;
+  }
+
+  .additionalInformationsContainer {
+    text-align: center;
   }
 
   .buttons {
