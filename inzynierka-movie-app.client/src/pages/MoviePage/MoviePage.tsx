@@ -1,4 +1,5 @@
 import styles from "./MoviePage.module.css";
+import "react-multi-carousel/lib/styles.css";
 
 import MovieHero from "../../features/Movie/MovieHero/MovieHero";
 import MovieRow from "../../features/Movie/MovieRow/MovieRow";

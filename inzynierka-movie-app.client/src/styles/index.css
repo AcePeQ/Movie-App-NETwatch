@@ -374,27 +374,27 @@ a.active:hover::after {
 }
 
 .carousel-item-cast {
-  padding: 0 1rem;
+  padding: 0 1rem !important;
 }
 
 .react-multiple-carousel__arrow {
-  background: var(--accent-100);
+  background: var(--accent-100) !important;
 }
 
 .react-multiple-carousel__arrow:hover {
-  background: var(--accent-200);
+  background: var(--accent-200) !important;
 }
 
 .react-multiple-carousel__arrow--left {
-  left: 0;
+  left: 0 !important;
 }
 
 .react-multiple-carousel__arrow--right {
-  right: 0;
+  right: 0 !important;
 }
 
 .react-multiple-carousel__arrow::before {
-  color: var(--background-100);
-  font-size: 22px;
-  font-weight: 700;
+  color: var(--background-100) !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
 }
