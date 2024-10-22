@@ -40,7 +40,7 @@ export function sliderSettings() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          speed: 500,
+          speed: 600,
           swipe: true,
           arrows: false,
         },

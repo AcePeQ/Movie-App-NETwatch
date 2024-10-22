@@ -6,18 +6,16 @@ import { HiPlusCircle } from "react-icons/hi";
 
 import styles from "./MovieItemTop.module.css";
 import { ItemType } from "../../../../utils/types";
+import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
 
 interface MovieItemProps {
   number: number;
   movie: ItemType;
 }
 
-const BASE_BACKDROP_URL = `https://image.tmdb.org/t/p/original`;
-
 function MovieItemTop({ number, movie }: MovieItemProps) {
   const { id, title, poster_path: backgroundPath } = movie;
-  const background = `${BASE_BACKDROP_URL}${backgroundPath}`;
-
+  const background = `${BASE_URL_W500}${backgroundPath}`;
   const isMovie = title ? true : false;
 
   return (
@@ -25,7 +23,9 @@ function MovieItemTop({ number, movie }: MovieItemProps) {
       className={styles.link}
       to={`${isMovie ? `/movie/${id}` : `/tv/${id}`}`}
     >
-      <div className={styles.number}>{number}</div>
+      <div className={styles.number} data-text={`${number}`}>
+        {number}
+      </div>
       <div className={styles.movie}>
         <img
           src={backgroundPath ? background : `/public/no-pic-ave.png`}

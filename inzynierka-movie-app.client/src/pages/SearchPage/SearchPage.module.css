@@ -44,7 +44,7 @@ h2 {
   transition: var(--transition-all);
 
   .icon {
-    font-size: 1em;
+    font-size: 1.25em;
     color: var(--accent-100);
   }
 

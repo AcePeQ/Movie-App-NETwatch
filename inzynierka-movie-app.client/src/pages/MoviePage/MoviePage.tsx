@@ -22,7 +22,7 @@ import {
 import { useMediaQuery } from "react-responsive";
 import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
 import { convertLanguageISO } from "../../helpers/formatISO";
-import { CastType, ShowType, VideoType } from "../../utils/types";
+import { CastType, ItemType, ShowType, VideoType } from "../../utils/types";
 
 function MoviePage() {
   const { id } = useParams();
@@ -55,7 +55,9 @@ function MoviePage() {
     ?.filter((person: CastType) => person.known_for_department === "Acting")
     .slice(0, 9);
 
-  const similarShows = data?.similar?.results;
+  const similarShows = data?.similar?.results.filter(
+    (show: ItemType) => show.vote_average > 0
+  );
 
   const movie = data?.movie;
 
@@ -87,6 +89,7 @@ function MoviePage() {
                   <img
                     className={styles.networkImage}
                     src={`${BASE_URL_W500}${production_companies[0]?.logo_path}`}
+                    alt="Network"
                   />
                 </a>
               </DetailRow>

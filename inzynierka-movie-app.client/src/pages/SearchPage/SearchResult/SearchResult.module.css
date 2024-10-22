@@ -2,7 +2,8 @@
   display: flex;
   gap: 5rem;
 
-  background-color: var(--background-200);
+  background-color: var(--background-100);
+  border: 2px solid var(--background-300);
 
   padding: 2rem;
   border-radius: var(--border-radius-sm);
@@ -40,6 +41,12 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+
+  transition: var(--transition-all);
+}
+
+.item_title:hover {
+  color: var(--text-200);
 }
 
 .genres {

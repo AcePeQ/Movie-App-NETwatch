@@ -15,14 +15,28 @@
   }
 }
 
+.person:hover {
+  .person_name {
+    color: var(--text-200);
+  }
+
+  .person_character {
+    color: var(--text-200);
+  }
+}
+
 .person_name {
   font-size: 2.4rem;
   font-weight: 500;
 
   margin-bottom: 0.5rem;
+
+  transition: var(--transition-all);
 }
 
 .person_character {
   font-size: 2rem;
   font-weight: 500;
+
+  transition: var(--transition-all);
 }

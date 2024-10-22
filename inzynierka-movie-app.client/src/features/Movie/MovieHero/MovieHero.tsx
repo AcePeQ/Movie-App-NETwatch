@@ -55,6 +55,7 @@ function MovieHero({ data }: { data: ItemFullType }) {
               ? `${BASE_URL_W500}${posterPath}`
               : `/public/no-pic-ave.png`
           }
+          alt={`Poster of ${tvTitle || movieTitle}`}
         />
         <div className={styles.informationsContainer}>
           <div className={styles.informationsHeader}>

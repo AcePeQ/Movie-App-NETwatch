@@ -7,13 +7,25 @@ import { BsInstagram } from "react-icons/bs";
 function Socialmedia() {
   return (
     <div className={styles.socialMedias}>
-      <a className={styles.socialMedia} href="#">
+      <a
+        aria-label="facebook link"
+        className={`${styles.socialMedia} ${styles.facebook}`}
+        href="#"
+      >
         <BsFacebook className={styles.icon} />
       </a>
-      <a className={styles.socialMedia} href="#">
+      <a
+        aria-label="twitter link"
+        className={`${styles.socialMedia} ${styles.twitter}`}
+        href="#"
+      >
         <BsTwitterX className={styles.icon} />
       </a>
-      <a className={styles.socialMedia} href="#">
+      <a
+        aria-label="instagram link"
+        className={`${styles.socialMedia} ${styles.instagram}`}
+        href="#"
+      >
         <BsInstagram className={styles.icon} />
       </a>
     </div>

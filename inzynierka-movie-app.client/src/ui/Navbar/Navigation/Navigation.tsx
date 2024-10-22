@@ -11,12 +11,12 @@ function Navigation() {
       </li>
       <li>
         <NavLink className={styles.navlink} to="/new">
-          New
+          Movies
         </NavLink>
       </li>
       <li>
         <NavLink className={styles.navlink} to="/popular">
-          Popular
+          TV Series
         </NavLink>
       </li>
       <li>

@@ -47,6 +47,8 @@
   max-height: 55rem;
 
   align-self: center;
+
+  box-shadow: var(--shadow-sm);
 }
 
 .ratingBox {
@@ -96,6 +98,7 @@
 
 .genresValue {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 

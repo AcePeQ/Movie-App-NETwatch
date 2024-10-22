@@ -1,26 +1,19 @@
 .layout {
   display: flex;
   flex-direction: column;
+
+  max-width: 192rem;
+  width: 100%;
   min-height: 100dvh;
 
   position: relative;
 }
 
 .main {
-  margin-top: 62px;
   flex: 1;
   position: relative;
 }
 
 .container {
   margin: 0 auto;
-
-  display: flex;
-  flex-direction: column;
-}
-
-@media only screen and (max-width: 35.9375em) {
-  .main {
-    margin-top: 0;
-  }
 }

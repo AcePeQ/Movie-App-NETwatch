@@ -50,7 +50,7 @@
 .ratingMovie {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 3.5rem;
 
   font-weight: 500;
 }

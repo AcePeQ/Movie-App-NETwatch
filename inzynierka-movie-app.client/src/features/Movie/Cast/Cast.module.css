@@ -12,8 +12,17 @@
 .cast {
   padding: 0.5rem;
   font-size: 1.6rem;
+  font-weight: 500;
 
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
+  transition: var(--transition-all);
+}
+
+.cast_container:hover {
+  .cast {
+    color: var(--text-300);
+  }
 }

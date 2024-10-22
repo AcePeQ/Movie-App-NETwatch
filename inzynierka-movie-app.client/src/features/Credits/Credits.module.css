@@ -63,7 +63,7 @@
       transition: var(--transition-all);
 
       .icon {
-        font-size: 1em;
+        font-size: 1.25em;
         color: var(--accent-100);
       }
 
@@ -113,7 +113,7 @@
 
         gap: 1rem;
 
-        font-size: 2.6rem;
+        font-size: 3.2rem;
         font-weight: 600;
 
         .count {
@@ -137,7 +137,7 @@
 }
 
 .crew_type_title {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 500;
 }
 

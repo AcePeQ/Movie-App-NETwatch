@@ -3,8 +3,9 @@
   flex-direction: column;
   gap: 2rem;
 
-  background-color: var(--background-200);
-  padding: 1rem 2rem;
+  background-color: var(--background-100);
+  border: 2px solid var(--background-300);
+  padding: 2.5rem 2rem;
   border-radius: var(--border-radius-tiny);
 }
 

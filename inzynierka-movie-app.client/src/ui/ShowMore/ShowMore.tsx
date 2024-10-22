@@ -3,7 +3,7 @@ import styles from "./ShowMore.module.css";
 
 import { Link } from "react-router-dom";
 
-function ShowMore({ linkTo }) {
+function ShowMore({ linkTo }: { linkTo: string }) {
   return (
     <Link to={`${linkTo}`} className={styles.more}>
       <span>Show more</span>

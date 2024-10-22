@@ -35,7 +35,11 @@ function Search({ onCloseModal }: { onCloseModal?: () => void }) {
       onSubmit={handleSubmit}
     >
       <div className={styles.searchBox}>
-        <button type="submit" className={styles.btn}>
+        <button
+          aria-label="search_button"
+          type="submit"
+          className={styles.submitButton}
+        >
           <HiSearch className={styles.searchIcon} />
         </button>
         <input
