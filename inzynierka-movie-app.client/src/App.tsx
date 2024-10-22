@@ -28,12 +28,13 @@ const PlanToWatch = lazy(
 );
 const OnHold = lazy(() => import(`./features/Watchlist/OnHold/OnHold`));
 const Dropped = lazy(() => import(`./features/Watchlist/Dropped/Dropped`));
-const New = lazy(() => import(`./pages/NewPage/New`));
 const MoviePage = lazy(() => import(`./pages/MoviePage/MoviePage`));
 const TvSeriesPage = lazy(() => import(`./pages/TvSeriesPage/TvSeriesPage`));
 const CastPage = lazy(() => import(`./pages/CastPage/CastPage`));
 const SearchPage = lazy(() => import(`./pages/SearchPage/SearchPage`));
 const PersonPage = lazy(() => import(`./pages/PersonPage/PersonPage`));
+const TVSeriesList = lazy(() => import(`./pages/TVSeriesList/TVSeriesList`));
+const MoviesList = lazy(() => import(`./pages/MoviesList/MoviesList`));
 
 const MINUTES_60_IN_MILISECONDS = 3_600_000;
 
@@ -55,10 +56,8 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
 
-              <Route path="/list">
-                <Route index element={<Navigate replace to="new" />} />
-                <Route path="new" element={<New />} />
-              </Route>
+              <Route path="list/movies" element={<MoviesList />} />
+              <Route path="list/tvseries" element={<TVSeriesList />} />
 
               <Route path="movie/:id" element={<MoviePage />} />
               <Route path="tv/:id" element={<TvSeriesPage />} />
