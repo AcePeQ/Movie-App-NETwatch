@@ -2,7 +2,7 @@ import styles from "./TvSeriesPage.module.css";
 
 import MovieHero from "../../features/Movie/MovieHero/MovieHero";
 import MovieRow from "../../features/Movie/MovieRow/MovieRow";
-import WatchOnNow from "../../features/Movie/MovieHero/WatchOnNow/WatchOnNow";
+
 import Videos from "../../features/Movie/Video/Videos";
 import Cast from "../../features/Movie/Cast/Cast";
 import ShowMore from "../../ui/ShowMore/ShowMore";
@@ -28,6 +28,7 @@ import { convertLanguageISO } from "../../helpers/formatISO";
 import { useParams } from "react-router-dom";
 import { useTVSeriesID } from "../../features/Movie/useTVSeriesID";
 import { CastType, SeasonType, ShowType, VideoType } from "../../utils/types";
+import WatchOnNow from "../../features/Movie/MovieHero/WatchOnNow/WatchOnNow";
 
 function TvSeriesPage() {
   const { id } = useParams();
@@ -47,6 +48,8 @@ function TvSeriesPage() {
     return <ErrorFull error={error} />;
   }
 
+  console.log(data);
+
   const vidoes = data.videos.results
     .filter(
       (video: VideoType) =>
@@ -64,6 +67,8 @@ function TvSeriesPage() {
   const similarShows = data.similar.results;
 
   const tv = data.tvseries;
+
+  const regions = data.regions.results;
 
   const {
     production_companies,
@@ -109,7 +114,7 @@ function TvSeriesPage() {
             </>
           </MovieRow>
           <MovieRow title="Watch now on">
-            <WatchOnNow networks={networks} />
+            <WatchOnNow regions={regions} />
           </MovieRow>
         </div>
 

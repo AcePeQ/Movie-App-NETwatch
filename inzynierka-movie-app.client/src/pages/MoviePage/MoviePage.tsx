@@ -43,6 +43,8 @@ function MoviePage() {
     return <ErrorFull error={error} />;
   }
 
+  console.log(data);
+
   const vidoes = data?.videos?.results
     ?.filter(
       (video: VideoType) =>

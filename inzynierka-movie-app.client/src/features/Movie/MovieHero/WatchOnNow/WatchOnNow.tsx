@@ -1,23 +1,19 @@
-import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
 import styles from "./WatchOnNow.module.css";
+import SelectRegion from "./SelectRegion/SelectRegion";
+import { useState } from "react";
 
-function WatchOnNow({ networks }) {
+function WatchOnNow({ regions }) {
+  const [selectedRegion, setSelectedRegion] = useState({
+    value: "GB",
+    label: "United Kingdom",
+  });
+
   return (
     <div className={styles.watchOnList}>
-      {networks.map((network) => (
-        <Network key={network.id} network={network} />
-      ))}
-    </div>
-  );
-}
-
-function Network({ network }) {
-  return (
-    <div className={styles.network}>
-      <img
-        src={`${BASE_URL_W500}${network.logo_path}`}
-        alt={network.name}
-        className={styles.image}
+      <SelectRegion
+        regions={regions}
+        selectRegion={selectedRegion}
+        onSelectRegion={setSelectedRegion}
       />
     </div>
   );
