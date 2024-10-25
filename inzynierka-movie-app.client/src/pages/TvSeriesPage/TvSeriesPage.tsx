@@ -69,6 +69,7 @@ function TvSeriesPage() {
   const tv = data.tvseries;
 
   const regions = data.regions.results;
+  const watchProviders = data.providers.results;
 
   const {
     production_companies,
@@ -114,7 +115,7 @@ function TvSeriesPage() {
             </>
           </MovieRow>
           <MovieRow title="Watch now on">
-            <WatchOnNow regions={regions} />
+            <WatchOnNow regions={regions} watchProviders={watchProviders} />
           </MovieRow>
         </div>
 

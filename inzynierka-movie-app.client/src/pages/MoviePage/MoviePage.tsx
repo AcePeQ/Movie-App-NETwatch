@@ -24,6 +24,7 @@ import { useMediaQuery } from "react-responsive";
 import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
 import { convertLanguageISO } from "../../helpers/formatISO";
 import { CastType, ItemType, ShowType, VideoType } from "../../utils/types";
+import WatchOnNow from "../../features/Movie/MovieHero/WatchOnNow/WatchOnNow";
 
 function MoviePage() {
   const { id } = useParams();
@@ -64,6 +65,9 @@ function MoviePage() {
 
   const movie = data?.movie;
 
+  const regions = data.regions.results;
+  const watchProviders = data.providers.results;
+
   const { production_companies, homepage, original_language } = data.movie;
 
   const similarResponsive = sliderSimilarSettings();
@@ -99,7 +103,7 @@ function MoviePage() {
             </>
           </MovieRow>
           <MovieRow title="Watch now on">
-            <span>Elo</span>
+            <WatchOnNow regions={regions} watchProviders={watchProviders} />
           </MovieRow>
         </div>
 
