@@ -178,3 +178,37 @@ export interface PersonMovie {
   title: string | null;
   popularity: number;
 }
+
+export type Regions = {
+  results: Region[];
+};
+
+export interface Region {
+  map(arg0: (item: Region) => { value: string; label: string }): any;
+  iso_3166_1: string;
+  english_name: string;
+}
+
+export interface WatchProviders {
+  results: Record<string, CountryProvider>;
+}
+
+export interface CountryProvider {
+  map(
+    arg0: (
+      provider: Provider,
+      index: any
+    ) => import("react/jsx-runtime").JSX.Element
+  ): ReactNode;
+  link: string;
+  flatrate?: ProviderType[];
+  buy?: ProviderType[];
+  rent?: ProviderType[];
+}
+
+export interface ProviderType {
+  logo_path: string;
+  provider_id: number;
+  provider_name: string;
+  DisplayPriority: number;
+}

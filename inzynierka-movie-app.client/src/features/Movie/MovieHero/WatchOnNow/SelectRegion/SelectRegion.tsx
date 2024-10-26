@@ -1,7 +1,15 @@
-import Select from "react-select";
+import Select, { Theme } from "react-select";
+import { Region } from "../../../../../utils/types";
+import { ReactEventHandler } from "react";
 
-function SelectRegion({ regions, selectRegion, onSelectRegion }) {
-  function customTheme(theme) {
+function SelectRegion({
+  regions,
+  onSelectRegion,
+}: {
+  regions: any;
+  onSelectRegion: any;
+}) {
+  function customTheme(theme: Theme) {
     return {
       ...theme,
       colors: {
@@ -60,10 +68,12 @@ function SelectRegion({ regions, selectRegion, onSelectRegion }) {
     }),
   };
 
-  const selectRegions = regions.map((item) => {
+  const selectRegions = regions.map((item: Region) => {
     return { value: item.iso_3166_1, label: item.english_name };
   });
-  const defaultRegion = selectRegions.findIndex((item) => item.value === "GB");
+  const defaultRegion = selectRegions.findIndex(
+    (item: { value: string }) => item.value === "GB"
+  );
 
   return (
     <Select

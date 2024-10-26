@@ -29,5 +29,9 @@
   .rowCol_2 {
     flex-direction: column;
     font-size: 1.8rem;
+
+    & > div {
+      align-self: stretch;
+    }
   }
 }
