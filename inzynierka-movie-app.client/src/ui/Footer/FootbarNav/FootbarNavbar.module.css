@@ -11,6 +11,8 @@
   font-weight: 500;
   font-size: 2rem;
 
+  border-bottom: 2px solid transparent;
+
   position: relative;
 
   transition: var(--transition-all);

@@ -57,11 +57,6 @@ function AboutUs() {
       </ul>
 
       <p>
-        © Playpilot AB (Org. nr. 556946-8530), Valhallavägen 66, 114 27
-        Stockholm, Sweden
-      </p>
-
-      <p>
         This product uses the TMDb API but is not endorsed or certified by TMDb.
       </p>
     </ContainerInfo>
