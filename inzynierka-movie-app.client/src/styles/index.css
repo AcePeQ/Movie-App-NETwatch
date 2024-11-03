@@ -61,9 +61,11 @@
   --border-radius-round: 50%;
   --border-radius-huge: 100rem;
 
-  --font-poppins: "Poppins", "Roboto", "Lato", sans-serif;
-  --font-roboto: "Roboto", "Poppins", "Lato", sans-serif;
-  --font-lato: "Lato", "Poppins", "Robot", sans-serif;
+  --font-poppins: "Twemoji Country Flags", "Poppins", "Roboto", "Lato",
+    sans-serif;
+  --font-roboto: "Twemoji Country Flags", "Roboto", "Poppins", "Lato",
+    sans-serif;
+  --font-lato: "Twemoji Country Flags", "Lato", "Poppins", "Robot", sans-serif;
 
   --transition-all: all 0.4s;
 

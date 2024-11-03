@@ -73,6 +73,10 @@ export default defineConfig({
         target,
         secure: false,
       },
+      "^/Lists": {
+        target,
+        secure: false,
+      },
     },
     port: 5173,
     https: {

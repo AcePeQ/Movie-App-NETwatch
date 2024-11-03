@@ -1,0 +1,9 @@
+.selectContainer {
+  font-size: 1.6rem;
+}
+
+.selectContainer:focus-within,
+.selectContainer:focus-visible {
+  border: none;
+  outline: none;
+}

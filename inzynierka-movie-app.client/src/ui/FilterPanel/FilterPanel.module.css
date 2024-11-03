@@ -13,20 +13,32 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  cursor: pointer;
 }
 
 .filter_title {
   font-size: 1.8rem;
   font-weight: 500;
+  user-select: none;
 }
 
 .filter_icon {
-  font-size: 2.4rem;
+  font-size: 2.6rem;
   line-height: 100%;
+  vertical-align: middle;
+
+  display: inline-block;
+
+  transition: var(--transition-all);
 }
 
 .filter_main {
   border-top: 2px solid var(--accent-100);
 
   padding: 1rem 0 0;
+}
+
+.filter_header:hover .filter_icon {
+  color: var(--accent-100);
 }

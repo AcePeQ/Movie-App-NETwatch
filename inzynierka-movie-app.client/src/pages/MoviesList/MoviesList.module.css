@@ -3,6 +3,16 @@
 
   padding: 3rem 2.5rem;
 
-  grid-template-columns: 26rem 1fr;
+  grid-template-columns: 32rem 1fr;
   column-gap: 2.5rem;
+}
+
+.filter_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filter_name {
+  font-size: 1.6rem;
 }
