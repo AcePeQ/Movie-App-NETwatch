@@ -80,6 +80,7 @@ function MoviesList() {
               name="region"
               options={optionRegions}
               defaultOption={defaultRegion}
+              onChange={setSelectedRegion}
             />
           </div>
         </FilterPanel>

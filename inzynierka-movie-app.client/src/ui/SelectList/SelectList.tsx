@@ -1,6 +1,5 @@
 import Select from "react-select";
 import styles from "./SelectList.module.css";
-import { ActionMeta, InputActionMeta } from "react-select";
 
 type SearchTypes = {
   isSearchable: boolean;
@@ -9,7 +8,7 @@ type SearchTypes = {
   className?: string;
   classNamePrefix?: string;
   name?: string;
-  onChange?: EventListener;
+  onChange?: any;
 };
 
 function SelectList({
