@@ -1,6 +1,10 @@
 import Select, { Theme } from "react-select";
 import { Region } from "../../../../../utils/types";
-import { ReactEventHandler } from "react";
+
+import { getFlagEmoji } from "../../../../../helpers/getFlagEmoji";
+import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
+
+polyfillCountryFlagEmojis();
 
 function SelectRegion({
   regions,
@@ -36,6 +40,7 @@ function SelectRegion({
       padding: "0 0.5rem",
       outline: "none",
       maxHeight: "4rem",
+      fontFamily: "inherit",
       cursor: `pointer`,
       transition: `var(--transition-all)`,
       boxShadow: "0",
@@ -69,7 +74,10 @@ function SelectRegion({
   };
 
   const selectRegions = regions.map((item: Region) => {
-    return { value: item.iso_3166_1, label: item.english_name };
+    return {
+      value: item.iso_3166_1,
+      label: `${getFlagEmoji(item.iso_3166_1)} ${item.english_name}`,
+    };
   });
   const defaultRegion = selectRegions.findIndex(
     (item: { value: string }) => item.value === "GB"

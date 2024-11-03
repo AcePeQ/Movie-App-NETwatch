@@ -22,6 +22,8 @@ const sortOptions = [
   { value: "Title (A-Z)", label: "Title (A-Z)" },
 ];
 
+polyfillCountryFlagEmojis();
+
 function MoviesList() {
   const { regionsData, isPendingRegions, isErrorRegions, errorRegions } =
     useRegions();
