@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ListContainer from "../../features/Lists/ListContainer/ListContainer";
 import Sidebar from "../../features/Lists/Sidebar/Sidebar";
 import { useRegions } from "../../features/Lists/useRegions";
@@ -7,10 +7,13 @@ import ErrorFull from "../../ui/Error/ErrorFullPage/ErrorFullPage";
 import FilterPanel from "../../ui/FilterPanel/FilterPanel";
 import Loading from "../../ui/Loading/Loading";
 import SelectList from "../../ui/SelectList/SelectList";
-import { Region } from "../../utils/types";
+import { Region, RegionWatchProvider } from "../../utils/types";
 import styles from "./MoviesList.module.css";
 import { getFlagEmoji } from "../../helpers/getFlagEmoji";
 import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
+import { useMovieWatchProviders } from "../../features/Lists/useWatchProviders";
+import WatchProviderItem from "../../features/Lists/WatchProviderItem/WatchProviderItem";
+import LoaderSmall from "../../ui/LoaderSmall/LoaderSmall";
 
 const sortOptions = [
   { value: "Popularity Descending", label: "Popularity Descending" },
@@ -30,18 +33,36 @@ function MoviesList() {
 
   const [selectedRegion, setSelectedRegion] = useState({
     value: "GB",
-    label: "United Kingdom",
+    label: `${getFlagEmoji("GB")} United Kingdom`,
   });
+
+  const {
+    movieProviders,
+    movieProvidersError,
+    movieProvidersIsError,
+    movieProvidersIsPending,
+  } = useMovieWatchProviders(selectedRegion.value);
+
+  const checkedProvidersRef = useRef<Set<number>>(new Set());
+
+  const handleProviderToggle = (providerId: number) => {
+    if (checkedProvidersRef.current.has(providerId)) {
+      checkedProvidersRef.current.delete(providerId);
+    } else {
+      checkedProvidersRef.current.add(providerId);
+    }
+  };
 
   if (isPendingRegions) {
     return <Loading />;
   }
 
-  if (isErrorRegions) {
-    return <ErrorFull error={errorRegions} />;
+  if (isErrorRegions || movieProvidersIsError) {
+    return <ErrorFull error={errorRegions || movieProvidersError} />;
   }
 
   const regions = regionsData.results;
+  const watchProviders = movieProviders?.results;
 
   const optionRegions = regions.map((item: Region) => {
     return {
@@ -49,12 +70,10 @@ function MoviesList() {
       label: `${getFlagEmoji(item.iso_3166_1)} ${item.english_name}`,
     };
   });
-  const defaultRegion = optionRegions.find(
-    (item: { value: string }) => item.value === "GB"
-  );
 
   console.log(regionsData);
   console.log(selectedRegion);
+  console.log(watchProviders);
 
   return (
     <div className={styles.list_container}>
@@ -70,7 +89,7 @@ function MoviesList() {
           </div>
         </FilterPanel>
 
-        <FilterPanel title="Where To Watch">
+        <FilterPanel title={`Where To Watch (${watchProviders?.length || 0})`}>
           <div className={styles.filter_wrapper}>
             <p className={styles.filter_name}>Country</p>
             <SelectList
@@ -79,9 +98,24 @@ function MoviesList() {
               className="basic-single"
               name="region"
               options={optionRegions}
-              defaultOption={defaultRegion}
+              defaultOption={selectedRegion}
               onChange={setSelectedRegion}
             />
+
+            {movieProvidersIsPending ? (
+              <LoaderSmall />
+            ) : (
+              <ul className={styles.watchProviders}>
+                {watchProviders.map((provider: RegionWatchProvider) => (
+                  <WatchProviderItem
+                    key={provider.provider_id}
+                    provider={provider}
+                    checkedProvidersRef={checkedProvidersRef}
+                    onToggle={handleProviderToggle}
+                  />
+                ))}
+              </ul>
+            )}
           </div>
         </FilterPanel>
 

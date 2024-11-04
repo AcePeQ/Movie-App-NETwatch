@@ -8,7 +8,7 @@ export async function getRegions() {
     });
 
     if (!res.ok) {
-      throw new Error("Something goes wrong with fethcing Credits");
+      throw new Error("Something goes wrong with fethcing filter regions");
     }
 
     const data = await res.json();

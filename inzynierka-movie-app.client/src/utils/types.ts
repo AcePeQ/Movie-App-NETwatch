@@ -212,3 +212,9 @@ export interface ProviderType {
   provider_name: string;
   DisplayPriority: number;
 }
+
+export type RegionWatchProvider = {
+  provider_id: number;
+  provider_name: string;
+  logo_path: string;
+};

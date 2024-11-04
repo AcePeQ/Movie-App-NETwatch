@@ -23,5 +23,23 @@ namespace inzynierka_movie_app.Server.Controllers
             return Json(processedResponse);
         }
 
+        [HttpGet("{region}")]
+        public async Task<IActionResult> GetMovieWatchProviders(string region)
+        {
+            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/watch/providers/movie?language=en-US&watch_region={region}");
+            var processedResponse = await httpService.ProcessResponse<WatchProvider>(res);
+
+            return Json(processedResponse);
+        }
+
+        [HttpGet("{region}")]
+        public async Task<IActionResult> GetTVSeriesWatchProviders(string region)
+        {
+            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/watch/providers/tv?language=en-US&watch_region={region}");
+            var processedResponse = await httpService.ProcessResponse<WatchProvider>(res);
+
+            return Json(processedResponse);
+        }
+
     }
 }
