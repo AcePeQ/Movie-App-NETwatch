@@ -91,7 +91,6 @@ function MoviesList() {
 
         <FilterPanel title={`Where To Watch (${watchProviders?.length || 0})`}>
           <div className={styles.filter_wrapper}>
-            <p className={styles.filter_name}>Country</p>
             <SelectList
               isSearchable={true}
               classNamePrefix="region"
@@ -120,7 +119,19 @@ function MoviesList() {
         </FilterPanel>
 
         <FilterPanel title="Filters">
-          <div>Filters</div>
+          <div className={styles.filter_wrapper}>
+            <div className={styles.filter_children}>
+              <p className={styles.filter_name}>Release Date</p>
+            </div>
+
+            <div className={styles.filter_children}>
+              <p className={styles.filter_name}>Genres</p>
+            </div>
+
+            <div className={styles.filter_children}>
+              <p className={styles.filter_name}>Score</p>
+            </div>
+          </div>
         </FilterPanel>
       </Sidebar>
 

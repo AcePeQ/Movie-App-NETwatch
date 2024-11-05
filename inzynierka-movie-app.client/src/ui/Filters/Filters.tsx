@@ -1,5 +1,4 @@
 import ReactSlider from "react-slider";
-
 import styles from "./Filters.module.css";
 
 import Filter from "./Filter/Filter";

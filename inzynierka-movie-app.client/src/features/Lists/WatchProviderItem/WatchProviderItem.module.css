@@ -31,6 +31,31 @@
   width: max-content;
 }
 
+.watchProviderItem::before {
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+
+  border-radius: var(--border-radius-md);
+  background-color: transparent;
+  color: var(--text-100);
+  font-weight: 600;
+
+  opacity: 1;
+  z-index: 4;
+
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: var(--transition-all);
+}
+
 .watchProviderItem:hover::before {
   content: "\2713";
   display: flex;
