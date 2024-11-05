@@ -218,3 +218,8 @@ export type RegionWatchProvider = {
   provider_name: string;
   logo_path: string;
 };
+
+export type GenreType = {
+  id: number;
+  name: string;
+};

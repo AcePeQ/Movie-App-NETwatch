@@ -23,6 +23,24 @@ namespace inzynierka_movie_app.Server.Controllers
             return Json(processedResponse);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetMovieGenres()
+        {
+            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/genre/movie/list?language=en");
+            var processedResponse = await httpService.ProcessResponse<GenresType>(res);
+
+            return Json(processedResponse);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetTVSeriesGenres()
+        {
+            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/genre/tv/list?language=en");
+            var processedResponse = await httpService.ProcessResponse<GenresType>(res);
+
+            return Json(processedResponse);
+        }
+
         [HttpGet("{region}")]
         public async Task<IActionResult> GetMovieWatchProviders(string region)
         {
