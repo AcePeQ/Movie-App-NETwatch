@@ -41,6 +41,26 @@ namespace inzynierka_movie_app.Server.Controllers
             return Json(processedResponse);
         }
 
+        [HttpGet("{url}")]
+        public async Task<IActionResult> GetListMovies(string url)
+        {
+            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US${url}");
+
+            var processedResponse = await httpService.ProcessResponse<Regions>(res);
+
+            return Json(processedResponse);
+        }
+
+        [HttpGet("{url}")]
+        public async Task<IActionResult> GetListTVSeries(string url)
+        {
+            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US{url}");
+            
+            var processedResponse = await httpService.ProcessResponse<Regions>(res);
+
+            return Json(processedResponse);
+        }
+
         [HttpGet("{region}")]
         public async Task<IActionResult> GetMovieWatchProviders(string region)
         {

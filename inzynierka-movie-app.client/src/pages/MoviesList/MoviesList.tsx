@@ -19,17 +19,18 @@ import ReactSlider from "react-slider";
 import { useMovieGenres } from "../../features/Lists/useGenres";
 import GenreItem from "../../features/Lists/GenreItem/GenreItem";
 
-const sortOptions = [
-  { value: "Popularity Descending", label: "Popularity Descending" },
-  { value: "Popularity Ascending", label: "Popularity Ascending" },
-  { value: "Rating Descending", label: "Rating Descending" },
-  { value: "Rating Ascending", label: "Rating Ascending" },
-  { value: "Release Date Descending", label: "Release Date Descending" },
-  { value: "Release Date Ascending", label: "Release Date Ascending" },
-  { value: "Title (A-Z)", label: "Title (A-Z)" },
-];
-
 polyfillCountryFlagEmojis();
+
+const sortOptions = [
+  { value: "popularity.desc", label: "Popularity Descending" },
+  { value: "popularity.asc", label: "Popularity Ascending" },
+  { value: "vote_average.desc", label: "Rating Descending" },
+  { value: "vote_average.asc", label: "Rating Ascending" },
+  { value: "primary_release_date.desc", label: "Release Date Descending" },
+  { value: "primary_release_date.asc", label: "Release Date Ascending" },
+  { value: "title.desc", label: "Title (A-Z)" },
+  { value: "title.asc", label: "Title (Z-A)" },
+];
 
 function MoviesList() {
   const { regionsData, isPendingRegions, isErrorRegions, errorRegions } =
@@ -39,6 +40,31 @@ function MoviesList() {
     value: "GB",
     label: `${getFlagEmoji("GB")} United Kingdom`,
   });
+  const [sortBy, setSortBy] = useState(sortOptions[0].value);
+  const [releaseDateRange, setReleaseDateRange] = useState([1890, 2024]);
+  const [rating, setRating] = useState([1, 10]);
+  const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
+
+  function handleGenreToggle(id: number) {
+    setSelectedGenres((prev) => {
+      if (prev.includes(id)) return prev.filter((idNow) => idNow !== id);
+      return [...prev, id];
+    });
+  }
+
+  let url = `&page=1&release_date.gte=${
+    releaseDateRange[0]
+  }-01-01&release_date.lte=${
+    releaseDateRange[1]
+  }-12-31&sort_by=${sortBy}&vote_average.gte=${rating[0]}&vote_average.lte=${
+    rating[1]
+  }${
+    selectedGenres.length > 0
+      ? `&with_genres=${selectedGenres.join("%2C")}`
+      : ""
+  }`;
+
+  console.log(url);
 
   const {
     movieProviders,
@@ -71,10 +97,7 @@ function MoviesList() {
   }
 
   const regions = regionsData.results;
-
   const genres = genresData?.genres;
-  console.log(genresData);
-
   const watchProviders = movieProviders?.results;
 
   const optionRegions = regions.map((item: Region) => {
@@ -83,11 +106,6 @@ function MoviesList() {
       label: `${getFlagEmoji(item.iso_3166_1)} ${item.english_name}`,
     };
   });
-
-  console.log(regionsData);
-  console.log(selectedRegion);
-  console.log(watchProviders);
-  console.log(genres);
 
   return (
     <div className={styles.list_container}>
@@ -99,6 +117,7 @@ function MoviesList() {
               options={sortOptions}
               isSearchable={false}
               defaultOption={sortOptions[0]}
+              onChange={(option: { value: string }) => setSortBy(option.value)}
             />
           </div>
         </FilterPanel>
@@ -140,14 +159,17 @@ function MoviesList() {
                 className="horizontal-slider-years"
                 thumbClassName="slider-thumb"
                 trackClassName="slider-track"
-                defaultValue={[1890, 2024]}
+                defaultValue={releaseDateRange}
                 min={1890}
                 max={2024}
                 renderThumb={(props, state) => (
-                  <div {...props}>{state.valueNow}</div>
+                  <div key={`thumb-${state.index}`} {...props}>
+                    {state.valueNow}
+                  </div>
                 )}
                 pearling
                 minDistance={0}
+                onChange={(value) => setReleaseDateRange([...value])}
               />
             </div>
 
@@ -158,7 +180,11 @@ function MoviesList() {
               ) : (
                 <ul className={styles.filter_genres}>
                   {genres?.map((genre: GenreType) => (
-                    <GenreItem key={genre.id} genre={genre} />
+                    <GenreItem
+                      key={genre.id}
+                      genre={genre}
+                      onClick={handleGenreToggle}
+                    />
                   ))}
                 </ul>
               )}
@@ -171,7 +197,7 @@ function MoviesList() {
                 thumbClassName="slider-thumb"
                 trackClassName="slider-track"
                 markClassName="slider-mark"
-                defaultValue={[0, 10]}
+                defaultValue={rating}
                 marks={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
                 min={1}
                 max={10}
@@ -180,6 +206,7 @@ function MoviesList() {
                 )}
                 pearling
                 minDistance={1}
+                onChange={(value) => setRating([...value])}
               />
             </div>
           </div>
