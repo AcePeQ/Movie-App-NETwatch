@@ -1,3 +1,31 @@
+export async function getListFilms(type: string, url: string) {
+  try {
+    let typeFilm;
+    if (type === "movie") typeFilm = "Movies";
+    if (type === "tvSeries") typeFilm = "TVSeries";
+
+    const res = await fetch(`/Lists/GetList${typeFilm}/${url}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(
+        "Something goes wrong with fethcing list movies or tv series"
+      );
+    }
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.error((error as Error).message);
+    throw new Error((error as Error).message);
+  }
+}
+
 export async function getRegions() {
   try {
     const res = await fetch(`/Lists/GetRegions`, {

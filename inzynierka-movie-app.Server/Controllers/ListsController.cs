@@ -46,7 +46,7 @@ namespace inzynierka_movie_app.Server.Controllers
         {
             var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US${url}");
 
-            var processedResponse = await httpService.ProcessResponse<Regions>(res);
+            var processedResponse = await httpService.ProcessResponse<Discovers>(res);
 
             return Json(processedResponse);
         }
@@ -56,7 +56,7 @@ namespace inzynierka_movie_app.Server.Controllers
         {
             var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US{url}");
             
-            var processedResponse = await httpService.ProcessResponse<Regions>(res);
+            var processedResponse = await httpService.ProcessResponse<Discovers>(res);
 
             return Json(processedResponse);
         }

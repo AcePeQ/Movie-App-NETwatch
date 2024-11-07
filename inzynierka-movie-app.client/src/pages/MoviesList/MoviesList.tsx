@@ -44,6 +44,7 @@ function MoviesList() {
   const [releaseDateRange, setReleaseDateRange] = useState([1890, 2024]);
   const [rating, setRating] = useState([1, 10]);
   const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
+  const [selectedProvides, setSelectedProvides] = useState<number[]>([]);
 
   function handleGenreToggle(id: number) {
     setSelectedGenres((prev) => {
@@ -51,20 +52,6 @@ function MoviesList() {
       return [...prev, id];
     });
   }
-
-  let url = `&page=1&release_date.gte=${
-    releaseDateRange[0]
-  }-01-01&release_date.lte=${
-    releaseDateRange[1]
-  }-12-31&sort_by=${sortBy}&vote_average.gte=${rating[0]}&vote_average.lte=${
-    rating[1]
-  }${
-    selectedGenres.length > 0
-      ? `&with_genres=${selectedGenres.join("%2C")}`
-      : ""
-  }`;
-
-  console.log(url);
 
   const {
     movieProviders,
@@ -78,12 +65,31 @@ function MoviesList() {
 
   const checkedProvidersRef = useRef<Set<number>>(new Set());
 
+  let url = `&page=1&release_date.gte=${
+    releaseDateRange[0]
+  }-01-01&release_date.lte=${
+    releaseDateRange[1]
+  }-12-31&sort_by=${sortBy}&watch_region=${
+    selectedRegion.value
+  }&vote_average.gte=${rating[0]}&vote_average.lte=${rating[1]}${
+    selectedGenres.length > 0
+      ? `&with_genres=${selectedGenres.join("%2C")}`
+      : ""
+  }${
+    selectedProvides.length > 0
+      ? `&with_watch_providers=${selectedProvides.join("%7C")}`
+      : ""
+  }`;
+
+  console.log(url);
+
   const handleProviderToggle = (providerId: number) => {
     if (checkedProvidersRef.current.has(providerId)) {
       checkedProvidersRef.current.delete(providerId);
     } else {
       checkedProvidersRef.current.add(providerId);
     }
+    setSelectedProvides([...checkedProvidersRef.current]);
   };
 
   if (isPendingRegions) {
@@ -131,7 +137,11 @@ function MoviesList() {
               name="region"
               options={optionRegions}
               defaultOption={selectedRegion}
-              onChange={setSelectedRegion}
+              onChange={(option: { value: string; label: string }) => {
+                setSelectedRegion(option);
+                setSelectedProvides([]);
+                checkedProvidersRef.current.clear();
+              }}
             />
 
             {movieProvidersIsPending ? (
@@ -202,7 +212,9 @@ function MoviesList() {
                 min={1}
                 max={10}
                 renderThumb={(props, state) => (
-                  <div {...props}>{state.valueNow}</div>
+                  <div key={`renderScore-${state.index}`} {...props}>
+                    {state.valueNow}
+                  </div>
                 )}
                 pearling
                 minDistance={1}
@@ -213,7 +225,7 @@ function MoviesList() {
         </FilterPanel>
       </Sidebar>
 
-      <ListContainer />
+      <ListContainer url={url} type="movie" />
     </div>
   );
 }
