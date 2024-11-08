@@ -44,7 +44,7 @@ namespace inzynierka_movie_app.Server.Controllers
         [HttpGet("{url}")]
         public async Task<IActionResult> GetListMovies(string url)
         {
-            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US${url}");
+            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&{url}");
 
             var processedResponse = await httpService.ProcessResponse<Discovers>(res);
 
@@ -54,7 +54,8 @@ namespace inzynierka_movie_app.Server.Controllers
         [HttpGet("{url}")]
         public async Task<IActionResult> GetListTVSeries(string url)
         {
-            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US{url}");
+            
+            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&{url}");
             
             var processedResponse = await httpService.ProcessResponse<Discovers>(res);
 

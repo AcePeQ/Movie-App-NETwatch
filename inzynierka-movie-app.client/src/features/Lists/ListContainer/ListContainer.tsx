@@ -8,7 +8,7 @@ import styles from "./ListContainer.module.css";
 function ListContainer({ type, url }: { type: string; url: string }) {
   const { data, isPending, isError, error } = useListFilms(url, type);
 
-  if (isPending) {
+  if (isPending || !url) {
     return <LoaderSmall />;
   }
 

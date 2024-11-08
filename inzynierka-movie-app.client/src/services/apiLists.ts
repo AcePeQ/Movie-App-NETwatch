@@ -1,4 +1,6 @@
 export async function getListFilms(type: string, url: string) {
+  if (!url) return null;
+
   try {
     let typeFilm;
     if (type === "movie") typeFilm = "Movies";
