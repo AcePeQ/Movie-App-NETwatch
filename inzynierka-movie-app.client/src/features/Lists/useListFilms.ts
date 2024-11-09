@@ -12,7 +12,8 @@ export function useListFilms(url: string, type: string) {
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: ["listFilms", url, type],
-    queryFn: ({ pageParam = 1 }) => getListFilms(type, url, pageParam),
+    queryFn: ({ pageParam = 1, signal }) =>
+      getListFilms(type, url, pageParam, signal),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
       return lastPage.page < lastPage.total_pages ? lastPage.page + 1 : false;

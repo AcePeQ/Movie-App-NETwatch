@@ -1,7 +1,8 @@
 export async function getListFilms(
   type: string,
   url: string,
-  pageParam: number
+  pageParam: number,
+  signal: AbortSignal
 ) {
   if (!url) return null;
 
@@ -17,6 +18,7 @@ export async function getListFilms(
         headers: {
           "Content-Type": "application/json",
         },
+        signal,
       }
     );
 
