@@ -8,6 +8,13 @@
   align-content: start;
 }
 
+.information {
+  font-size: 2rem;
+  grid-column: 1/-1;
+  font-weight: 600;
+  text-align: center;
+}
+
 @media only screen and (max-width: 101.875em) {
   .list_wrapper {
     grid-template-columns: repeat(3, minmax(30rem, 40rem));

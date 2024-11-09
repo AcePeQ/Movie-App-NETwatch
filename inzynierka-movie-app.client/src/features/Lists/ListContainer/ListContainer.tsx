@@ -7,14 +7,21 @@ import { useListFilms } from "../useListFilms";
 import styles from "./ListContainer.module.css";
 
 function ListContainer({ type, url }: { type: string; url: string }) {
-  const { data, isLoading, isError, error, fetchNextPage, hasNextPage } =
-    useListFilms(url, type);
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useListFilms(url, type);
 
   useEffect(() => {
     const handleScroll = () => {
       if (
         window.innerHeight + window.scrollY >=
-          document.body.offsetHeight - 100 &&
+          document.body.offsetHeight - 150 &&
         hasNextPage
       ) {
         fetchNextPage();
@@ -32,8 +39,6 @@ function ListContainer({ type, url }: { type: string; url: string }) {
     return <ErrorFull error={error} />;
   }
 
-  console.log(data);
-
   return (
     <div key={data?.pages.length} className={styles.list_wrapper}>
       {data?.pages.map((page) =>
@@ -41,7 +46,10 @@ function ListContainer({ type, url }: { type: string; url: string }) {
           <MovieItem key={item.id} movie={item} />
         ))
       )}
-      {!hasNextPage && <p>No more films to load</p>}
+      {isFetchingNextPage && <LoaderSmall />}
+      {!hasNextPage && (
+        <p className={styles.information}>No more films to load</p>
+      )}
     </div>
   );
 }
