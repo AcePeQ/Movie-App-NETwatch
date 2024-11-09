@@ -82,7 +82,6 @@ export default function SidebarTvSeries({
     const params = new URLSearchParams();
     params.append("air_date.gte", `${releaseDateRange[0]}-01-01`);
     params.append("air_date.lte", `${releaseDateRange[1]}-12-31`);
-    params.append("page", "1");
     params.append("sort_by", `${sortBy}`);
     params.append("vote_average.gte", `${rating[0]}`);
     params.append("vote_average.lte", `${rating[1]}`);

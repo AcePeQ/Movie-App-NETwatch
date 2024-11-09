@@ -71,6 +71,7 @@
 
   --navbar-height: 62px;
 
+  --bp-1630: 101.875em;
   --bp-1500: 93.75em;
   --bp-1300: 81.25em;
   --bp-1250: 78.125em;
@@ -78,6 +79,8 @@
   --bp-1085: 67.8125em;
 
   --bp-1020: 63.75em;
+
+  --bp-1005: 62.8125em;
 
   --bp-975: 60.9375em;
   --bp-880: 55em;
@@ -87,6 +90,9 @@
   --bp-750: 46.875em;
   --bp-690: 43.125em;
   --bp-680: 42.5em;
+
+  --bp-655: 40.9375em;
+
   --bp-580: 36.25em;
   --bp-575: 35.9375em;
   --bp-500: 31.25em;
@@ -370,7 +376,6 @@ a.active:hover::after {
 
 .horizontal-slider-rating {
   width: 100%;
-  max-width: 44rem;
   height: 50px;
 
   .slider-track {
@@ -466,11 +471,12 @@ a.active:hover::after {
   font-weight: 700 !important;
 }
 
-.region__menu::-webkit-scrollbar {
-  display: none !important;
-}
+@media only screen and (max-width: 40.9375em) {
+  .region__control {
+    font-size: 2rem !important;
+  }
 
-.region__menu {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  .region__menu {
+    font-size: 2rem !important;
+  }
 }

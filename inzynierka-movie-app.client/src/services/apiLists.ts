@@ -1,4 +1,8 @@
-export async function getListFilms(type: string, url: string) {
+export async function getListFilms(
+  type: string,
+  url: string,
+  pageParam: number
+) {
   if (!url) return null;
 
   try {
@@ -6,12 +10,15 @@ export async function getListFilms(type: string, url: string) {
     if (type === "movie") typeFilm = "Movies";
     if (type === "tvSeries") typeFilm = "TVSeries";
 
-    const res = await fetch(`/Lists/GetList${typeFilm}/${url}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `/Lists/GetList${typeFilm}/${url}/?page=${pageParam}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (!res.ok) {
       throw new Error(

@@ -1,9 +1,33 @@
 .list_wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 36rem));
+  grid-template-columns: repeat(4, minmax(30rem, 36rem));
   column-gap: 1rem;
   row-gap: 2rem;
 
   justify-content: center;
   align-content: start;
+}
+
+@media only screen and (max-width: 101.875em) {
+  .list_wrapper {
+    grid-template-columns: repeat(3, minmax(30rem, 40rem));
+  }
+}
+
+@media only screen and (max-width: 81.25em) {
+  .list_wrapper {
+    grid-template-columns: repeat(2, minmax(30rem, 50rem));
+  }
+}
+
+@media only screen and (max-width: 62.8125em) {
+  .list_wrapper {
+    grid-template-columns: repeat(1, minmax(33rem, 50rem));
+  }
+}
+
+@media only screen and (max-width: 40.9375em) {
+  .list_wrapper {
+    grid-template-columns: repeat(1, minmax(33rem, 50rem));
+  }
 }

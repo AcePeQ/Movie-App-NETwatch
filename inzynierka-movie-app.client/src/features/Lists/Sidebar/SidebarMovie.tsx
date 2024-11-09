@@ -80,7 +80,6 @@ export default function SidebarMovie({
 
   useEffect(() => {
     const params = new URLSearchParams();
-    params.append("page", "1");
     params.append("release_date.gte", `${releaseDateRange[0]}-01-01`);
     params.append("release_date.lte", `${releaseDateRange[1]}-12-31`);
     params.append("sort_by", `${sortBy}`);

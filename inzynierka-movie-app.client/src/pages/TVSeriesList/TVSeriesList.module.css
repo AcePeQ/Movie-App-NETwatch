@@ -6,3 +6,10 @@
   grid-template-columns: 32rem 1fr;
   column-gap: 2.5rem;
 }
+
+@media only screen and (max-width: 40.9375em) {
+  .list_container {
+    grid-template-columns: 1fr;
+    row-gap: 5rem;
+  }
+}

@@ -1,10 +1,23 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { getListFilms } from "../../services/apiLists";
 
 export function useListFilms(url: string, type: string) {
-  const { data, isPending, isError, error } = useQuery({
-    queryKey: ["listFilms", url, type],
-    queryFn: () => getListFilms(type, url),
-  });
-  return { data, isPending, isError, error };
+  const { data, isLoading, isError, error, fetchNextPage, hasNextPage } =
+    useInfiniteQuery({
+      queryKey: ["listFilms", url, type],
+      queryFn: ({ pageParam = 1 }) => getListFilms(type, url, pageParam),
+      initialPageParam: 1,
+      getNextPageParam: (lastPage) => {
+        return lastPage.page < lastPage.total_pages ? lastPage.page + 1 : false;
+      },
+    });
+
+  return {
+    data,
+    isLoading,
+    isError,
+    error,
+    fetchNextPage,
+    hasNextPage,
+  };
 }

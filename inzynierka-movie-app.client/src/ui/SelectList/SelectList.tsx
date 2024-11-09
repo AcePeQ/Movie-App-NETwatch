@@ -58,7 +58,7 @@ function SelectList({
     option: (styles) => ({
       ...styles,
       cursor: "pointer",
-      fontSize: "1.6rem",
+      fontSize: "inherit",
     }),
     dropdownIndicator: (styles) => ({
       ...styles,

@@ -51,3 +51,44 @@
   row-gap: 0.75rem;
   column-gap: 0.5rem;
 }
+
+@media only screen and (max-width: 40.9375em) {
+  .filter_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .filter_name {
+    font-size: 2rem;
+  }
+
+  .filter_children {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .watchProviders {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(6.5rem, 8rem));
+
+    justify-content: center;
+
+    gap: 1rem;
+
+    margin-top: 1rem;
+  }
+
+  .filter_genres {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(max-content, 15rem));
+    justify-content: center;
+
+    align-items: center;
+    align-content: center;
+
+    row-gap: 0.75rem;
+    column-gap: 0.5rem;
+  }
+}
