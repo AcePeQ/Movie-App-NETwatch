@@ -183,11 +183,14 @@ export default function SidebarMovie({
               defaultValue={releaseDateRange}
               min={1890}
               max={2024}
-              renderThumb={(props, state) => (
-                <div key={`thumb-${state.index}`} {...props}>
-                  {state.valueNow}
-                </div>
-              )}
+              renderThumb={(props, state) => {
+                const { key, ...restProps } = props;
+                return (
+                  <div key={`thumb-date-${state.index}`} {...restProps}>
+                    {state.valueNow}
+                  </div>
+                );
+              }}
               pearling
               minDistance={0}
               onChange={(value) => setReleaseDateRange([...value])}
@@ -222,11 +225,14 @@ export default function SidebarMovie({
               marks={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
               min={1}
               max={10}
-              renderThumb={(props, state) => (
-                <div key={`renderScore-${state.index}`} {...props}>
-                  {state.valueNow}
-                </div>
-              )}
+              renderThumb={(props, state) => {
+                const { key, ...restProps } = props;
+                return (
+                  <div key={`thumb-score-${state.index}`} {...restProps}>
+                    {state.valueNow}
+                  </div>
+                );
+              }}
               pearling
               minDistance={1}
               onChange={(value) => setRating([...value])}
@@ -242,11 +248,14 @@ export default function SidebarMovie({
               defaultValue={minimumVoteCounts}
               min={0}
               max={2000}
-              renderThumb={(props, state) => (
-                <div key={`thumb-${state.index}`} {...props}>
-                  {state.valueNow}
-                </div>
-              )}
+              renderThumb={(props, state) => {
+                const { key, ...restProps } = props;
+                return (
+                  <div key={`thumb-votes-mini-${state.index}`} {...restProps}>
+                    {state.valueNow}
+                  </div>
+                );
+              }}
               pearling
               onChange={(value) => setMinimumVoteCounts(value)}
             />
