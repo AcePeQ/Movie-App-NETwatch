@@ -19,7 +19,7 @@ function Layout() {
       {!isMobile && <Header />}
       {isMobile && (
         <>
-          <Mobile type="loggedIn" />
+          <Mobile />
           <SearchModal />
         </>
       )}

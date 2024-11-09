@@ -5,7 +5,7 @@ import styles from "./Header.module.css";
 
 function Header() {
   const isSmallLaptop = useMediaQuery({
-    query: "(max-width: 1200px)",
+    query: "(max-width: 1225px)",
   });
 
   const isMobile = useMediaQuery({
@@ -14,8 +14,8 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      {!isSmallLaptop && !isMobile && <Navbar type="loggedIn" />}
-      {isSmallLaptop && !isMobile && <TabletNav type="loggedIn" />}
+      {!isSmallLaptop && !isMobile && <Navbar />}
+      {isSmallLaptop && !isMobile && <TabletNav />}
     </header>
   );
 }

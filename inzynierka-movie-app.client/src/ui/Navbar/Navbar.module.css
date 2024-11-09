@@ -32,12 +32,14 @@
   gap: 1.25rem;
 }
 
-@media only screen and (max-width: 81.25em) {
+@media only screen and (max-width: 84.0625em) {
   .nav {
     padding: 1rem 1rem;
     gap: 3rem;
   }
+}
 
+@media only screen and (max-width: 81.25em) {
   .leftNav {
     gap: 1.5rem;
   }
