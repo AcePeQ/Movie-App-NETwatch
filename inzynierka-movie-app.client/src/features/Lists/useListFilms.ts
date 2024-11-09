@@ -16,6 +16,7 @@ export function useListFilms(url: string, type: string) {
       getListFilms(type, url, pageParam, signal),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
+      if (!lastPage) return false;
       return lastPage.page < lastPage.total_pages ? lastPage.page + 1 : false;
     },
   });

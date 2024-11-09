@@ -32,6 +32,9 @@ export async function getListFilms(
 
     return data;
   } catch (error) {
+    if ((error as Error).name === "AbortError") {
+      return null;
+    }
     console.error((error as Error).message);
     throw new Error((error as Error).message);
   }

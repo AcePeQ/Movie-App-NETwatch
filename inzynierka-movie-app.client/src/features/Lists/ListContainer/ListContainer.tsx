@@ -40,7 +40,7 @@ function ListContainer({ type, url }: { type: string; url: string }) {
   }
 
   return (
-    <div key={data?.pages.length} className={styles.list_wrapper}>
+    <div className={styles.list_wrapper}>
       {data?.pages.map((page) =>
         page?.results.map((item: ItemType) => (
           <MovieItem key={item.id} movie={item} />
