@@ -27,4 +27,5 @@ public class PersonMovie {
     public string name { get; set; }
     public string media_type {get; set;}
     public double popularity {get;set;}
+    public double vote_average {get; set;}
 }

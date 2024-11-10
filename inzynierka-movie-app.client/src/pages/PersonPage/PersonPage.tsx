@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { usePerson } from "../../features/Person/usePerson";
-import styles from "./PersonPage.module.css";
 import Loading from "../../ui/Loading/Loading";
 import ErrorFull from "../../ui/Error/ErrorFullPage/ErrorFullPage";
 import PersonHero from "../../features/Person/PersonHero/PersonHero";
@@ -14,6 +13,9 @@ import {
   sliderSimilarSettings,
 } from "../../helpers/sliderSettings";
 import { useMediaQuery } from "react-responsive";
+
+import styles from "./PersonPage.module.css";
+import "react-multi-carousel/lib/styles.css";
 
 function PersonPage() {
   const { id } = useParams();

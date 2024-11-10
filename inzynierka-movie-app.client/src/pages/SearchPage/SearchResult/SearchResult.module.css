@@ -46,7 +46,7 @@
 }
 
 .item_title:hover {
-  color: var(--text-200);
+  color: var(--accent-100);
 }
 
 .genres {

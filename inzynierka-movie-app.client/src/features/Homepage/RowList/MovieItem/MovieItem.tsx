@@ -22,7 +22,7 @@ function MovieItem({ type, movie }: MovieItem) {
     title,
     name,
     genre_ids,
-    vote_average: rating,
+    vote_average,
   } = movie;
   const background = `${BASE_URL_W500}${backgroundPath}`;
   const noImage = `/public/Image-not-available.png`;
@@ -45,7 +45,7 @@ function MovieItem({ type, movie }: MovieItem) {
       <div className={styles.details}>
         <div className={styles.detailsHeader}>
           <p className={styles.title}>{isMovie ? title : name}</p>
-          <MovieRating type="movieItem" rating={rating} />
+          <MovieRating type="movieItem" rating={vote_average} />
         </div>
         <div className={styles.genres}>
           {genres.map((genre: number, index) => (
