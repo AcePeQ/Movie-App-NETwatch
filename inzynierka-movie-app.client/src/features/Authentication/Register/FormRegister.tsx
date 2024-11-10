@@ -18,7 +18,7 @@ import { HiUser } from "react-icons/hi2";
 import { HiLockClosed } from "react-icons/hi2";
 import { HiMiniLockOpen } from "react-icons/hi2";
 
-type Inputs = {
+type formTypes = {
   email: string;
   username: string;
   password: string;
@@ -33,8 +33,9 @@ function FormRegister() {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<formTypes>();
 
   function handleShowPassword(): void {
     dispatch(changeShowPassword());
@@ -44,7 +45,7 @@ function FormRegister() {
     dispatch(changeShowConfirmPassword());
   }
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<formTypes> = (data) => {
     console.log(data);
   };
 
@@ -60,14 +61,18 @@ function FormRegister() {
           id="e-mail"
           placeholder="E-mail"
           {...register("email", {
-            required: "This field is required",
+            required: "E-mail field is required",
+            pattern: {
+              value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+              message: "Your e-mail must be like this: something@else.tld",
+            },
           })}
         />
       </FormRow>
 
       <FormRow
         label="Username"
-        error={errors.email?.message}
+        error={errors.username?.message}
         icon={<HiUser className={stylesGen.icon} />}
       >
         <input
@@ -75,14 +80,27 @@ function FormRegister() {
           id="username"
           placeholder="Username"
           {...register("username", {
-            required: "This field is required",
+            required: "Username field is required",
+            minLength: {
+              value: 3,
+              message: "Username should be at least 3",
+            },
+            maxLength: {
+              value: 12,
+              message: "Username should be at most 12 ",
+            },
+            pattern: {
+              value: /^[A-Za-z][A-Za-z0-9_]{2,11}$/,
+              message:
+                "Username should start with an letter, all other characters can be letters, numbers or an underscore",
+            },
           })}
         />
       </FormRow>
 
       <FormRow
         label="Password"
-        error={errors.email?.message}
+        error={errors.password?.message}
         icon={<HiLockClosed className={stylesGen.icon} />}
         showPassword={showPassword}
         passwordHandler={handleShowPassword}
@@ -92,14 +110,23 @@ function FormRegister() {
           id="password"
           placeholder="Password"
           {...register("password", {
-            required: "This field is required",
+            required: "Password field is required",
+            pattern: {
+              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+              message: `Your password must contain:\n
+              * Minimum eight characters \n
+              * At least one letter \n
+              * At least one number \n
+              * At least one special character \n
+              `,
+            },
           })}
         />
       </FormRow>
 
       <FormRow
         label="Confirm password"
-        error={errors.email?.message}
+        error={errors.confirmPassword?.message}
         icon={<HiMiniLockOpen className={stylesGen.icon} />}
         showPassword={showConfirmPassword}
         passwordHandler={handleShowConfirmPassword}
@@ -109,7 +136,10 @@ function FormRegister() {
           id="confirmPassword"
           placeholder="Confirm password"
           {...register("confirmPassword", {
-            required: "This field is required",
+            required: "Confirm password field is required",
+            validate: (value) =>
+              value === getValues().password ||
+              "Your passwords are not the same",
           })}
         />
       </FormRow>

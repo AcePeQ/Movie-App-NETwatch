@@ -12,7 +12,7 @@ import { HiAcademicCap } from "react-icons/hi2";
 import { HiLockClosed } from "react-icons/hi2";
 import { changeShowPassword, getShowPassword } from "../modalLoginSlice";
 
-type Inputs = {
+type formValues = {
   email: string;
   password: string;
 };
@@ -25,13 +25,13 @@ function FormLogin() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<formValues>();
 
   function handleShowPassword(): void {
     dispatch(changeShowPassword());
   }
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<formValues> = (data) => {
     console.log(data);
   };
 
@@ -47,14 +47,18 @@ function FormLogin() {
           id="e-mail"
           placeholder="E-mail"
           {...register("email", {
-            required: "This field is required",
+            required: "E-mail field is required",
+            pattern: {
+              value: /[^@\s]+@[^@\s]+\.[^@\s]+/,
+              message: "Your e-mail must be like this: something@else.tld",
+            },
           })}
         />
       </FormRow>
 
       <FormRow
         label="Password"
-        error={errors.email?.message}
+        error={errors.password?.message}
         icon={<HiLockClosed className={stylesGen.icon} />}
         showPassword={showPassword}
         passwordHandler={handleShowPassword}
@@ -64,7 +68,16 @@ function FormLogin() {
           id="password"
           placeholder="Password"
           {...register("password", {
-            required: "This field is required",
+            required: "Password field is required",
+            pattern: {
+              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+              message: `Your password must contain:\n
+              * Minimum eight characters \n
+              * At least one letter \n
+              * At least one number \n
+              * At least one special character \n
+              `,
+            },
           })}
         />
       </FormRow>
