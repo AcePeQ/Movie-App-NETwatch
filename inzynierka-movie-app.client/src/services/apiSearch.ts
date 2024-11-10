@@ -1,6 +1,9 @@
 import { ItemType } from "../utils/types";
 
-export async function getSearch(query: string, signal: AbortSignal) {
+export async function getSearch(
+  query: string | undefined,
+  signal: AbortSignal
+) {
   try {
     const res = await fetch(`/Search/GetSearch/${query}`, { signal });
 

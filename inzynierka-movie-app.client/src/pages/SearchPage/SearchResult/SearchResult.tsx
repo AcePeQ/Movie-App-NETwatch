@@ -26,7 +26,7 @@ function SearchResult({ item }: { item: ItemType }) {
   } = item;
   const year = first_air_date
     ? first_air_date.split("-")[0]
-    : release_date.split("-")[0];
+    : release_date?.split("-")[0];
 
   return (
     <li className={styles.search_item}>
