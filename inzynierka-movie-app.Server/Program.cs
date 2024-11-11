@@ -1,7 +1,12 @@
-using inzynierka_movie_app.Server.Services;
+﻿using inzynierka_movie_app.Server.Services;
 using inzynierka_movie_app.Server.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using inzynierka_movie_app.Server.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<inzynierka_movie_appServerContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("inzynierka_movie_appServerContext") ?? throw new InvalidOperationException("Connection string 'inzynierka_movie_appServerContext' not found.")));
 
 // Add services to the container.
 
