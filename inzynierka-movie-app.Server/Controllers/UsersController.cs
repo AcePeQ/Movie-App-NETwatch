@@ -6,16 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using inzynierka_movie_app.Server.Data;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace inzynierka_movie_app.Server
 {
     public class UsersController : Controller
     {
         private readonly inzynierka_movie_appServerContext _context;
+        private readonly IConfiguration _configuration;
 
-        public UsersController(inzynierka_movie_appServerContext context)
+        public UsersController(inzynierka_movie_appServerContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         // GET: Users
