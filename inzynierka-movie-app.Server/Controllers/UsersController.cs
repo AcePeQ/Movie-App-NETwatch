@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using inzynierka_movie_app.Server.Data;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
+using System.Text.RegularExpressions;
 
 namespace inzynierka_movie_app.Server
 {
@@ -20,6 +21,58 @@ namespace inzynierka_movie_app.Server
         {
             _context = context;
             _configuration = configuration;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register([FromBody] RegisterUser registerUser) {
+            if(registerUser == null) {
+                return BadRequest("Invalid user data");
+            }
+
+            if(string.IsNullOrWhiteSpace(registerUser.Email) ||
+             string.IsNullOrWhiteSpace(registerUser.Username) || 
+             string.IsNullOrWhiteSpace(registerUser.Password) || 
+             string.IsNullOrWhiteSpace(registerUser.Confirmed_Password)) 
+            {
+                return BadRequest("All fiels are required");
+            }
+
+            var emailPattern = @"^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+            if(!Regex.IsMatch(registerUser.Email, emailPattern)) {
+                return BadRequest("Invalid email format");
+            }
+
+            string usernamePattern = @"^[A-Za-z][A-Za-z0-9_]{2,11}$";
+            if(!Regex.IsMatch(registerUser.Username, usernamePattern) || registerUser.Username.Length < 3 || registerUser.Username.Length > 12) {
+                return BadRequest("Invalid username format");
+            }
+
+            string passwordPattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$";
+            if(!Regex.IsMatch(registerUser.Password, passwordPattern)) {
+                return BadRequest("Invalid password format");
+            }
+
+            if(registerUser.Password != registerUser.Confirmed_Password) {
+                return BadRequest("Passwords are not the same");
+            }
+      
+            if(await _context.User.AnyAsync(user => user.Email == registerUser.Email) || await _context.User.AnyAsync(user => user.Username == registerUser.Username)) {
+                return BadRequest("User with this e-mail address or username exists");
+            }
+
+
+            var user = new User 
+            {
+                Email = registerUser.Email,
+                Username = registerUser.Username,
+                Password = registerUser.Password,
+                Watchlist = new List<WatchlistItem>(),
+            };
+
+            _context.User.Add(user);
+            await _context.SaveChangesAsync();
+
+            return Ok("Register sucessed");
         }
 
         // GET: Users
