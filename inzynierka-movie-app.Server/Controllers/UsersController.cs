@@ -9,9 +9,12 @@ using inzynierka_movie_app.Server.Data;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace inzynierka_movie_app.Server
 {
+    [ApiController]
+    [Route("[controller]/[action]")]
     public class UsersController : Controller
     {
         private readonly inzynierka_movie_appServerContext _context;
@@ -24,6 +27,7 @@ namespace inzynierka_movie_app.Server
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterUser registerUser) {
             if(registerUser == null) {
                 return BadRequest("Invalid user data");
@@ -34,30 +38,30 @@ namespace inzynierka_movie_app.Server
              string.IsNullOrWhiteSpace(registerUser.Password) || 
              string.IsNullOrWhiteSpace(registerUser.Confirmed_Password)) 
             {
-                return BadRequest("All fiels are required");
+                return BadRequest(new {error = "All fields are required"});
             }
 
             var emailPattern = @"^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
             if(!Regex.IsMatch(registerUser.Email, emailPattern)) {
-                return BadRequest("Invalid email format");
+                return BadRequest(new {error = "Invalid email format"});
             }
 
             string usernamePattern = @"^[A-Za-z][A-Za-z0-9_]{2,11}$";
             if(!Regex.IsMatch(registerUser.Username, usernamePattern) || registerUser.Username.Length < 3 || registerUser.Username.Length > 12) {
-                return BadRequest("Invalid username format");
+                return BadRequest(new {error = "Invalid username format"});
             }
 
             string passwordPattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$";
             if(!Regex.IsMatch(registerUser.Password, passwordPattern)) {
-                return BadRequest("Invalid password format");
+                return BadRequest(new {error = "Invalid password format"});
             }
 
             if(registerUser.Password != registerUser.Confirmed_Password) {
-                return BadRequest("Passwords are not the same");
+                return BadRequest(new {error = "Passwords are not the same"});
             }
       
             if(await _context.User.AnyAsync(user => user.Email == registerUser.Email) || await _context.User.AnyAsync(user => user.Username == registerUser.Username)) {
-                return BadRequest("User with this e-mail address or username exists");
+                return BadRequest(new {error = "Acconut with this e-mail address or username exists"});
             }
 
 
@@ -72,7 +76,7 @@ namespace inzynierka_movie_app.Server
             _context.User.Add(user);
             await _context.SaveChangesAsync();
 
-            return Ok("Register sucessed");
+            return Ok(new {ok = "Register sucessed"});
         }
 
         // GET: Users

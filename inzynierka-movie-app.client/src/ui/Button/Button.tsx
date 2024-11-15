@@ -8,9 +8,10 @@ interface ButtonProps {
   onClick?: MouseEventHandler;
   children?: string | ReactElement;
   size?: string;
+  disabled?: boolean;
 }
 
-function Button({ children, type, onClick, size }: ButtonProps) {
+function Button({ children, type, onClick, size, disabled }: ButtonProps) {
   if (type === `closeButton`) {
     return (
       <button
@@ -26,6 +27,7 @@ function Button({ children, type, onClick, size }: ButtonProps) {
     <button
       onClick={onClick}
       className={`${styles.btn} ${styles[`${type}`]} ${styles[`${size}`]}`}
+      disabled={disabled}
     >
       {children}
     </button>

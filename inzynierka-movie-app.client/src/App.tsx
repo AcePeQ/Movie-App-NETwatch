@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { lazy, Suspense } from "react";
 
 import Loading from "./ui/Loading/Loading";
+import { Toaster } from "react-hot-toast";
 
 const Layout = lazy(() => import(`./ui/Layout/Layout`));
 const Home = lazy(() => import(`./pages/HomePage/Home`));
@@ -89,6 +90,22 @@ function App() {
           </Routes>
         </Suspense>
       </BrowserRouter>
+
+      <Toaster
+        position="top-center"
+        gutter={12}
+        containerClassName="notify-toaster"
+        containerStyle={{ margin: "8px" }}
+        toastOptions={{
+          className: "toast-option",
+          success: {
+            duration: 3000,
+          },
+          error: {
+            duration: 6000,
+          },
+        }}
+      />
     </QueryClientProvider>
   );
 }

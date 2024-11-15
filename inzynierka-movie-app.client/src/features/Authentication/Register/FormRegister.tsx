@@ -3,6 +3,7 @@ import { useAppSelector } from "../../../hooks/useRedux";
 import {
   changeShowConfirmPassword,
   changeShowPassword,
+  closeModalRegister,
   getShowConfirmPassword,
   getShowPassword,
 } from "../modalRegisterSlice";
@@ -17,15 +18,18 @@ import { HiAcademicCap } from "react-icons/hi2";
 import { HiUser } from "react-icons/hi2";
 import { HiLockClosed } from "react-icons/hi2";
 import { HiMiniLockOpen } from "react-icons/hi2";
+import { useCreateAccount } from "../useCreateAccount";
 
-type formTypes = {
+type RegisterTypes = {
   email: string;
   username: string;
   password: string;
-  confirmPassword: string;
+  confirmed_password: string;
 };
 
 function FormRegister() {
+  const { isCreatingAccount, createAccount } = useCreateAccount();
+
   const showPassword = useAppSelector(getShowPassword);
   const showConfirmPassword = useAppSelector(getShowConfirmPassword);
   const dispatch = useDispatch();
@@ -34,8 +38,9 @@ function FormRegister() {
     register,
     handleSubmit,
     getValues,
+    reset,
     formState: { errors },
-  } = useForm<formTypes>();
+  } = useForm<RegisterTypes>();
 
   function handleShowPassword(): void {
     dispatch(changeShowPassword());
@@ -45,8 +50,13 @@ function FormRegister() {
     dispatch(changeShowConfirmPassword());
   }
 
-  const onSubmit: SubmitHandler<formTypes> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<RegisterTypes> = (data) => {
+    createAccount(data, {
+      onSuccess: () => {
+        reset();
+        dispatch(closeModalRegister());
+      },
+    });
   };
 
   return (
@@ -126,7 +136,7 @@ function FormRegister() {
 
       <FormRow
         label="Confirm password"
-        error={errors.confirmPassword?.message}
+        error={errors.confirmed_password?.message}
         icon={<HiMiniLockOpen className={stylesGen.icon} />}
         showPassword={showConfirmPassword}
         passwordHandler={handleShowConfirmPassword}
@@ -135,7 +145,7 @@ function FormRegister() {
           type={showConfirmPassword ? "type" : "password"}
           id="confirmPassword"
           placeholder="Confirm password"
-          {...register("confirmPassword", {
+          {...register("confirmed_password", {
             required: "Confirm password field is required",
             validate: (value) =>
               value === getValues().password ||
@@ -145,7 +155,7 @@ function FormRegister() {
       </FormRow>
 
       <div className={stylesGen.btn}>
-        <Button type="primary" size="medium">
+        <Button type="primary" size="medium" disabled={isCreatingAccount}>
           Create account
         </Button>
       </div>

@@ -77,6 +77,10 @@ export default defineConfig({
         target,
         secure: false,
       },
+      "^/Users": {
+        target,
+        secure: false,
+      },
     },
     port: 5173,
     https: {
