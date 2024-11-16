@@ -10,7 +10,12 @@ import stylesGen from "../GeneralStyles.module.css";
 
 import { HiAcademicCap } from "react-icons/hi2";
 import { HiLockClosed } from "react-icons/hi2";
-import { changeShowPassword, getShowPassword } from "../modalLoginSlice";
+import {
+  changeShowPassword,
+  closeModalLogin,
+  getShowPassword,
+} from "../modalLoginSlice";
+import { useLoginAccount } from "../useLoginAccount";
 
 type formValues = {
   email: string;
@@ -18,12 +23,15 @@ type formValues = {
 };
 
 function FormLogin() {
+  const { isLoggingIn, loginAccount } = useLoginAccount();
+
   const showPassword = useAppSelector(getShowPassword);
   const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<formValues>();
 
@@ -32,7 +40,12 @@ function FormLogin() {
   }
 
   const onSubmit: SubmitHandler<formValues> = (data) => {
-    console.log(data);
+    loginAccount(data, {
+      onSuccess: () => {
+        reset();
+        dispatch(closeModalLogin?.());
+      },
+    });
   };
 
   return (
@@ -48,10 +61,6 @@ function FormLogin() {
           placeholder="E-mail"
           {...register("email", {
             required: "E-mail field is required",
-            pattern: {
-              value: /[^@\s]+@[^@\s]+\.[^@\s]+/,
-              message: "Your e-mail must be like this: something@else.tld",
-            },
           })}
         />
       </FormRow>
@@ -69,21 +78,12 @@ function FormLogin() {
           placeholder="Password"
           {...register("password", {
             required: "Password field is required",
-            pattern: {
-              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-              message: `Your password must contain:\n
-              * Minimum eight characters \n
-              * At least one letter \n
-              * At least one number \n
-              * At least one special character \n
-              `,
-            },
           })}
         />
       </FormRow>
 
       <div className={stylesGen.btn}>
-        <Button type="primary" size="medium">
+        <Button type="primary" size="medium" disabled={isLoggingIn}>
           Sign in
         </Button>
       </div>
