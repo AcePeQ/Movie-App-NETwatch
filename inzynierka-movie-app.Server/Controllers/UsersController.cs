@@ -10,6 +10,7 @@ using System.Configuration;
 using Microsoft.Extensions.Configuration;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
+using inzynierka_movie_app.Server.Services;
 
 namespace inzynierka_movie_app.Server
 {
@@ -18,12 +19,12 @@ namespace inzynierka_movie_app.Server
     public class UsersController : Controller
     {
         private readonly inzynierka_movie_appServerContext _context;
-        private readonly IConfiguration _configuration;
+        private readonly JWTService _jwtService;
 
-        public UsersController(inzynierka_movie_appServerContext context, IConfiguration configuration)
+        public UsersController(inzynierka_movie_appServerContext context, JWTService jwtService)
         {
             _context = context;
-            _configuration = configuration;
+            _jwtService = jwtService;
         }
 
         [HttpPost]
@@ -82,8 +83,15 @@ namespace inzynierka_movie_app.Server
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginUser loginUser) {
+            var user = _context.User.SingleOrDefault(user=> user.Email == loginUser.Email);
+
+            if(user == null || user.Password !== loginUser.Password) {
+                return BadRequest(new {error = "Invalid email or password. Try again"});
+            }
+
+            var tokenGen = _jwtService.GenerateToken(user);
             
-            return null;
+            return Json(new {user, token = tokenGen});
         }
 
         // GET: Users

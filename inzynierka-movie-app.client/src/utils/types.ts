@@ -236,3 +236,30 @@ export type LoginAccountTypes = {
   email: string;
   password: string;
 };
+
+export type UserType = {
+  user: User;
+  token: string;
+};
+
+type User = {
+  ID: number;
+  Email: string;
+  Password: string;
+  Watchlist: WatchListUser;
+};
+
+interface WatchListUser {
+  ID: number;
+  backdrop_path: string;
+  genre_ids: [];
+  movieID: number;
+  poster_path: string;
+  name: string;
+  title: string;
+  vote_average: number;
+  media_type: string;
+  release_date: string;
+  first_air_date: string;
+  vote_count: number;
+}
