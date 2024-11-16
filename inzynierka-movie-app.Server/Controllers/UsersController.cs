@@ -79,6 +79,13 @@ namespace inzynierka_movie_app.Server
             return Ok(new {ok = "Register sucessed"});
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([FromBody] LoginUser loginUser) {
+            
+            return null;
+        }
+
         // GET: Users
         public async Task<IActionResult> Index()
         {

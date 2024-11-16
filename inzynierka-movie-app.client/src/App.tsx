@@ -98,6 +98,13 @@ function App() {
         containerStyle={{ margin: "8px" }}
         toastOptions={{
           className: "toast-option",
+          style: {
+            backgroundColor: "var(--background-100)",
+            color: "var(--text-100)",
+            fontWeight: "600",
+            fontSize: "1.6rem",
+            fontFamily: "inherit",
+          },
           success: {
             duration: 3000,
           },

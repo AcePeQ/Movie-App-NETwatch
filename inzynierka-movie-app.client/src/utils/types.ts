@@ -223,3 +223,16 @@ export type GenreType = {
   id: number;
   name: string;
 };
+
+/*REGISTER AND LOGIN*/
+export type RegisterAccountTypes = {
+  email: string;
+  username: string;
+  password: string;
+  confirmed_password: string;
+};
+
+export type LoginAccountTypes = {
+  email: string;
+  password: string;
+};

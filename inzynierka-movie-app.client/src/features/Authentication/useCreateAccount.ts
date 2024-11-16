@@ -1,9 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import { createAccountApi } from "../../services/apiAuthentication";
+import { RegisterAccountTypes } from "../../utils/types";
 
 export function useCreateAccount() {
   const { mutate: createAccount, isPending: isCreatingAccount } = useMutation({
-    mutationFn: (accountData) => createAccountApi(accountData),
+    mutationFn: (accountData: RegisterAccountTypes) =>
+      createAccountApi(accountData),
     onSuccess: () => {
       console.log("Done");
     },

@@ -15,6 +15,12 @@ public class User
     public List<WatchlistItem> Watchlist {get; set;}
 }
 
+public class LoginUser {
+    [JsonPropertyName("email")]
+    public string Email {get; set;}
+    [JsonPropertyName("password")]
+    public string Password {get; set;}
+}
 
 public class RegisterUser {
     [JsonPropertyName("email")]

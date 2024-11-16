@@ -1,4 +1,6 @@
-export async function createAccountApi(registerData) {
+import { RegisterAccountTypes } from "../utils/types";
+
+export async function createAccountApi(registerData: RegisterAccountTypes) {
   try {
     const res = await fetch(`/Users/Register`, {
       headers: {
