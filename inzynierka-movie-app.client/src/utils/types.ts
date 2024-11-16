@@ -242,7 +242,7 @@ export type UserType = {
   token: string;
 };
 
-type User = {
+export type User = {
   ID: number;
   Email: string;
   Password: string;

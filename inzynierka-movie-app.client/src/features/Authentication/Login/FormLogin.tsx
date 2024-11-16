@@ -16,6 +16,8 @@ import {
   getShowPassword,
 } from "../modalLoginSlice";
 import { useLoginAccount } from "../useLoginAccount";
+import { login } from "../userSlice";
+import { UserType } from "../../../utils/types";
 
 type formValues = {
   email: string;
@@ -41,7 +43,8 @@ function FormLogin() {
 
   const onSubmit: SubmitHandler<formValues> = (data) => {
     loginAccount(data, {
-      onSuccess: () => {
+      onSuccess: (userData: UserType) => {
+        dispatch(login(userData));
         reset();
         dispatch(closeModalLogin?.());
       },

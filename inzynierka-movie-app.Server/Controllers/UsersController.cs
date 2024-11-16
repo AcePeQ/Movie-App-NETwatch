@@ -85,7 +85,7 @@ namespace inzynierka_movie_app.Server
         public async Task<IActionResult> Login([FromBody] LoginUser loginUser) {
             var user = _context.User.SingleOrDefault(user=> user.Email == loginUser.Email);
 
-            if(user == null || user.Password !== loginUser.Password) {
+            if(user == null || user.Password != loginUser.Password) {
                 return BadRequest(new {error = "Invalid email or password. Try again"});
             }
 

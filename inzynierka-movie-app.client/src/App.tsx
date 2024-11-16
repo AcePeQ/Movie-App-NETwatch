@@ -104,6 +104,7 @@ function App() {
             fontWeight: "600",
             fontSize: "1.6rem",
             fontFamily: "inherit",
+            zIndex: "10000000",
           },
           success: {
             duration: 3000,
