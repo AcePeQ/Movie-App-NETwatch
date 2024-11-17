@@ -7,6 +7,7 @@ using System.Text.Json.Serialization;
 public class WatchlistItem {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]
+    [JsonPropertyName("databaseID")]
     public Guid ID {get; set;}
     public string backdrop_path { get; set; }
     public List<int> genre_ids { get; set; }

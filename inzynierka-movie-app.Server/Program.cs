@@ -39,6 +39,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddResponseCaching();
 
 builder.Services.AddScoped<IHttpService, HttpService>();
+builder.Services.AddScoped<JWTService>();
 
 
 var app = builder.Build();

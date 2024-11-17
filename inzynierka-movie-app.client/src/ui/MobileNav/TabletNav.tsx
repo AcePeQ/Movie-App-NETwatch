@@ -9,13 +9,13 @@ import NavigationMobile from "./NavigationTablet/NavigationMobile";
 import SearchModal from "../Search/SearchModal";
 
 interface NavbarPropsTypes {
-  type?: string;
+  type: boolean;
 }
 
 function TabletNav({ type }: NavbarPropsTypes) {
   const dispatch = useDispatch();
 
-  if (type === "loggedIn") {
+  if (type) {
     return (
       <nav className={styles.nav}>
         <Logo />

@@ -18,6 +18,7 @@ import {
 import { useLoginAccount } from "../useLoginAccount";
 import { login } from "../userSlice";
 import { UserType } from "../../../utils/types";
+import toast from "react-hot-toast";
 
 type formValues = {
   email: string;

@@ -82,16 +82,18 @@ namespace inzynierka_movie_app.Server
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login([FromBody] LoginUser loginUser) {
-            var user = _context.User.SingleOrDefault(user=> user.Email == loginUser.Email);
+        public IActionResult Login([FromBody] LoginUser loginUser)
+        {
+            var user = _context.User.SingleOrDefault(user => user.Email == loginUser.Email);
 
-            if(user == null || user.Password != loginUser.Password) {
-                return BadRequest(new {error = "Invalid email or password. Try again"});
+            if (user == null || user.Password != loginUser.Password)
+            {
+                return BadRequest(new { error = "Invalid email or password. Try again" });
             }
 
             var tokenGen = _jwtService.GenerateToken(user);
-            
-            return Json(new {user, token = tokenGen});
+
+            return Json(new { user, token = tokenGen });
         }
 
         // GET: Users

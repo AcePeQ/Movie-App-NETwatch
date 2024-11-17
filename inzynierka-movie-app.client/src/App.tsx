@@ -95,7 +95,7 @@ function App() {
         position="top-center"
         gutter={12}
         containerClassName="notify-toaster"
-        containerStyle={{ margin: "8px" }}
+        containerStyle={{ margin: "8px", zIndex: "10000001" }}
         toastOptions={{
           className: "toast-option",
           style: {
@@ -107,10 +107,10 @@ function App() {
             zIndex: "10000000",
           },
           success: {
-            duration: 3000,
+            duration: 4000,
           },
           error: {
-            duration: 6000,
+            duration: 8000,
           },
         }}
       />

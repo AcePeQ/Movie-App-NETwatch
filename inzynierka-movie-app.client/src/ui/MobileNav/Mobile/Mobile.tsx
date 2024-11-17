@@ -11,13 +11,12 @@ import { useDispatch } from "react-redux";
 import ProfileMenu from "../../ProfileMenu/ProfileMenu";
 
 interface NavbarPropsTypes {
-  type?: string;
+  isLoggedIn: boolean;
 }
 
-function Mobile({ type }: NavbarPropsTypes) {
+function Mobile({ isLoggedIn }: NavbarPropsTypes) {
   const [openNav, setOpenNav] = useState(false);
   const dispatch = useDispatch();
-  const isLoggedIn = type === "loggedIn";
 
   return (
     <>

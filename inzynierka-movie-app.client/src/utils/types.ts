@@ -245,15 +245,16 @@ export type UserType = {
 export type User = {
   ID: number;
   Email: string;
+  Username: string;
   Password: string;
   Watchlist: WatchListUser;
 };
 
 interface WatchListUser {
-  ID: number;
+  databaseID: number;
   backdrop_path: string;
   genre_ids: [];
-  movieID: number;
+  id: number;
   poster_path: string;
   name: string;
   title: string;

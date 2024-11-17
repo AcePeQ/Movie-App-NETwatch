@@ -12,13 +12,13 @@ import { openModalRegister } from "../../features/Authentication/modalRegisterSl
 import { openModalLogin } from "../../features/Authentication/modalLoginSlice";
 
 interface NavbarPropsTypes {
-  type?: string;
+  type: boolean;
 }
 
 export function Navbar({ type }: NavbarPropsTypes) {
   const dispatch = useDispatch();
 
-  if (type === "loggedIn") {
+  if (type) {
     return (
       <nav className={styles.nav}>
         <div className={styles.leftNav}>
