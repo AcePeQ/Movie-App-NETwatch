@@ -7,6 +7,12 @@ import { HiPlusCircle } from "react-icons/hi";
 import styles from "./MovieItemTop.module.css";
 import { ItemType } from "../../../../utils/types";
 import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/useRedux";
+
+import { getUser } from "../../../Authentication/userSlice";
+import { openModalLogin } from "../../../Authentication/modalLoginSlice";
+import { useState } from "react";
+import ModalMovie from "../../../../ui/ModalMovie/ModalMovie";
 
 interface MovieItemProps {
   number: number;
@@ -14,9 +20,31 @@ interface MovieItemProps {
 }
 
 function MovieItemTop({ number, movie }: MovieItemProps) {
+  const user = useAppSelector(getUser);
+  const dispatch = useAppDispatch();
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
   const { id, title, poster_path: backgroundPath } = movie;
   const background = `${BASE_URL_W500}${backgroundPath}`;
   const isMovie = title ? true : false;
+
+  function handleAddMovie(e: MouseEvent) {
+    e.preventDefault();
+
+    if (!user) {
+      dispatch(openModalLogin());
+      return;
+    }
+
+    setModalOpen(true);
+  }
+
+  function handleCloseModal(e: MouseEvent) {
+    e.preventDefault();
+
+    setModalOpen(false);
+  }
 
   return (
     <Link
@@ -35,9 +63,11 @@ function MovieItemTop({ number, movie }: MovieItemProps) {
 
         <div className={styles.options}>
           {/* <HiCog6Tooth /> */}
-          <HiPlusCircle />
+          <HiPlusCircle onClick={handleAddMovie} />
         </div>
       </div>
+
+      {isModalOpen && <ModalMovie id={id} onClose={handleCloseModal} />}
     </Link>
   );
 }

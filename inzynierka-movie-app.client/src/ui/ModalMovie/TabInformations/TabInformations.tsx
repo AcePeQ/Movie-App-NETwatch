@@ -116,7 +116,7 @@ function TabInformations() {
 
           <div className={styles.formBtns}>
             <Button size="medium" type="primary">
-              Save Changes
+              Save
             </Button>
             <Button size="small" type="delete">
               Delete

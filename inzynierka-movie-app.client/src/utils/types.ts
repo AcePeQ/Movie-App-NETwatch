@@ -243,6 +243,7 @@ export type UserType = {
 };
 
 export type User = {
+  id: string;
   username: string;
   watchlist: WatchListUser;
 };

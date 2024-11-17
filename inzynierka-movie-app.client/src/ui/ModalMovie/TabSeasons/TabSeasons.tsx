@@ -25,7 +25,7 @@ export default function TabSeasons() {
 
           <div className={styles.buttons}>
             <Button size="medium" type="primary">
-              Save Changes
+              Save
             </Button>
             <Button size="small" type="delete">
               Delete

@@ -7,10 +7,11 @@ import TabSeasons from "./TabSeasons/TabSeasons";
 import TabInformations from "./TabInformations/TabInformations";
 
 interface ModalProps {
-  onClose?: MouseEventHandler;
+  id: number;
+  onClose: MouseEventHandler;
 }
 
-function ModalMovie({ onClose }: ModalProps) {
+function ModalMovie({ id, onClose }: ModalProps) {
   const [activeTab, setActiveTab] = useState(0);
 
   function handleChangeTab() {

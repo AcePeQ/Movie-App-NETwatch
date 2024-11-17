@@ -81,6 +81,8 @@
   padding: 0.25rem 0.5rem;
   text-align: end;
 
+  z-index: 100;
+
   transition: var(--transition-all);
 
   svg {

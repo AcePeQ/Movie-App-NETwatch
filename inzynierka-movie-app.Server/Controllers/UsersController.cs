@@ -92,6 +92,7 @@ namespace inzynierka_movie_app.Server
             }
 
             var passedUser = new {
+                id = user.ID,
                 username = user.Username,
                 watchlist = user.Watchlist
             };
