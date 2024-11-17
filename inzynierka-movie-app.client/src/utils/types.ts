@@ -243,11 +243,8 @@ export type UserType = {
 };
 
 export type User = {
-  ID: number;
-  Email: string;
-  Username: string;
-  Password: string;
-  Watchlist: WatchListUser;
+  username: string;
+  watchlist: WatchListUser;
 };
 
 interface WatchListUser {

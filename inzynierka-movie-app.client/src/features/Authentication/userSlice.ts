@@ -8,8 +8,10 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  user: null,
-  token: "",
+  user: localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user") as string)
+    : null,
+  token: localStorage.getItem("token") || "",
 };
 
 export const userSlice = createSlice({
@@ -20,19 +22,21 @@ export const userSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
     },
     logout: (state) => {
       state.user = null;
       state.token = "";
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
     },
   },
 });
 
 export const { login, logout } = userSlice.actions;
 
-export const getUser = (state: RootState) => state.user;
-export const getUserWatchList = (state: UserType) => state.user.Watchlist;
+export const getUser = (state: RootState) => state.user.user;
+export const getUserWatchList = (state: UserType) => state.user.watchlist;
 export const getUserToken = (state: UserState) => state.token;
 
 export default userSlice.reducer;

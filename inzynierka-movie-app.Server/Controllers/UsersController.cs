@@ -91,9 +91,13 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new { error = "Invalid email or password. Try again" });
             }
 
+            var passedUser = new {
+                username = user.Username,
+                watchlist = user.Watchlist
+            };
             var tokenGen = _jwtService.GenerateToken(user);
 
-            return Json(new { user, token = tokenGen });
+            return Json(new { user = passedUser, token = tokenGen });
         }
 
         // GET: Users
