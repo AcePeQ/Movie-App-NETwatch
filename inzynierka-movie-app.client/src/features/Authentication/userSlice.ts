@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User, UserType } from "../../utils/types";
+import { User } from "../../utils/types";
 import { RootState } from "../../store";
 
 interface UserState {
@@ -30,13 +30,15 @@ export const userSlice = createSlice({
       localStorage.removeItem("token");
       localStorage.removeItem("user");
     },
+    updateSettings: (state) => {},
   },
 });
 
 export const { login, logout } = userSlice.actions;
 
 export const getUser = (state: RootState) => state.user.user;
-export const getUserWatchList = (state: UserType) => state.user.watchlist;
-export const getUserToken = (state: UserState) => state.token;
+export const getUserWatchList = (state: RootState) =>
+  state.user.user?.watchlist;
+export const getUserToken = (state: RootState) => state.user.token;
 
 export default userSlice.reducer;

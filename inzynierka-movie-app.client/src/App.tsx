@@ -82,8 +82,8 @@ function App() {
               <Route path="contact" element={<Contact />} />
               <Route path="faq" element={<FAQ />} />
 
-              <Route path="account" element={<AccountPage />} />
-              <Route path="account/settings" element={<Settings />} />
+              <Route path="user/:username" element={<AccountPage />} />
+              <Route path="user/:username/settings" element={<Settings />} />
 
               <Route path="*" element={<PageNotFound />} />
             </Route>

@@ -22,6 +22,15 @@ public class LoginUser {
     public string Password {get; set;}
 }
 
+public class Settings {
+    [JsonPropertyName("id")]
+    public Guid ID {get; set;}
+    [JsonPropertyName("username")]
+    public string Username {get; set;}
+    [JsonPropertyName("password")]
+    public string Password {get; set;}
+}
+
 public class RegisterUser {
     [JsonPropertyName("email")]
     public string Email {get; set;}

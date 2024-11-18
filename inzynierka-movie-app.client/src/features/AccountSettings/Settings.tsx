@@ -3,12 +3,24 @@ import styles from "./Settings.module.css";
 import Avatar from "../../ui/Avatar/Avatar";
 import Button from "../../ui/Button/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
+import { getUser, getUserToken, logout } from "../Authentication/userSlice";
+import { useUpdateSettings } from "../Account/useGetSettings";
+import { useNavigate } from "react-router-dom";
 
 type Inputs = {
-  changePassword: string;
+  changed_password: string;
 };
 
 function Settings() {
+  const navigate = useNavigate();
+
+  const user = useAppSelector(getUser);
+  const token = useAppSelector(getUserToken);
+  const dispatch = useAppDispatch();
+
+  const { isUpdating, updateSettings } = useUpdateSettings();
+
   const {
     register,
     handleSubmit,
@@ -16,7 +28,21 @@ function Settings() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+    const settings = {
+      username: user?.username,
+      id: user?.id,
+      password: data.changed_password,
+    };
+
+    updateSettings(
+      { settings, token },
+      {
+        onSuccess: () => {
+          dispatch(logout());
+          navigate("/");
+        },
+      }
+    );
   };
 
   return (
@@ -39,20 +65,20 @@ function Settings() {
               type="text"
               id="passwordChange"
               placeholder="Password"
-              {...register("changePassword", {
+              {...register("changed_password", {
                 required: "This field is required",
               })}
             />
-            {errors.changePassword && errors.changePassword?.message}
+            {errors.changed_password && errors.changed_password?.message}
           </>
         </Row>
 
         <div className={styles.buttons}>
-          <Button type="primary" size="medium">
+          <Button type="primary" size="medium" disabled={isUpdating}>
             Save changes
           </Button>
 
-          <Button type="delete" size="medium">
+          <Button type="delete" size="medium" disabled={isUpdating}>
             Delete Account
           </Button>
         </div>

@@ -45,7 +45,10 @@ function ProfileMenu() {
       {isOpen && (
         <div className={styles.dropdown}>
           <ul className={styles.itemList}>
-            <Link className={styles.dropdownItem} to="/">
+            <Link
+              className={styles.dropdownItem}
+              to={`/user/${user?.username}`}
+            >
               <li className={styles.item}>
                 <HiUserCircle />
                 <p className={styles.title}>Profile</p>
@@ -59,7 +62,10 @@ function ProfileMenu() {
               </li>
             </Link>
 
-            <Link className={styles.dropdownItem} to="/">
+            <Link
+              className={styles.dropdownItem}
+              to={`/user/${user?.username}/settings`}
+            >
               <li className={styles.item}>
                 <RiSettings5Fill />
                 <p className={styles.title}>Settings</p>

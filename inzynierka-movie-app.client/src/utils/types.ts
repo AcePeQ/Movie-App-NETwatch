@@ -262,3 +262,7 @@ interface WatchListUser {
   first_air_date: string;
   vote_count: number;
 }
+
+export type UserSettings = {
+  password: string;
+};

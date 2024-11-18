@@ -101,6 +101,50 @@ namespace inzynierka_movie_app.Server
             return Json(new { user = passedUser, token = tokenGen });
         }
 
+        [HttpGet("{username}")]
+        [AllowAnonymous]
+        public IActionResult GetUser(string username)
+        {
+            var user = _context.User.SingleOrDefault(user => user.Username == username);
+
+            if (user == null)
+            {
+                return BadRequest(new { error = "Account does not exist" });
+            }
+            
+            var passedUser = new {
+                id = user.ID,
+                username = user.Username,
+                watchlist = user.Watchlist
+            };
+
+            return Json(new {user = passedUser});
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Authorize]
+        public  IActionResult UpdateSettings([FromBody] Settings settings)
+        {
+            var user = _context.User.SingleOrDefault(user => user.ID == settings.ID && user.Username == settings.Username);
+
+            if (user == null )
+            {
+                return BadRequest(new { error = "Invalid account" });
+            }
+
+            string passwordPattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$";
+            if (string.IsNullOrEmpty(settings.Password) || !Regex.IsMatch(settings.Password, passwordPattern))
+            {
+                return BadRequest(new { error = "Invalid password format" });
+            };
+
+            user.Password = settings.Password;
+             _context.SaveChangesAsync();
+
+            return Ok(new {ok = "Register sucessed"});;
+        }
+
         // GET: Users
         public async Task<IActionResult> Index()
         {
