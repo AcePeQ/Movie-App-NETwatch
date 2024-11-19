@@ -28,6 +28,20 @@
   background-color: var(--background-100);
 }
 
+.dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: var(--transition-all) ease;
+}
+
+.dropdown.inActive {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: var(--transition-all) ease;
+}
+
 .itemList {
   display: flex;
   flex-direction: column;
