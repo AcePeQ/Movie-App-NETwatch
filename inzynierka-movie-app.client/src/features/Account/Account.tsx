@@ -7,11 +7,14 @@ import Stats from "./AccountStats/Stats";
 import { useAccount } from "./useAccount";
 import Error from "../../ui/Error/Error";
 import Loading from "../../ui/Loading/Loading";
+import { useAppSelector } from "../../hooks/useRedux";
+import { getUser } from "../Authentication/userSlice";
 
 function Account() {
-  const { username: user } = useParams();
+  const { username } = useParams();
+  const userID = useAppSelector(getUser);
 
-  const { isLoading, isError, error } = useAccount(user);
+  const { data, isLoading, isError, error } = useAccount(username, userID?.id);
 
   if (isLoading) {
     return <Loading />;
@@ -21,12 +24,14 @@ function Account() {
     return <Error error={error} />;
   }
 
+  const user = data.user;
+
   return (
     <div className={styles.accountContainer}>
-      <AccountProfile />
+      <AccountProfile user={user.username} />
 
       <div className={styles.profileInformations}>
-        <AccountHeader />
+        <AccountHeader user={user} />
         <Stats />
         <AccountCharts />
       </div>

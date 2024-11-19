@@ -1,6 +1,9 @@
-export async function getAccount(username: string | undefined) {
+export async function getAccount(
+  username: string | undefined,
+  userID: string | null | undefined = ""
+) {
   try {
-    const res = await fetch(`/Users/GetUser/${username}`, {
+    const res = await fetch(`/Users/GetUser/${username}?userID=${userID}`, {
       headers: {
         "Content-Type": "application/json",
       },

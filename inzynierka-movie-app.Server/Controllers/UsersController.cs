@@ -84,7 +84,7 @@ namespace inzynierka_movie_app.Server
         [AllowAnonymous]
         public IActionResult Login([FromBody] LoginUser loginUser)
         {
-            var user = _context.User.SingleOrDefault(user => user.Email == loginUser.Email);
+            var user = _context.User.SingleOrDefault(user => user.Email == loginUser.Email && user.Password == loginUser.Password);
 
             if (user == null || user.Password != loginUser.Password)
             {
@@ -103,9 +103,17 @@ namespace inzynierka_movie_app.Server
 
         [HttpGet("{username}")]
         [AllowAnonymous]
-        public IActionResult GetUser(string username)
+        public IActionResult GetUser(string username, [FromQuery] Guid? userID)
         {
             var user = _context.User.SingleOrDefault(user => user.Username == username);
+
+            if(userID.HasValue) {
+                user = _context.User.SingleOrDefault(user => user.Username == username && user.ID == userID);
+            }
+
+            if(user == null) {
+                user = _context.User.SingleOrDefault(user => user.Username == username);
+            }
 
             if (user == null)
             {
@@ -113,9 +121,17 @@ namespace inzynierka_movie_app.Server
             }
             
             var passedUser = new {
-                id = user.ID,
                 username = user.Username,
                 watchlist = user.Watchlist
+            };
+
+            if(userID.HasValue) {
+                var responseWithID = new {
+                    id = user.ID,
+                    username = user.Username,
+                    watchlist = user.Watchlist
+                };
+                return Json(new {user = responseWithID});
             };
 
             return Json(new {user = passedUser});
