@@ -12,7 +12,7 @@ function AccountProfile() {
     <div className={styles.accountProfile}>
       <Avatar type="account" />
       <Button type="account" size="full">
-        {`${user.user.username}'s List`}
+        {`${user?.user?.username}'s List`}
       </Button>
     </div>
   );

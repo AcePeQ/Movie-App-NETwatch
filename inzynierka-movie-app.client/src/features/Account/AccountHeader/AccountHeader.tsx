@@ -10,13 +10,12 @@ function AccountHeader() {
     "userAccount",
   ]);
   const loggedUser = useAppSelector(getUser);
-  const { username, id } = user.user;
 
   return (
     <div className={styles.header}>
-      <p className={styles.accountName}>{username}</p>
-      {loggedUser?.id === id && (
-        <Link to={`/user/${loggedUser.username}/settings`}>
+      <p className={styles.accountName}>{loggedUser?.username}</p>
+      {loggedUser?.id === user?.user?.id && (
+        <Link to={`/user/${loggedUser?.username}/settings`}>
           <RiSettings5Fill className={styles.icon} />
         </Link>
       )}
