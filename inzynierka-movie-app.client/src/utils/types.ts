@@ -243,7 +243,6 @@ export type UserType = {
 };
 
 export type User = {
-  id: string;
   username: string;
   watchlist: WatchListUser;
 };
@@ -264,5 +263,6 @@ interface WatchListUser {
 }
 
 export type UserSettings = {
+  username: string | null;
   password: string;
 };

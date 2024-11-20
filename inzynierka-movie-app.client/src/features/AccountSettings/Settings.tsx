@@ -5,8 +5,9 @@ import Button from "../../ui/Button/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { getUser, getUserToken, logout } from "../Authentication/userSlice";
-import { useUpdateSettings } from "../Account/useGetSettings";
+import { useUpdateSettings } from "../Account/useUpdateSettings";
 import { useNavigate } from "react-router-dom";
+import { useDeleteAccount } from "../Account/useDeleteAccount";
 
 type Inputs = {
   changed_password: string;
@@ -20,6 +21,9 @@ function Settings() {
   const dispatch = useAppDispatch();
 
   const { isUpdating, updateSettings } = useUpdateSettings();
+  const { isDeleting, deleteAccount } = useDeleteAccount();
+
+  console.log(token);
 
   const {
     register,
@@ -29,8 +33,7 @@ function Settings() {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const settings = {
-      username: user?.username,
-      id: user?.id,
+      username: user.username,
       password: data.changed_password,
     };
 
@@ -44,6 +47,17 @@ function Settings() {
       }
     );
   };
+
+  function handleDeleteAccount(e: Event) {
+    e.preventDefault();
+
+    deleteAccount(token, {
+      onSuccess: () => {
+        dispatch(logout());
+        navigate("/");
+      },
+    });
+  }
 
   return (
     <div className={styles.settingsContainer}>
@@ -74,11 +88,20 @@ function Settings() {
         </Row>
 
         <div className={styles.buttons}>
-          <Button type="primary" size="medium" disabled={isUpdating}>
+          <Button
+            type="primary"
+            size="medium"
+            disabled={isUpdating || isDeleting}
+          >
             Save changes
           </Button>
 
-          <Button type="delete" size="medium" disabled={isUpdating}>
+          <Button
+            type="delete"
+            size="medium"
+            disabled={isUpdating || isDeleting}
+            onClick={handleDeleteAccount}
+          >
             Delete Account
           </Button>
         </div>

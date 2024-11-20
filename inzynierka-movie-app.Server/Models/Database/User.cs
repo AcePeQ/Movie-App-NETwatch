@@ -23,8 +23,6 @@ public class LoginUser {
 }
 
 public class Settings {
-    [JsonPropertyName("id")]
-    public Guid ID {get; set;}
     [JsonPropertyName("username")]
     public string Username {get; set;}
     [JsonPropertyName("password")]

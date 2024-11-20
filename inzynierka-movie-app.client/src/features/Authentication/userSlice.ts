@@ -30,7 +30,6 @@ export const userSlice = createSlice({
       localStorage.removeItem("token");
       localStorage.removeItem("user");
     },
-    updateSettings: (state) => {},
   },
 });
 

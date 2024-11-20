@@ -7,14 +7,11 @@ import Stats from "./AccountStats/Stats";
 import { useAccount } from "./useAccount";
 import Error from "../../ui/Error/Error";
 import Loading from "../../ui/Loading/Loading";
-import { useAppSelector } from "../../hooks/useRedux";
-import { getUser } from "../Authentication/userSlice";
 
 function Account() {
   const { username } = useParams();
-  const userID = useAppSelector(getUser);
 
-  const { data, isLoading, isError, error } = useAccount(username, userID?.id);
+  const { data, isLoading, isError, error } = useAccount(username);
 
   if (isLoading) {
     return <Loading />;

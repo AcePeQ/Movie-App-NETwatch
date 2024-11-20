@@ -1,11 +1,11 @@
-import { MouseEventHandler, ReactElement } from "react";
+import { ReactElement } from "react";
 import { HiX } from "react-icons/hi";
 
 import styles from "./Button.module.css";
 
 interface ButtonProps {
   type?: string;
-  onClick?: MouseEventHandler;
+  onClick?: any;
   children?: string | ReactElement;
   size?: string;
   disabled?: boolean;

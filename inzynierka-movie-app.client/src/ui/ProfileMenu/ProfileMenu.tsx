@@ -87,10 +87,7 @@ function ProfileMenu() {
             </li>
           </Link>
 
-          <Link
-            className={styles.dropdownItem}
-            to={`/user/${user?.username}/settings`}
-          >
+          <Link className={styles.dropdownItem} to={`/user/settings`}>
             <li className={styles.item}>
               <RiSettings5Fill />
               <p className={styles.title}>Settings</p>

@@ -83,7 +83,7 @@ function App() {
               <Route path="faq" element={<FAQ />} />
 
               <Route path="user/:username" element={<AccountPage />} />
-              <Route path="user/:username/settings" element={<Settings />} />
+              <Route path="user/settings" element={<Settings />} />
 
               <Route path="*" element={<PageNotFound />} />
             </Route>

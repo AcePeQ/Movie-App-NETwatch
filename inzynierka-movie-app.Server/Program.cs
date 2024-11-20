@@ -1,11 +1,10 @@
 ﻿using inzynierka_movie_app.Server.Services;
 using inzynierka_movie_app.Server.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using inzynierka_movie_app.Server.Data;
 using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<inzynierka_movie_appServerContext>(options =>
@@ -18,16 +17,45 @@ if(string.IsNullOrEmpty(jwtKey)) {
 var key = Encoding.UTF8.GetBytes(jwtKey);
 
 // Add services to the container.
+
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:5173/")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+        });
+});
+
+
 builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options => {
     options.TokenValidationParameters = new TokenValidationParameters {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
         ValidateIssuer = false,
         ValidateAudience = false,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
     };
+    options.MapInboundClaims = false;
+    options.Events = new JwtBearerEvents
+{
+    OnAuthenticationFailed = context =>
+    {
+        Console.WriteLine("Authentication failed: " + context.Exception.Message);
+        return Task.CompletedTask;
+    },
+    OnChallenge = context =>
+    {
+        Console.WriteLine("Authorization challenge: " + context.Error);
+        return Task.CompletedTask;
+    }
+};
 });
 
 
@@ -56,8 +84,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseCors(MyAllowSpecificOrigins);
+
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

@@ -1,6 +1,6 @@
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 
 namespace inzynierka_movie_app.Server.Services {
@@ -21,11 +21,11 @@ namespace inzynierka_movie_app.Server.Services {
         new Claim(JwtRegisteredClaimNames.Email, user.Email),
         new Claim("username", user.Username),
       }),
-      Expires = DateTime.UtcNow.AddDays(1),
-      SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
+      Expires = DateTime.UtcNow.AddDays(7),
+      SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
       };
 
-      var tokenHandler = new JwtSecurityTokenHandler();
+      var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
       var token = tokenHandler.CreateToken(tokenDescriptor);
 
       return tokenHandler.WriteToken(token);

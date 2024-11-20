@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using inzynierka_movie_app.Server.Data;
-using System.Configuration;
-using Microsoft.Extensions.Configuration;
 using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Authorization;
 using inzynierka_movie_app.Server.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.JsonWebTokens;
+
+
+
 
 namespace inzynierka_movie_app.Server
 {
@@ -92,7 +90,6 @@ namespace inzynierka_movie_app.Server
             }
 
             var passedUser = new {
-                id = user.ID,
                 username = user.Username,
                 watchlist = user.Watchlist
             };
@@ -103,17 +100,9 @@ namespace inzynierka_movie_app.Server
 
         [HttpGet("{username}")]
         [AllowAnonymous]
-        public IActionResult GetUser(string username, [FromQuery] Guid? userID)
+        public IActionResult GetUser(string username)
         {
             var user = _context.User.SingleOrDefault(user => user.Username == username);
-
-            if(userID.HasValue) {
-                user = _context.User.SingleOrDefault(user => user.Username == username && user.ID == userID);
-            }
-
-            if(user == null) {
-                user = _context.User.SingleOrDefault(user => user.Username == username);
-            }
 
             if (user == null)
             {
@@ -125,24 +114,42 @@ namespace inzynierka_movie_app.Server
                 watchlist = user.Watchlist
             };
 
-            if(userID.HasValue) {
-                var responseWithID = new {
-                    id = user.ID,
-                    username = user.Username,
-                    watchlist = user.Watchlist
-                };
-                return Json(new {user = responseWithID});
-            };
-
             return Json(new {user = passedUser});
         }
 
-        [HttpPost]
-        [AllowAnonymous]
         [Authorize]
+        [HttpPost]
         public  IActionResult UpdateSettings([FromBody] Settings settings)
         {
-            var user = _context.User.SingleOrDefault(user => user.ID == settings.ID && user.Username == settings.Username);
+            var userIDToken = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
+            var usernameToken = User.FindFirst("username")?.Value;
+            var emailToken = User.FindFirst(JwtRegisteredClaimNames.Email)?.Value;
+
+            var authorizationHeader = Request.Headers["Authorization"].ToString();
+   
+
+
+            Console.WriteLine(userIDToken);
+            Console.WriteLine(usernameToken);
+            Console.WriteLine(emailToken);
+            Console.WriteLine(authorizationHeader);
+            Console.WriteLine(settings.Username);
+            Console.WriteLine(settings.Password);
+
+            if(settings.Username != usernameToken) {
+                return BadRequest(new { error = "Invalid account" });
+            }
+            
+            if (userIDToken == null || usernameToken == null || emailToken == null)
+            {
+                return BadRequest(new { error = "Invalid account" });
+            }
+
+            if(!Guid.TryParse(userIDToken, out var userIDGuid)) {
+                return BadRequest(new {error = "Invalid user ID format"});
+            }
+
+            var user = _context.User.SingleOrDefault(user => user.ID == userIDGuid && user.Username == usernameToken && user.Email == emailToken);
 
             if (user == null )
             {
@@ -158,7 +165,48 @@ namespace inzynierka_movie_app.Server
             user.Password = settings.Password;
              _context.SaveChangesAsync();
 
-            return Ok(new {ok = "Register sucessed"});;
+            return Ok(new {ok = "Update sucessed"});;
+        }
+
+        [Authorize]
+        [HttpPost]
+        public  IActionResult DeleteAccount()
+        {
+            var userIDToken = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
+            var usernameToken = User.FindFirst("username")?.Value;
+            var emailToken = User.FindFirst(JwtRegisteredClaimNames.Email)?.Value;
+
+            var authorizationHeader = Request.Headers["Authorization"].ToString();
+   
+
+
+            Console.WriteLine(userIDToken);
+            Console.WriteLine(usernameToken);
+            Console.WriteLine(emailToken);
+            Console.WriteLine(authorizationHeader);
+
+
+            
+            if (userIDToken == null || usernameToken == null || emailToken == null)
+            {
+                return BadRequest(new { error = "Invalid account" });
+            }
+
+            if(!Guid.TryParse(userIDToken, out var userIDGuid)) {
+                return BadRequest(new {error = "Invalid user ID format"});
+            }
+
+            var user = _context.User.SingleOrDefault(user => user.ID == userIDGuid && user.Username == usernameToken && user.Email == emailToken);
+
+            if (user == null )
+            {
+                return BadRequest(new { error = "Invalid account" });
+            }      
+
+             _context.User.Remove(user);
+             _context.SaveChangesAsync();
+
+            return Ok(new {ok = "Delete account sucessed"});;
         }
 
         // GET: Users
