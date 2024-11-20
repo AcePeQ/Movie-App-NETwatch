@@ -31,6 +31,7 @@
 .dropdown.active {
   opacity: 1;
   visibility: visible;
+  pointer-events: initial;
   transform: translateY(0);
   transition: var(--transition-all) ease;
 }
@@ -38,6 +39,8 @@
 .dropdown.inActive {
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
+
   transform: translateY(-10px);
   transition: var(--transition-all) ease;
 }
