@@ -12,15 +12,16 @@ interface ModalProps {
 
 function Modal({ children, title, onClose }: ModalProps) {
   return createPortal(
-    <div onClick={onClose} className={styles.overlay}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+    <>
+      <div onClick={onClose} className={styles.overlay}></div>
+      <div className={styles.modal}>
         <div className={styles.header}>
           <p className={styles.title}>{title}</p>
           <Button type="closeButton" size="absoluteModal" onClick={onClose} />
         </div>
         {children}
       </div>
-    </div>,
+    </>,
     document.body
   );
 }
