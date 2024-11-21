@@ -14,9 +14,7 @@
   & > div {
     padding: 1rem 2rem;
     border-radius: var(--border-radius-tiny);
-    background-color: var(--background-200);
-
-    margin-bottom: 4rem;
+    background-color: var(--background-100);
   }
 }
 

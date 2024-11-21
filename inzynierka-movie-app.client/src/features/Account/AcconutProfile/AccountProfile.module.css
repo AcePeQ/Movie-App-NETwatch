@@ -1,11 +1,13 @@
 .accountProfile {
   position: sticky;
 
+  height: max-content;
+
   min-width: 35rem;
 
   padding: 1.5rem;
   border-radius: var(--border-radius-tiny);
-  background-color: var(--background-200);
+  background-color: var(--background-100);
 
   img {
     margin-bottom: 1.5rem;

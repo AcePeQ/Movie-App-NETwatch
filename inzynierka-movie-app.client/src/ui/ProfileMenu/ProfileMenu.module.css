@@ -54,6 +54,11 @@
 .profileIcon {
   width: 2.8rem;
   height: 2.8rem;
+
+  transition: var(--transition-all);
+}
+.profile:hover .profileIcon {
+  color: var(--accent-100);
 }
 
 .dropdownItem {
