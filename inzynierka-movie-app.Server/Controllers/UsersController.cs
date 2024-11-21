@@ -125,17 +125,6 @@ namespace inzynierka_movie_app.Server
             var usernameToken = User.FindFirst("username")?.Value;
             var emailToken = User.FindFirst(JwtRegisteredClaimNames.Email)?.Value;
 
-            var authorizationHeader = Request.Headers["Authorization"].ToString();
-   
-
-
-            Console.WriteLine(userIDToken);
-            Console.WriteLine(usernameToken);
-            Console.WriteLine(emailToken);
-            Console.WriteLine(authorizationHeader);
-            Console.WriteLine(settings.Username);
-            Console.WriteLine(settings.Password);
-
             if(settings.Username != usernameToken) {
                 return BadRequest(new { error = "Invalid account" });
             }
@@ -149,7 +138,7 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new {error = "Invalid user ID format"});
             }
 
-            var user = _context.User.SingleOrDefault(user => user.ID == userIDGuid && user.Username == usernameToken && user.Email == emailToken);
+            var user = _context.User.SingleOrDefault(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
 
             if (user == null )
             {
@@ -172,7 +161,7 @@ namespace inzynierka_movie_app.Server
         [HttpPost]
         public  IActionResult DeleteAccount()
         {
-            var userIDToken = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
+            var userIDToken = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value.ToUpper();
             var usernameToken = User.FindFirst("username")?.Value;
             var emailToken = User.FindFirst(JwtRegisteredClaimNames.Email)?.Value;
 
@@ -196,12 +185,16 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new {error = "Invalid user ID format"});
             }
 
-            var user = _context.User.SingleOrDefault(user => user.ID == userIDGuid && user.Username == usernameToken && user.Email == emailToken);
+            var user = _context.User.SingleOrDefault(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+
+            Console.WriteLine(user);
 
             if (user == null )
             {
                 return BadRequest(new { error = "Invalid account" });
             }      
+
+            Console.WriteLine(user);
 
              _context.User.Remove(user);
              _context.SaveChangesAsync();

@@ -74,6 +74,11 @@
   gap: 5rem;
 }
 
+.confirmation_text {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
 @media only screen and (max-width: 78.125em) {
   .row {
     input {

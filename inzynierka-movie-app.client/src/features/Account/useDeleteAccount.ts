@@ -12,7 +12,7 @@ export function useDeleteAccount() {
   const { isPending: isDeleting, mutate: deleteAccount } = useMutation({
     mutationFn: (token: string) => deleteAccountApi(token),
     onSuccess: () => {
-      toast.success("Successfully changed settings");
+      toast.success("Successfully deleted account");
     },
     onError: (error) => {
       toast.error(error.message);

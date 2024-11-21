@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import styles from "./Settings.module.css";
 import Avatar from "../../ui/Avatar/Avatar";
 import Button from "../../ui/Button/Button";
@@ -8,12 +8,14 @@ import { getUser, getUserToken, logout } from "../Authentication/userSlice";
 import { useUpdateSettings } from "../Account/useUpdateSettings";
 import { useNavigate } from "react-router-dom";
 import { useDeleteAccount } from "../Account/useDeleteAccount";
+import ModalConfirm from "../../ui/ModalConfirm/ModalConfirm";
 
 type Inputs = {
   changed_password: string;
 };
 
 function Settings() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const user = useAppSelector(getUser);
@@ -23,13 +25,15 @@ function Settings() {
   const { isUpdating, updateSettings } = useUpdateSettings();
   const { isDeleting, deleteAccount } = useDeleteAccount();
 
-  console.log(token);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+
+  function handleToggleModal() {
+    setIsModalOpen(!isModalOpen);
+  }
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const settings = {
@@ -100,12 +104,24 @@ function Settings() {
             type="delete"
             size="medium"
             disabled={isUpdating || isDeleting}
-            onClick={handleDeleteAccount}
+            onClick={handleToggleModal}
           >
             Delete Account
           </Button>
         </div>
       </form>
+
+      {isModalOpen && (
+        <ModalConfirm
+          isLoading={isDeleting}
+          handleAction={handleDeleteAccount}
+          handleCloseModal={handleToggleModal}
+        >
+          <p className={styles.confirmation_text}>
+            Are you sure you want to delete your account?
+          </p>
+        </ModalConfirm>
+      )}
     </div>
   );
 }
