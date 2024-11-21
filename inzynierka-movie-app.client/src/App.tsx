@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 
 import Loading from "./ui/Loading/Loading";
 import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "./ui/ProtectedRoute/ProtectedRoute";
 
 const Layout = lazy(() => import(`./ui/Layout/Layout`));
 const Home = lazy(() => import(`./pages/HomePage/Home`));
@@ -83,7 +84,14 @@ function App() {
               <Route path="faq" element={<FAQ />} />
 
               <Route path="user/:username" element={<AccountPage />} />
-              <Route path="user/settings" element={<Settings />} />
+              <Route
+                path="user/settings"
+                element={
+                  <ProtectedRoute>
+                    <Settings />
+                  </ProtectedRoute>
+                }
+              />
 
               <Route path="*" element={<PageNotFound />} />
             </Route>
