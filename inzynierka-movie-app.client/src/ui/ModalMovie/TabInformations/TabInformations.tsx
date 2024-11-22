@@ -69,61 +69,42 @@ function TabInformations() {
   };
 
   return (
-    <div className={styles.main}>
-      <div className={styles.imageBox}>
-        <img
-          src="/public/shogunPoster.webp"
-          alt="shogun"
-          className={styles.image}
-        />
+    <div className={styles.movieInformations}>
+      <div className={styles.details}>
+        <p className={styles.title}>Shogun</p>
+        <p className={styles.informations}>
+          Series - Action, Adventure, Horror
+        </p>
+
+        <div className={styles.scoreAndYearBox}>
+          <MovieRating />
+          <p className={styles.year}>2024</p>
+        </div>
       </div>
 
-      <div className={styles.movieInformations}>
-        <div className={styles.details}>
-          <p className={styles.title}>Shogun</p>
-          <p className={styles.informations}>
-            Series - Action, Adventure, Horror
-          </p>
-
-          <div className={styles.scoreAndYearBox}>
-            <MovieRating />
-            <p className={styles.year}>2024</p>
+      <form className={styles.form}>
+        <div className={styles.formRow}>
+          <p className={styles.formOptionName}>Status</p>
+          <div className={styles.formOptionOption}>
+            <Select
+              theme={customTheme}
+              styles={customStyles}
+              isSearchable={false}
+              options={statusOptions}
+              defaultValue={statusOptions[0]}
+              className={styles.selectContainer}
+            />
           </div>
         </div>
 
-        <form className={styles.form}>
-          <div className={styles.formRow}>
-            <p className={styles.formOptionName}>Status</p>
-            <div className={styles.formOptionOption}>
-              <Select
-                theme={customTheme}
-                styles={customStyles}
-                isSearchable={false}
-                options={statusOptions}
-                defaultValue={statusOptions[0]}
-                className={styles.selectContainer}
-              />
-            </div>
-          </div>
+        <div className={styles.formRow}>
+          <p className={styles.formOptionName}>Episodes Watched</p>
+        </div>
 
-          <div className={styles.formRow}>
-            <p className={styles.formOptionName}>Episodes Watched</p>
-          </div>
-
-          <div className={styles.formRow}>
-            <p className={styles.formOptionName}>Overall Rating</p>
-          </div>
-
-          <div className={styles.formBtns}>
-            <Button size="medium" type="primary">
-              Save
-            </Button>
-            <Button size="small" type="delete">
-              Delete
-            </Button>
-          </div>
-        </form>
-      </div>
+        <div className={styles.formRow}>
+          <p className={styles.formOptionName}>Overall Rating</p>
+        </div>
+      </form>
     </div>
   );
 }

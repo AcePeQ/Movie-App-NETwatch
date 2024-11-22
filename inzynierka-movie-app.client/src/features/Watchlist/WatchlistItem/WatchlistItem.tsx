@@ -41,7 +41,9 @@ function WatchlistItem() {
         </div>
       </div>
 
-      {isModalOpen && <ModalMovie onClose={handleCloseModal} />}
+      {isModalOpen && (
+        <ModalMovie isMovie={isMovie} onClose={handleCloseModal} />
+      )}
     </Link>
   );
 }

@@ -9,6 +9,11 @@ import { findGenre } from "../../../../helpers/findGenre";
 
 import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
 import { ItemType } from "../../../../utils/types";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/useRedux";
+import { getUser } from "../../../Authentication/userSlice";
+import { useState } from "react";
+import ModalMovie from "../../../../ui/ModalMovie/ModalMovie";
+import { openModalLogin } from "../../../Authentication/modalLoginSlice";
 
 interface MovieItem {
   type: string;
@@ -16,6 +21,11 @@ interface MovieItem {
 }
 
 function MovieItem({ type, movie }: MovieItem) {
+  const user = useAppSelector(getUser);
+  const dispatch = useAppDispatch();
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
   const {
     id,
     backdrop_path: backgroundPath,
@@ -32,13 +42,31 @@ function MovieItem({ type, movie }: MovieItem) {
   const backgroundImage = {
     background: `url(${backgroundPath ? background : noImage})`,
   };
+
+  function handleAddMovie(e) {
+    e.preventDefault();
+
+    if (!user) {
+      dispatch(openModalLogin());
+      return;
+    }
+
+    setModalOpen(true);
+  }
+
+  function handleCloseModal(e) {
+    e.preventDefault();
+
+    setModalOpen(false);
+  }
+
   return (
     <Link
       className={`${styles.movieContainer} ${styles[type]}`}
       style={backgroundImage}
       to={`${isMovie ? `/movie/${id}` : `/tv/${id}`}`}
     >
-      <div className={styles.options}>
+      <div className={styles.options} onClick={handleAddMovie}>
         <HiCog6Tooth />
       </div>
 
@@ -55,6 +83,10 @@ function MovieItem({ type, movie }: MovieItem) {
           ))}
         </div>
       </div>
+
+      {isModalOpen && (
+        <ModalMovie id={id} isMovie={isMovie} onClose={handleCloseModal} />
+      )}
     </Link>
   );
 }

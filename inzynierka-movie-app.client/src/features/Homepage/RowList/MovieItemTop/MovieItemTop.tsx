@@ -67,7 +67,9 @@ function MovieItemTop({ number, movie }: MovieItemProps) {
         </div>
       </div>
 
-      {isModalOpen && <ModalMovie id={id} onClose={handleCloseModal} />}
+      {isModalOpen && (
+        <ModalMovie id={id} isMovie={isMovie} onClose={handleCloseModal} />
+      )}
     </Link>
   );
 }

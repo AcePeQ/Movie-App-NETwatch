@@ -58,5 +58,15 @@ namespace inzynierka_movie_app.Server.Controllers
             return Json(new {tvseries = processedResponseTVSeries, credits = processedResponseCredits, videos = processedResponseVideos, similar = processedResponseSimilar, regions = processedResponseRegions, providers = processedResponseProviders});
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetModalMovie(int id, bool isMovie)
+        {
+            string typeOfMovie = isMovie ? "movie" : "tv";
+            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/{typeOfMovie}/{id}?language=en-US");
+            var processedResponse = await httpService.ProcessResponse<TVSeriesID>(res);
+
+            return Json(processedResponse);
+        }
+
     }
 }
