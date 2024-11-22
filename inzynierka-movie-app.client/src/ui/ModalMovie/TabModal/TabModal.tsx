@@ -20,14 +20,6 @@ function TabModal({
         />
       </div>
       {children}
-      <div className={styles.formBtns}>
-        <Button size="medium" type="primary">
-          Save
-        </Button>
-        <Button size="small" type="delete">
-          Delete
-        </Button>
-      </div>
     </div>
   );
 }

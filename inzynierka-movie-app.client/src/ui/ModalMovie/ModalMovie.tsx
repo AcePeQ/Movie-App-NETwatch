@@ -98,15 +98,7 @@ function ModalMovie({ id, isMovie, onClose }: ModalProps) {
     <>
       <div onClick={onClose} className={styles.overlay}></div>
       <div className={styles.modal} onClick={(e) => e.preventDefault()}>
-        <div className={styles.header}>
-          <div className={styles.tabs}>
-            <button className={`${styles.btn} ${styles.active}`}>
-              Informations
-            </button>
-          </div>
-
-          <Button type="closeButton" size="normal" onClick={onClose} />
-        </div>
+        <Button type="closeButton" size="normal" onClick={onClose} />
 
         {isModalLoading ? (
           <LoaderSmall />
@@ -152,6 +144,15 @@ function ModalMovie({ id, isMovie, onClose }: ModalProps) {
 
                   <div className={styles.formRow}>
                     <p className={styles.formOptionName}>Overall Rating</p>
+                  </div>
+
+                  <div className={styles.formBtns}>
+                    <Button size="medium" type="primary">
+                      Save
+                    </Button>
+                    <Button size="small" type="delete">
+                      Delete
+                    </Button>
                   </div>
                 </form>
               </div>

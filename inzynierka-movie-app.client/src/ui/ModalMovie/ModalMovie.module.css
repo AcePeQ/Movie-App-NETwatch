@@ -36,14 +36,10 @@
   box-shadow: var(--shadow-md);
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  position: relative;
-
-  margin-bottom: 2.5rem;
+.modal > button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }
 
 .tabs {
