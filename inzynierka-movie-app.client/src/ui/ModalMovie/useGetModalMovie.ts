@@ -8,7 +8,7 @@ export function useGetModalMovie(id: number, isMovie: boolean) {
     isError: isModalError,
     error: modalError,
   } = useQuery({
-    queryKey: ["modalMovie", id],
+    queryKey: ["modalMovie", id, isMovie],
     queryFn: () => getModalMovieApi(id, isMovie),
   });
 

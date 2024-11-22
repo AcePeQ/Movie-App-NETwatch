@@ -59,11 +59,13 @@ namespace inzynierka_movie_app.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetModalMovie(int id, bool isMovie)
+        public async Task<IActionResult> GetModalMovie(string id, string isMovie)
         {
-            string typeOfMovie = isMovie ? "movie" : "tv";
-            var res = await httpService.CreateRequest($"https://api.themoviedb.org/3/{typeOfMovie}/{id}?language=en-US");
-            var processedResponse = await httpService.ProcessResponse<TVSeriesID>(res);
+            string type = isMovie=="true" ? "movie" : "tv";
+            string url = $"https://api.themoviedb.org/3/{type}/{id}?language=en-US";
+
+            var res = await httpService.CreateRequest(url);
+            var processedResponse = await httpService.ProcessResponse<ModalMovie>(res);
 
             return Json(processedResponse);
         }

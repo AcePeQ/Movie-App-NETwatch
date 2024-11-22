@@ -1,11 +1,14 @@
 export async function getModalMovieApi(id: number, isMovie: boolean) {
   try {
-    const res = await fetch(`/Movie/GetModalMovie/?type=${isMovie}&id=${id}}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `/Movie/GetModalMovie/?isMovie=${isMovie}&id=${id}}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     if (!res.ok) {
       throw new Error(
         "Something goes wrong with fethcing modal movie informations"
