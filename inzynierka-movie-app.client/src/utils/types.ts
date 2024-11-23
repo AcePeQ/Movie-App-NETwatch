@@ -244,10 +244,10 @@ export type UserType = {
 
 export type User = {
   username: string;
-  watchlist: WatchListUser;
+  watchlist: WatchListUser[];
 };
 
-interface WatchListUser {
+export interface WatchListUser {
   databaseID: number;
   backdrop_path: string;
   genre_ids: [];

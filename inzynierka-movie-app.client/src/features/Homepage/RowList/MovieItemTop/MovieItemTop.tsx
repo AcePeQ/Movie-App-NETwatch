@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 
 import { HiPlusCircle } from "react-icons/hi";
 
-// import { HiCog6Tooth } from "react-icons/hi2";
+import { HiCog6Tooth } from "react-icons/hi2";
 
 import styles from "./MovieItemTop.module.css";
-import { ItemType } from "../../../../utils/types";
+import { ItemType, WatchListUser } from "../../../../utils/types";
 import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useRedux";
 
-import { getUser } from "../../../Authentication/userSlice";
+import { getUser, getUserWatchList } from "../../../Authentication/userSlice";
 import { openModalLogin } from "../../../Authentication/modalLoginSlice";
 import { useState } from "react";
 import ModalMovie from "../../../../ui/ModalMovie/ModalMovie";
@@ -21,6 +21,7 @@ interface MovieItemProps {
 
 function MovieItemTop({ number, movie }: MovieItemProps) {
   const user = useAppSelector(getUser);
+  const watchlist = useAppSelector(getUserWatchList);
   const dispatch = useAppDispatch();
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -29,7 +30,10 @@ function MovieItemTop({ number, movie }: MovieItemProps) {
   const background = `${BASE_URL_W500}${backgroundPath}`;
   const isMovie = title ? true : false;
 
-  function handleAddMovie(e: MouseEvent) {
+  const foundMovie =
+    watchlist && watchlist?.find((item: WatchListUser) => item.id === id);
+
+  function handleModalMovie(e: MouseEvent) {
     e.preventDefault();
 
     if (!user) {
@@ -61,14 +65,18 @@ function MovieItemTop({ number, movie }: MovieItemProps) {
           alt={`Poster of ${title}`}
         />
 
-        <div className={styles.options}>
-          {/* <HiCog6Tooth /> */}
-          <HiPlusCircle onClick={handleAddMovie} />
+        <div className={styles.options} onClick={handleModalMovie}>
+          {foundMovie ? <HiCog6Tooth /> : <HiPlusCircle />}
         </div>
       </div>
 
       {isModalOpen && (
-        <ModalMovie id={id} isMovie={isMovie} onClose={handleCloseModal} />
+        <ModalMovie
+          id={id}
+          isMovie={isMovie}
+          onClose={handleCloseModal}
+          foundMovie={foundMovie}
+        />
       )}
     </Link>
   );

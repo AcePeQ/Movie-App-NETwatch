@@ -9,6 +9,7 @@ import LoaderSmall from "../LoaderSmall/LoaderSmall";
 import ErrorFull from "../Error/ErrorFullPage/ErrorFullPage";
 import MovieRating from "../MovieRating/MovieRating";
 import Select from "react-select";
+import { GenreType, WatchListUser } from "../../utils/types";
 
 function customTheme(theme) {
   return {
@@ -69,6 +70,7 @@ interface ModalProps {
   id: number;
   isMovie: boolean;
   onClose: MouseEventHandler;
+  foundMovie: WatchListUser | undefined;
 }
 
 const statusOptions = [
@@ -79,7 +81,7 @@ const statusOptions = [
   { value: "dropped", label: "Dropped" },
 ];
 
-function ModalMovie({ id, isMovie, onClose }: ModalProps) {
+function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
   const {
     movieData: movie,
     isModalError,
@@ -112,7 +114,9 @@ function ModalMovie({ id, isMovie, onClose }: ModalProps) {
                   </p>
                   <p className={styles.informations}>
                     {isMovieType ? "TV" : "Series"}
-                    {movie.genres.map((genre) => ` - ${genre.name} `)}
+                    {movie.genres.map(
+                      (genre: GenreType) => ` - ${genre.name} `
+                    )}
                   </p>
 
                   <div className={styles.scoreAndYearBox}>
@@ -147,12 +151,21 @@ function ModalMovie({ id, isMovie, onClose }: ModalProps) {
                   </div>
 
                   <div className={styles.formBtns}>
-                    <Button size="medium" type="primary">
-                      Save
-                    </Button>
-                    <Button size="small" type="delete">
-                      Delete
-                    </Button>
+                    {!foundMovie && (
+                      <Button size="small" type="primary">
+                        Add
+                      </Button>
+                    )}
+                    {foundMovie && (
+                      <>
+                        <Button size="small" type="delete">
+                          Save
+                        </Button>
+                        <Button size="small" type="delete">
+                          Delete
+                        </Button>
+                      </>
+                    )}
                   </div>
                 </form>
               </div>

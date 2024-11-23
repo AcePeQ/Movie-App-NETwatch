@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 
 import { HiCog6Tooth } from "react-icons/hi2";
-// import { HiCog6Tooth } from "react-icons/hi2";
+import { HiPlusCircle } from "react-icons/hi";
 
 import styles from "./MovieItem.module.css";
 import MovieRating from "../../../../ui/MovieRating/MovieRating";
 import { findGenre } from "../../../../helpers/findGenre";
 
 import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
-import { ItemType } from "../../../../utils/types";
+import { ItemType, WatchListUser } from "../../../../utils/types";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useRedux";
-import { getUser } from "../../../Authentication/userSlice";
+import { getUser, getUserWatchList } from "../../../Authentication/userSlice";
 import { useState } from "react";
 import ModalMovie from "../../../../ui/ModalMovie/ModalMovie";
 import { openModalLogin } from "../../../Authentication/modalLoginSlice";
@@ -22,6 +22,7 @@ interface MovieItem {
 
 function MovieItem({ type, movie }: MovieItem) {
   const user = useAppSelector(getUser);
+  const watchlist = useAppSelector(getUserWatchList);
   const dispatch = useAppDispatch();
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -39,11 +40,14 @@ function MovieItem({ type, movie }: MovieItem) {
   const isMovie = title ? true : false;
   const genres = genre_ids.slice(0, 2);
 
+  const foundMovie =
+    watchlist && watchlist?.find((item: WatchListUser) => item.id === id);
+
   const backgroundImage = {
     background: `url(${backgroundPath ? background : noImage})`,
   };
 
-  function handleAddMovie(e) {
+  function handleModalMovie(e) {
     e.preventDefault();
 
     if (!user) {
@@ -66,8 +70,8 @@ function MovieItem({ type, movie }: MovieItem) {
       style={backgroundImage}
       to={`${isMovie ? `/movie/${id}` : `/tv/${id}`}`}
     >
-      <div className={styles.options} onClick={handleAddMovie}>
-        <HiCog6Tooth />
+      <div className={styles.options} onClick={handleModalMovie}>
+        {foundMovie ? <HiCog6Tooth /> : <HiPlusCircle />}
       </div>
 
       <div className={styles.details}>
@@ -85,7 +89,12 @@ function MovieItem({ type, movie }: MovieItem) {
       </div>
 
       {isModalOpen && (
-        <ModalMovie id={id} isMovie={isMovie} onClose={handleCloseModal} />
+        <ModalMovie
+          id={id}
+          isMovie={isMovie}
+          onClose={handleCloseModal}
+          foundMovie={foundMovie}
+        />
       )}
     </Link>
   );
