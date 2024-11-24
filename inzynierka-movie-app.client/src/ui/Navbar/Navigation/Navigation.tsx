@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import { useAppSelector } from "../../../hooks/useRedux";
-import { getUser } from "../../../features/Authentication/userSlice";
+import { getUserToken } from "../../../features/Authentication/userSlice";
 
 function Navigation() {
-  const user = useAppSelector(getUser);
+  const token = useAppSelector(getUserToken);
 
   return (
     <ul className={styles.navigationList}>
@@ -23,7 +23,7 @@ function Navigation() {
           TV Series
         </NavLink>
       </li>
-      {user && (
+      {token && (
         <li>
           <NavLink className={styles.navlink} to="account/watchlist">
             Watchlist

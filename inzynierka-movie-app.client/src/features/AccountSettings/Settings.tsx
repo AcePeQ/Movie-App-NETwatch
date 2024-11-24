@@ -4,7 +4,7 @@ import Avatar from "../../ui/Avatar/Avatar";
 import Button from "../../ui/Button/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
-import { getUser, getUserToken, logout } from "../Authentication/userSlice";
+import { getUsername, getUserToken, logout } from "../Authentication/userSlice";
 import { useUpdateSettings } from "../Account/useUpdateSettings";
 import { useNavigate } from "react-router-dom";
 import { useDeleteAccount } from "../Account/useDeleteAccount";
@@ -18,7 +18,7 @@ function Settings() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  const user = useAppSelector(getUser);
+  const username = useAppSelector(getUsername);
   const token = useAppSelector(getUserToken);
   const dispatch = useAppDispatch();
 
@@ -37,7 +37,7 @@ function Settings() {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const settings = {
-      username: user.username,
+      username: username,
       password: data.changed_password,
     };
 

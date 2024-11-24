@@ -260,9 +260,11 @@ export interface WatchListUser {
   release_date: string;
   first_air_date: string;
   vote_count: number;
+  watched_episodes: number;
+  user_rating: number;
 }
 
 export type UserSettings = {
-  username: string | null;
+  username: string | undefined;
   password: string;
 };

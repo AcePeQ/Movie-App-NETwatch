@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./AccountHeader.module.css";
 import { RiSettings5Fill } from "react-icons/ri";
 import { useAppSelector } from "../../../hooks/useRedux";
-import { getUser } from "../../Authentication/userSlice";
+import { getUsername } from "../../Authentication/userSlice";
 
 interface AccountHeaderTypes {
   user: {
@@ -12,12 +12,12 @@ interface AccountHeaderTypes {
 }
 
 function AccountHeader({ user }: AccountHeaderTypes) {
-  const loggedUser = useAppSelector(getUser);
+  const loggedUser = useAppSelector(getUsername);
 
   return (
     <div className={styles.header}>
       <p className={styles.accountName}>{user.username}</p>
-      {loggedUser?.username === user.username && (
+      {loggedUser === user.username && (
         <Link to={`/user/settings`}>
           <RiSettings5Fill className={styles.icon} />
         </Link>

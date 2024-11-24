@@ -81,6 +81,10 @@ export default defineConfig({
         target,
         secure: false,
       },
+      "^/Watchlist": {
+        target,
+        secure: false,
+      },
     },
     port: 5173,
     https: {

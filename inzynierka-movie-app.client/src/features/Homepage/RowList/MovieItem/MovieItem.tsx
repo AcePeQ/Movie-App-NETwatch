@@ -10,7 +10,10 @@ import { findGenre } from "../../../../helpers/findGenre";
 import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
 import { ItemType, WatchListUser } from "../../../../utils/types";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useRedux";
-import { getUser, getUserWatchList } from "../../../Authentication/userSlice";
+import {
+  getUserToken,
+  getUserWatchList,
+} from "../../../Authentication/userSlice";
 import { useState } from "react";
 import ModalMovie from "../../../../ui/ModalMovie/ModalMovie";
 import { openModalLogin } from "../../../Authentication/modalLoginSlice";
@@ -21,7 +24,7 @@ interface MovieItem {
 }
 
 function MovieItem({ type, movie }: MovieItem) {
-  const user = useAppSelector(getUser);
+  const token = useAppSelector(getUserToken);
   const watchlist = useAppSelector(getUserWatchList);
   const dispatch = useAppDispatch();
 
@@ -50,7 +53,7 @@ function MovieItem({ type, movie }: MovieItem) {
   function handleModalMovie(e) {
     e.preventDefault();
 
-    if (!user) {
+    if (!token) {
       dispatch(openModalLogin());
       return;
     }

@@ -10,6 +10,9 @@ import ErrorFull from "../Error/ErrorFullPage/ErrorFullPage";
 import MovieRating from "../MovieRating/MovieRating";
 import Select from "react-select";
 import { GenreType, WatchListUser } from "../../utils/types";
+import { useAddMovie } from "../../features/Watchlist/useAddMovie";
+import { getUserToken } from "../../features/Authentication/userSlice";
+import { useAppSelector } from "../../hooks/useRedux";
 
 function customTheme(theme) {
   return {
@@ -89,12 +92,29 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
     modalError,
   } = useGetModalMovie(id, isMovie);
 
+  const token = useAppSelector(getUserToken);
+  const { isAddingMovie, addMovie } = useAddMovie();
+
   if (isModalError) {
     return <ErrorFull error={modalError} />;
   }
 
   const posterImg = movie?.poster_path;
   const isMovieType = movie?.name ? true : false;
+
+  function handleAddMovie(selectedMovie: WatchListUser, token: string) {
+    const movie_type = isMovieType ? "movie" : "tv";
+
+    const movie = {
+      ...selectedMovie,
+      watched_episodes: 0,
+      user_rating: 5,
+      movie_type,
+    };
+
+    const data = { movie, token };
+    addMovie(data);
+  }
 
   return createPortal(
     <>
@@ -127,7 +147,7 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
                   </div>
                 </div>
 
-                <form className={styles.form}>
+                <div className={styles.form}>
                   <div className={styles.formRow}>
                     <p className={styles.formOptionName}>{movie.status}</p>
                     <div className={styles.formOptionOption}>
@@ -152,7 +172,12 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
 
                   <div className={styles.formBtns}>
                     {!foundMovie && (
-                      <Button size="small" type="primary">
+                      <Button
+                        disabled={isAddingMovie}
+                        size="small"
+                        type="primary"
+                        onClick={() => handleAddMovie(movie, token)}
+                      >
                         Add
                       </Button>
                     )}
@@ -167,7 +192,7 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
                       </>
                     )}
                   </div>
-                </form>
+                </div>
               </div>
             </TabModal>
           </>

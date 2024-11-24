@@ -12,12 +12,12 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { HiMiniChevronUp } from "react-icons/hi2";
 import { HiMiniChevronDown } from "react-icons/hi2";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
-import { getUser, logout } from "../../features/Authentication/userSlice";
+import { getUsername, logout } from "../../features/Authentication/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 
 function ProfileMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const user = useAppSelector(getUser);
+  const username = useAppSelector(getUsername);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -54,7 +54,7 @@ function ProfileMenu() {
         }}
       >
         <Avatar type="profile" />
-        <p className={styles.profileName}>{user?.username}</p>
+        <p className={styles.profileName}>{username}</p>
         {isOpen ? (
           <HiMiniChevronUp className={styles.profileIcon} />
         ) : (
@@ -73,7 +73,7 @@ function ProfileMenu() {
             setIsOpen(false);
           }}
         >
-          <Link className={styles.dropdownItem} to={`/user/${user?.username}`}>
+          <Link className={styles.dropdownItem} to={`/user/${username}`}>
             <li className={styles.item}>
               <HiUserCircle />
               <p className={styles.title}>Profile</p>

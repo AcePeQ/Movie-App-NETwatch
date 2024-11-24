@@ -1,7 +1,5 @@
 import { UserSettings } from "../utils/types";
 
-// maciej.noj4321@onet.pl
-
 export async function updateSettingsApi(settings: UserSettings, token: string) {
   try {
     const res = await fetch(`/Users/UpdateSettings`, {

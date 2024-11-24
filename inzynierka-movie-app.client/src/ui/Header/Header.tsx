@@ -3,7 +3,7 @@ import { Navbar } from "../Navbar/Navbar";
 import TabletNav from "../MobileNav/TabletNav";
 import styles from "./Header.module.css";
 import { useAppSelector } from "../../hooks/useRedux";
-import { getUser } from "../../features/Authentication/userSlice";
+import { getUserToken } from "../../features/Authentication/userSlice";
 
 function Header() {
   const isSmallLaptop = useMediaQuery({
@@ -14,8 +14,8 @@ function Header() {
     query: "(max-width: 575px)",
   });
 
-  const user = useAppSelector(getUser);
-  const isLoggedIn = user ? true : false;
+  const token = useAppSelector(getUserToken);
+  const isLoggedIn = token ? true : false;
 
   return (
     <header className={styles.header}>

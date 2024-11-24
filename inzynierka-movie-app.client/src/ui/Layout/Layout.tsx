@@ -9,15 +9,15 @@ import Mobile from "../MobileNav/Mobile/Mobile";
 import SearchModal from "../Search/SearchModal";
 import { useMediaQuery } from "react-responsive";
 import { useAppSelector } from "../../hooks/useRedux";
-import { getUser } from "../../features/Authentication/userSlice";
+import { getUserToken } from "../../features/Authentication/userSlice";
 
 function Layout() {
   const isMobile = useMediaQuery({
     query: "(max-width: 575px)",
   });
 
-  const user = useAppSelector(getUser);
-  const isLoggedIn = user ? true : false;
+  const token = useAppSelector(getUserToken);
+  const isLoggedIn = token ? true : false;
 
   return (
     <section className={styles.layout}>
