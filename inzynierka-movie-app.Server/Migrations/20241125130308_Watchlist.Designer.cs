@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using inzynierka_movie_app.Server.Data;
 
@@ -11,9 +12,11 @@ using inzynierka_movie_app.Server.Data;
 namespace inzynierka_movie_app.Server.Migrations
 {
     [DbContext(typeof(inzynierka_movie_appServerContext))]
-    partial class inzynierka_movie_appServerContextModelSnapshot : ModelSnapshot
+    [Migration("20241125130308_Watchlist")]
+    partial class Watchlist
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

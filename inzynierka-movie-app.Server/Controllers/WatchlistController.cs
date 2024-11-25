@@ -14,6 +14,11 @@ namespace inzynierka_movie_app.Server
     {
         private readonly inzynierka_movie_appServerContext _context;
 
+        public WatchlistController(inzynierka_movie_appServerContext context)
+        {
+            _context = context;
+        }
+
         [HttpPost]
         [Authorize]
         public IActionResult AddMovie([FromBody] WatchListItemAdd movie)
@@ -31,7 +36,8 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new {error = "Invalid user ID format"});
             }
 
-            var user = _context.User.SingleOrDefault(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+
+            var user = _context.User.Include(u => u.Watchlist).SingleOrDefault(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
 
             if (user == null )
             {
@@ -59,10 +65,7 @@ namespace inzynierka_movie_app.Server
             user.Watchlist.Add(newMovie);
             _context.SaveChanges();
 
-            var updatedUser = _context.User.SingleOrDefault(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
-            var watchlist = updatedUser.Watchlist;
-
-            return Json(watchlist);
+            return Json(user.Watchlist);
         }
 
         [HttpPost]
@@ -93,10 +96,7 @@ namespace inzynierka_movie_app.Server
             user.Watchlist.Remove(movieToRemove);
             _context.SaveChanges();
 
-            var updatedUser = _context.User.SingleOrDefault(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
-            var watchlist = updatedUser.Watchlist;
-
-            return Json(watchlist);
+            return Json(user.Watchlist);
         }
 
         [HttpPost]
@@ -135,10 +135,7 @@ namespace inzynierka_movie_app.Server
 
             _context.SaveChanges();
 
-            var updatedUser = _context.User.SingleOrDefault(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
-            var watchlist = updatedUser.Watchlist;
-
-            return Json(watchlist);
+            return Json(user.Watchlist);
         }
 
         [HttpGet("{username}")]

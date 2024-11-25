@@ -1,5 +1,5 @@
 import styles from "./ModalMovie.module.css";
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useState } from "react";
 import { createPortal } from "react-dom";
 
 import Button from "../Button/Button";
@@ -13,6 +13,7 @@ import { GenreType, WatchListUser } from "../../utils/types";
 import { useAddMovie } from "../../features/Watchlist/useAddMovie";
 import { getUserToken } from "../../features/Authentication/userSlice";
 import { useAppSelector } from "../../hooks/useRedux";
+import WatchedEpisodes from "../WatchedEpisodes/WatchedEpisodes";
 
 function customTheme(theme) {
   return {
@@ -85,6 +86,15 @@ const statusOptions = [
 ];
 
 function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
+  const [userStatus, setUserStatus] = useState(() => {
+    if (foundMovie) return foundMovie.user_status;
+    return statusOptions[0].value;
+  });
+  const [watchedEpisdoes, setWatchedEpisodes] = useState(() => {
+    if (foundMovie) return +foundMovie.watched_episodes;
+    return 0;
+  });
+
   const {
     movieData: movie,
     isModalError,
@@ -100,21 +110,24 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
   }
 
   const posterImg = movie?.poster_path;
-  const isMovieType = movie?.name ? true : false;
+  const isMovieType = movie?.title ? true : false;
 
   function handleAddMovie(selectedMovie: WatchListUser, token: string) {
     const movie_type = isMovieType ? "movie" : "tv";
 
     const movie = {
       ...selectedMovie,
-      watched_episodes: 0,
+      watched_episodes: watchedEpisdoes,
       user_rating: 5,
+      user_status: userStatus,
       movie_type,
     };
 
     const data = { movie, token };
     addMovie(data);
   }
+
+  console.log(movie);
 
   return createPortal(
     <>
@@ -130,7 +143,7 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
               <div className={styles.movieInformations}>
                 <div className={styles.details}>
                   <p className={styles.title}>
-                    {isMovieType ? movie.name : movie.title}
+                    {!isMovieType ? movie.name : movie.title}
                   </p>
                   <p className={styles.informations}>
                     {isMovieType ? "TV" : "Series"}
@@ -158,13 +171,23 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
                         options={statusOptions}
                         defaultValue={statusOptions[0]}
                         className={styles.selectContainer}
+                        onChange={(option: { value: string }) =>
+                          setUserStatus(option?.value)
+                        }
                       />
                     </div>
                   </div>
 
-                  <div className={styles.formRow}>
-                    <p className={styles.formOptionName}>Episodes Watched</p>
-                  </div>
+                  {!isMovieType && (
+                    <div className={styles.formRow}>
+                      <p className={styles.formOptionName}>Episodes Watched</p>
+                      <WatchedEpisodes
+                        episodes={watchedEpisdoes}
+                        setEpisodes={setWatchedEpisodes}
+                        seasons={movie.seasons}
+                      />
+                    </div>
+                  )}
 
                   <div className={styles.formRow}>
                     <p className={styles.formOptionName}>Overall Rating</p>

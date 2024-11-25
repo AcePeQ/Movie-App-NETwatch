@@ -69,7 +69,7 @@ namespace inzynierka_movie_app.Server
                 Email = registerUser.Email,
                 Username = registerUser.Username,
                 Password = registerUser.Password,
-                Watchlist = [],
+                Watchlist = new List<WatchlistItem>(),
             };
 
             _context.User.Add(user);
@@ -82,7 +82,7 @@ namespace inzynierka_movie_app.Server
         [AllowAnonymous]
         public IActionResult Login([FromBody] LoginUser loginUser)
         {
-            var user = _context.User.SingleOrDefault(user => user.Email == loginUser.Email && user.Password == loginUser.Password);
+            var user = _context.User.Include(u=>u.Watchlist).SingleOrDefault(user => user.Email == loginUser.Email && user.Password == loginUser.Password);
 
             if (user == null || user.Password != loginUser.Password)
             {

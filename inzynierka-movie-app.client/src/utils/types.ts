@@ -262,6 +262,7 @@ export interface WatchListUser {
   vote_count: number;
   watched_episodes: number;
   user_rating: number;
+  user_status: string;
 }
 
 export type UserSettings = {
