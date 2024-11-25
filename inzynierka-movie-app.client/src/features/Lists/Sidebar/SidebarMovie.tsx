@@ -36,12 +36,18 @@ export default function SidebarMovie({
 }: {
   onUpdateUrl: (url: string) => void;
 }) {
+  const date = new Date();
+
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
   const [selectedRegion, setSelectedRegion] = useState({
     value: "GB",
     label: `${getFlagEmoji("GB")} United Kingdom`,
   });
   const [sortBy, setSortBy] = useState(sortOptions[0].value);
-  const [releaseDateRange, setReleaseDateRange] = useState([1890, 2024]);
+  const [releaseDateRange, setReleaseDateRange] = useState([1890, year]);
   const [rating, setRating] = useState([1, 10]);
   const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
   const [selectedProvides, setSelectedProvides] = useState<number[]>([]);
@@ -81,7 +87,7 @@ export default function SidebarMovie({
   useEffect(() => {
     const params = new URLSearchParams();
     params.append("release_date.gte", `${releaseDateRange[0]}-01-01`);
-    params.append("release_date.lte", `${releaseDateRange[1]}-12-31`);
+    params.append("release_date.lte", `${releaseDateRange[1]}-${month}-${day}`);
     params.append("sort_by", `${sortBy}`);
     params.append("watch_region", `${selectedRegion.value}`);
     params.append("vote_average.gte", `${rating[0]}`);
@@ -102,6 +108,8 @@ export default function SidebarMovie({
     selectedRegion,
     onUpdateUrl,
     minimumVoteCounts,
+    month,
+    day,
   ]);
 
   if (isPendingRegions) {
@@ -182,7 +190,7 @@ export default function SidebarMovie({
               trackClassName="slider-track"
               defaultValue={releaseDateRange}
               min={1890}
-              max={2024}
+              max={year}
               renderThumb={(props, state) => {
                 const { key, ...restProps } = props;
                 return (

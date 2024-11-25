@@ -127,8 +127,6 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
     addMovie(data);
   }
 
-  console.log(movie);
-
   return createPortal(
     <>
       <div onClick={onClose} className={styles.overlay}></div>

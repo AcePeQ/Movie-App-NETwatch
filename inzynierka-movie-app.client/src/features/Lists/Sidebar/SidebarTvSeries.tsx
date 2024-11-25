@@ -36,12 +36,18 @@ export default function SidebarTvSeries({
 }: {
   onUpdateUrl: (url: string) => void;
 }) {
+  const date = new Date();
+
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
   const [selectedRegion, setSelectedRegion] = useState({
     value: "GB",
     label: `${getFlagEmoji("GB")} United Kingdom`,
   });
   const [sortBy, setSortBy] = useState(sortOptions[0].value);
-  const [releaseDateRange, setReleaseDateRange] = useState([1890, 2024]);
+  const [releaseDateRange, setReleaseDateRange] = useState([1890, year]);
   const [rating, setRating] = useState([1, 10]);
   const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
   const [selectedProvides, setSelectedProvides] = useState<number[]>([]);
@@ -81,7 +87,7 @@ export default function SidebarTvSeries({
   useEffect(() => {
     const params = new URLSearchParams();
     params.append("air_date.gte", `${releaseDateRange[0]}-01-01`);
-    params.append("air_date.lte", `${releaseDateRange[1]}-12-31`);
+    params.append("air_date.lte", `${releaseDateRange[1]}-${month}-${day}`);
     params.append("sort_by", `${sortBy}`);
     params.append("vote_average.gte", `${rating[0]}`);
     params.append("vote_average.lte", `${rating[1]}`);
@@ -102,6 +108,8 @@ export default function SidebarTvSeries({
     selectedRegion,
     onUpdateUrl,
     minimumVoteCounts,
+    month,
+    day,
   ]);
 
   if (isPendingRegions) {
@@ -184,12 +192,15 @@ export default function SidebarTvSeries({
               trackClassName="slider-track"
               defaultValue={releaseDateRange}
               min={1890}
-              max={2024}
-              renderThumb={(props, state) => (
-                <div key={`thumb-${state.index}`} {...props}>
-                  {state.valueNow}
-                </div>
-              )}
+              max={year}
+              renderThumb={(props, state) => {
+                const { key, ...restProps } = props;
+                return (
+                  <div key={`thumb-date-${state.index}`} {...restProps}>
+                    {state.valueNow}
+                  </div>
+                );
+              }}
               pearling
               minDistance={0}
               onChange={(value) => setReleaseDateRange([...value])}
@@ -224,11 +235,14 @@ export default function SidebarTvSeries({
               marks={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
               min={1}
               max={10}
-              renderThumb={(props, state) => (
-                <div key={`renderScore-${state.index}`} {...props}>
-                  {state.valueNow}
-                </div>
-              )}
+              renderThumb={(props, state) => {
+                const { key, ...restProps } = props;
+                return (
+                  <div key={`thumb-rate-${state.index}`} {...restProps}>
+                    {state.valueNow}
+                  </div>
+                );
+              }}
               pearling
               minDistance={1}
               onChange={(value) => setRating([...value])}
@@ -244,11 +258,14 @@ export default function SidebarTvSeries({
               defaultValue={minimumVoteCounts}
               min={0}
               max={2000}
-              renderThumb={(props, state) => (
-                <div key={`thumb-${state.index}`} {...props}>
-                  {state.valueNow}
-                </div>
-              )}
+              renderThumb={(props, state) => {
+                const { key, ...restProps } = props;
+                return (
+                  <div key={`thumb-vote-${state.index}`} {...restProps}>
+                    {state.valueNow}
+                  </div>
+                );
+              }}
               pearling
               onChange={(value) => setMinimumVoteCounts(value)}
             />
