@@ -6,9 +6,37 @@ import DetailRow from "./DetailRow/DetailRow";
 import { BASE_URL_ORIGINAL, BASE_URL_W500 } from "../../../helpers/getBaseUrl";
 import { useState } from "react";
 import { convertRegionISO } from "../../../helpers/formatISO";
-import { ItemFullType } from "../../../utils/types";
+import { ItemFullType, WatchListUser } from "../../../utils/types";
+import { useAppDispatch, useAppSelector } from "../../../hooks/useRedux";
+import { getUserToken, getUserWatchList } from "../../Authentication/userSlice";
+import { openModalLogin } from "../../Authentication/modalLoginSlice";
+import ModalMovie from "../../../ui/ModalMovie/ModalMovie";
+import { useParams } from "react-router-dom";
 
-function MovieHero({ data }: { data: ItemFullType }) {
+function MovieHero({ data, id }: { data: ItemFullType; id: string }) {
+  const token = useAppSelector(getUserToken);
+  const watchlist = useAppSelector(getUserWatchList);
+  const dispatch = useAppDispatch();
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  function handleModalMovie(e) {
+    e.preventDefault();
+
+    if (!token) {
+      dispatch(openModalLogin());
+      return;
+    }
+
+    setModalOpen(true);
+  }
+
+  function handleCloseModal(e) {
+    e.preventDefault();
+
+    setModalOpen(false);
+  }
+
   const {
     backdrop_path: backgroundPath,
     poster_path: posterPath,
@@ -30,7 +58,9 @@ function MovieHero({ data }: { data: ItemFullType }) {
     number_of_seasons: numberOfSeasons,
   } = data;
 
-  const [isRated, setIsRated] = useState(false);
+  const foundMovie =
+    watchlist && watchlist?.find((item: WatchListUser) => item.id === id);
+
   const isMovie = movieTitle ? true : false;
 
   const backgroundStyles = {
@@ -78,9 +108,9 @@ function MovieHero({ data }: { data: ItemFullType }) {
           </div>
 
           <div className={styles.detailsContainer}>
-            {isRated && (
+            {foundMovie?.user_rating > 0 && (
               <DetailRow title="Your rating">
-                <MovieRating />
+                <MovieRating rating={foundMovie.user_rating} />
               </DetailRow>
             )}
             <DetailRow title="Rating">
@@ -116,12 +146,27 @@ function MovieHero({ data }: { data: ItemFullType }) {
           <p className={styles.description}>{overview}</p>
 
           <div className={styles.buttons}>
-            <Button size="medium" type="primary">
-              Add to list
-            </Button>
+            {!foundMovie && (
+              <Button size="medium" type="primary" onClick={handleModalMovie}>
+                Add to list
+              </Button>
+            )}
+            {foundMovie && (
+              <Button size="medium" type="primary" onClick={handleModalMovie}>
+                Edit
+              </Button>
+            )}
           </div>
         </div>
       </div>
+      {isModalOpen && (
+        <ModalMovie
+          id={id}
+          isMovie={isMovie}
+          onClose={handleCloseModal}
+          foundMovie={foundMovie}
+        />
+      )}
     </div>
   );
 }

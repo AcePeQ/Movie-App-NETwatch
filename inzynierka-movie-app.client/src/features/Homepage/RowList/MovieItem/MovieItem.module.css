@@ -17,7 +17,9 @@
 
     background-color: var(--background-opacity-50-100);
     padding: 0.25rem 0.5rem;
-    text-align: end;
+
+    display: flex;
+    justify-content: space-between;
 
     transition: var(--transition-all);
 

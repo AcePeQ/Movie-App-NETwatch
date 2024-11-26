@@ -81,6 +81,9 @@
   padding: 0.25rem 0.5rem;
   text-align: end;
 
+  display: flex;
+  justify-content: space-between;
+
   z-index: 100;
 
   transition: var(--transition-all);

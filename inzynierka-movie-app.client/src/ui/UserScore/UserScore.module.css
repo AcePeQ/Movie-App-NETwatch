@@ -1,0 +1,29 @@
+.ratingContainer {
+  display: flex;
+
+  align-items: center;
+  gap: 0.5rem;
+
+  flex-shrink: 0;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+  }
+
+  svg {
+    font-size: 1em;
+    color: var(--accent-100);
+  }
+
+  .rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 100%;
+    font-size: 1.2em;
+  }
+}

@@ -17,6 +17,7 @@ import {
 import { useState } from "react";
 import ModalMovie from "../../../../ui/ModalMovie/ModalMovie";
 import { openModalLogin } from "../../../Authentication/modalLoginSlice";
+import UserScore from "../../../../ui/UserScore/UserScore";
 
 interface MovieItem {
   type: string;
@@ -50,7 +51,7 @@ function MovieItem({ type, movie }: MovieItem) {
     background: `url(${backgroundPath ? background : noImage})`,
   };
 
-  function handleModalMovie(e) {
+  function handleModalMovie(e: Event) {
     e.preventDefault();
 
     if (!token) {
@@ -61,7 +62,7 @@ function MovieItem({ type, movie }: MovieItem) {
     setModalOpen(true);
   }
 
-  function handleCloseModal(e) {
+  function handleCloseModal(e: Event) {
     e.preventDefault();
 
     setModalOpen(false);
@@ -73,8 +74,13 @@ function MovieItem({ type, movie }: MovieItem) {
       style={backgroundImage}
       to={`${isMovie ? `/movie/${id}` : `/tv/${id}`}`}
     >
-      <div className={styles.options} onClick={handleModalMovie}>
-        {foundMovie ? <HiCog6Tooth /> : <HiPlusCircle />}
+      <div className={styles.options}>
+        {foundMovie && <UserScore rating={foundMovie.user_rating} />}
+        {foundMovie ? (
+          <HiCog6Tooth onClick={handleModalMovie} />
+        ) : (
+          <HiPlusCircle onClick={handleModalMovie} />
+        )}
       </div>
 
       <div className={styles.details}>

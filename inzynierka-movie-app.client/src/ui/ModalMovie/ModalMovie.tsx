@@ -14,6 +14,7 @@ import { useAddMovie } from "../../features/Watchlist/useAddMovie";
 import { getUserToken } from "../../features/Authentication/userSlice";
 import { useAppSelector } from "../../hooks/useRedux";
 import WatchedEpisodes from "../WatchedEpisodes/WatchedEpisodes";
+import UserRating from "../UserRating/UserRating";
 
 function customTheme(theme) {
   return {
@@ -92,6 +93,10 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
   });
   const [watchedEpisdoes, setWatchedEpisodes] = useState(() => {
     if (foundMovie) return +foundMovie.watched_episodes;
+    return 0;
+  });
+  const [userRating, setUserRating] = useState(() => {
+    if (foundMovie) return +foundMovie.user_rating;
     return 0;
   });
 
@@ -189,6 +194,10 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
 
                   <div className={styles.formRow}>
                     <p className={styles.formOptionName}>Overall Rating</p>
+                    <UserRating
+                      defaultRating={userRating}
+                      onSetRating={setUserRating}
+                    />
                   </div>
 
                   <div className={styles.formBtns}>

@@ -16,6 +16,7 @@ import {
 import { openModalLogin } from "../../../Authentication/modalLoginSlice";
 import { useState } from "react";
 import ModalMovie from "../../../../ui/ModalMovie/ModalMovie";
+import UserScore from "../../../../ui/UserScore/UserScore";
 
 interface MovieItemProps {
   number: number;
@@ -68,8 +69,13 @@ function MovieItemTop({ number, movie }: MovieItemProps) {
           alt={`Poster of ${title}`}
         />
 
-        <div className={styles.options} onClick={handleModalMovie}>
-          {foundMovie ? <HiCog6Tooth /> : <HiPlusCircle />}
+        <div className={styles.options}>
+          {foundMovie && <UserScore rating={foundMovie.user_rating} />}
+          {foundMovie ? (
+            <HiCog6Tooth onClick={handleModalMovie} />
+          ) : (
+            <HiPlusCircle onClick={handleModalMovie} />
+          )}
         </div>
       </div>
 
