@@ -1,11 +1,12 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { lazy, Suspense } from "react";
+import { Toaster } from "react-hot-toast";
 
 import Loading from "./ui/Loading/Loading";
-import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./ui/ProtectedRoute/ProtectedRoute";
+import WatchlistList from "./features/Watchlist/WatchlistList/WatchlistList";
 
 const Layout = lazy(() => import(`./ui/Layout/Layout`));
 const Home = lazy(() => import(`./pages/HomePage/Home`));
@@ -15,21 +16,7 @@ const AboutUs = lazy(() => import(`./pages/AboutUs/AboutUs`));
 const Contact = lazy(() => import(`./pages/Contact/Contact`));
 const Settings = lazy(() => import(`./pages/SettingsPage/SettingsPage`));
 const AccountPage = lazy(() => import(`./pages/AccountPage/AccountPage`));
-const LayoutWatchlist = lazy(
-  () => import(`./ui/LayoutWatchlist/LayoutWatchlist`)
-);
-const All = lazy(() => import(`./features/Watchlist/All/All`));
-const CurrentWatching = lazy(
-  () => import(`./features/Watchlist/CurrentWatching/CurrentWatching`)
-);
-const Completed = lazy(
-  () => import(`./features/Watchlist/Completed/Completed`)
-);
-const PlanToWatch = lazy(
-  () => import(`./features/Watchlist/PlanToWatch/PlanToWatch`)
-);
-const OnHold = lazy(() => import(`./features/Watchlist/OnHold/OnHold`));
-const Dropped = lazy(() => import(`./features/Watchlist/Dropped/Dropped`));
+
 const MoviePage = lazy(() => import(`./pages/MoviePage/MoviePage`));
 const TvSeriesPage = lazy(() => import(`./pages/TvSeriesPage/TvSeriesPage`));
 const CastPage = lazy(() => import(`./pages/CastPage/CastPage`));
@@ -69,15 +56,7 @@ function App() {
 
               <Route path="search/:query" element={<SearchPage />} />
 
-              <Route path="/account/watchlist" element={<LayoutWatchlist />}>
-                <Route index element={<Navigate replace to="all" />} />
-                <Route path="all" element={<All />} />
-                <Route path="currentwatching" element={<CurrentWatching />} />
-                <Route path="completed" element={<Completed />} />
-                <Route path="plantowatch" element={<PlanToWatch />} />
-                <Route path="onhold" element={<OnHold />} />
-                <Route path="dropped" element={<Dropped />} />
-              </Route>
+              <Route path="/:username/watchlist" element={<WatchlistList />} />
 
               <Route path="about-us" element={<AboutUs />} />
               <Route path="contact" element={<Contact />} />

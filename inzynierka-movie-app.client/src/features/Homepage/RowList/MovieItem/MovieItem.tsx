@@ -20,7 +20,7 @@ import { openModalLogin } from "../../../Authentication/modalLoginSlice";
 import UserScore from "../../../../ui/UserScore/UserScore";
 
 interface MovieItem {
-  type: string;
+  type?: string;
   movie: ItemType;
 }
 

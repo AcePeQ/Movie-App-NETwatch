@@ -80,7 +80,7 @@ function ProfileMenu() {
             </li>
           </Link>
 
-          <Link className={styles.dropdownItem} to="/">
+          <Link className={styles.dropdownItem} to={`/${username}/watchlist`}>
             <li className={styles.item}>
               <HiOutlineViewList />
               <p className={styles.title}>Watchlist</p>

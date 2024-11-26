@@ -1,10 +1,14 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import { useAppSelector } from "../../../hooks/useRedux";
-import { getUserToken } from "../../../features/Authentication/userSlice";
+import {
+  getUsername,
+  getUserToken,
+} from "../../../features/Authentication/userSlice";
 
 function Navigation() {
   const token = useAppSelector(getUserToken);
+  const username = useAppSelector(getUsername);
 
   return (
     <ul className={styles.navigationList}>
@@ -25,7 +29,7 @@ function Navigation() {
       </li>
       {token && (
         <li>
-          <NavLink className={styles.navlink} to="account/watchlist">
+          <NavLink className={styles.navlink} to={`/${username}/watchlist`}>
             Watchlist
           </NavLink>
         </li>
