@@ -44,10 +44,16 @@ export const userSlice = createSlice({
       localStorage.removeItem("username");
       localStorage.removeItem("watchlist");
     },
+    updateWatchlist: (state, action) => {
+      console.log(action.payload);
+
+      state.watchlist = action.payload;
+      localStorage.setItem("watchlist", JSON.stringify(action.payload));
+    },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, updateWatchlist } = userSlice.actions;
 export const getUsername = (state: RootState) => state.user.username;
 export const getUserWatchList = (state: RootState) => state.user.watchlist;
 export const getUserToken = (state: RootState) => state.user.token;

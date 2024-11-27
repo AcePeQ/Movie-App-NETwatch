@@ -27,7 +27,7 @@ export async function getModalMovieApi(id: number, isMovie: boolean) {
 }
 
 export async function addMovieApi(dataPassed: {
-  movie: WatchListUser;
+  selectedMovie: WatchListUser;
   token: string;
 }) {
   try {
@@ -37,7 +37,7 @@ export async function addMovieApi(dataPassed: {
         Authorization: `Bearer ${dataPassed.token}`,
       },
       method: "POST",
-      body: JSON.stringify(dataPassed.movie),
+      body: JSON.stringify(dataPassed.selectedMovie),
     });
 
     if (!res.ok) {
@@ -54,7 +54,7 @@ export async function addMovieApi(dataPassed: {
 }
 
 export async function deleteMovieApi(dataPassed: {
-  id: string;
+  id: number;
   token: string;
 }) {
   try {
@@ -82,9 +82,9 @@ export async function deleteMovieApi(dataPassed: {
 
 interface MovieType {
   id: number;
-  user_status: string;
-  user_rating: number;
-  watched_episodes: number;
+  user_status: string | undefined;
+  user_rating: number | undefined;
+  watched_episodes: number | undefined;
 }
 
 export async function updateMovieApi(dataPassed: {
@@ -92,7 +92,7 @@ export async function updateMovieApi(dataPassed: {
   token: string;
 }) {
   try {
-    const res = await fetch(`/Watchlist/DeleteMovie`, {
+    const res = await fetch(`/Watchlist/UpdateMovie`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${dataPassed.token}`,
@@ -114,7 +114,7 @@ export async function updateMovieApi(dataPassed: {
   }
 }
 
-export async function getUserWatchlistApi(username: string) {
+export async function getUserWatchlistApi(username: string | undefined) {
   try {
     const res = await fetch(`/Watchlist/DeleteMovie/${username}`, {
       headers: {

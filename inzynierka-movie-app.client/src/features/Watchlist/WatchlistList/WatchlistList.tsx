@@ -3,6 +3,12 @@ import SidebarWatchlist from "../../Lists/Sidebar/SidebarWatchlist";
 import styles from "./WatchlistList.module.css";
 import { useAppSelector } from "../../../hooks/useRedux";
 import { getUserWatchList } from "../../Authentication/userSlice";
+import { useUserWathclist } from "../useUserWatchlist";
+import ErrorFull from "../../../ui/Error/ErrorFullPage/ErrorFullPage";
+import Loading from "../../../ui/Loading/Loading";
+import MovieItem from "../../Homepage/RowList/MovieItem/MovieItem";
+import { ItemType } from "../../../utils/types";
+import { useParams } from "react-router-dom";
 
 const sortOptions = [
   { value: "rating.asc", label: "Rating ascending" },
@@ -21,10 +27,17 @@ const typeOptions = [
 ];
 
 function WatchlistList() {
+  const { username } = useParams();
+
+  const { watchlist, isLoadingWatchlist, isErrorWatchlist, watchlistError } =
+    useUserWathclist(username);
+
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [typeBy, setTypeBy] = useState(typeOptions[0]);
 
-  const watchlist = useAppSelector(getUserWatchList);
+  if (isErrorWatchlist) {
+    return <ErrorFull error={watchlistError} />;
+  }
 
   return (
     <div className={styles.list_container}>
@@ -37,7 +50,13 @@ function WatchlistList() {
         typeOptions={typeOptions}
       />
 
-      <div className={styles.list_wrapper}></div>
+      <div className={styles.list_wrapper}>
+        {isLoadingWatchlist ? (
+          <Loading />
+        ) : (
+          watchlist.map((movie: ItemType) => <MovieItem movie={movie} />)
+        )}
+      </div>
     </div>
   );
 }

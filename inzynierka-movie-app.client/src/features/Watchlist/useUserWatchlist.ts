@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getUserWatchlistApi } from "../../services/apiWatchlist";
 
-export function useUserWathclist(username: string) {
+export function useUserWathclist(username: string | undefined) {
   const {
     data: watchlist,
     isLoading: isLoadingWatchlist,

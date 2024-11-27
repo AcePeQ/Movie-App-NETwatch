@@ -8,68 +8,15 @@ import { useGetModalMovie } from "./useGetModalMovie";
 import LoaderSmall from "../LoaderSmall/LoaderSmall";
 import ErrorFull from "../Error/ErrorFullPage/ErrorFullPage";
 import MovieRating from "../MovieRating/MovieRating";
-import Select from "react-select";
 import { GenreType, WatchListUser } from "../../utils/types";
 import { useAddMovie } from "../../features/Watchlist/useAddMovie";
 import { getUserToken } from "../../features/Authentication/userSlice";
 import { useAppSelector } from "../../hooks/useRedux";
 import WatchedEpisodes from "../WatchedEpisodes/WatchedEpisodes";
 import UserRating from "../UserRating/UserRating";
-
-function customTheme(theme) {
-  return {
-    ...theme,
-    colors: {
-      ...theme.colors,
-      text: `var(--text-100)`,
-      primary50: `var(--accent-200)`,
-      primary25: `var(--background-300)`,
-      primary: `var(--accent-100)`,
-      neutral0: `var(--background-200)`,
-      neutral10: `var(--background-200)`,
-      neutral80: `var(--text-100)`,
-    },
-  };
-}
-
-const customStyles = {
-  control: (styles) => ({
-    ...styles,
-    border: "none",
-    padding: "0.25rem 0.5rem",
-    outline: "none",
-    cursor: `pointer`,
-    transition: `var(--transition-all)`,
-    boxShadow: "0",
-    ":hover": {
-      backgroundColor: `var(--background-300)`,
-    },
-    ":active": {
-      border: "none",
-    },
-  }),
-  option: (styles) => ({
-    ...styles,
-    cursor: "pointer",
-  }),
-  dropdownIndicator: (styles) => ({
-    ...styles,
-    color: `var(--accent-100)`,
-
-    ":hover": {
-      color: `var(--accent-100)`,
-    },
-  }),
-  indicatorSeparator: (styles) => ({
-    ...styles,
-    backgroundColor: `var(--accent-100)`,
-    width: "2px",
-
-    ":hover": {
-      backgroundColor: `var(--accent-100)`,
-    },
-  }),
-};
+import { useDeleteMovie } from "../../features/Watchlist/useDeleteMovie";
+import { useUpdateMovie } from "../../features/Watchlist/useUpdateMovie";
+import SelectList from "../SelectList/SelectList";
 
 interface ModalProps {
   id: number;
@@ -92,13 +39,15 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
     return statusOptions[0].value;
   });
   const [watchedEpisdoes, setWatchedEpisodes] = useState(() => {
-    if (foundMovie) return +foundMovie.watched_episodes;
+    if (foundMovie) return foundMovie.watched_episodes;
     return 0;
   });
   const [userRating, setUserRating] = useState(() => {
-    if (foundMovie) return +foundMovie.user_rating;
-    return 0;
+    if (foundMovie) return foundMovie.user_rating;
+    return null;
   });
+
+  console.log(foundMovie);
 
   const {
     movieData: movie,
@@ -109,6 +58,8 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
 
   const token = useAppSelector(getUserToken);
   const { isAddingMovie, addMovie } = useAddMovie();
+  const { isDeletingMovie, deleteMovie } = useDeleteMovie();
+  const { isUpdatingMovie, updateMovie } = useUpdateMovie();
 
   if (isModalError) {
     return <ErrorFull error={modalError} />;
@@ -117,19 +68,34 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
   const posterImg = movie?.poster_path;
   const isMovieType = movie?.title ? true : false;
 
-  function handleAddMovie(selectedMovie: WatchListUser, token: string) {
+  function handleAddMovie() {
     const movie_type = isMovieType ? "movie" : "tv";
 
-    const movie = {
-      ...selectedMovie,
+    const selectedMovie = {
+      ...movie,
       watched_episodes: watchedEpisdoes,
-      user_rating: 5,
+      user_rating: userRating,
       user_status: userStatus,
       movie_type,
     };
 
-    const data = { movie, token };
+    const data = { selectedMovie, token };
     addMovie(data);
+  }
+
+  function handleDeleteMovie() {
+    deleteMovie({ id, token });
+  }
+
+  function handleUpdateMovie() {
+    const movie = {
+      id,
+      user_rating: foundMovie?.user_rating,
+      user_status: foundMovie?.user_status,
+      watched_episodes: foundMovie?.watched_episodes,
+    };
+
+    updateMovie({ movie, token });
   }
 
   return createPortal(
@@ -167,12 +133,10 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
                   <div className={styles.formRow}>
                     <p className={styles.formOptionName}>{movie.status}</p>
                     <div className={styles.formOptionOption}>
-                      <Select
-                        theme={customTheme}
-                        styles={customStyles}
+                      <SelectList
                         isSearchable={false}
                         options={statusOptions}
-                        defaultValue={statusOptions[0]}
+                        defaultOption={userStatus}
                         className={styles.selectContainer}
                         onChange={(option: { value: string }) =>
                           setUserStatus(option?.value)
@@ -206,17 +170,27 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
                         disabled={isAddingMovie}
                         size="small"
                         type="primary"
-                        onClick={() => handleAddMovie(movie, token)}
+                        onClick={handleAddMovie}
                       >
                         Add
                       </Button>
                     )}
                     {foundMovie && (
                       <>
-                        <Button size="small" type="delete">
+                        <Button
+                          size="small"
+                          type="primary"
+                          disabled={isUpdatingMovie}
+                          onClick={handleUpdateMovie}
+                        >
                           Save
                         </Button>
-                        <Button size="small" type="delete">
+                        <Button
+                          size="small"
+                          type="delete"
+                          disabled={isDeletingMovie}
+                          onClick={handleDeleteMovie}
+                        >
                           Delete
                         </Button>
                       </>

@@ -3,8 +3,8 @@ import styles from "./UserRating.module.css";
 
 import { RiStarSFill } from "react-icons/ri";
 
-function UserRating({ defaultRating = 0, onSetRating }) {
-  const [rating, setRating] = useState(0);
+function UserRating({ defaultRating, onSetRating }) {
+  const [rating, setRating] = useState(defaultRating);
   const [hoverRating, setHoverRating] = useState(null);
 
   const stars = Array(10).fill(0);

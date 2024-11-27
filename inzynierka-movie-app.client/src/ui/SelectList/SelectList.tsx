@@ -3,7 +3,7 @@ import styles from "./SelectList.module.css";
 
 type SearchTypes = {
   isSearchable: boolean;
-  defaultOption?: { value: string; label: string };
+  defaultOption?: { value: string; label: string } | string;
   options: { value: string; label: string }[];
   className?: string;
   classNamePrefix?: string;
