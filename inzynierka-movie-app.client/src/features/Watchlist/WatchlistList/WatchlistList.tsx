@@ -54,7 +54,9 @@ function WatchlistList() {
         {isLoadingWatchlist ? (
           <Loading />
         ) : (
-          watchlist.map((movie: ItemType) => <MovieItem movie={movie} />)
+          watchlist.map((movie: ItemType) => (
+            <MovieItem key={movie.id} movie={movie} />
+          ))
         )}
       </div>
     </div>

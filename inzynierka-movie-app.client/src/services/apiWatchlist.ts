@@ -119,7 +119,7 @@ export async function updateMovieApi(dataPassed: {
 
 export async function getUserWatchlistApi(username: string | undefined) {
   try {
-    const res = await fetch(`/Watchlist/DeleteMovie/${username}`, {
+    const res = await fetch(`/Watchlist/GetUserWatchlist/${username}`, {
       headers: {
         "Content-Type": "application/json",
       },
