@@ -38,7 +38,7 @@ namespace inzynierka_movie_app.Server
             }
 
 
-            var user = await _context.User.Include(u => u.Watchlist).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+            var user = await _context.User.Include(u => u.Watchlist).ThenInclude(w=>w.genres).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
 
             if (user == null )
             {
@@ -60,7 +60,8 @@ namespace inzynierka_movie_app.Server
               first_air_date = movie.first_air_date,
               vote_count = movie.vote_count,
               watched_episodes = movie.watched_episodes,
-              user_rating = movie.user_rating
+              user_rating = movie.user_rating,
+              user_status = movie.user_status,
             };
 
             user.Watchlist.Add(newMovie);
@@ -72,7 +73,7 @@ namespace inzynierka_movie_app.Server
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> DeleteMovie([FromBody] string id)
+        public async Task<IActionResult> DeleteMovie([FromBody] DeleteMovieRequest request)
         {
             var userIDToken = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
             var usernameToken = User.FindFirst("username")?.Value;
@@ -87,21 +88,21 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new {error = "Invalid user ID format"});
             }
 
-            var user = await _context.User.Include(u=>u.Watchlist).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+            var user = await _context.User.Include(u=>u.Watchlist).ThenInclude(w => w.genres).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
 
             if (user == null )
             {
                 return BadRequest(new { error = "Invalid account" });
             }
 
-            var movieToRemove = user.Watchlist.SingleOrDefault(movie => movie.movieID.ToString() == id);
+            var movieToRemove = user.Watchlist.SingleOrDefault(movie => movie.movieID.ToString() == request.id.ToString());
             if (movieToRemove == null)
             {
                 return BadRequest(new { error = "Movie not found in watchlist" });
             }
 
             user.Watchlist.Remove(movieToRemove);
-
+            _context.Entry(movieToRemove).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
 
             return Json(user.Watchlist);
@@ -125,14 +126,14 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new {error = "Invalid user ID format"});
             }
 
-            var user = await _context.User.Include(u => u.Watchlist).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+            var user = await _context.User.Include(u => u.Watchlist).ThenInclude(w=> w.genres).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
 
             if (user == null )
             {
                 return BadRequest(new { error = "Invalid account" });
             }
 
-            var movieToUpdate = user.Watchlist.SingleOrDefault(movie => movie.movieID.ToString() == movie.movieID.ToString());
+            var movieToUpdate = user.Watchlist.SingleOrDefault(movieUser => movieUser.movieID == movie.movieID);
 
             if(movieToUpdate == null) {
                 return BadRequest(new {error = "Movie not found in watchlist"});
@@ -142,9 +143,12 @@ namespace inzynierka_movie_app.Server
             movieToUpdate.user_status = movie.user_status;
             movieToUpdate.watched_episodes = movie.watched_episodes;
 
-            await _context.SaveChangesAsync();
+            _context.Attach(movieToUpdate);
+            _context.Entry(movieToUpdate).State = EntityState.Modified;
+            
 
-            return Ok(user.Watchlist);
+            await _context.SaveChangesAsync();
+            return Json(user.Watchlist);
         }
 
         [HttpGet("{username}")]
@@ -155,7 +159,7 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new { error = "Username is required" });
             }
 
-            var user = await _context.User.SingleOrDefaultAsync(user => user.Username == username);
+            var user = await _context.User.Include(u=>u.Watchlist).ThenInclude(w=>w.genres).SingleOrDefaultAsync(user => user.Username == username);
 
             if(user == null) {
                 return BadRequest(new { error = "User not found" });

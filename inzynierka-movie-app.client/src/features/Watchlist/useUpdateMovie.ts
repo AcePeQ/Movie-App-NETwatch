@@ -7,7 +7,7 @@ import { updateWatchlist } from "../Authentication/userSlice";
 interface MovieType {
   id: number;
   user_status: string | undefined;
-  user_rating: number | undefined;
+  user_rating: number | undefined | null;
   watched_episodes: number | undefined;
 }
 

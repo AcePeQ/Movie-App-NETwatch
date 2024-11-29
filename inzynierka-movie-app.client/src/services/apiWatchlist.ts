@@ -67,12 +67,15 @@ export async function deleteMovieApi(dataPassed: {
       body: JSON.stringify({ id: dataPassed.id }),
     });
 
+    console.log(res);
+
     if (!res.ok) {
       const error = await res.json();
       throw new Error(error.error);
     }
 
     const data = await res.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error((error as Error).message);
@@ -83,7 +86,7 @@ export async function deleteMovieApi(dataPassed: {
 interface MovieType {
   id: number;
   user_status: string | undefined;
-  user_rating: number | undefined;
+  user_rating: number | undefined | null;
   watched_episodes: number | undefined;
 }
 

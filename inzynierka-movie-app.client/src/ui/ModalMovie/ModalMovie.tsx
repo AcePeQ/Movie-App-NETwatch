@@ -35,8 +35,14 @@ const statusOptions = [
 
 function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
   const [userStatus, setUserStatus] = useState(() => {
-    if (foundMovie) return foundMovie.user_status;
-    return statusOptions[0].value;
+    if (foundMovie) {
+      const statusMovie = foundMovie.user_status;
+      const findedStatus = statusOptions.find(
+        (status) => status.value === statusMovie
+      );
+      return findedStatus;
+    }
+    return statusOptions[0];
   });
   const [watchedEpisdoes, setWatchedEpisodes] = useState(() => {
     if (foundMovie) return foundMovie.watched_episodes;
@@ -46,8 +52,6 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
     if (foundMovie) return foundMovie.user_rating;
     return null;
   });
-
-  console.log(foundMovie);
 
   const {
     movieData: movie,
@@ -70,12 +74,13 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
 
   function handleAddMovie() {
     const movie_type = isMovieType ? "movie" : "tv";
+    const status = userStatus?.value;
 
     const selectedMovie = {
       ...movie,
       watched_episodes: watchedEpisdoes,
       user_rating: userRating,
-      user_status: userStatus,
+      user_status: status,
       movie_type,
     };
 
@@ -88,11 +93,13 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
   }
 
   function handleUpdateMovie() {
+    const status = userStatus?.value;
+
     const movie = {
       id,
-      user_rating: foundMovie?.user_rating,
-      user_status: foundMovie?.user_status,
-      watched_episodes: foundMovie?.watched_episodes,
+      user_rating: userRating,
+      user_status: status,
+      watched_episodes: watchedEpisdoes,
     };
 
     updateMovie({ movie, token });
@@ -138,8 +145,8 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
                         options={statusOptions}
                         defaultOption={userStatus}
                         className={styles.selectContainer}
-                        onChange={(option: { value: string }) =>
-                          setUserStatus(option?.value)
+                        onChange={(option: { value: string; label: string }) =>
+                          setUserStatus(option)
                         }
                       />
                     </div>

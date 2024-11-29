@@ -59,3 +59,7 @@ public class UpdateWatchlistItem {
     public int? watched_episodes {get;set;}
     public double? user_rating {get; set;}
 }
+
+public class DeleteMovieRequest {
+    public int id {get; set;}
+}
