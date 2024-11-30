@@ -102,7 +102,7 @@ namespace inzynierka_movie_app.Server
         [AllowAnonymous]
         public IActionResult GetUser(string username)
         {
-            var user = _context.User.SingleOrDefault(user => user.Username == username);
+            var user = _context.User.Include(w=> w.Watchlist).SingleOrDefault(user => user.Username == username);
 
             if (user == null)
             {

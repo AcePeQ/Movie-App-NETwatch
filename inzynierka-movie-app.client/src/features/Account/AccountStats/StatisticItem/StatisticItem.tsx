@@ -4,15 +4,25 @@ interface StatisticItemProps {
   type: string;
 }
 
-function StatisticItem({ type }: StatisticItemProps) {
+function StatisticItem({ type, data }: StatisticItemProps) {
+  const countMovies = data.length;
+  let countEpisodes = 0;
+
+  if (type === "TV Series") {
+    countEpisodes = data.reduce((acc, item) => acc + item.watched_episodes, 0);
+  }
+
   return (
     <div className={styles.statisticBox}>
       <p className={styles.typeName}>{type}</p>
-      <p className={styles.time}>195d 23h 30min</p>
       <p className={styles.duration}>All time</p>
-      {type === "Movies" && <p className={styles.summary}>305 movies</p>}
-      {type === "Series" && (
-        <p className={styles.summary}>5,324 episodes, 254 shows</p>
+      {type === "Movies" && (
+        <p className={styles.summary}>{countMovies} movies</p>
+      )}
+      {type === "TV Series" && (
+        <p className={styles.summary}>
+          {countEpisodes} episodes, {countMovies} shows
+        </p>
       )}
     </div>
   );

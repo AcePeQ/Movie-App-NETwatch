@@ -22,6 +22,9 @@ function Account() {
   }
 
   const user = data.user;
+  const watchlist = data.user.watchlist;
+
+  console.log(data);
 
   return (
     <div className={styles.accountContainer}>
@@ -29,8 +32,8 @@ function Account() {
 
       <div className={styles.profileInformations}>
         <AccountHeader user={user} />
-        <Stats />
-        <AccountCharts />
+        <Stats watchlist={watchlist} />
+        {/* <AccountCharts /> */}
       </div>
     </div>
   );

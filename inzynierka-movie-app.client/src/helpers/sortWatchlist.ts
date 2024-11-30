@@ -1,3 +1,5 @@
+import { ItemType } from "../utils/types";
+
 export function sortWatchlist(watchlist, sortBy, typeBy) {
   console.log(sortBy);
   console.log(typeBy);
@@ -6,34 +8,36 @@ export function sortWatchlist(watchlist, sortBy, typeBy) {
   let watchlistTemp = watchlist?.slice();
 
   if (typeBy === "movie")
-    watchlistTemp = watchlistTemp.filter((movie) => {
+    watchlistTemp = watchlistTemp.filter((movie: ItemType) => {
       return movie.media_type === "movie";
     });
   if (typeBy === "tv")
-    watchlistTemp = watchlistTemp.filter((movie) => movie.media_type === "tv");
+    watchlistTemp = watchlistTemp.filter(
+      (movie: ItemType) => movie.media_type === "tv"
+    );
 
   console.log(watchlistTemp);
 
   watchlistTemp.sort((a, b) => {
     switch (sortBy) {
       case "rating.asc": {
-        const ratingA = a.vote_average;
-        const ratingB = b.vote_average;
+        const ratingA = a.vote_average || 0;
+        const ratingB = b.vote_average || 0;
         return ratingA - ratingB;
       }
       case "rating.dsc": {
-        const ratingA = a.vote_average;
-        const ratingB = b.vote_average;
+        const ratingA = a.vote_average || 0;
+        const ratingB = b.vote_average || 0;
         return ratingB - ratingA;
       }
       case "user_score.asc": {
-        const ratingA = a.user_rating;
-        const ratingB = b.user_rating;
+        const ratingA = a.user_rating || 0;
+        const ratingB = b.user_rating || 0;
         return ratingA - ratingB;
       }
       case "user_score.dsc": {
-        const ratingA = a.user_rating;
-        const ratingB = b.user_rating;
+        const ratingA = a.user_rating || 0;
+        const ratingB = b.user_rating || 0;
         return ratingB - ratingA;
       }
       case "year.asc": {
