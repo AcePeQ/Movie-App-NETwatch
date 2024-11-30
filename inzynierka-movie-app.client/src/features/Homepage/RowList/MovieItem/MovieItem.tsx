@@ -42,7 +42,7 @@ function MovieItem({ type, movie }: MovieItem) {
   const background = `${BASE_URL_W500}${backgroundPath}`;
   const noImage = `/public/Image-not-available.png`;
   const isMovie = title ? true : false;
-  const genres = genre_ids.slice(0, 2);
+  const genres = genre_ids ? genre_ids.slice(0, 2) : [];
 
   const foundMovie =
     watchlist && watchlist?.find((item: WatchListUser) => item.id === id);

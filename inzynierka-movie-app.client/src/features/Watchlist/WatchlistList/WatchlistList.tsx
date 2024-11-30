@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SidebarWatchlist from "../../Lists/Sidebar/SidebarWatchlist";
 import styles from "./WatchlistList.module.css";
 import { useAppSelector } from "../../../hooks/useRedux";
@@ -9,6 +9,7 @@ import Loading from "../../../ui/Loading/Loading";
 import MovieItem from "../../Homepage/RowList/MovieItem/MovieItem";
 import { ItemType } from "../../../utils/types";
 import { useParams } from "react-router-dom";
+import { sortWatchlist } from "../../../helpers/sortWatchlist";
 
 const sortOptions = [
   { value: "rating.asc", label: "Rating ascending" },
@@ -34,6 +35,14 @@ function WatchlistList() {
 
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [typeBy, setTypeBy] = useState(typeOptions[0]);
+  const [sortedWatchlist, setSortedWatchlist] = useState<ItemType[]>([]);
+
+  useEffect(() => {
+    if (watchlist) {
+      const sorted = sortWatchlist(watchlist, sortBy, typeBy);
+      setSortedWatchlist(sorted);
+    }
+  }, [watchlist, sortBy, typeBy]);
 
   if (isErrorWatchlist) {
     return <ErrorFull error={watchlistError} />;
@@ -54,7 +63,7 @@ function WatchlistList() {
         {isLoadingWatchlist ? (
           <Loading />
         ) : (
-          watchlist.map((movie: ItemType) => (
+          sortedWatchlist?.map((movie: ItemType) => (
             <MovieItem key={movie.id} movie={movie} />
           ))
         )}

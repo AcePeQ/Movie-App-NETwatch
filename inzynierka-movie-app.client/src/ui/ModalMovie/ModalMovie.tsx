@@ -81,7 +81,7 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
       watched_episodes: watchedEpisdoes,
       user_rating: userRating,
       user_status: status,
-      movie_type,
+      media_type: movie_type,
     };
 
     const data = { selectedMovie, token };

@@ -10,6 +10,7 @@ export function useUserWathclist(username: string | undefined) {
   } = useQuery({
     queryKey: ["userWatchlist", username],
     queryFn: () => getUserWatchlistApi(username),
+    refetchOnMount: "always",
   });
 
   return { watchlist, isLoadingWatchlist, isErrorWatchlist, watchlistError };
