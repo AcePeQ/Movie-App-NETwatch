@@ -87,7 +87,9 @@ function Settings() {
                 required: "This field is required",
               })}
             />
-            {errors.changed_password && errors.changed_password?.message}
+            <span className={styles.error}>
+              {errors.changed_password && errors.changed_password?.message}
+            </span>
           </>
         </Row>
 

@@ -79,6 +79,14 @@
   font-weight: 500;
 }
 
+.error {
+  text-align: center;
+
+  margin-left: 2.5rem;
+  color: var(--color-red-3);
+  font-weight: 700;
+}
+
 @media only screen and (max-width: 78.125em) {
   .row {
     input {
