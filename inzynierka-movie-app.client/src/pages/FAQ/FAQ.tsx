@@ -40,13 +40,6 @@ function FAQ() {
         it from 1-10 stars.
       </p>
 
-      <h3>How do I make a collection?</h3>
-      <p>
-        First, find a title you want to add to your collection. Click "Add to
-        Collection" and then give your collection an awesome name like Space
-        Adventures, Our Favourite Movies, or something totally unique to you!
-      </p>
-
       <h2>Movies and Shows</h2>
       <h3>Why can't I find a specific title?</h3>
       <p>

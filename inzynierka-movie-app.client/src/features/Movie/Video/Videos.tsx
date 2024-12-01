@@ -20,6 +20,7 @@ function Video({ video }: { video: VideoType }) {
         allowFullScreen={true}
         loading="lazy"
         title={video.name}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       ></iframe>
     </div>
   );
