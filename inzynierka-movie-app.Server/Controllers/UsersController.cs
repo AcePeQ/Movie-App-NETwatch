@@ -119,7 +119,7 @@ namespace inzynierka_movie_app.Server
 
         [Authorize]
         [HttpPost]
-        public  IActionResult UpdateSettings([FromBody] Settings settings)
+        public async Task<IActionResult> UpdateSettings([FromBody] Settings settings)
         {
             var userIDToken = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
             var usernameToken = User.FindFirst("username")?.Value;
@@ -138,7 +138,7 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new {error = "Invalid user ID format"});
             }
 
-            var user = _context.User.SingleOrDefault(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+            var user = _context.User.Include(w=>w.Watchlist).SingleOrDefault(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
 
             if (user == null )
             {
@@ -152,14 +152,14 @@ namespace inzynierka_movie_app.Server
             };
 
             user.Password = settings.Password;
-             _context.SaveChangesAsync();
+             await _context.SaveChangesAsync();
 
             return Ok(new {ok = "Update sucessed"});;
         }
 
         [Authorize]
         [HttpPost]
-        public  IActionResult DeleteAccount()
+        public async Task<IActionResult> DeleteAccount()
         {
             var userIDToken = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value.ToUpper();
             var usernameToken = User.FindFirst("username")?.Value;
@@ -175,7 +175,7 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new {error = "Invalid user ID format"});
             }
 
-            var user = _context.User.SingleOrDefault(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+            var user = _context.User.Include(u => u.Watchlist).SingleOrDefault(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
 
             if (user == null )
             {
@@ -183,7 +183,7 @@ namespace inzynierka_movie_app.Server
             }      
 
              _context.User.Remove(user);
-             _context.SaveChangesAsync();
+            await  _context.SaveChangesAsync();
 
             return Ok(new {ok = "Delete account sucessed"});;
         }

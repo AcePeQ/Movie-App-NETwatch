@@ -24,8 +24,6 @@ function Account() {
   const user = data.user;
   const watchlist = data.user.watchlist;
 
-  console.log(data);
-
   return (
     <div className={styles.accountContainer}>
       <AccountProfile user={user.username} />

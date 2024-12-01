@@ -2,7 +2,13 @@ import styles from "./MovieRating.module.css";
 
 import { HiStar } from "react-icons/hi";
 
-function MovieRating({ rating, type }: { rating: number; type?: string }) {
+function MovieRating({
+  rating,
+  type,
+}: {
+  rating: number | undefined;
+  type?: string;
+}) {
   return (
     <div className={styles.ratingContainer}>
       <HiStar className={`${type ? styles[type] : ""}`} />

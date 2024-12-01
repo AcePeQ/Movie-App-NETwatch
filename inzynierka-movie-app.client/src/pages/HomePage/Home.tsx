@@ -6,7 +6,7 @@ import Loading from "../../ui/Loading/Loading";
 import { useAllTypes } from "../../features/Homepage/useAllTypes";
 import { useMovies } from "../../features/Homepage/useMovies";
 import { useTVSeries } from "../../features/Homepage/useTVSeries";
-import Error from "../../ui/Error/Error";
+import ErrorFull from "../../ui/Error/ErrorFullPage/ErrorFullPage";
 
 function Home() {
   const {
@@ -36,7 +36,7 @@ function Home() {
 
   if (isErrorMovie || isErrorTVSeries || isAllTypesError) {
     const error: Error | null = errorMovie && errorTVSeries && allTypesError;
-    return <Error error={error} />;
+    return <ErrorFull error={error} />;
   }
 
   return (

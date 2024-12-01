@@ -11,9 +11,8 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/useRedux";
 import { getUserToken, getUserWatchList } from "../../Authentication/userSlice";
 import { openModalLogin } from "../../Authentication/modalLoginSlice";
 import ModalMovie from "../../../ui/ModalMovie/ModalMovie";
-import { useParams } from "react-router-dom";
 
-function MovieHero({ data, id }: { data: ItemFullType; id: string }) {
+function MovieHero({ data, id }: { data: ItemFullType; id: number }) {
   const token = useAppSelector(getUserToken);
   const watchlist = useAppSelector(getUserWatchList);
   const dispatch = useAppDispatch();
@@ -59,7 +58,8 @@ function MovieHero({ data, id }: { data: ItemFullType; id: string }) {
   } = data;
 
   const foundMovie =
-    watchlist && watchlist?.find((item: WatchListUser) => item.id === id);
+    watchlist &&
+    watchlist?.find((item: WatchListUser) => item.id === Number(id));
 
   const isMovie = movieTitle ? true : false;
 
@@ -110,7 +110,7 @@ function MovieHero({ data, id }: { data: ItemFullType; id: string }) {
           <div className={styles.detailsContainer}>
             {foundMovie?.user_rating > 0 && (
               <DetailRow title="Your rating">
-                <MovieRating rating={foundMovie.user_rating} />
+                <MovieRating rating={foundMovie?.user_rating} />
               </DetailRow>
             )}
             <DetailRow title="Rating">

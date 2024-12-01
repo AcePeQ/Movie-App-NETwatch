@@ -17,6 +17,7 @@ import UserRating from "../UserRating/UserRating";
 import { useDeleteMovie } from "../../features/Watchlist/useDeleteMovie";
 import { useUpdateMovie } from "../../features/Watchlist/useUpdateMovie";
 import SelectList from "../SelectList/SelectList";
+import Error from "../Error/Error";
 
 interface ModalProps {
   id: number;
@@ -65,10 +66,6 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
   const { isDeletingMovie, deleteMovie } = useDeleteMovie();
   const { isUpdatingMovie, updateMovie } = useUpdateMovie();
 
-  if (isModalError) {
-    return <ErrorFull error={modalError} />;
-  }
-
   const posterImg = movie?.poster_path;
   const isMovieType = movie?.title ? true : false;
 
@@ -110,6 +107,8 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
       <div onClick={onClose} className={styles.overlay}></div>
       <div className={styles.modal} onClick={(e) => e.preventDefault()}>
         <Button type="closeButton" size="normal" onClick={onClose} />
+
+        {isModalError && <ErrorFull error={modalError} />}
 
         {isModalLoading ? (
           <LoaderSmall />
