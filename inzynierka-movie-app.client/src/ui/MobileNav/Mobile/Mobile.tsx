@@ -31,14 +31,12 @@ function Mobile({ isLoggedIn }: NavbarPropsTypes) {
         )}
       </div>
       {openNav && (
-        <div
-          onClick={() => setOpenNav((status) => !status)}
-          className={styles.overlay}
-        >
+        <>
           <div
-            className={styles.navigationContainer}
-            onClick={(e) => e.stopPropagation()}
-          >
+            onClick={() => setOpenNav((status) => !status)}
+            className={styles.overlay}
+          ></div>
+          <div className={styles.navigationContainer}>
             <Logo />
             {isLoggedIn ? (
               <ProfileMenu />
@@ -65,7 +63,7 @@ function Mobile({ isLoggedIn }: NavbarPropsTypes) {
             <Navigation />
             <DarkMode />
           </div>
-        </div>
+        </>
       )}
     </>
   );

@@ -11,7 +11,7 @@ public class WatchlistItem {
     [JsonPropertyName("databaseID")]
     public Guid ID {get; set;}
     public string? backdrop_path { get; set; }
-    public List<Genre>? genres { get; set; }
+    public List<Genre> genres { get; set; }
     //Movie id
     [JsonPropertyName("id")]
     public int movieID { get; set; }

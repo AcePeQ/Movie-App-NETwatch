@@ -17,7 +17,6 @@ import UserRating from "../UserRating/UserRating";
 import { useDeleteMovie } from "../../features/Watchlist/useDeleteMovie";
 import { useUpdateMovie } from "../../features/Watchlist/useUpdateMovie";
 import SelectList from "../SelectList/SelectList";
-import Error from "../Error/Error";
 
 interface ModalProps {
   id: number;
@@ -121,23 +120,26 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
                     {!isMovieType ? movie.name : movie.title}
                   </p>
                   <p className={styles.informations}>
-                    {isMovieType ? "TV" : "Series"}
+                    {isMovieType ? "Movie" : "TV Series"}
                     {movie.genres.map(
                       (genre: GenreType) => ` - ${genre.name} `
                     )}
                   </p>
 
                   <div className={styles.scoreAndYearBox}>
-                    <MovieRating rating={movie.vote_average} />
+                    <p className={styles.status}>{movie.status}</p>
                     <p className={styles.year}>
-                      {isMovieType ? movie.release_date : movie.first_air_date}
+                      {isMovieType
+                        ? movie.release_date.split("-")[0]
+                        : movie.first_air_date.split("-")[0]}
                     </p>
+                    <MovieRating rating={movie.vote_average} />
                   </div>
                 </div>
 
                 <div className={styles.form}>
                   <div className={styles.formRow}>
-                    <p className={styles.formOptionName}>{movie.status}</p>
+                    <p className={styles.formOptionName}>Status</p>
                     <div className={styles.formOptionOption}>
                       <SelectList
                         isSearchable={false}

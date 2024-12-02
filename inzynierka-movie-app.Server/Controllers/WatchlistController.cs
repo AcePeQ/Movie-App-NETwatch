@@ -47,7 +47,7 @@ namespace inzynierka_movie_app.Server
 
             var newMovie = new WatchlistItem {
               backdrop_path = movie.backdrop_path,
-              genres = movie.genres,
+              genres = movie.genres?.Select(g => new Genre { id = g.id ,name = g.name }).ToList(),
               movieID = movie.movieID,
               poster_path = movie.poster_path,
               name = movie.name,

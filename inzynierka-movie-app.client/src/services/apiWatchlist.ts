@@ -31,6 +31,8 @@ export async function addMovieApi(dataPassed: {
   token: string;
 }) {
   try {
+    console.log(dataPassed);
+
     const res = await fetch(`/Watchlist/AddMovie`, {
       headers: {
         "Content-Type": "application/json",
