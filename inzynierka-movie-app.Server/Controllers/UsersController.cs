@@ -50,7 +50,7 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new {error = "Invalid username format"});
             }
 
-            string passwordPattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$";
+            string passwordPattern = @"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*(.)\1).{8,}$";
             if(!Regex.IsMatch(registerUser.Password, passwordPattern)) {
                 return BadRequest(new {error = "Invalid password format"});
             }
@@ -63,12 +63,12 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new {error = "Acconut with this e-mail address or username exists"});
             }
 
-
+            string userPassword = BCrypt.Net.BCrypt.HashPassword(registerUser.Password);
             var user = new User 
             {
                 Email = registerUser.Email,
                 Username = registerUser.Username,
-                Password = registerUser.Password,
+                Password = userPassword,
                 Watchlist = new List<WatchlistItem>(),
             };
 
@@ -82,9 +82,9 @@ namespace inzynierka_movie_app.Server
         [AllowAnonymous]
         public IActionResult Login([FromBody] LoginUser loginUser)
         {
-            var user = _context.User.Include(u=>u.Watchlist).SingleOrDefault(user => user.Email == loginUser.Email && user.Password == loginUser.Password);
+            var user = _context.User.Include(u=>u.Watchlist).SingleOrDefault(user => user.Email == loginUser.Email);
 
-            if (user == null || user.Password != loginUser.Password)
+            if (user == null || !BCrypt.Net.BCrypt.Verify(loginUser.Password, user.Password))
             {
                 return BadRequest(new { error = "Invalid email or password. Try again" });
             }

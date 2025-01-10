@@ -38,8 +38,8 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={true} client={queryClient} />
       <BrowserRouter>
-        <ReactQueryDevtools initialIsOpen={true} client={queryClient} />
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Layout />}>
@@ -92,6 +92,7 @@ function App() {
             fontSize: "1.6rem",
             fontFamily: "inherit",
             zIndex: "10000000",
+            maxWidth: "max-content",
           },
           success: {
             duration: 4000,

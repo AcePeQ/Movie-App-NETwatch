@@ -22,6 +22,7 @@ export async function createAccountApi(registerData: RegisterAccountTypes) {
 
 export async function loginAccountApi(loginData: LoginAccountTypes) {
   try {
+    console.log(loginData);
     const res = await fetch(`/Users/Login`, {
       headers: {
         "Content-Type": "application/json",
@@ -30,12 +31,16 @@ export async function loginAccountApi(loginData: LoginAccountTypes) {
       body: JSON.stringify(loginData),
     });
 
+    console.log(res);
+
     if (!res.ok) {
       const error = await res.json();
+      console.log(error);
       throw new Error(error.error);
     }
 
     const data = await res.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error((error as Error).message);

@@ -122,10 +122,12 @@ function FormRegister() {
           {...register("password", {
             required: "Password field is required",
             pattern: {
-              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+              value:
+                /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*(.)\1).{8,}$/,
               message: `Your password must contain:\n
               * Minimum eight characters \n
-              * At least one letter \n
+              * At least one lower letter \n
+              * At least upper letter \n
               * At least one number \n
               * At least one special character \n
               `,
