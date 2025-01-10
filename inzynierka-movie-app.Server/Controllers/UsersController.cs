@@ -145,13 +145,15 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new { error = "Invalid account" });
             }
 
-            string passwordPattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$";
+            string passwordPattern = @"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*(.)\1).{8,}$";
             if (string.IsNullOrEmpty(settings.Password) || !Regex.IsMatch(settings.Password, passwordPattern))
             {
                 return BadRequest(new { error = "Invalid password format" });
             };
 
-            user.Password = settings.Password;
+            string userPassword = BCrypt.Net.BCrypt.HashPassword(settings.Password);
+            user.Password = userPassword;
+
              await _context.SaveChangesAsync();
 
             return Ok(new {ok = "Update sucessed"});;
