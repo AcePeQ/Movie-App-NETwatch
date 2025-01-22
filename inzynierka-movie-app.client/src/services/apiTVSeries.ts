@@ -1,4 +1,4 @@
-import { ItemType } from "../utils/types";
+import { CardItem } from "../utils/types";
 
 export async function getTVSeries() {
   try {
@@ -15,13 +15,13 @@ export async function getTVSeries() {
     const data = await res.json();
 
     const popularTVSeries = data.popular.results
-      .filter((item: ItemType) => item.vote_count > 10)
+      .filter((item: CardItem) => item.vote_count > 10)
       .slice(0, 10);
     const topRatedTVSeries = data.topRated.results
-      .filter((item: ItemType) => item.vote_count > 75)
+      .filter((item: CardItem) => item.vote_count > 75)
       .slice(0, 10);
     const trendingTVSeries = data.trending.results
-      .filter((item: ItemType) => item.vote_count > 75)
+      .filter((item: CardItem) => item.vote_count > 75)
       .slice(0, 10);
 
     return { popularTVSeries, topRatedTVSeries, trendingTVSeries };

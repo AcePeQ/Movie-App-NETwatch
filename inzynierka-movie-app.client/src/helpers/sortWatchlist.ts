@@ -1,22 +1,26 @@
 import { ItemType } from "../utils/types";
 
-export function sortWatchlist(watchlist, sortBy, typeBy) {
-  console.log(sortBy);
-  console.log(typeBy);
+export function sortWatchlist(watchlist, sortBy, typeBy, statusBy) {
   if (!watchlist) return;
 
   let watchlistTemp = watchlist?.slice();
 
   if (typeBy === "movie")
-    watchlistTemp = watchlistTemp.filter((movie: ItemType) => {
-      return movie.media_type === "movie";
+    watchlistTemp = watchlistTemp.filter((item: ItemType) => {
+      return item.media_type === "movie";
     });
   if (typeBy === "tv")
     watchlistTemp = watchlistTemp.filter(
-      (movie: ItemType) => movie.media_type === "tv"
+      (item: ItemType) => item.media_type === "tv"
     );
 
   console.log(watchlistTemp);
+
+  if (statusBy !== "all") {
+    watchlistTemp = watchlistTemp.filter(
+      (item) => item.user_status === statusBy
+    );
+  }
 
   watchlistTemp.sort((a, b) => {
     switch (sortBy) {

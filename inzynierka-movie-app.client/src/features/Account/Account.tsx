@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import AccountProfile from "./AcconutProfile/AccountProfile";
 import styles from "./Account.module.css";
-import AccountCharts from "./AccountCharts/AccountCharts";
 import AccountHeader from "./AccountHeader/AccountHeader";
 import Stats from "./AccountStats/Stats";
 import { useAccount } from "./useAccount";
@@ -31,7 +30,6 @@ function Account() {
       <div className={styles.profileInformations}>
         <AccountHeader user={user} />
         <Stats watchlist={watchlist} />
-        {/* <AccountCharts /> */}
       </div>
     </div>
   );

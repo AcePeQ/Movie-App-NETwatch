@@ -5,7 +5,6 @@ import { HiPlusCircle } from "react-icons/hi";
 import { HiCog6Tooth } from "react-icons/hi2";
 
 import styles from "./MovieItemTop.module.css";
-import { ItemType, WatchListUser } from "../../../../utils/types";
 import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useRedux";
 
@@ -17,16 +16,19 @@ import { openModalLogin } from "../../../Authentication/modalLoginSlice";
 import { useState } from "react";
 import ModalMovie from "../../../../ui/ModalMovie/ModalMovie";
 import UserScore from "../../../../ui/UserScore/UserScore";
+import { CardItem, WatchlistItem } from "../../../../utils/types";
 
 interface MovieItemProps {
   number: number;
-  movie: ItemType;
+  movie: CardItem;
 }
 
 function MovieItemTop({ number, movie }: MovieItemProps) {
   const token = useAppSelector(getUserToken);
   const watchlist = useAppSelector(getUserWatchList);
   const dispatch = useAppDispatch();
+
+  console.log(watchlist);
 
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -35,9 +37,9 @@ function MovieItemTop({ number, movie }: MovieItemProps) {
   const isMovie = title ? true : false;
 
   const foundMovie =
-    watchlist && watchlist?.find((item: WatchListUser) => item.id === id);
+    watchlist && watchlist?.find((item: WatchlistItem) => item.id === id);
 
-  function handleModalMovie(e: MouseEvent) {
+  function handleModalMovie(e: React.MouseEvent<SVGAElement>) {
     e.preventDefault();
 
     if (!token) {
@@ -48,7 +50,7 @@ function MovieItemTop({ number, movie }: MovieItemProps) {
     setModalOpen(true);
   }
 
-  function handleCloseModal(e: MouseEvent) {
+  function handleCloseModal(e: React.MouseEvent<HTMLDivElement>) {
     e.preventDefault();
 
     setModalOpen(false);

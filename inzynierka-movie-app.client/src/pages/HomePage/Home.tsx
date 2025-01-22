@@ -42,6 +42,7 @@ function Home() {
   return (
     <>
       <Hero items={allTypes?.allTypesTrending} />
+
       <RowList
         title="Top Movies Now"
         items={movies?.trendingMovies}

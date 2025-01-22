@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: column;
 
-  max-width: 192rem;
+  max-width: 280rem;
   width: 100%;
   min-height: 100dvh;
 
   position: relative;
+
+  margin: 0 auto;
 }
 
 .main {

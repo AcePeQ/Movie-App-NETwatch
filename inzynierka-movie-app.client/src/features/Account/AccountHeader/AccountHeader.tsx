@@ -18,9 +18,11 @@ function AccountHeader({ user }: AccountHeaderTypes) {
     <div className={styles.header}>
       <p className={styles.accountName}>{user.username}</p>
       {loggedUser === user.username && (
-        <Link to={`/user/settings`}>
-          <RiSettings5Fill className={styles.icon} />
-        </Link>
+        <>
+          <Link to={`/user/settings`}>
+            <RiSettings5Fill className={styles.icon} />
+          </Link>
+        </>
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import { ReactElement, useState } from "react";
 import styles from "./Settings.module.css";
-import Avatar from "../../ui/Avatar/Avatar";
+
 import Button from "../../ui/Button/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
@@ -68,15 +68,6 @@ function Settings() {
       <h2 className={styles.title}>Settings</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <Row name="Profile picture">
-          <>
-            <Avatar type="settings" />
-            <Button type="primary" size="small">
-              Upload
-            </Button>
-          </>
-        </Row>
-
         <Row name="Change password">
           <>
             <input

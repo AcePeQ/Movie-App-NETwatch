@@ -4,10 +4,10 @@ import styles from "./SliderItem.module.css";
 import MovieRating from "../../../../ui/MovieRating/MovieRating";
 import { BASE_URL_ORIGINAL } from "../../../../helpers/getBaseUrl";
 import { findGenre } from "../../../../helpers/findGenre";
-import { HeroItemType } from "../../../../utils/types";
+import { GeneralProductionItem } from "../../../../utils/types";
 
 interface SliderItemPropTypes {
-  item: HeroItemType;
+  item: GeneralProductionItem;
   index: number;
 }
 
@@ -24,6 +24,7 @@ function SliderItem({ item, index }: SliderItemPropTypes) {
     media_type,
     genre_ids,
   } = item;
+
   const isMovie = media_type === "movie";
   const releaseYear = (release_date || first_air_date)?.split("-")[0];
   const genres = genre_ids?.slice(0, 3);

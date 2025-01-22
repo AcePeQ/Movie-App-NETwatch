@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import SidebarWatchlist from "../../Lists/Sidebar/SidebarWatchlist";
 import styles from "./WatchlistList.module.css";
-import { useAppSelector } from "../../../hooks/useRedux";
-import { getUserWatchList } from "../../Authentication/userSlice";
 import { useUserWathclist } from "../useUserWatchlist";
 import ErrorFull from "../../../ui/Error/ErrorFullPage/ErrorFullPage";
 import Loading from "../../../ui/Loading/Loading";
 import MovieItem from "../../Homepage/RowList/MovieItem/MovieItem";
-import { ItemType } from "../../../utils/types";
+import { ItemFullType, ItemType } from "../../../utils/types";
 import { useParams } from "react-router-dom";
 import { sortWatchlist } from "../../../helpers/sortWatchlist";
 
@@ -27,6 +25,15 @@ const typeOptions = [
   { value: "tv", label: "TV Series" },
 ];
 
+const statusOptions = [
+  { value: "all", label: "All" },
+  { value: "watching", label: "Current Watching" },
+  { value: "completed", label: "Completed" },
+  { value: "planToWatch", label: "Plan to Watch" },
+  { value: "onHold", label: "On Hold" },
+  { value: "dropped", label: "Dropped" },
+];
+
 function WatchlistList() {
   const { username } = useParams();
 
@@ -35,14 +42,15 @@ function WatchlistList() {
 
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [typeBy, setTypeBy] = useState(typeOptions[0]);
-  const [sortedWatchlist, setSortedWatchlist] = useState<ItemType[]>([]);
+  const [statusBy, setStatusBy] = useState(statusOptions[0]);
+  const [sortedWatchlist, setSortedWatchlist] = useState<ItemFullType[]>([]);
 
   useEffect(() => {
     if (watchlist) {
-      const sorted = sortWatchlist(watchlist, sortBy, typeBy);
+      const sorted = sortWatchlist(watchlist, sortBy, typeBy, statusBy);
       setSortedWatchlist(sorted);
     }
-  }, [watchlist, sortBy, typeBy]);
+  }, [watchlist, sortBy, typeBy, statusBy]);
 
   if (isErrorWatchlist) {
     return <ErrorFull error={watchlistError} />;
@@ -57,13 +65,16 @@ function WatchlistList() {
         setTypeBy={setTypeBy}
         sortOptions={sortOptions}
         typeOptions={typeOptions}
+        statusBy={statusBy}
+        setStatusBy={setStatusBy}
+        statusOptions={statusOptions}
       />
 
       <div className={styles.list_wrapper}>
         {isLoadingWatchlist ? (
           <Loading />
         ) : (
-          sortedWatchlist?.map((movie: ItemType) => (
+          sortedWatchlist?.map((movie: any) => (
             <MovieItem key={movie.id} movie={movie} />
           ))
         )}

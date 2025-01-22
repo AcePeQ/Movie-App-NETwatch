@@ -8,7 +8,7 @@ import MovieRating from "../../../../ui/MovieRating/MovieRating";
 import { findGenre } from "../../../../helpers/findGenre";
 
 import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
-import { ItemType, WatchListUser } from "../../../../utils/types";
+import { ItemFullType, ItemType, WatchListUser } from "../../../../utils/types";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useRedux";
 import {
   getUserToken,

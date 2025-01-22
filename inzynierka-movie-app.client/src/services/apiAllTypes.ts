@@ -1,4 +1,4 @@
-import { ItemType } from "../utils/types";
+import { GeneralProductionItem } from "../utils/types";
 
 export async function getAllTypes() {
   try {
@@ -16,7 +16,7 @@ export async function getAllTypes() {
     const data = await res.json();
 
     const allTypesTrending = data.results
-      .filter((item: ItemType) => item.vote_count > 75)
+      .filter((item: GeneralProductionItem) => item.vote_count > 75)
       .slice(0, 5);
 
     return { allTypesTrending };

@@ -9,6 +9,9 @@ function SidebarWatchlist({
   setTypeBy,
   sortOptions,
   typeOptions,
+  statusBy,
+  setStatusBy,
+  statusOptions,
 }) {
   return (
     <div className={styles.sidebar}>
@@ -19,6 +22,17 @@ function SidebarWatchlist({
             isSearchable={false}
             defaultOption={typeOptions[0]}
             onChange={(option: { value: string }) => setTypeBy(option.value)}
+          />
+        </div>
+      </FilterPanel>
+
+      <FilterPanel title="Status">
+        <div className={styles.filter_wrapper}>
+          <SelectList
+            options={statusOptions}
+            isSearchable={false}
+            defaultOption={statusOptions[0]}
+            onChange={(option: { value: string }) => setStatusBy(option.value)}
           />
         </div>
       </FilterPanel>

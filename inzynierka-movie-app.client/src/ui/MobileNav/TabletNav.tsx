@@ -8,11 +8,7 @@ import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import NavigationMobile from "./NavigationTablet/NavigationMobile";
 import SearchModal from "../Search/SearchModal";
 
-interface NavbarPropsTypes {
-  type: boolean;
-}
-
-function TabletNav({ type }: NavbarPropsTypes) {
+function TabletNav({ type }: { type: boolean }) {
   const dispatch = useDispatch();
 
   if (type) {

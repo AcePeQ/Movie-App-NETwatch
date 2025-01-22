@@ -1,4 +1,4 @@
-import { ItemType } from "../utils/types";
+import { CardItem } from "../utils/types";
 
 export async function getMovies() {
   try {
@@ -14,16 +14,16 @@ export async function getMovies() {
     const data = await res.json();
 
     const popularMovies = data.popular.results
-      .filter((item: ItemType) => item.vote_count > 10)
+      .filter((item: CardItem) => item.vote_count > 10)
       .slice(0, 10);
     const nowPlayingMovies = data.nowPlaying.results
-      .filter((item: ItemType) => item.vote_count > 75)
+      .filter((item: CardItem) => item.vote_count > 75)
       .slice(0, 10);
     const topRatedMovies = data.topRated.results
-      .filter((item: ItemType) => item.vote_count > 75)
+      .filter((item: CardItem) => item.vote_count > 75)
       .slice(0, 10);
     const trendingMovies = data.trending.results
-      .filter((item: ItemType) => item.vote_count > 75)
+      .filter((item: CardItem) => item.vote_count > 75)
       .slice(0, 10);
 
     return { popularMovies, nowPlayingMovies, topRatedMovies, trendingMovies };

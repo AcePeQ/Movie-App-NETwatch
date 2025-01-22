@@ -1,5 +1,3 @@
-import Avatar from "../Avatar/Avatar";
-
 import styles from "./ProfileMenu.module.css";
 
 import { useEffect, useRef, useState } from "react";
@@ -53,7 +51,7 @@ function ProfileMenu() {
           setIsOpen(!isOpen);
         }}
       >
-        <Avatar type="profile" />
+        <div></div>
         <p className={styles.profileName}>{username}</p>
         {isOpen ? (
           <HiMiniChevronUp className={styles.profileIcon} />

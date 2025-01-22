@@ -1,6 +1,9 @@
 .profileMenu {
   flex-shrink: 0;
   position: relative;
+
+  min-width: 14rem;
+  font-size: 2rem;
 }
 
 .profile {

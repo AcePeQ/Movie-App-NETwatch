@@ -1,12 +1,16 @@
 .button {
   position: relative;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   z-index: 10001;
 }
 
 .icon {
-  width: 3.8rem;
-  height: 3.8rem;
+  width: 2.8rem;
+  height: 2.8rem;
 }
 
 .overlay {
@@ -17,7 +21,7 @@
   top: 0;
   left: 0;
 
-  z-index: 10000;
+  z-index: 10002;
 
   background-color: var(--background-opacity-75-100);
   backdrop-filter: blur(5px);

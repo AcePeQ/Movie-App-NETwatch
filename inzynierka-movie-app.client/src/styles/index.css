@@ -162,7 +162,6 @@ a {
 
 img,
 picture,
-svg,
 video,
 canvas {
   max-width: 100%;
@@ -237,16 +236,6 @@ body {
   position: relative;
 
   background-image: var(--background-url);
-}
-
-body::before {
-  backdrop-filter: blur(2px);
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
 }
 
 a.active:link,

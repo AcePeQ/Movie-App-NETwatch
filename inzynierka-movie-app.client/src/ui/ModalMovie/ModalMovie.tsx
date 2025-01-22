@@ -1,5 +1,5 @@
 import styles from "./ModalMovie.module.css";
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 
 import Button from "../Button/Button";
@@ -8,7 +8,6 @@ import { useGetModalMovie } from "./useGetModalMovie";
 import LoaderSmall from "../LoaderSmall/LoaderSmall";
 import ErrorFull from "../Error/ErrorFullPage/ErrorFullPage";
 import MovieRating from "../MovieRating/MovieRating";
-import { GenreType, WatchListUser } from "../../utils/types";
 import { useAddMovie } from "../../features/Watchlist/useAddMovie";
 import { getUserToken } from "../../features/Authentication/userSlice";
 import { useAppSelector } from "../../hooks/useRedux";
@@ -17,12 +16,13 @@ import UserRating from "../UserRating/UserRating";
 import { useDeleteMovie } from "../../features/Watchlist/useDeleteMovie";
 import { useUpdateMovie } from "../../features/Watchlist/useUpdateMovie";
 import SelectList from "../SelectList/SelectList";
+import { Genre, WatchlistItem } from "../../utils/types";
 
 interface ModalProps {
   id: number;
   isMovie: boolean;
-  onClose: MouseEventHandler;
-  foundMovie: WatchListUser | undefined;
+  onClose: (event: React.MouseEvent<HTMLDivElement>) => void;
+  foundMovie: WatchlistItem | undefined;
 }
 
 const statusOptions = [
@@ -121,9 +121,7 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
                   </p>
                   <p className={styles.informations}>
                     {isMovieType ? "Movie" : "TV Series"}
-                    {movie.genres.map(
-                      (genre: GenreType) => ` - ${genre.name} `
-                    )}
+                    {movie.genres.map((genre: Genre) => ` - ${genre.name} `)}
                   </p>
 
                   <div className={styles.scoreAndYearBox}>
