@@ -1,14 +1,22 @@
-import Select from "react-select";
+import Select, {
+  ActionMeta,
+  CSSObjectWithLabel,
+  SingleValue,
+  Theme,
+} from "react-select";
 import styles from "./SelectList.module.css";
 
 type SearchTypes = {
   isSearchable: boolean;
-  defaultOption?: { value: string; label: string } | string;
+  defaultOption: { value: string; label: string };
   options: { value: string; label: string }[];
   className?: string;
   classNamePrefix?: string;
   name?: string;
-  onChange?: any;
+  onChange?: (
+    newValue: SingleValue<{ value: string; label: string }> | null, // Handle both single value and null
+    actionMeta: ActionMeta<{ value: string; label: string }>
+  ) => void;
 };
 
 function SelectList({
@@ -20,7 +28,7 @@ function SelectList({
   onChange,
   name,
 }: SearchTypes) {
-  function customTheme(theme) {
+  function customTheme(theme: Theme) {
     return {
       ...theme,
       colors: {
@@ -37,7 +45,7 @@ function SelectList({
   }
 
   const customStyles = {
-    control: (styles) => ({
+    control: (styles: CSSObjectWithLabel) => ({
       ...styles,
       border: "none",
       padding: "0.25rem 0.5rem",
@@ -55,12 +63,12 @@ function SelectList({
         border: "none",
       },
     }),
-    option: (styles) => ({
+    option: (styles: CSSObjectWithLabel) => ({
       ...styles,
       cursor: "pointer",
       fontSize: "inherit",
     }),
-    dropdownIndicator: (styles) => ({
+    dropdownIndicator: (styles: CSSObjectWithLabel) => ({
       ...styles,
       color: "var(--text-100)",
 
@@ -68,11 +76,11 @@ function SelectList({
         color: "var(--text-100)",
       },
     }),
-    indicatorSeparator: (styles) => ({
+    indicatorSeparator: (styles: CSSObjectWithLabel) => ({
       ...styles,
       display: "none",
     }),
-    menu: (styles) => ({
+    menu: (styles: CSSObjectWithLabel) => ({
       ...styles,
       zIndex: "100000",
     }),

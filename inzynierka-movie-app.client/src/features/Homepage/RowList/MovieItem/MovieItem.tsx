@@ -8,7 +8,7 @@ import MovieRating from "../../../../ui/MovieRating/MovieRating";
 import { findGenre } from "../../../../helpers/findGenre";
 
 import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
-import { ItemFullType, ItemType, WatchListUser } from "../../../../utils/types";
+import { CardItem, WatchlistItem } from "../../../../utils/types";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useRedux";
 import {
   getUserToken,
@@ -20,11 +20,10 @@ import { openModalLogin } from "../../../Authentication/modalLoginSlice";
 import UserScore from "../../../../ui/UserScore/UserScore";
 
 interface MovieItem {
-  type?: string;
-  movie: ItemType;
+  movie: CardItem;
 }
 
-function MovieItem({ type, movie }: MovieItem) {
+function MovieItem({ movie }: MovieItem) {
   const token = useAppSelector(getUserToken);
   const watchlist = useAppSelector(getUserWatchList);
   const dispatch = useAppDispatch();
@@ -45,13 +44,13 @@ function MovieItem({ type, movie }: MovieItem) {
   const genres = genre_ids ? genre_ids.slice(0, 2) : [];
 
   const foundMovie =
-    watchlist && watchlist?.find((item: WatchListUser) => item.id === id);
+    watchlist && watchlist?.find((item: WatchlistItem) => item.id === id);
 
   const backgroundImage = {
     background: `url(${backgroundPath ? background : noImage})`,
   };
 
-  function handleModalMovie(e: Event) {
+  function handleModalMovie(e: React.MouseEvent<SVGAElement>) {
     e.preventDefault();
 
     if (!token) {
@@ -62,7 +61,7 @@ function MovieItem({ type, movie }: MovieItem) {
     setModalOpen(true);
   }
 
-  function handleCloseModal(e: Event) {
+  function handleCloseModal(e: React.MouseEvent<HTMLDivElement>) {
     e.preventDefault();
 
     setModalOpen(false);
@@ -70,7 +69,7 @@ function MovieItem({ type, movie }: MovieItem) {
 
   return (
     <Link
-      className={`${styles.movieContainer} ${styles[type]}`}
+      className={styles.movieContainer}
       style={backgroundImage}
       to={`${isMovie ? `/movie/${id}` : `/tv/${id}`}`}
     >

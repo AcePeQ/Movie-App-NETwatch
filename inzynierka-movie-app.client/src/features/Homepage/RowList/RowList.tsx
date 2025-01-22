@@ -5,12 +5,12 @@ import Slider from "react-slick";
 import { sliderSettings } from "../../../helpers/sliderSettings";
 
 import styles from "./RowList.module.css";
-import { ItemType } from "../../../utils/types";
+import { CardItem } from "../../../utils/types";
 
 type RowListProps = {
   title: string;
-  items: ItemType[];
-  render: (movie: ItemType, index: number) => JSX.Element;
+  items: CardItem[];
+  render: (movie: CardItem, index: number) => JSX.Element;
 };
 
 function RowList({ title, items, render }: RowListProps) {

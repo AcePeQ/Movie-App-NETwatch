@@ -42,7 +42,7 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
       );
       return findedStatus;
     }
-    return statusOptions[0];
+    return statusOptions[2];
   });
   const [watchedEpisdoes, setWatchedEpisodes] = useState(() => {
     if (foundMovie) return foundMovie.watched_episodes;
@@ -142,11 +142,13 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
                       <SelectList
                         isSearchable={false}
                         options={statusOptions}
-                        defaultOption={userStatus}
+                        defaultOption={statusOptions[2]}
                         className={styles.selectContainer}
-                        onChange={(option: { value: string; label: string }) =>
-                          setUserStatus(option)
-                        }
+                        onChange={(newValue) => {
+                          if (newValue) {
+                            setUserStatus(newValue);
+                          }
+                        }}
                       />
                     </div>
                   </div>

@@ -62,41 +62,31 @@ function Home() {
       <RowList
         title="New Movies"
         items={movies?.nowPlayingMovies}
-        render={(movie) => (
-          <MovieItem key={movie.id} type="slider" movie={movie} />
-        )}
+        render={(movie) => <MovieItem key={movie.id} movie={movie} />}
       />
 
       <RowList
         title="Trending Movies"
         items={movies?.popularMovies}
-        render={(movie) => (
-          <MovieItem key={movie.id} type="slider" movie={movie} />
-        )}
+        render={(movie) => <MovieItem key={movie.id} movie={movie} />}
       />
 
       <RowList
         title="Trending TV Series"
         items={tvSeries?.popularTVSeries}
-        render={(movie) => (
-          <MovieItem key={movie.id} type="slider" movie={movie} />
-        )}
+        render={(movie) => <MovieItem key={movie.id} movie={movie} />}
       />
 
       <RowList
         title="Top Rated Movies Ever"
         items={movies?.topRatedMovies}
-        render={(movie) => (
-          <MovieItem key={movie.id} type="slider" movie={movie} />
-        )}
+        render={(movie) => <MovieItem key={movie.id} movie={movie} />}
       />
 
       <RowList
         title="Top Rated TV Series Ever"
         items={tvSeries?.topRatedTVSeries}
-        render={(movie) => (
-          <MovieItem key={movie.id} type="slider" movie={movie} />
-        )}
+        render={(movie) => <MovieItem key={movie.id} movie={movie} />}
       />
     </>
   );
