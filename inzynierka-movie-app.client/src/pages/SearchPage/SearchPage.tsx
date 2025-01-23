@@ -5,7 +5,7 @@ import { useSearch } from "../../ui/Search/useSearch";
 import Loading from "../../ui/Loading/Loading";
 import ErrorFull from "../../ui/Error/ErrorFullPage/ErrorFullPage";
 import SearchResult from "./SearchResult/SearchResult";
-import { ItemType } from "../../utils/types";
+import { GeneralProductionItem } from "../../utils/types";
 
 function SearchPage() {
   const { query } = useParams();
@@ -38,7 +38,7 @@ function SearchPage() {
       <div className={styles.main}>
         <div className={styles.main_wrapper}>
           <ul className={styles.search_list}>
-            {data.map((item: ItemType) => (
+            {data.map((item: GeneralProductionItem) => (
               <SearchResult key={item.id} item={item} />
             ))}
           </ul>

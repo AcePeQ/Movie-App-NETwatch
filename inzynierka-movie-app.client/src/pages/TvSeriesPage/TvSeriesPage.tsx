@@ -27,7 +27,7 @@ import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
 import { convertLanguageISO } from "../../helpers/formatISO";
 import { useParams } from "react-router-dom";
 import { useTVSeriesID } from "../../features/Movie/useTVSeriesID";
-import { CastType, SeasonType, ShowType, VideoType } from "../../utils/types";
+
 import WatchOnNow from "../../features/Movie/MovieHero/WatchOnNow/WatchOnNow";
 
 function TvSeriesPage() {

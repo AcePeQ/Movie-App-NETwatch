@@ -6,7 +6,7 @@ import PersonHero from "../../features/Person/PersonHero/PersonHero";
 import MovieRow from "../../features/Movie/MovieRow/MovieRow";
 import Carousel from "react-multi-carousel";
 import MovieItem from "../../features/Homepage/RowList/MovieItem/MovieItem";
-import { PersonMovie, ShowType } from "../../utils/types";
+
 import {
   movieMobileSettings,
   movieSettings,

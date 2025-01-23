@@ -23,7 +23,7 @@ import {
 import { useMediaQuery } from "react-responsive";
 import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
 import { convertLanguageISO } from "../../helpers/formatISO";
-import { CastType, ItemType, ShowType, VideoType } from "../../utils/types";
+
 import WatchOnNow from "../../features/Movie/MovieHero/WatchOnNow/WatchOnNow";
 
 function MoviePage() {

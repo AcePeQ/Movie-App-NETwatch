@@ -5,9 +5,9 @@ import { BASE_URL_W200 } from "../../../helpers/getBaseUrl";
 import { findGenre } from "../../../helpers/findGenre";
 import MovieRating from "../../../ui/MovieRating/MovieRating";
 import { useMediaQuery } from "react-responsive";
-import { ItemType } from "../../../utils/types";
+import { GeneralProductionItem } from "../../../utils/types";
 
-function SearchResult({ item }: { item: ItemType }) {
+function SearchResult({ item }: { item: GeneralProductionItem }) {
   const isMobile = useMediaQuery({
     query: "(max-width: 580px)",
   });
