@@ -29,6 +29,7 @@ import { useParams } from "react-router-dom";
 import { useTVSeriesID } from "../../features/Movie/useTVSeriesID";
 
 import WatchOnNow from "../../features/Movie/MovieHero/WatchOnNow/WatchOnNow";
+import { CardItem, CastType, SeasonType, VideoType } from "../../utils/types";
 
 function TvSeriesPage() {
   const { id } = useParams();
@@ -142,8 +143,8 @@ function TvSeriesPage() {
 
         <MovieRow title="Similar">
           <Carousel {...settings} responsive={similarResponsive}>
-            {similarShows.map((show: ShowType) => (
-              <MovieItem key={show.id} movie={show} type="slider" />
+            {similarShows.map((show: CardItem) => (
+              <MovieItem key={show.id} movie={show} />
             ))}
           </Carousel>
         </MovieRow>

@@ -25,6 +25,7 @@ import { BASE_URL_W500 } from "../../helpers/getBaseUrl";
 import { convertLanguageISO } from "../../helpers/formatISO";
 
 import WatchOnNow from "../../features/Movie/MovieHero/WatchOnNow/WatchOnNow";
+import { CardItem, CastType, VideoType } from "../../utils/types";
 
 function MoviePage() {
   const { id } = useParams();
@@ -44,8 +45,6 @@ function MoviePage() {
     return <ErrorFull error={error} />;
   }
 
-  console.log(data);
-
   const vidoes = data?.videos?.results
     ?.filter(
       (video: VideoType) =>
@@ -60,7 +59,7 @@ function MoviePage() {
     .slice(0, 9);
 
   const similarShows = data?.similar?.results.filter(
-    (show: ItemType) => show.vote_average > 0
+    (show: CardItem) => show.vote_average > 0
   );
 
   const movie = data?.movie;
@@ -124,8 +123,8 @@ function MoviePage() {
 
         <MovieRow title="Similar">
           <Carousel {...settings} responsive={similarResponsive}>
-            {similarShows.map((show: ShowType) => (
-              <MovieItem key={show.id} movie={show} type="slider" />
+            {similarShows.map((show: CardItem) => (
+              <MovieItem key={show.id} movie={show} />
             ))}
           </Carousel>
         </MovieRow>

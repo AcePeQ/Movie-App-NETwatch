@@ -16,6 +16,7 @@ import { useMediaQuery } from "react-responsive";
 
 import styles from "./PersonPage.module.css";
 import "react-multi-carousel/lib/styles.css";
+import { CardItem, FullCastType } from "../../utils/types";
 
 function PersonPage() {
   const { id } = useParams();
@@ -39,16 +40,16 @@ function PersonPage() {
   const combinedTypes = data.combined_credits.cast
     .concat(data.combined_credits.crew)
     .filter(
-      (item: PersonMovie, index: number, array: PersonMovie[]) =>
+      (item: FullCastType, index: number, array: FullCastType[]) =>
         index === array.findIndex((m) => m.id === item.id)
     )
-    .sort((a: PersonMovie, b: PersonMovie) => b.popularity - a.popularity);
+    .sort((a: FullCastType, b: FullCastType) => b.popularity - a.popularity);
 
   const movies = combinedTypes.filter(
-    (movie: PersonMovie) => movie.media_type === "movie"
+    (movie: FullCastType) => movie.media_type === "movie"
   );
   const tvSeries = combinedTypes.filter(
-    (tvSerie: PersonMovie) => tvSerie.media_type === "tv"
+    (tvSerie: FullCastType) => tvSerie.media_type === "tv"
   );
 
   return (
@@ -59,8 +60,8 @@ function PersonPage() {
         {movies.length > 0 && (
           <MovieRow title="Known for movies">
             <Carousel {...settings} responsive={responsive}>
-              {movies.map((show: ShowType) => (
-                <MovieItem key={show.id} movie={show} type="slider" />
+              {movies.map((show: CardItem) => (
+                <MovieItem key={show.id} movie={show} />
               ))}
             </Carousel>
           </MovieRow>
@@ -69,8 +70,8 @@ function PersonPage() {
         {tvSeries.length > 0 && (
           <MovieRow title="Known for TV Series">
             <Carousel {...settings} responsive={responsive}>
-              {tvSeries.map((show: ShowType) => (
-                <MovieItem key={show.id} movie={show} type="slider" />
+              {tvSeries.map((show: CardItem) => (
+                <MovieItem key={show.id} movie={show} />
               ))}
             </Carousel>
           </MovieRow>

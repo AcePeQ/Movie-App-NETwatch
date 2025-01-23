@@ -6,7 +6,7 @@ import DetailRow from "./DetailRow/DetailRow";
 import { BASE_URL_ORIGINAL, BASE_URL_W500 } from "../../../helpers/getBaseUrl";
 import { useState } from "react";
 import { convertRegionISO } from "../../../helpers/formatISO";
-import { ItemFullType, WatchListUser } from "../../../utils/types";
+
 import { useAppDispatch, useAppSelector } from "../../../hooks/useRedux";
 import { getUserToken, getUserWatchList } from "../../Authentication/userSlice";
 import { openModalLogin } from "../../Authentication/modalLoginSlice";
