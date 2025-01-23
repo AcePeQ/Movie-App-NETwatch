@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import Button from "../../Button/Button";
 import styles from "./TabModal.module.css";
 import { BASE_URL_W500 } from "../../../helpers/getBaseUrl";
 

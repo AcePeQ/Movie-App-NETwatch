@@ -3,9 +3,15 @@ import styles from "./UserRating.module.css";
 
 import { RiStarSFill } from "react-icons/ri";
 
-function UserRating({ defaultRating, onSetRating }) {
+function UserRating({
+  defaultRating,
+  onSetRating,
+}: {
+  defaultRating: number;
+  onSetRating: React.Dispatch<React.SetStateAction<number>>;
+}) {
   const [rating, setRating] = useState(defaultRating);
-  const [hoverRating, setHoverRating] = useState(null);
+  const [hoverRating, setHoverRating] = useState<number | null>(null);
 
   const stars = Array(10).fill(0);
 
@@ -13,7 +19,7 @@ function UserRating({ defaultRating, onSetRating }) {
     <div className={styles.rating_wrapper}>
       <div className={styles.rating}>
         {[
-          ...stars.map((star, index) => {
+          ...stars.map((_, index) => {
             const currentRating = index + 1;
 
             return (

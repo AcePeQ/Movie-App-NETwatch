@@ -5,7 +5,7 @@ import styles from "./Button.module.css";
 
 interface ButtonProps {
   type?: string;
-  onClick?: any;
+  onClick?: React.MouseEventHandler;
   children?: string | ReactElement;
   size?: string;
   disabled?: boolean;

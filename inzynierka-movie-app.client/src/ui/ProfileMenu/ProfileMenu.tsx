@@ -19,11 +19,11 @@ function ProfileMenu() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const menuRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClose = (e: MouseEvent) => {
-      if (!menuRef?.current?.contains(e.target)) {
+      if (menuRef.current && !menuRef?.current?.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };

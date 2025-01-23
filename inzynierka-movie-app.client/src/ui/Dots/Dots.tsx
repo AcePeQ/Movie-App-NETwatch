@@ -1,9 +1,9 @@
-import { HeroItemType } from "../../utils/types";
+import { GeneralProductionItem } from "../../utils/types";
 import styles from "./Dots.module.css";
 
 type Dots = {
   onDotClick: (dotIndex: number) => void;
-  items: HeroItemType[];
+  items: GeneralProductionItem[];
   indexImage: number;
 };
 

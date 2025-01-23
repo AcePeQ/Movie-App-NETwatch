@@ -5,7 +5,7 @@ import { ReactElement } from "react";
 
 interface ModalTypes {
   handleCloseModal: () => void;
-  handleAction: (e: Event) => void;
+  handleAction: (e: React.MouseEvent) => void;
   isLoading?: boolean;
   children: ReactElement;
 }

@@ -3,7 +3,7 @@ import SearchItem from "../SearchItem/SearchItem";
 import { useSearch } from "../useSearch";
 import Loading from "../../Loading/Loading";
 import Error from "../../Error/Error";
-import { ItemType } from "../../../utils/types";
+import { GeneralProductionItem } from "../../../utils/types";
 
 function SearchResults({ query }: { query: string }) {
   const { data, isPending, error, isError } = useSearch(query);
@@ -22,7 +22,7 @@ function SearchResults({ query }: { query: string }) {
 
       {!isPending && !isError && (
         <>
-          {data.map((item: ItemType) => (
+          {data.map((item: GeneralProductionItem) => (
             <SearchItem key={item.id} item={item} />
           ))}
         </>

@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { getUserToken, logout } from "../../features/Authentication/userSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode, JwtPayload } from "jwt-decode";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -18,8 +18,17 @@ function ProtectedRoute({ children }: { children: JSX.Element }) {
     }
 
     try {
-      const decodedToken: any = jwtDecode(token);
-      const isExpired = decodedToken.exp * 1000 < Date.now();
+      const decodedToken = jwtDecode<JwtPayload>(token);
+      const expirationTime = decodedToken.exp;
+
+      if (expirationTime === undefined) {
+        toast.error("Token does not contain expiration time");
+        dispatch(logout());
+        setIsAuthorized(false);
+        return;
+      }
+
+      const isExpired = expirationTime * 1000 < Date.now();
       if (isExpired) {
         toast.success("Please login again");
         dispatch(logout());
@@ -27,7 +36,7 @@ function ProtectedRoute({ children }: { children: JSX.Element }) {
       } else {
         setIsAuthorized(true);
       }
-    } catch (error) {
+    } catch {
       toast.error("Unauthorized action");
       dispatch(logout());
       setIsAuthorized(false);

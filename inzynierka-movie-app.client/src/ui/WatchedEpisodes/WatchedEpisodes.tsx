@@ -3,8 +3,14 @@ import styles from "./WatchedEpisodes.module.css";
 import { HiMiniPlus } from "react-icons/hi2";
 import { HiMiniMinus } from "react-icons/hi2";
 
-function WatchedEpisodes({ episodes, setEpisodes, seasons }) {
-  const numberOfEpisodes = seasons.reduce(
+interface EpisodesTypes {
+  episodes: number;
+  setEpisodes: any;
+  seasons: any;
+}
+
+function WatchedEpisodes({ episodes, setEpisodes, seasons }: EpisodesTypes) {
+  const numberOfEpisodes = seasons.reduce<number>(
     (acc, val) => acc + val.episode_count,
     0
   );
