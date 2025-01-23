@@ -1,6 +1,6 @@
-import { UserSettings } from "../utils/types";
+import { UpdateUser } from "../utils/types";
 
-export async function updateSettingsApi(settings: UserSettings, token: string) {
+export async function updateSettingsApi(settings: UpdateUser, token: string) {
   try {
     const res = await fetch(`/Users/UpdateSettings`, {
       method: "POST",

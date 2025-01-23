@@ -49,3 +49,20 @@ export type Genre = {
   id: number;
   name: string;
 };
+
+export type UpdateUser = {
+  username: string;
+  password: string;
+};
+
+export type LoginUser = {
+  username: string;
+  password: string;
+};
+
+export type RegisterUser = {
+  username: string;
+  password: string;
+  email: string;
+  confirmed_password: string;
+};

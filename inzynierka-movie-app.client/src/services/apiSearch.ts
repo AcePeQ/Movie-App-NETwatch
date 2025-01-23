@@ -1,4 +1,4 @@
-import { ItemType } from "../utils/types";
+import { GeneralProductionItem } from "../utils/types";
 
 export async function getSearch(
   query: string | undefined,
@@ -14,7 +14,7 @@ export async function getSearch(
     const data = await res.json();
 
     const searchData = data.results.filter(
-      (item: ItemType) => item.media_type !== "person"
+      (item: GeneralProductionItem) => item.media_type !== "person"
     );
 
     return searchData;

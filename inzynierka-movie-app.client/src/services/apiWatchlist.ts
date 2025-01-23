@@ -1,4 +1,4 @@
-import { WatchListUser } from "../utils/types";
+import { WatchlistItem } from "../utils/types";
 
 export async function getModalMovieApi(id: number, isMovie: boolean) {
   try {
@@ -27,7 +27,7 @@ export async function getModalMovieApi(id: number, isMovie: boolean) {
 }
 
 export async function addMovieApi(dataPassed: {
-  selectedMovie: WatchListUser;
+  selectedMovie: WatchlistItem;
   token: string;
 }) {
   try {

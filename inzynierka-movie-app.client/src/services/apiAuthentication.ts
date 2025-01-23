@@ -1,6 +1,6 @@
-import { LoginAccountTypes, RegisterAccountTypes } from "../utils/types";
+import { LoginUser, RegisterUser } from "../utils/types";
 
-export async function createAccountApi(registerData: RegisterAccountTypes) {
+export async function createAccountApi(registerData: RegisterUser) {
   try {
     const res = await fetch(`/Users/Register`, {
       headers: {
@@ -20,7 +20,7 @@ export async function createAccountApi(registerData: RegisterAccountTypes) {
   }
 }
 
-export async function loginAccountApi(loginData: LoginAccountTypes) {
+export async function loginAccountApi(loginData: LoginUser) {
   try {
     console.log(loginData);
     const res = await fetch(`/Users/Login`, {
