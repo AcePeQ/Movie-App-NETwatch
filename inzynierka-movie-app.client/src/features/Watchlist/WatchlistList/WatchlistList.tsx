@@ -5,9 +5,10 @@ import { useUserWathclist } from "../useUserWatchlist";
 import ErrorFull from "../../../ui/Error/ErrorFullPage/ErrorFullPage";
 import Loading from "../../../ui/Loading/Loading";
 import MovieItem from "../../Homepage/RowList/MovieItem/MovieItem";
-import { ItemFullType, ItemType } from "../../../utils/types";
+
 import { useParams } from "react-router-dom";
 import { sortWatchlist } from "../../../helpers/sortWatchlist";
+import { FullWatchlistItem } from "../../../utils/types";
 
 const sortOptions = [
   { value: "rating.asc", label: "Rating ascending" },
@@ -43,11 +44,18 @@ function WatchlistList() {
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [typeBy, setTypeBy] = useState(typeOptions[0]);
   const [statusBy, setStatusBy] = useState(statusOptions[0]);
-  const [sortedWatchlist, setSortedWatchlist] = useState<ItemFullType[]>([]);
+  const [sortedWatchlist, setSortedWatchlist] = useState<
+    FullWatchlistItem[] | undefined
+  >([]);
 
   useEffect(() => {
     if (watchlist) {
-      const sorted = sortWatchlist(watchlist, sortBy, typeBy, statusBy);
+      const sorted = sortWatchlist(
+        watchlist,
+        sortBy.value,
+        typeBy.value,
+        statusBy.value
+      );
       setSortedWatchlist(sorted);
     }
   }, [watchlist, sortBy, typeBy, statusBy]);
@@ -74,7 +82,7 @@ function WatchlistList() {
         {isLoadingWatchlist ? (
           <Loading />
         ) : (
-          sortedWatchlist?.map((movie: any) => (
+          sortedWatchlist?.map((movie: FullWatchlistItem) => (
             <MovieItem key={movie.id} movie={movie} />
           ))
         )}

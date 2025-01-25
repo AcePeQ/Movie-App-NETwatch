@@ -4,10 +4,10 @@ import Button from "../../../ui/Button/Button";
 import { BASE_URL_W500 } from "../../../helpers/getBaseUrl";
 import DetailRow from "../../Movie/MovieHero/DetailRow/DetailRow";
 import getGender from "../../../helpers/getGender";
-import { Person } from "../../../utils/types";
 import { useNavigate } from "react-router-dom";
+import { PersonType } from "../../../utils/types";
 
-function PersonHero({ data }: { data: Person }) {
+function PersonHero({ data }: { data: PersonType }) {
   const {
     name,
     birthday,
@@ -18,6 +18,8 @@ function PersonHero({ data }: { data: Person }) {
     profile_path: posterPath,
     biography,
   } = data;
+
+  console.log(data);
 
   const navigate = useNavigate();
 

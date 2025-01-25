@@ -1,16 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User, WatchListUser } from "../../utils/types";
+
 import { RootState } from "../../store";
+import { WatchlistItem } from "../../utils/types";
 
 interface UserState {
   username: string | undefined;
   token: string;
-  watchlist: WatchListUser[] | undefined;
+  watchlist: WatchlistItem[] | undefined;
 }
 
 interface UserPayload {
-  user: User | null;
+  user: User;
   token: string;
+}
+
+interface User {
+  username: string;
+  watchlist: WatchlistItem[];
 }
 
 const initialState: UserState = {

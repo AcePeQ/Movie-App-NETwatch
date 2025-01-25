@@ -1,15 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
 import { addMovieApi } from "../../services/apiWatchlist";
-import { WatchListUser } from "../../utils/types";
+
 import toast from "react-hot-toast";
 import { useAppDispatch } from "../../hooks/useRedux";
 import { updateWatchlist } from "../Authentication/userSlice";
+import { WatchlistItem } from "../../utils/types";
 
 export function useAddMovie() {
   const dispatch = useAppDispatch();
 
   const { isPending: isAddingMovie, mutate: addMovie } = useMutation({
-    mutationFn: (data: { selectedMovie: WatchListUser; token: string }) =>
+    mutationFn: (data: { selectedMovie: WatchlistItem; token: string }) =>
       addMovieApi(data),
     onSuccess: (data) => {
       {

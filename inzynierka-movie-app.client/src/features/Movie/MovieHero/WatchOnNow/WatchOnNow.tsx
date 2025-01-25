@@ -1,15 +1,16 @@
 import styles from "./WatchOnNow.module.css";
 import SelectRegion from "./SelectRegion/SelectRegion";
 import { useState } from "react";
-import { Regions, WatchProviders } from "../../../../utils/types";
+
 import Providers from "./Providers/Providers";
+import { RegionType } from "../../../../utils/types";
 
 function WatchOnNow({
   regions,
   watchProviders,
 }: {
-  regions: Regions;
-  watchProviders: WatchProviders;
+  regions: RegionType;
+  watchProviders: ;
 }) {
   const [selectedRegion, setSelectedRegion] = useState({
     value: "GB",

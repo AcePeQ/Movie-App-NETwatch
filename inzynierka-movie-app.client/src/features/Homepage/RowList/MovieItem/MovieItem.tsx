@@ -8,7 +8,11 @@ import MovieRating from "../../../../ui/MovieRating/MovieRating";
 import { findGenre } from "../../../../helpers/findGenre";
 
 import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
-import { CardItem, WatchlistItem } from "../../../../utils/types";
+import {
+  CardItem,
+  FullWatchlistItem,
+  WatchlistItem,
+} from "../../../../utils/types";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useRedux";
 import {
   getUserToken,
@@ -20,7 +24,7 @@ import { openModalLogin } from "../../../Authentication/modalLoginSlice";
 import UserScore from "../../../../ui/UserScore/UserScore";
 
 interface MovieItem {
-  movie: CardItem;
+  movie: CardItem | FullWatchlistItem;
 }
 
 function MovieItem({ movie }: MovieItem) {
@@ -74,7 +78,9 @@ function MovieItem({ movie }: MovieItem) {
       to={`${isMovie ? `/movie/${id}` : `/tv/${id}`}`}
     >
       <div className={styles.options}>
-        {foundMovie && <UserScore rating={foundMovie.user_rating} />}
+        {foundMovie?.user_rating && (
+          <UserScore rating={foundMovie.user_rating} />
+        )}
         {foundMovie ? (
           <HiCog6Tooth onClick={handleModalMovie} />
         ) : (

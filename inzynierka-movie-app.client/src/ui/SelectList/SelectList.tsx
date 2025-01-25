@@ -14,7 +14,7 @@ type SearchTypes = {
   classNamePrefix?: string;
   name?: string;
   onChange?: (
-    newValue: SingleValue<{ value: string; label: string }> | null, // Handle both single value and null
+    newValue: SingleValue<{ value: string; label: string }> | null,
     actionMeta: ActionMeta<{ value: string; label: string }>
   ) => void;
 };
@@ -42,6 +42,15 @@ function SelectList({
         neutral80: `var(--text-100)`,
       },
     };
+  }
+
+  function handleChange(
+    newValue: SingleValue<{ value: string; label: string }> | null,
+    actionMeta: ActionMeta<{ value: string; label: string }>
+  ) {
+    if (onChange) {
+      onChange(newValue, actionMeta);
+    }
   }
 
   const customStyles = {
@@ -96,7 +105,7 @@ function SelectList({
       className={`${styles.selectContainer} ${styles[`${className}`]}`}
       classNamePrefix={classNamePrefix}
       name={name}
-      onChange={onChange}
+      onChange={handleChange}
     />
   );
 }

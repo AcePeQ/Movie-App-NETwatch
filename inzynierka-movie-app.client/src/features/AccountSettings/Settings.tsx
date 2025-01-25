@@ -37,7 +37,7 @@ function Settings() {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const settings = {
-      username: username,
+      username: username || "",
       password: data.changed_password,
     };
 
@@ -52,7 +52,7 @@ function Settings() {
     );
   };
 
-  function handleDeleteAccount(e: Event) {
+  function handleDeleteAccount(e: React.MouseEvent) {
     e.preventDefault();
 
     deleteAccount(token, {

@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type GeneralProductionItem = {
   backdrop_path: string;
   genre_ids: number[];
@@ -25,10 +27,30 @@ export type CardItem = {
   vote_count: number;
 };
 
+export type FullItemFull = {
+  backdrop_path: string;
+  poster_path: string;
+  name: string | null;
+  title: string | null;
+  vote_average: number;
+  genres: [];
+  vote_count: number;
+  overview: string;
+  status: string;
+  origin_country: string[];
+  release_date: string | null;
+  media_type: string;
+  runtime: number;
+  first_air_date: string | null;
+  last_air_date: string | null;
+  number_of_episodes: number;
+  number_of_seasons: number;
+};
+
 export type WatchlistItem = {
   databaseID: string;
   backdrop_path: string;
-  genres: Genre[];
+  genre_ids: number[];
   id: number;
   media_type: string;
   poster_path: string;
@@ -42,7 +64,7 @@ export type WatchlistItem = {
   vote_count: number;
   user_status: string;
   watched_episodes: number;
-  user_rating: number;
+  user_rating: number | undefined;
 };
 
 export type Genre = {
@@ -56,9 +78,19 @@ export type UpdateUser = {
 };
 
 export type LoginUser = {
-  username: string;
+  email: string;
   password: string;
 };
+
+export type LoginUserSlice = {
+  user: User;
+  token: string;
+};
+
+interface User {
+  username: string;
+  watchlist: WatchlistItem[];
+}
 
 export type RegisterUser = {
   username: string;
@@ -156,4 +188,115 @@ export type SeasonType = {
   id: number;
   name: string;
   poster_path: string;
+  season_number: number;
+};
+
+export type FullWatchlistItem = {
+  backdrop_path: string;
+  databaseID: string;
+  genre_ids: number[];
+  first_air_date: string;
+  id: number;
+  media_type: string;
+  name: string | null;
+  poster_path: string;
+  release_date: string | null;
+  runtime: number;
+  status: string;
+  title: string | null;
+  user_rating: number;
+  user_status: string;
+  vote_average: number;
+  vote_count: number;
+  watched_episodes: number;
+};
+
+export type PersonType = {
+  biography: string;
+  gender: number;
+  birthday: string;
+  deathday: string;
+  known_for_department: string;
+  name: string;
+  place_of_birth: string;
+  profile_path: string;
+  combined_creadits: CombinedCredits;
+};
+
+interface CombinedCredits {
+  cast: PersonProduction[];
+  crew: PersonProduction[];
+}
+
+interface PersonProduction {
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  title: string;
+  name: string;
+  media_type: string;
+  popularity: string;
+  vote_average: string;
+}
+
+export type RegionwatchProvider = {
+  provider_id: number;
+  provider_name: string;
+  logo_path: string;
+};
+
+export type RegionType = {
+  iso_3166_1: string;
+  english_name: string;
+};
+
+export type CrewType = {
+  length: ReactNode;
+  id: number;
+  known_for_department: string;
+  name: string;
+  profile_path: string;
+  jobs: JobType[];
+  job: string;
+  department: string;
+};
+
+export type JobType = {
+  job: string;
+  episode_count: number;
+};
+
+export type CastPersonType = {
+  length: ReactNode;
+  id: number;
+  known_for_department: string;
+  name: string;
+  profile_path: string;
+  character: string;
+  roles: RoleType[];
+};
+
+export type RoleType = {
+  character: string;
+  episode_count: number;
+  total_episode_count: number;
+};
+
+export type DataCredits = {
+  credits: CreditsType;
+  details: DetailsType;
+};
+
+interface CreditsType {
+  cast: CastPersonType[];
+  crew: CrewType[];
+}
+
+export type DetailsType = {
+  poster_path: string;
+  id: number;
+  release_date: number;
+  first_air_date: string;
+  name: string;
+  title: string;
 };

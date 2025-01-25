@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { GenreType } from "../../../utils/types";
 import styles from "./GenreItem.module.css";
+import { Genre } from "../../../utils/types";
 
 function GenreItem({
   genre,
   onClick,
 }: {
-  genre: GenreType;
+  genre: Genre;
   onClick: (id: number) => void;
 }) {
   const { id, name } = genre;

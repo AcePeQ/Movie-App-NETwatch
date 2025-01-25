@@ -1,7 +1,10 @@
+import { WatchlistItem } from "../../../../utils/types";
+
 import styles from "./StatisticItem.module.css";
 
 interface StatisticItemProps {
   type: string;
+  data: WatchlistItem[];
 }
 
 function StatisticItem({ type, data }: StatisticItemProps) {
@@ -9,7 +12,10 @@ function StatisticItem({ type, data }: StatisticItemProps) {
   let countEpisodes = 0;
 
   if (type === "TV Series") {
-    countEpisodes = data.reduce((acc, item) => acc + item.watched_episodes, 0);
+    countEpisodes = data.reduce(
+      (acc: number, item: WatchlistItem) => acc + item.watched_episodes,
+      0
+    );
   }
 
   return (

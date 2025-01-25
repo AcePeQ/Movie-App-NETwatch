@@ -74,7 +74,7 @@ function MoviePage() {
 
   return (
     <>
-      <MovieHero data={movie} id={id} />
+      <MovieHero data={movie} id={Number(id)} />
 
       <div className={styles.rows}>
         <div className={styles.rowCol_2}>

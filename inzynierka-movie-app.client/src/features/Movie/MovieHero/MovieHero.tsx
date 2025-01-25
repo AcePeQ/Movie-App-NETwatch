@@ -11,15 +11,16 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/useRedux";
 import { getUserToken, getUserWatchList } from "../../Authentication/userSlice";
 import { openModalLogin } from "../../Authentication/modalLoginSlice";
 import ModalMovie from "../../../ui/ModalMovie/ModalMovie";
+import { FullItemFull, WatchlistItem } from "../../../utils/types";
 
-function MovieHero({ data, id }: { data: ItemFullType; id: number }) {
+function MovieHero({ data, id }: { data: FullItemFull; id: number }) {
   const token = useAppSelector(getUserToken);
   const watchlist = useAppSelector(getUserWatchList);
   const dispatch = useAppDispatch();
 
   const [isModalOpen, setModalOpen] = useState(false);
 
-  function handleModalMovie(e) {
+  function handleModalMovie(e: { preventDefault: () => void }) {
     e.preventDefault();
 
     if (!token) {
@@ -30,7 +31,7 @@ function MovieHero({ data, id }: { data: ItemFullType; id: number }) {
     setModalOpen(true);
   }
 
-  function handleCloseModal(e) {
+  function handleCloseModal(e: { preventDefault: () => void }) {
     e.preventDefault();
 
     setModalOpen(false);
@@ -59,7 +60,7 @@ function MovieHero({ data, id }: { data: ItemFullType; id: number }) {
 
   const foundMovie =
     watchlist &&
-    watchlist?.find((item: WatchListUser) => item.id === Number(id));
+    watchlist?.find((item: WatchlistItem) => item.id === Number(id));
 
   const isMovie = movieTitle ? true : false;
 
@@ -108,7 +109,7 @@ function MovieHero({ data, id }: { data: ItemFullType; id: number }) {
           </div>
 
           <div className={styles.detailsContainer}>
-            {foundMovie?.user_rating > 0 && (
+            {foundMovie?.user_rating && foundMovie?.user_rating > 0 && (
               <DetailRow title="Your rating">
                 <MovieRating rating={foundMovie?.user_rating} />
               </DetailRow>

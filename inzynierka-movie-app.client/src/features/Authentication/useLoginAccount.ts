@@ -1,11 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import { loginAccountApi } from "../../services/apiAuthentication";
-import { LoginAccountTypes } from "../../utils/types";
 import toast from "react-hot-toast";
+import { LoginUser } from "../../utils/types";
 
 export function useLoginAccount() {
   const { isPending: isLoggingIn, mutate: loginAccount } = useMutation({
-    mutationFn: (loginData: LoginAccountTypes) => loginAccountApi(loginData),
+    mutationFn: (loginData: LoginUser) => loginAccountApi(loginData),
     onSuccess: () => {
       toast.success("Successfully logged in");
     },

@@ -84,7 +84,7 @@ function TvSeriesPage() {
 
   return (
     <>
-      <MovieHero data={tv} />
+      <MovieHero data={tv} id={Number(id)} />
 
       <div className={styles.rows}>
         <div className={styles.rowCol_2}>

@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import ErrorFull from "../../../ui/Error/ErrorFullPage/ErrorFullPage";
 import LoaderSmall from "../../../ui/LoaderSmall/LoaderSmall";
-import { ItemType } from "../../../utils/types";
 import MovieItem from "../../Homepage/RowList/MovieItem/MovieItem";
 import { useListFilms } from "../useListFilms";
 import styles from "./ListContainer.module.css";
+import { CardItem } from "../../../utils/types";
 
 function ListContainer({ type, url }: { type: string; url: string }) {
   const {
@@ -42,7 +42,7 @@ function ListContainer({ type, url }: { type: string; url: string }) {
   return (
     <div className={styles.list_wrapper}>
       {data?.pages.map((page) =>
-        page?.results.map((item: ItemType) => (
+        page?.results.map((item: CardItem) => (
           <MovieItem key={item.id} movie={item} />
         ))
       )}

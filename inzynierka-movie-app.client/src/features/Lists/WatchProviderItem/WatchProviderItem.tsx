@@ -1,14 +1,15 @@
 import { MutableRefObject, useState } from "react";
 import { BASE_URL_W200 } from "../../../helpers/getBaseUrl";
-import { RegionWatchProvider } from "../../../utils/types";
+
 import styles from "./WatchProviderItem.module.css";
+import { RegionwatchProvider } from "../../../utils/types";
 
 function WatchProviderItem({
   provider,
   checkedProvidersRef,
   onToggle,
 }: {
-  provider: RegionWatchProvider;
+  provider: RegionwatchProvider;
   checkedProvidersRef: MutableRefObject<Set<number>>;
   onToggle: (providerId: number) => void;
 }) {

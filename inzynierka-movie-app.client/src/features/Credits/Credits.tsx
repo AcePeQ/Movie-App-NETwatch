@@ -5,34 +5,52 @@ import { HiMiniArrowLeftCircle } from "react-icons/hi2";
 import { BASE_URL_W200 } from "../../helpers/getBaseUrl";
 import { CastPerson, CrewPerson } from "./Person/Person";
 import { Key } from "react";
-import { Cast, Crew, Data } from "../../utils/types";
+import { CastPersonType, CrewType, DataCredits } from "../../utils/types";
 
-function Credits({ data, type }: { data: Data; type: string | undefined }) {
+function Credits({
+  data,
+  type,
+}: {
+  data: DataCredits;
+  type: string | undefined;
+}) {
   const { id, name, poster_path, title } = data.details;
   const { cast, crew } = data.credits;
 
-  const directors = crew.filter((person) => person.department === "Directing");
+  const directors = crew.filter(
+    (person: CrewType) => person.department === "Directing"
+  );
 
-  const writers = crew.filter((person) => person.department === "Writing");
+  const writers = crew.filter(
+    (person: CrewType) => person.department === "Writing"
+  );
 
-  const sound = crew.filter((person) => person.department === "Sound");
+  const sound = crew.filter(
+    (person: CrewType) => person.department === "Sound"
+  );
 
   const production = crew.filter(
-    (person) => person.department === "Production"
+    (person: CrewType) => person.department === "Production"
   );
 
   const makeup = crew.filter(
-    (person) => person.department === "Costume & Make-up"
+    (person: CrewType) => person.department === "Costume & Make-up"
   );
 
-  const camerasman = crew.filter((person) => person.department === "Camera");
+  const camerasman = crew.filter(
+    (person: CrewType) => person.department === "Camera"
+  );
 
-  const editors = crew.filter((person) => person.department === "Editing");
+  const editors = crew.filter(
+    (person: CrewType) => person.department === "Editing"
+  );
 
-  const artists = crew.filter((person) => person.department === "Art");
+  const artists = crew.filter(
+    (person: CrewType) => person.department === "Art"
+  );
 
   const effects = crew.filter(
-    (person) => person.department === "Visual Effects"
+    (person: CrewType) => person.department === "Visual Effects"
   );
 
   const navigate = useNavigate();
@@ -68,7 +86,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
             <h3 className={styles.column_title}>
               Cast <span className={styles.count}>{cast.length}</span>
             </h3>
-            {cast.map((cast: Cast) => (
+            {cast.map((cast: CastPersonType) => (
               <CastPerson key={cast.id} cast={cast} />
             ))}
             {cast.length === 0 && (
@@ -82,9 +100,11 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
             </h3>
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Directing</h4>
-              {directors.map((crew: Crew, index: Key | null | undefined) => (
-                <CrewPerson key={index} crew={crew} />
-              ))}
+              {directors.map(
+                (crew: CrewType, index: Key | null | undefined) => (
+                  <CrewPerson key={index} crew={crew} />
+                )
+              )}
               {directors.length === 0 && (
                 <p className={styles.errorLength}>There are no records</p>
               )}
@@ -92,7 +112,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Writer</h4>
-              {writers.map((crew: Crew, index: Key | null | undefined) => (
+              {writers.map((crew: CrewType, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {writers.length === 0 && (
@@ -102,9 +122,11 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Production</h4>
-              {production.map((crew: Crew, index: Key | null | undefined) => (
-                <CrewPerson key={index} crew={crew} />
-              ))}
+              {production.map(
+                (crew: CrewType, index: Key | null | undefined) => (
+                  <CrewPerson key={index} crew={crew} />
+                )
+              )}
               {production.length === 0 && (
                 <p className={styles.errorLength}>There are no records</p>
               )}
@@ -112,7 +134,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Sound</h4>
-              {sound.map((crew: Crew, index: Key | null | undefined) => (
+              {sound.map((crew: CrewType, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {sound.length === 0 && (
@@ -122,7 +144,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Costume & Make-up</h4>
-              {makeup.map((crew: Crew, index: Key | null | undefined) => (
+              {makeup.map((crew: CrewType, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {makeup.length === 0 && (
@@ -132,7 +154,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Art</h4>
-              {artists.map((crew: Crew, index: Key | null | undefined) => (
+              {artists.map((crew: CrewType, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {artists.length === 0 && (
@@ -142,7 +164,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Editors</h4>
-              {editors.map((crew: Crew, index: Key | null | undefined) => (
+              {editors.map((crew: CrewType, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {editors.length === 0 && (
@@ -152,9 +174,11 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Camera</h4>
-              {camerasman.map((crew: Crew, index: Key | null | undefined) => (
-                <CrewPerson key={index} crew={crew} />
-              ))}
+              {camerasman.map(
+                (crew: CrewType, index: Key | null | undefined) => (
+                  <CrewPerson key={index} crew={crew} />
+                )
+              )}
               {camerasman.length === 0 && (
                 <p className={styles.errorLength}>There are no records</p>
               )}
@@ -162,7 +186,7 @@ function Credits({ data, type }: { data: Data; type: string | undefined }) {
 
             <ul className={styles.crew_type_list}>
               <h4 className={styles.crew_type_title}>Visual Effects</h4>
-              {effects.map((crew: Crew, index: Key | null | undefined) => (
+              {effects.map((crew: CrewType, index: Key | null | undefined) => (
                 <CrewPerson key={index} crew={crew} />
               ))}
               {effects.length === 0 && (

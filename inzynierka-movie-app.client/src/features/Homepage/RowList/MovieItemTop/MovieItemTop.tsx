@@ -72,7 +72,9 @@ function MovieItemTop({ number, movie }: MovieItemProps) {
         />
 
         <div className={styles.options}>
-          {foundMovie && <UserScore rating={foundMovie.user_rating} />}
+          {foundMovie?.user_rating && (
+            <UserScore rating={foundMovie.user_rating} />
+          )}
           {foundMovie ? (
             <HiCog6Tooth onClick={handleModalMovie} />
           ) : (

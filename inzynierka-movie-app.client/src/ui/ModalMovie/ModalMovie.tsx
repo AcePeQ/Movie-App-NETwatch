@@ -49,8 +49,8 @@ function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
     return 0;
   });
   const [userRating, setUserRating] = useState(() => {
-    if (foundMovie) return foundMovie.user_rating;
-    return null;
+    if (foundMovie) return foundMovie.user_rating ?? 0;
+    return 0;
   });
 
   const {

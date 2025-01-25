@@ -1,10 +1,10 @@
 import { BASE_URL_W200 } from "../../../helpers/getBaseUrl";
+import { CastPersonType, CrewType } from "../../../utils/types";
 import styles from "./Person.module.css";
 
 import { Link } from "react-router-dom";
-import { Cast, Crew } from "../../../utils/types";
 
-export function CrewPerson({ crew }: { crew: Crew }) {
+export function CrewPerson({ crew }: { crew: CrewType }) {
   return (
     <li className={styles.item_list}>
       <Link className={styles.person} to={`/person/${crew.id}`}>
@@ -36,7 +36,7 @@ export function CrewPerson({ crew }: { crew: Crew }) {
   );
 }
 
-export function CastPerson({ cast }: { cast: Cast }) {
+export function CastPerson({ cast }: { cast: CastPersonType }) {
   return (
     <li className={styles.item_list}>
       <Link className={styles.person} to={`/person/${cast.id}`}>

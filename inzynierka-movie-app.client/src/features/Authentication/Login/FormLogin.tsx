@@ -17,7 +17,7 @@ import {
 } from "../modalLoginSlice";
 import { useLoginAccount } from "../useLoginAccount";
 import { login } from "../userSlice";
-import { UserType } from "../../../utils/types";
+import { LoginUserSlice } from "../../../utils/types";
 
 type formValues = {
   email: string;
@@ -43,7 +43,7 @@ function FormLogin() {
 
   const onSubmit: SubmitHandler<formValues> = (data) => {
     loginAccount(data, {
-      onSuccess: (userData: UserType) => {
+      onSuccess: (userData: LoginUserSlice) => {
         dispatch(login(userData));
         reset();
         dispatch(closeModalLogin?.());

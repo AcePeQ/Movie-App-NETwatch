@@ -1,10 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import { updateSettingsApi } from "../../services/apiSettings";
-import { UserSettings } from "../../utils/types";
+
 import toast from "react-hot-toast";
 import { useAppDispatch } from "../../hooks/useRedux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../Authentication/userSlice";
+import { UpdateUser } from "../../utils/types";
 
 export function useUpdateSettings() {
   const dispatch = useAppDispatch();
@@ -15,7 +16,7 @@ export function useUpdateSettings() {
       settings,
       token,
     }: {
-      settings: UserSettings;
+      settings: UpdateUser;
       token: string;
     }) => updateSettingsApi(settings, token),
     onSuccess: () => {

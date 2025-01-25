@@ -2,11 +2,12 @@ import styles from "./WatchedEpisodes.module.css";
 
 import { HiMiniPlus } from "react-icons/hi2";
 import { HiMiniMinus } from "react-icons/hi2";
+import { SeasonType } from "../../utils/types";
 
 interface EpisodesTypes {
   episodes: number;
-  setEpisodes: any;
-  seasons: any;
+  setEpisodes: React.Dispatch<React.SetStateAction<number>>;
+  seasons: SeasonType[];
 }
 
 function WatchedEpisodes({ episodes, setEpisodes, seasons }: EpisodesTypes) {
