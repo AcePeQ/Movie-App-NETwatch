@@ -8,13 +8,13 @@ import GenreItem from "../GenreItem/GenreItem";
 import Loading from "../../../ui/Loading/Loading";
 import ErrorFull from "../../../ui/Error/ErrorFullPage/ErrorFullPage";
 import { getFlagEmoji } from "../../../helpers/getFlagEmoji";
-import { GenreType, Region, RegionWatchProvider } from "../../../utils/types";
 
 import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
 import { useEffect, useRef, useState } from "react";
 import { useRegions } from "../useRegions";
 import { useTVSeriesWatchProviders } from "../useWatchProviders";
 import { useTVSeriesGenres } from "../useGenres";
+import { Genre, RegionType, RegionwatchProvider } from "../../../utils/types";
 
 polyfillCountryFlagEmojis();
 
@@ -128,7 +128,7 @@ export default function SidebarTvSeries({
   const genres = genresData?.genres;
   const watchProviders = tvSeriesProviders?.results;
 
-  const optionRegions = regions.map((item: Region) => {
+  const optionRegions = regions.map((item: RegionType) => {
     return {
       value: item.iso_3166_1,
       label: `${getFlagEmoji(item.iso_3166_1)} ${item.english_name}`,
@@ -144,7 +144,9 @@ export default function SidebarTvSeries({
             options={sortOptions}
             isSearchable={false}
             defaultOption={sortOptions[0]}
-            onChange={(option: { value: string }) => setSortBy(option.value)}
+            onChange={(newValue) => {
+              if (newValue) setSortBy(newValue.value);
+            }}
           />
         </div>
       </FilterPanel>
@@ -158,10 +160,12 @@ export default function SidebarTvSeries({
             name="region"
             options={optionRegions}
             defaultOption={selectedRegion}
-            onChange={(option: { value: string; label: string }) => {
-              setSelectedRegion(option);
-              setSelectedProvides([]);
-              checkedProvidersRef.current.clear();
+            onChange={(newValue) => {
+              if (newValue) {
+                setSelectedRegion(newValue);
+                setSelectedProvides([]);
+                checkedProvidersRef.current.clear();
+              }
             }}
           />
 
@@ -169,7 +173,7 @@ export default function SidebarTvSeries({
             <LoaderSmall />
           ) : (
             <ul className={styles.watchProviders}>
-              {watchProviders.map((provider: RegionWatchProvider) => (
+              {watchProviders.map((provider: RegionwatchProvider) => (
                 <WatchProviderItem
                   key={provider.provider_id}
                   provider={provider}
@@ -196,7 +200,7 @@ export default function SidebarTvSeries({
               renderThumb={(props, state) => {
                 const { key, ...restProps } = props;
                 return (
-                  <div key={`thumb-date-${state.index}`} {...restProps}>
+                  <div key={`thumb-date-${state.index}-${key}`} {...restProps}>
                     {state.valueNow}
                   </div>
                 );
@@ -213,7 +217,7 @@ export default function SidebarTvSeries({
               <LoaderSmall />
             ) : (
               <ul className={styles.filter_genresTv}>
-                {genres?.map((genre: GenreType) => (
+                {genres?.map((genre: Genre) => (
                   <GenreItem
                     key={genre.id}
                     genre={genre}
@@ -238,7 +242,7 @@ export default function SidebarTvSeries({
               renderThumb={(props, state) => {
                 const { key, ...restProps } = props;
                 return (
-                  <div key={`thumb-rate-${state.index}`} {...restProps}>
+                  <div key={`thumb-rate-${state.index}-${key}`} {...restProps}>
                     {state.valueNow}
                   </div>
                 );
@@ -261,7 +265,7 @@ export default function SidebarTvSeries({
               renderThumb={(props, state) => {
                 const { key, ...restProps } = props;
                 return (
-                  <div key={`thumb-vote-${state.index}`} {...restProps}>
+                  <div key={`thumb-vote-${state.index}-${key}`} {...restProps}>
                     {state.valueNow}
                   </div>
                 );

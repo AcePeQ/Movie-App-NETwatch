@@ -1,8 +1,8 @@
-import Select, { Theme } from "react-select";
-import { Region } from "../../../../../utils/types";
+import Select, { CSSObjectWithLabel, SingleValue, Theme } from "react-select";
 
 import { getFlagEmoji } from "../../../../../helpers/getFlagEmoji";
 import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
+import { RegionType } from "../../../../../utils/types";
 
 polyfillCountryFlagEmojis();
 
@@ -10,8 +10,10 @@ function SelectRegion({
   regions,
   onSelectRegion,
 }: {
-  regions: any;
-  onSelectRegion: any;
+  regions: RegionType[];
+  onSelectRegion: (
+    selectedRegion: SingleValue<{ value: string; label: string }>
+  ) => void;
 }) {
   function customTheme(theme: Theme) {
     return {
@@ -30,11 +32,11 @@ function SelectRegion({
   }
 
   const customStyles = {
-    container: (styles) => ({
+    container: (styles: CSSObjectWithLabel) => ({
       ...styles,
       width: "100%",
     }),
-    control: (styles) => ({
+    control: (styles: CSSObjectWithLabel) => ({
       ...styles,
       border: "none",
       padding: "0 0.5rem",
@@ -51,11 +53,11 @@ function SelectRegion({
         border: "none",
       },
     }),
-    option: (styles) => ({
+    option: (styles: CSSObjectWithLabel) => ({
       ...styles,
       cursor: "pointer",
     }),
-    dropdownIndicator: (styles) => ({
+    dropdownIndicator: (styles: CSSObjectWithLabel) => ({
       ...styles,
       color: `var(--accent-100)`,
 
@@ -63,17 +65,17 @@ function SelectRegion({
         color: `var(--accent-100)`,
       },
     }),
-    indicatorSeparator: (styles) => ({
+    indicatorSeparator: (styles: CSSObjectWithLabel) => ({
       ...styles,
       display: "none",
     }),
-    menu: (styles) => ({
+    menu: (styles: CSSObjectWithLabel) => ({
       ...styles,
       zIndex: "100000",
     }),
   };
 
-  const selectRegions = regions.map((item: Region) => {
+  const selectRegions = regions.map((item: RegionType) => {
     return {
       value: item.iso_3166_1,
       label: `${getFlagEmoji(item.iso_3166_1)} ${item.english_name}`,

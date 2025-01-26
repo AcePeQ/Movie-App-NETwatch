@@ -3,19 +3,21 @@ import SelectRegion from "./SelectRegion/SelectRegion";
 import { useState } from "react";
 
 import Providers from "./Providers/Providers";
-import { RegionType } from "../../../../utils/types";
+import { RegionType, WatchProviders } from "../../../../utils/types";
 
 function WatchOnNow({
   regions,
   watchProviders,
 }: {
   regions: RegionType;
-  watchProviders: ;
+  watchProviders: WatchProviders;
 }) {
   const [selectedRegion, setSelectedRegion] = useState({
     value: "GB",
     label: "United Kingdom",
   });
+
+  console.log(watchProviders);
 
   const providerForSelectedRegion = watchProviders[selectedRegion.value];
 

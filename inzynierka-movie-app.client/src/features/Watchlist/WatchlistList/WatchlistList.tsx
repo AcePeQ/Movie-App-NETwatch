@@ -56,7 +56,12 @@ function WatchlistList() {
         typeBy.value,
         statusBy.value
       );
-      setSortedWatchlist(sorted);
+
+      const filtered = sorted?.filter(
+        (item) => item.user_rating !== undefined
+      ) as FullWatchlistItem[];
+
+      setSortedWatchlist(filtered);
     }
   }, [watchlist, sortBy, typeBy, statusBy]);
 
@@ -67,13 +72,10 @@ function WatchlistList() {
   return (
     <div className={styles.list_container}>
       <SidebarWatchlist
-        sortBy={sortBy}
         setSortBy={setSortBy}
-        typeBy={typeBy}
         setTypeBy={setTypeBy}
         sortOptions={sortOptions}
         typeOptions={typeOptions}
-        statusBy={statusBy}
         setStatusBy={setStatusBy}
         statusOptions={statusOptions}
       />

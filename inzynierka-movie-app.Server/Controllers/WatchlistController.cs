@@ -38,7 +38,9 @@ namespace inzynierka_movie_app.Server
             }
 
 
-            var user = await _context.User.Include(u => u.Watchlist).ThenInclude(w=>w.genres).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+            // var user = await _context.User.Include(u => u.Watchlist).ThenInclude(w=>w.genres).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+
+            var user = await _context.User.Include(u => u.Watchlist).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
 
             if (user == null )
             {
@@ -47,7 +49,7 @@ namespace inzynierka_movie_app.Server
 
             var newMovie = new WatchlistItem {
               backdrop_path = movie.backdrop_path,
-              genres = movie.genres?.Select(g => new Genre { id = g.id ,name = g.name }).ToList(),
+            //   genres = movie.genres?.Select(g => new Genre { id = g.id ,name = g.name }).ToList(),
               movieID = movie.movieID,
               poster_path = movie.poster_path,
               name = movie.name,
@@ -88,7 +90,9 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new {error = "Invalid user ID format"});
             }
 
-            var user = await _context.User.Include(u=>u.Watchlist).ThenInclude(w => w.genres).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+            // var user = await _context.User.Include(u=>u.Watchlist).ThenInclude(w => w.genres).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+
+            var user = await _context.User.Include(u=>u.Watchlist).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
 
             if (user == null )
             {
@@ -126,7 +130,9 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new {error = "Invalid user ID format"});
             }
 
-            var user = await _context.User.Include(u => u.Watchlist).ThenInclude(w=> w.genres).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+            // var user = await _context.User.Include(u => u.Watchlist).ThenInclude(w=> w.genres).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
+
+            var user = await _context.User.Include(u => u.Watchlist).SingleOrDefaultAsync(user => user.ID.Equals(userIDGuid) && user.Username == usernameToken && user.Email == emailToken);
 
             if (user == null )
             {
@@ -159,7 +165,8 @@ namespace inzynierka_movie_app.Server
                 return BadRequest(new { error = "Username is required" });
             }
 
-            var user = await _context.User.Include(u=>u.Watchlist).ThenInclude(w=>w.genres).SingleOrDefaultAsync(user => user.Username == username);
+            // var user = await _context.User.Include(u=>u.Watchlist).ThenInclude(w=>w.genres).SingleOrDefaultAsync(user => user.Username == username);
+            var user = await _context.User.Include(u=>u.Watchlist).SingleOrDefaultAsync(user => user.Username == username);
 
             if(user == null) {
                 return BadRequest(new { error = "User not found" });

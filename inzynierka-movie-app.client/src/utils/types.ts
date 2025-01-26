@@ -300,3 +300,22 @@ export type DetailsType = {
   name: string;
   title: string;
 };
+
+export type WatchProviders = Record<string, WatchProviderDetails>;
+
+export type WatchProviderDetails = {
+  link: string;
+  flatrate: WatchProviderItem[];
+  buy: WatchProviderItem[];
+  rent: WatchProviderItem[];
+};
+
+export type WatchProviderItem = {
+  provider_name: string;
+  logo_path: string;
+};
+
+export type SidebarOptionsType = {
+  value: string;
+  label: string;
+};

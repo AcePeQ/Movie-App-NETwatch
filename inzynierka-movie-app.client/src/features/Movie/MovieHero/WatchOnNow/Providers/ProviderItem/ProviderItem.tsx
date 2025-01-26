@@ -1,12 +1,13 @@
 import { BASE_URL_W200 } from "../../../../../../helpers/getBaseUrl";
-import { ProviderType } from "../../../../../../utils/types";
+import { WatchProviderItem } from "../../../../../../utils/types";
+
 import styles from "./ProviderItem.module.css";
 
 export default function ProviderItem({
   provider,
   link,
 }: {
-  provider: ProviderType;
+  provider: WatchProviderItem;
   link: string;
 }) {
   return (

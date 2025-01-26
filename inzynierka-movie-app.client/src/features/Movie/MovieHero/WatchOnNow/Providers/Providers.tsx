@@ -1,8 +1,12 @@
-import { CountryProvider } from "../../../../../utils/types";
+import { WatchProviderDetails } from "../../../../../utils/types";
 import Provider from "./Provider/Provider";
 import styles from "./Providers.module.css";
 
-export default function Providers({ provider }: { provider: CountryProvider }) {
+export default function Providers({
+  provider,
+}: {
+  provider: WatchProviderDetails;
+}) {
   if (!provider) {
     return (
       <p className={styles.notify}>

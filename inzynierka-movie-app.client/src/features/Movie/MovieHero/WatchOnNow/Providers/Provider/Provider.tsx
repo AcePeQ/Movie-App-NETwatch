@@ -1,7 +1,7 @@
 import { Key } from "react";
 import ProviderItem from "../ProviderItem/ProviderItem";
 import styles from "./Provider.module.css";
-import { ProviderType } from "../../../../../../utils/types";
+import { WatchProviderItem } from "../../../../../../utils/types";
 
 export default function Provider({
   title,
@@ -9,10 +9,10 @@ export default function Provider({
   link,
 }: {
   title: string;
-  items: any;
+  items: WatchProviderItem[];
   link: string;
 }) {
-  if (!items) {
+  if (!items || items.length === 0) {
     return null;
   }
 
@@ -21,7 +21,7 @@ export default function Provider({
       <p className={styles.provider_title}>{title}</p>
       {items ? (
         <ul className={styles.provider_list}>
-          {items.map((provider: ProviderType, index: Key) => (
+          {items.map((provider: WatchProviderItem, index: Key) => (
             <ProviderItem key={index} link={link} provider={provider} />
           ))}
         </ul>

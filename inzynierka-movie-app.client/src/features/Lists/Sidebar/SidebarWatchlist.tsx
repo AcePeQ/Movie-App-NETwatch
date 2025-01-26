@@ -1,18 +1,25 @@
 import SelectList from "../../../ui/SelectList/SelectList";
 import FilterPanel from "../../../ui/FilterPanel/FilterPanel";
 import styles from "./Sidebar.module.css";
+import { SidebarOptionsType } from "../../../utils/types";
+
+interface SidebarTypes {
+  setSortBy: React.Dispatch<React.SetStateAction<SidebarOptionsType>>;
+  setTypeBy: React.Dispatch<React.SetStateAction<SidebarOptionsType>>;
+  sortOptions: SidebarOptionsType[];
+  typeOptions: SidebarOptionsType[];
+  setStatusBy: React.Dispatch<React.SetStateAction<SidebarOptionsType>>;
+  statusOptions: SidebarOptionsType[];
+}
 
 function SidebarWatchlist({
-  sortBy,
   setSortBy,
-  typeBy,
   setTypeBy,
   sortOptions,
   typeOptions,
-  statusBy,
   setStatusBy,
   statusOptions,
-}) {
+}: SidebarTypes) {
   return (
     <div className={styles.sidebar}>
       <FilterPanel title="Type">
@@ -21,7 +28,9 @@ function SidebarWatchlist({
             options={typeOptions}
             isSearchable={false}
             defaultOption={typeOptions[0]}
-            onChange={(option: { value: string }) => setTypeBy(option.value)}
+            onChange={(newValue) => {
+              if (newValue) setTypeBy(newValue);
+            }}
           />
         </div>
       </FilterPanel>
@@ -32,7 +41,9 @@ function SidebarWatchlist({
             options={statusOptions}
             isSearchable={false}
             defaultOption={statusOptions[0]}
-            onChange={(option: { value: string }) => setStatusBy(option.value)}
+            onChange={(newValue) => {
+              if (newValue) setStatusBy(newValue);
+            }}
           />
         </div>
       </FilterPanel>
@@ -44,7 +55,9 @@ function SidebarWatchlist({
             options={sortOptions}
             isSearchable={false}
             defaultOption={sortOptions[0]}
-            onChange={(option: { value: string }) => setSortBy(option.value)}
+            onChange={(newValue) => {
+              if (newValue) setSortBy(newValue);
+            }}
           />
         </div>
       </FilterPanel>
