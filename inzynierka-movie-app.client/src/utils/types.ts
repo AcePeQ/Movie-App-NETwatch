@@ -50,7 +50,7 @@ export type FullItemFull = {
 export type WatchlistItem = {
   databaseID: string;
   backdrop_path: string;
-  genre_ids: number[];
+  genres: Genre[];
   id: number;
   media_type: string;
   poster_path: string;
