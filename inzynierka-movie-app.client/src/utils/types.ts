@@ -194,7 +194,7 @@ export type SeasonType = {
 export type FullWatchlistItem = {
   backdrop_path: string;
   databaseID: string;
-  genre_ids: number[];
+  genres: Genre[];
   first_air_date: string;
   id: number;
   media_type: string;

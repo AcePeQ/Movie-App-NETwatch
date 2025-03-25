@@ -8,7 +8,8 @@ import styles from "./SelectList.module.css";
 
 type SearchTypes = {
   isSearchable: boolean;
-  defaultOption: { value: string; label: string };
+  defaultOption?: { value: string; label: string };
+  value?: { value: string; label: string };
   options: { value: string; label: string }[];
   className?: string;
   classNamePrefix?: string;
@@ -23,6 +24,7 @@ function SelectList({
   isSearchable,
   options,
   defaultOption,
+  value,
   className,
   classNamePrefix,
   onChange,
@@ -102,6 +104,7 @@ function SelectList({
       isSearchable={isSearchable}
       options={options}
       defaultValue={defaultOption}
+      value={value}
       className={`${styles.selectContainer} ${styles[`${className}`]}`}
       classNamePrefix={classNamePrefix}
       name={name}

@@ -89,7 +89,5 @@ export function sortWatchlist(
     }
   });
 
-  console.log(watchlistTemp);
-
   return watchlistTemp;
 }
