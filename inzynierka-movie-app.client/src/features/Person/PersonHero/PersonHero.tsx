@@ -19,8 +19,6 @@ function PersonHero({ data }: { data: PersonType }) {
     biography,
   } = data;
 
-  console.log(data);
-
   const navigate = useNavigate();
 
   const genderName = getGender(gender);

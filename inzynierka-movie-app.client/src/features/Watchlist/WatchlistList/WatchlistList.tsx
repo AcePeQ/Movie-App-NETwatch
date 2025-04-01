@@ -69,8 +69,6 @@ function WatchlistList() {
     return <ErrorFull error={watchlistError} />;
   }
 
-  console.log(sortedWatchlist);
-
   return (
     <div className={styles.list_container}>
       <SidebarWatchlist

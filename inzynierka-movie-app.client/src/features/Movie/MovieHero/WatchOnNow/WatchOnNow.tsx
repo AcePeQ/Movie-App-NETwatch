@@ -17,8 +17,6 @@ function WatchOnNow({
     label: "United Kingdom",
   });
 
-  console.log(watchProviders);
-
   const providerForSelectedRegion = watchProviders[selectedRegion.value];
 
   return (

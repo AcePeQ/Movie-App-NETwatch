@@ -28,8 +28,6 @@ function MovieItemTop({ number, movie }: MovieItemProps) {
   const watchlist = useAppSelector(getUserWatchList);
   const dispatch = useAppDispatch();
 
-  console.log(watchlist);
-
   const [isModalOpen, setModalOpen] = useState(false);
 
   const { id, title, poster_path: backgroundPath } = movie;

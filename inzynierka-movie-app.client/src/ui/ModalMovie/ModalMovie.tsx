@@ -34,15 +34,13 @@ const statusOptions = [
 ];
 
 function ModalMovie({ id, isMovie, onClose, foundMovie }: ModalProps) {
-  console.log(foundMovie);
-
   const [userStatus, setUserStatus] = useState(() => {
     if (foundMovie) {
       const statusMovie = foundMovie.user_status;
       const findedStatus = statusOptions.find(
         (status) => status.value === statusMovie
       );
-      console.log(findedStatus);
+
       return findedStatus;
     }
     return statusOptions[2];

@@ -51,7 +51,7 @@ export const userSlice = createSlice({
       localStorage.removeItem("watchlist");
     },
     updateWatchlist: (state, action) => {
-      console.log(action.payload);
+
 
       state.watchlist = action.payload;
       localStorage.setItem("watchlist", JSON.stringify(action.payload));

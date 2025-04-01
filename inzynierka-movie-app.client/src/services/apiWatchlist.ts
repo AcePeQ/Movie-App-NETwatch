@@ -31,8 +31,6 @@ export async function addMovieApi(dataPassed: {
   token: string;
 }) {
   try {
-    console.log(dataPassed);
-
     const res = await fetch(`/Watchlist/AddMovie`, {
       headers: {
         "Content-Type": "application/json",
@@ -69,15 +67,13 @@ export async function deleteMovieApi(dataPassed: {
       body: JSON.stringify({ id: dataPassed.id }),
     });
 
-    console.log(res);
-
     if (!res.ok) {
       const error = await res.json();
       throw new Error(error.error);
     }
 
     const data = await res.json();
-    console.log(data);
+
     return data;
   } catch (error) {
     console.error((error as Error).message);

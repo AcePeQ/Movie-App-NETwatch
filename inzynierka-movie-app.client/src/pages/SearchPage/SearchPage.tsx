@@ -21,8 +21,6 @@ function SearchPage() {
     return <ErrorFull error={error} />;
   }
 
-  console.log(data);
-
   return (
     <div className={styles.search_page_container}>
       <div className={styles.header_wrapper}>

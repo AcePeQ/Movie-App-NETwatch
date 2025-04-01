@@ -14,7 +14,6 @@ export function useAddMovie() {
       addMovieApi(data),
     onSuccess: (data) => {
       {
-        console.log(data);
         toast.success("Successfully added movie");
         dispatch(updateWatchlist(data));
       }
