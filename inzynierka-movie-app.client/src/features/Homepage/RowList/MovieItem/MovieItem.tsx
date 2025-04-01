@@ -8,11 +8,7 @@ import MovieRating from "../../../../ui/MovieRating/MovieRating";
 import { findGenre } from "../../../../helpers/findGenre";
 
 import { BASE_URL_W500 } from "../../../../helpers/getBaseUrl";
-import {
-  CardItem,
-  FullWatchlistItem,
-  WatchlistItem,
-} from "../../../../utils/types";
+import { CardItem, WatchlistItem } from "../../../../utils/types";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useRedux";
 import {
   getUserToken,
@@ -24,7 +20,7 @@ import { openModalLogin } from "../../../Authentication/modalLoginSlice";
 import UserScore from "../../../../ui/UserScore/UserScore";
 
 interface MovieItem {
-  movie: CardItem | FullWatchlistItem;
+  movie: CardItem | WatchlistItem;
 }
 
 function MovieItem({ movie }: MovieItem) {

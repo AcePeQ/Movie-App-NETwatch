@@ -50,7 +50,7 @@ export type FullItemFull = {
 export type WatchlistItem = {
   databaseID: string;
   backdrop_path: string;
-  genres: Genre[];
+  genre_ids: number[];
   id: number;
   media_type: string;
   poster_path: string;
@@ -65,6 +65,26 @@ export type WatchlistItem = {
   user_status: string;
   watched_episodes: number;
   user_rating: number | undefined;
+};
+
+export type FullWatchlistItem = {
+  backdrop_path: string;
+  databaseID: string;
+  genre_ids: number[];
+  first_air_date: string;
+  id: number;
+  media_type: string;
+  name: string | null;
+  poster_path: string;
+  release_date: string | null;
+  runtime: number;
+  status: string;
+  title: string | null;
+  user_rating: number;
+  user_status: string;
+  vote_average: number;
+  vote_count: number;
+  watched_episodes: number;
 };
 
 export type Genre = {
@@ -189,26 +209,6 @@ export type SeasonType = {
   name: string;
   poster_path: string;
   season_number: number;
-};
-
-export type FullWatchlistItem = {
-  backdrop_path: string;
-  databaseID: string;
-  genres: Genre[];
-  first_air_date: string;
-  id: number;
-  media_type: string;
-  name: string | null;
-  poster_path: string;
-  release_date: string | null;
-  runtime: number;
-  status: string;
-  title: string | null;
-  user_rating: number;
-  user_status: string;
-  vote_average: number;
-  vote_count: number;
-  watched_episodes: number;
 };
 
 export type PersonType = {

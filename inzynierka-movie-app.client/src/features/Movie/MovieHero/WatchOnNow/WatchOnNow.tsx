@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import Providers from "./Providers/Providers";
 import { RegionType, WatchProviders } from "../../../../utils/types";
+import { SingleValue } from "react-select";
 
 function WatchOnNow({
   regions,
@@ -19,9 +20,18 @@ function WatchOnNow({
 
   const providerForSelectedRegion = watchProviders[selectedRegion.value];
 
+  const handleSelectRegion = (
+    selectedRegion: SingleValue<{ value: string; label: string }>
+  ) => {
+    if (selectedRegion) setSelectedRegion(selectedRegion);
+  };
+
   return (
     <div className={styles.watchOnList}>
-      <SelectRegion regions={regions} onSelectRegion={setSelectedRegion} />
+      <SelectRegion
+        regions={Array.isArray(regions) ? regions : [regions]}
+        onSelectRegion={handleSelectRegion}
+      />
       <Providers provider={providerForSelectedRegion} />
     </div>
   );

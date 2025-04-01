@@ -8,7 +8,7 @@ import MovieItem from "../../Homepage/RowList/MovieItem/MovieItem";
 
 import { useParams } from "react-router-dom";
 import { sortWatchlist } from "../../../helpers/sortWatchlist";
-import { FullWatchlistItem } from "../../../utils/types";
+import { WatchlistItem } from "../../../utils/types";
 
 const sortOptions = [
   { value: "rating.asc", label: "Rating ascending" },
@@ -45,7 +45,7 @@ function WatchlistList() {
   const [typeBy, setTypeBy] = useState(typeOptions[0]);
   const [statusBy, setStatusBy] = useState(statusOptions[0]);
   const [sortedWatchlist, setSortedWatchlist] = useState<
-    FullWatchlistItem[] | undefined
+    WatchlistItem[] | undefined
   >([]);
 
   useEffect(() => {
@@ -57,9 +57,9 @@ function WatchlistList() {
         statusBy.value
       );
 
-      const filtered = sorted?.filter(
+      const filtered = (sorted ?? []).filter(
         (item) => item.user_rating !== undefined
-      ) as FullWatchlistItem[];
+      ) as WatchlistItem[];
 
       setSortedWatchlist(filtered);
     }
@@ -84,7 +84,7 @@ function WatchlistList() {
         {isLoadingWatchlist ? (
           <Loading />
         ) : (
-          sortedWatchlist?.map((movie: FullWatchlistItem) => (
+          sortedWatchlist?.map((movie: WatchlistItem) => (
             <MovieItem key={movie.id} movie={movie} />
           ))
         )}
